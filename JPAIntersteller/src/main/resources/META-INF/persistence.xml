@@ -9,12 +9,12 @@
 		<properties>
 <!--FIX ME ZACH!!!  -->
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/FIXMEdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
+				value="jdbc:mysql://localhost:3306/interstellerdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
 <!--FIX ME ZACH!!!  -->
-			<property name="javax.persistence.jdbc.user" value="FIXME" />
+			<property name="javax.persistence.jdbc.user" value="interstelleruser" />
 <!--FIX ME ZACH!!!  -->
 			<property name="javax.persistence.jdbc.password"
-				value="FIXME" />
+				value="interstelleruser" />
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
 
