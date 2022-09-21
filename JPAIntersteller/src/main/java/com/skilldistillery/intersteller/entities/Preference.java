@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Preference {
 	
@@ -19,6 +21,7 @@ public class Preference {
 	
 	private String name;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="profile_has_preference", 
 	joinColumns=@JoinColumn(name="preference_id"), 

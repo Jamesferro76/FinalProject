@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Address {
 	
@@ -26,9 +28,11 @@ public class Address {
 	
 	private String country;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy="address")               
 	private Profile profile;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="address")
 	private List<Mixer> mixers;
 

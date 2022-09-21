@@ -19,6 +19,8 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Profile {
 	
@@ -59,7 +61,7 @@ public class Profile {
 	  @Column(name="updated_on")
 	  private LocalDateTime updatedOn;
 
-
+	  
 	  @ManyToMany
 	  @JoinTable(name= "profile_has_preference", joinColumns=@JoinColumn(name="profile_id"), inverseJoinColumns=@JoinColumn(name="preference_id"))
 	  private List<Preference> preferences;
@@ -67,46 +69,56 @@ public class Profile {
 	  @OneToMany(mappedBy="profile")
 	  private List<Image> images;
 
+	  @JsonIgnore
 	  @OneToMany(mappedBy="profile")
 	  private List<Mixer> mixers;
 
+	  @JsonIgnore
 	  @ManyToMany
 	    @JoinTable(name="mixer_attendee", 
 	    joinColumns=@JoinColumn(name="profile_id"), 
 	    inverseJoinColumns=@JoinColumn(name="mixer_id"))
 	    private List<Mixer> mixersAttending;
 	  
+	  @JsonIgnore
 	  @OneToMany(mappedBy="sender")
 	  private List<Message> messagesSent;
 
+	  @JsonIgnore
 	  @OneToMany(mappedBy="recipient")
 	  private List<Message> messagesReceived;
 
+	  @JsonIgnore
 	  @OneToMany(mappedBy="matcher")
 	  private List<Star> matchers;
 
+	  @JsonIgnore
 	  @OneToMany(mappedBy="matched")
 	  private List<Star> matcheds;
 	  
+	  @JsonIgnore
 	  @OneToMany(mappedBy="blockedBy")
 	  private List<Star> blocked;
 
-
+	  @JsonIgnore
 	  @ManyToMany
 	  @JoinTable(name="favorite", 
 	  joinColumns={@JoinColumn(name="profile_id")}, 
 	  inverseJoinColumns={@JoinColumn(name="profile_id1")})
 	  private List<Profile> favorited;
 
+	  @JsonIgnore
 	  @ManyToMany
 	  @JoinTable(name="favorite", 
 	  joinColumns={@JoinColumn(name="profile_id1")}, 
 	  inverseJoinColumns={@JoinColumn(name="profile_id")})
 	  private List<Profile> favoriter;
 
+	  @JsonIgnore
 	  @OneToMany(mappedBy="profile")
 	  private List<ProfileAnswer> profileAnswers;
 
+	  @JsonIgnore
 	  @ManyToMany
 	  @JoinTable(name="profile_has_category",
 	  joinColumns={@JoinColumn(name="profile_id")},
