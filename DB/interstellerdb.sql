@@ -401,10 +401,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `interstellerdb`;
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (1, 'admin@gmail.com', 'admin', 'admin', 'ADMIN', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (2, 'zachkott@gmail.com', 'zkott', 'zkott', 'ADMIN', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (3, 'dshoe@gmail.com', 'dshoe', 'dshoe', 'ADMIN', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (4, 'jferro@gmail.com', 'jferro', 'jferro', 'ADMIN', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (1, 'admin@gmail.com', 'admin', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'ADMIN', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (2, 'zachkott@gmail.com', 'zkott', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'ADMIN', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (3, 'dshoe@gmail.com', 'dshoe', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'ADMIN', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (4, 'jferro@gmail.com', 'jferro', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'ADMIN', 1);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (5, 'celectra@gmail.com', 'electra', 'electra', 'USER', 1);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (6, 'bpitt@gmail.com', 'bpitt', 'bpitt', 'USER', 1);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (7, 'spears@gmail.com', 'bspears', 'bspears', 'USER', 1);
