@@ -401,7 +401,75 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `interstellerdb`;
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (1, NULL, 'admin', 'admin', NULL, 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (1, 'admin@gmail.com', 'admin', 'admin', 'ADMIN', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (2, 'zachkott@gmail.com', 'zkott', 'zkott', 'ADMIN', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (3, 'dshoe@gmail.com', 'dshoe', 'dshoe', 'ADMIN', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (4, 'jferro@gmail.com', 'jferro', 'jferro', 'ADMIN', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (5, 'celectra@gmail.com', 'electra', 'electra', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (6, 'bpitt@gmail.com', 'bpitt', 'bpitt', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (7, 'spears@gmail.com', 'bspears', 'bspears', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (8, 'mmyers@gmail.com', 'mmyers', 'mmyers', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (9, 'ajolie@gmail.com', 'ajolie', 'ajolie', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (10, 'tfey@gmail.com', 'tfey', 'tfey', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (11, 'rreynolds@gmail.com', 'ryanr', 'ryanr', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (12, 'blively@gmail.com', 'blakel', 'blakel', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (13, 'scarrel@gmail.com', 'stevec', 'stevec', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (14, 'jalba@gmail.com', 'jalba', 'jalba', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (15, 'mdamon@gmail.com', 'damonm', 'damonm', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (16, 'scarjo@gmail.com', 'scarjo', 'scarjo', 'USER', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (1, '123 admin st', 'Seattle', 'WA', '98103', 'United States');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `profile`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (1, '1993-09-21', 'admin', 'Male', 'Admin', 'Jones', 1, 1, NULL, 1, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `category` (`id`, `name`) VALUES (1, 'Active');
+INSERT INTO `category` (`id`, `name`) VALUES (2, 'Athletic');
+INSERT INTO `category` (`id`, `name`) VALUES (3, 'Clean');
+INSERT INTO `category` (`id`, `name`) VALUES (4, 'Flexible');
+INSERT INTO `category` (`id`, `name`) VALUES (5, 'Dedicated');
+INSERT INTO `category` (`id`, `name`) VALUES (6, 'Humorous');
+INSERT INTO `category` (`id`, `name`) VALUES (7, 'Ambitious');
+INSERT INTO `category` (`id`, `name`) VALUES (8, 'Unpredictable');
+INSERT INTO `category` (`id`, `name`) VALUES (9, 'Quiet');
+INSERT INTO `category` (`id`, `name`) VALUES (10, 'Sarcastic');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `preference`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `preference` (`id`, `name`) VALUES (1, 'Men');
+INSERT INTO `preference` (`id`, `name`) VALUES (2, 'Women');
+INSERT INTO `preference` (`id`, `name`) VALUES (3, 'Trans');
+INSERT INTO `preference` (`id`, `name`) VALUES (4, 'Pan');
+INSERT INTO `preference` (`id`, `name`) VALUES (5, 'Non-Binary');
 
 COMMIT;
 
