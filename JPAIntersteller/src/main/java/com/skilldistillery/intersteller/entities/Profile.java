@@ -63,10 +63,10 @@ public class Profile {
 	  @ManyToMany
 	  @JoinTable(name= "profile_has_preference", joinColumns=@JoinColumn(name="profile_id"), inverseJoinColumns=@JoinColumn(name="preference_id"))
 	  private List<Preference> preferences;
-//
-//	  @OneToMany(mappedBy="profile")
-//	  private List<Image> images;
-//
+
+	  @OneToMany(mappedBy="profile")
+	  private List<Image> images;
+
 	  @OneToMany(mappedBy="profile")
 	  private List<Mixer> mixers;
 
@@ -81,35 +81,37 @@ public class Profile {
 
 	  @OneToMany(mappedBy="recipient")
 	  private List<Message> messagesReceived;
-//
-//	  @OneToMany(mappedBy="matcher")
-//	  private List<Friend> matchers;
-//
-//	  @OneToMany(mappedBy="matched")
-//	  private List<Friend> matcheds;
-//
-//	  //there is an extra connection from profile to friend that I'm not sure about
-//
-//	  @ManyToMany(mappedBy="favoriter")
-//	  @JoinTable(name="favorite", 
-//	  joinColumns={@JoinColumn(name="profile_id")}, 
-//	  inverseJoinColumns={@JoinColumn(name="profile_id1")})
-//	  private List<Profile> favorited;
-//
-//	  @ManyToMany(mappedBy="favorited")
-//	  @JoinTable(name="favorite", 
-//	  joinColumns={@JoinColumn(name="profile_id1")}, 
-//	  inverseJoinColumns={@JoinColumn(name="profile_id")})
-//	  private List<Profile> favoriter;
-//
-//	  @OneToMany(mappedBy="profile")
-//	  private List<ProfileAnswer> profileAnswers;
-//
-//	  @ManyToMany
-//	  @JoinTable(name="profile_has_category",
-//	  joinColumns={@JoinColumn(name="profile_id")},
-//	  inverseJoinColumns={@JoinColumn(name="category_id")})
-//	  private List<Category> categories;
+
+	  @OneToMany(mappedBy="matcher")
+	  private List<Star> matchers;
+
+	  @OneToMany(mappedBy="matched")
+	  private List<Star> matcheds;
+	  
+	  @OneToMany(mappedBy="blockedBy")
+	  private List<Star> blocked;
+
+
+	  @ManyToMany
+	  @JoinTable(name="favorite", 
+	  joinColumns={@JoinColumn(name="profile_id")}, 
+	  inverseJoinColumns={@JoinColumn(name="profile_id1")})
+	  private List<Profile> favorited;
+
+	  @ManyToMany
+	  @JoinTable(name="favorite", 
+	  joinColumns={@JoinColumn(name="profile_id1")}, 
+	  inverseJoinColumns={@JoinColumn(name="profile_id")})
+	  private List<Profile> favoriter;
+
+	  @OneToMany(mappedBy="profile")
+	  private List<ProfileAnswer> profileAnswers;
+
+	  @ManyToMany
+	  @JoinTable(name="profile_has_category",
+	  joinColumns={@JoinColumn(name="profile_id")},
+	  inverseJoinColumns={@JoinColumn(name="category_id")})
+	  private List<Category> categories;
 	  
 		public Profile() {
 			super();
@@ -264,26 +266,35 @@ public class Profile {
 			this.mixers = mixers;
 		}
 		
-		
+		public List<Profile> getFavorited() {
+			return favorited;
+		}
 
-//		public List<Profile> getFavorited() {
-//			return favorited;
-//		}
-//
-//
-//		public void setFavorited(List<Profile> favorited) {
-//			this.favorited = favorited;
-//		}
-//
-//
-//		public List<Profile> getFavoriter() {
-//			return favoriter;
-//		}
-//
-//
-//		public void setFavoriter(List<Profile> favoriter) {
-//			this.favoriter = favoriter;
-//		}
+
+		public void setFavorited(List<Profile> favorited) {
+			this.favorited = favorited;
+		}
+
+
+
+		public List<Profile> getFavoriter() {
+			return favoriter;
+		}
+
+
+		public void setFavoriter(List<Profile> favoriter) {
+			this.favoriter = favoriter;
+		}
+
+
+		public List<Image> getImages() {
+			return images;
+		}
+
+
+		public void setImages(List<Image> images) {
+			this.images = images;
+		}
 
 
 		public Boolean getActive() {
@@ -303,6 +314,53 @@ public class Profile {
 
 		public void setMixersAttending(List<Mixer> mixersAttending) {
 			this.mixersAttending = mixersAttending;
+		}
+		
+
+		public List<Star> getMatchers() {
+			return matchers;
+		}
+
+
+		public void setMatchers(List<Star> matchers) {
+			this.matchers = matchers;
+		}
+
+
+		public List<Star> getMatcheds() {
+			return matcheds;
+		}
+
+
+		public void setMatcheds(List<Star> matcheds) {
+			this.matcheds = matcheds;
+		}
+		
+		public List<Category> getCategories() {
+			return categories;
+		}
+
+
+		public void setCategories(List<Category> categories) {
+			this.categories = categories;
+		}
+		
+		public List<Star> getBlocked() {
+			return blocked;
+		}
+
+
+		public void setBlocked(List<Star> blocked) {
+			this.blocked = blocked;
+		}
+		
+		public List<ProfileAnswer> getProfileAnswers() {
+			return profileAnswers;
+		}
+
+
+		public void setProfileAnswers(List<ProfileAnswer> profileAnswers) {
+			this.profileAnswers = profileAnswers;
 		}
 
 
