@@ -258,11 +258,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `friend`
+-- Table `star`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `friend` ;
+DROP TABLE IF EXISTS `star` ;
 
-CREATE TABLE IF NOT EXISTS `friend` (
+CREATE TABLE IF NOT EXISTS `star` (
   `matcher_id` INT NOT NULL,
   `matched_id` INT NOT NULL,
   `matched_on` DATETIME NULL,
