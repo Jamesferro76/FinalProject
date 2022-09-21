@@ -33,25 +33,22 @@ class ImageTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		address = em.find(Address.class, 1);
+		image = em.find(Image.class, 1);
 		
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		address = null;
+		image = null;
 	}
 
 	@Test
-	void test_Address_entity_mapping() {
-		assertNotNull(address);
-		assertEquals("admin", address.getCity());
+	void test_Image_entity_mapping() {
+		assertNotNull(image);
+		assertEquals("https://live.staticflickr.com/65535/50022047712_239c407207.jpg", image.getImageUrl());
+		assertEquals(2,image.getProfile().getId());
 	}
-	@Test
-	void test_Address_Profile_mapping() {
-		assertNotNull(address);
-		assertEquals("admin", address.getProfile().getFirstName());
-	}
+	
 
 }
