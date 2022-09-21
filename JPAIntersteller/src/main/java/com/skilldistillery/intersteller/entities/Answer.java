@@ -1,27 +1,33 @@
 package com.skilldistillery.intersteller.entities;
 
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Category {
+public class Answer {
+
 	
 	@Id
 	@GeneratedValue( strategy =GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
+	private String answer;
 	
-	@OneToMany(mappedBy="category")
-	private List<Answer> answers;
+	@ManyToOne
+	@JoinColumn(name="question_id")
+	private Question question;
+	
+	@ManyToOne
+	@JoinColumn(name="category_id")
+	private Category category;
 
-	public Category() {
+	public Answer() {
 		super();
 	}
 
@@ -33,20 +39,28 @@ public class Category {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getAnswer() {
+		return answer;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 
-	public List<Answer> getAnswers() {
-		return answers;
+	public Question getQuestion() {
+		return question;
 	}
 
-	public void setAnswers(List<Answer> answers) {
-		this.answers = answers;
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	@Override
@@ -62,21 +76,22 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Answer other = (Answer) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Category [id=");
+		builder.append("Answer [id=");
 		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
+		builder.append(", answer=");
+		builder.append(answer);
+		builder.append(", category=");
+		builder.append(category);
 		builder.append("]");
 		return builder.toString();
 	}
 	
 	
-
 }
