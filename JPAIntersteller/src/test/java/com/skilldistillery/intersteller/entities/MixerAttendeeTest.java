@@ -33,7 +33,10 @@ class MixerAttendeeTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		mixerattendee = em.find(MixerAttendee.class, 1);
+		MixerAttendeeId maid = new MixerAttendeeId();
+		maid.setMixerId(1);
+		maid.setProfileId(1);
+		mixerattendee = em.find(MixerAttendee.class, maid);
 		
 	}
 
@@ -46,18 +49,18 @@ class MixerAttendeeTest {
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(mixerattendee);
-		assertEquals("admin", mixerattendee.getRating());
+		assertEquals(5, mixerattendee.getRating());
 	}
 	
 	@Test
 	void test_User_Mixer_entity_mapping() {
 		assertNotNull(mixerattendee);
-		assertEquals("Admin", mixerattendee.getMixer().getName());
+		assertEquals("mixer test", mixerattendee.getMixer().getName());
 	}
 	@Test
 	void test_User_Profile_entity_mapping() {
 		assertNotNull(mixerattendee);
-		assertEquals("Admin", mixerattendee.getProfile().getSex());
+		assertEquals("Male", mixerattendee.getProfile().getSex());
 	}
 
 }
