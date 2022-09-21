@@ -33,7 +33,10 @@ class StarTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		star = em.find(Star.class, 1);
+		StarId sid= new StarId();
+		sid.setMatchedId(2);
+		sid.setMatcherId(1);
+		star = em.find(Star.class, sid);
 		
 	}
 
