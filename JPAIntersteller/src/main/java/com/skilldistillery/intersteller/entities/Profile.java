@@ -39,9 +39,11 @@ public class Profile {
 	  private String lastName;
 
 	  @OneToOne
+	  @JoinColumn(name="user_id")
 	  private User user;
 
 	  @OneToOne
+	  @JoinColumn(name="address_id")
 	  private Address address;
 
 	  @Column(name="profile_pic")
@@ -85,17 +87,17 @@ public class Profile {
 //
 //	  //there is an extra connection from profile to friend that I'm not sure about
 //
-	  @ManyToMany(mappedBy="favoriter")
-	  @JoinTable(name="favorite", 
-	  joinColumns={@JoinColumn(name="profile_id")}, 
-	  inverseJoinColumns={@JoinColumn(name="profile_id1")})
-	  private List<Profile> favorited;
-
-	  @ManyToMany(mappedBy="favorited")
-	  @JoinTable(name="favorite", 
-	  joinColumns={@JoinColumn(name="profile_id1")}, 
-	  inverseJoinColumns={@JoinColumn(name="profile_id")})
-	  private List<Profile> favoriter;
+//	  @ManyToMany(mappedBy="favoriter")
+//	  @JoinTable(name="favorite", 
+//	  joinColumns={@JoinColumn(name="profile_id")}, 
+//	  inverseJoinColumns={@JoinColumn(name="profile_id1")})
+//	  private List<Profile> favorited;
+//
+//	  @ManyToMany(mappedBy="favorited")
+//	  @JoinTable(name="favorite", 
+//	  joinColumns={@JoinColumn(name="profile_id1")}, 
+//	  inverseJoinColumns={@JoinColumn(name="profile_id")})
+//	  private List<Profile> favoriter;
 //
 //	  @OneToMany(mappedBy="profile")
 //	  private List<ProfileAnswer> profileAnswers;
@@ -269,24 +271,24 @@ public class Profile {
 			this.mixers = mixers;
 		}
 
-		public List<Profile> getFavorited() {
-			return favorited;
-		}
-
-
-		public void setFavorited(List<Profile> favorited) {
-			this.favorited = favorited;
-		}
-
-
-		public List<Profile> getFavoriter() {
-			return favoriter;
-		}
-
-
-		public void setFavoriter(List<Profile> favoriter) {
-			this.favoriter = favoriter;
-		}
+//		public List<Profile> getFavorited() {
+//			return favorited;
+//		}
+//
+//
+//		public void setFavorited(List<Profile> favorited) {
+//			this.favorited = favorited;
+//		}
+//
+//
+//		public List<Profile> getFavoriter() {
+//			return favoriter;
+//		}
+//
+//
+//		public void setFavoriter(List<Profile> favoriter) {
+//			this.favoriter = favoriter;
+//		}
 
 
 		@Override

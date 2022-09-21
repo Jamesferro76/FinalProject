@@ -21,7 +21,7 @@ public class User {
 	  private String role;
 	  private boolean active;
 
-	  @OneToOne
+	  @OneToOne(mappedBy="user")
 	  private Profile profile;
 
 

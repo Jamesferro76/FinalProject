@@ -78,16 +78,16 @@ class ProfileTest {
 		assertTrue(profile.getPreferences().size()>0);
 	}
 	
-	@Test
-	void test_Profile_Favoriter_entity_mapping() {
-		assertNotNull(profile);
-		assertTrue(profile.getFavoriter().size()>0);
-	}
-	@Test
-	void test_Profile_Favorited_entity_mapping() {
-		assertNotNull(profile);
-		assertTrue(profile.getFavorited().size()>0);
-	}
+//	@Test
+//	void test_Profile_Favoriter_entity_mapping() {
+//		assertNotNull(profile);
+//		assertTrue(profile.getFavoriter().size()>0);
+//	}
+//	@Test
+//	void test_Profile_Favorited_entity_mapping() {
+//		assertNotNull(profile);
+//		assertTrue(profile.getFavorited().size()>0);
+//	}
 	
 
 }
