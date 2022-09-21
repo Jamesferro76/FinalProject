@@ -2,11 +2,10 @@ package com.skilldistillery.intersteller.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.skilldistillery.intersteller.entities.Profile;
 import com.skilldistillery.intersteller.entities.User;
 
-public interface ProfileRepository extends JpaRepository<User, Integer> {
+public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 
-	User getUserById(int userId);
-	User findByUsername(String username);
-
+	Profile findByIdAndUserId(int id, int userId);
 }
