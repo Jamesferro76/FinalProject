@@ -84,16 +84,58 @@ class ProfileTest {
 		assertTrue(profile.getPreferences().size()>0);
 	}
 	
-//	@Test
-//	void test_Profile_Favoriter_entity_mapping() {
-//		assertNotNull(profile);
-//		assertTrue(profile.getFavoriter().size()>0);
-//	}
-//	@Test
-//	void test_Profile_Favorited_entity_mapping() {
-//		assertNotNull(profile);
-//		assertTrue(profile.getFavorited().size()>0);
-//	}
+	@Test
+	void test_Profile_MixerAttendee_entity_mapping() {
+		assertNotNull(profile);
+		assertTrue(profile.getMixersAttending().size()>0);
+	}
+	
+	@Test
+	void test_Profile_Images_entity_mapping() {
+		profile = em.find(Profile.class, 2);
+		assertNotNull(profile);
+		assertTrue(profile.getImages().size()>0);
+	}
+	
+	@Test
+	void test_Profile_Star_entity_mapping() {
+		assertNotNull(profile);
+		assertTrue(profile.getMatchers().size()>0);
+		
+		profile = em.find(Profile.class, 2);
+		assertTrue(profile.getMatcheds().size()>0);
+	}
+	
+	@Test
+	void test_Profile_Star_Blocked_entity_mapping() {
+		profile = em.find(Profile.class, 2);
+		assertNotNull(profile);
+		assertTrue(profile.getBlocked().size()>0);
+	}
+	
+	@Test
+	void test_Profile_Category_entity_mapping() {
+		assertNotNull(profile);
+		assertTrue(profile.getCategories().size()>0);
+	}
+	
+	@Test
+	void test_Profile_profileAnswer_entity_mapping() {
+		assertNotNull(profile);
+		assertTrue(profile.getProfileAnswers().size()>0);
+	}
+	
+	@Test
+	void test_Profile_Favoriter_entity_mapping() {
+		profile = em.find(Profile.class, 4);
+		assertNotNull(profile);
+		assertTrue(profile.getFavoriter().size()>0);
+	}
+	@Test
+	void test_Profile_Favorited_entity_mapping() {
+		assertNotNull(profile);
+		assertTrue(profile.getFavorited().size()>0);
+	}
 	
 
 }
