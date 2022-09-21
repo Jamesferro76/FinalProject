@@ -427,6 +427,7 @@ COMMIT;
 START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (1, '123 admin st', 'Seattle', 'WA', '98103', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (2, '69 mixer ave', 'Portland', 'OR', '92012', 'United States');
 
 COMMIT;
 
@@ -470,6 +471,16 @@ INSERT INTO `preference` (`id`, `name`) VALUES (2, 'Women');
 INSERT INTO `preference` (`id`, `name`) VALUES (3, 'Trans');
 INSERT INTO `preference` (`id`, `name`) VALUES (4, 'Pan');
 INSERT INTO `preference` (`id`, `name`) VALUES (5, 'Non-Binary');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `mixer`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `profile_id`) VALUES (1, 'mixer test', 'a great place for a first date', '2022-09-30', 2, '17:00:00', '20:00:00', NULL, NULL, 1);
 
 COMMIT;
 
