@@ -48,12 +48,12 @@ class PreferenceTest {
 	@Test
 	void test_Preference_entity_mapping() {
 		assertNotNull(preference);
-		assertEquals("admin", preference.getName());
+		assertEquals("Men", preference.getName());
 	}
 	@Test
 	void test_Preference_profile_mapping() {
 		assertNotNull(preference);
-		assertEquals("admin", preference.getProfiles().get(0).getFirstName());
+		assertEquals("Admin", preference.getProfiles().get(0).getFirstName());
 		assertTrue(preference.getProfiles().size()>0);
 	}
 

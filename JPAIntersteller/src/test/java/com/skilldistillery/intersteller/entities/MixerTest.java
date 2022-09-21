@@ -12,13 +12,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AddressTest {
+class MixerTest {
 	
 	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private Address address;
+	private Mixer mixer;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,31 +33,25 @@ class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		address = em.find(Address.class, 2);
+		mixer = em.find(Mixer.class, 1);
 		
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		address = null;
+		mixer = null;
 	}
 
 	@Test
-	void test_Address_entity_mapping() {
-		assertNotNull(address);
-		assertEquals("Portland", address.getCity());
+	void test_Mixer_entity_mapping() {
+		assertNotNull(mixer);
+		assertEquals("admin", mixer.getName());
 	}
 	@Test
-	void test_Address_Profile_mapping() {
-		address = em.find(Address.class, 1);
-		assertNotNull(address);
-		assertEquals("Admin", address.getProfile().getFirstName());
-	}
-	@Test
-	void test_Address_Mixer_mapping() {
-		assertNotNull(address);
-		assertEquals("a great place for a first date", address.getMixer().getDescription());
+	void test_Mixer_mixerattendee_mapping() {
+		assertNotNull(mixer);
+		assertEquals("admin", mixer);
 	}
 
 }
