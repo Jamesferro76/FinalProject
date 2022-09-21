@@ -18,7 +18,7 @@ class ProfileAnswerTest {
 	
 	private EntityManager em;
 	
-	private MixerAttendee mixerattendee;
+	private ProfileAnswer profileanswer;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,34 +33,34 @@ class ProfileAnswerTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		MixerAttendeeId maid = new MixerAttendeeId();
-		maid.setMixerId(1);
-		maid.setProfileId(1);
-		mixerattendee = em.find(MixerAttendee.class, maid);
+		ProfileAnswerId paid = new ProfileAnswerId();
+		paid.setQuestionId(1);
+		paid.setProfileId(1);
+		profileanswer = em.find(ProfileAnswer.class, paid);
 		
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		mixerattendee = null;
+		profileanswer = null;
 	}
 
 	@Test
 	void test_User_entity_mapping() {
-		assertNotNull(mixerattendee);
-		assertEquals(5, mixerattendee.getRating());
+		assertNotNull(profileanswer);
+		assertEquals(5, profileanswer.getRating());
 	}
 	
 	@Test
-	void test_User_Mixer_entity_mapping() {
-		assertNotNull(mixerattendee);
-		assertEquals("mixer test", mixerattendee.getMixer().getName());
+	void test_User_Question_entity_mapping() {
+		assertNotNull(profileanswer);
+		assertEquals("mixer test", profileanswer.getMixer().getName());
 	}
 	@Test
 	void test_User_Profile_entity_mapping() {
-		assertNotNull(mixerattendee);
-		assertEquals("Male", mixerattendee.getProfile().getSex());
+		assertNotNull(profileanswer);
+		assertEquals("Male", profileanswer.getProfile().getSex());
 	}
 
 }
