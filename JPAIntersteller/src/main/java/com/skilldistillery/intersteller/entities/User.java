@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -14,7 +15,15 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String username;
+	private String email;
+	  private String username;
+	  private String password;
+	  private String role;
+	  private boolean active;
+
+	  @OneToOne
+	  private Profile profile;
+
 
 	public User() {
 		super();
@@ -35,10 +44,51 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(active, email, id, password, profile, role, username);
 	}
 
 	@Override
@@ -50,7 +100,9 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return id == other.id;
+		return active == other.active && Objects.equals(email, other.email) && id == other.id
+				&& Objects.equals(password, other.password) && Objects.equals(profile, other.profile)
+				&& Objects.equals(role, other.role) && Objects.equals(username, other.username);
 	}
 
 	@Override
