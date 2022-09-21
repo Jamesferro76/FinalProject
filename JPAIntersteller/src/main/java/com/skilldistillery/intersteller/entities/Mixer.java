@@ -1,6 +1,7 @@
 package com.skilldistillery.intersteller.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -44,7 +47,21 @@ public class Mixer {
 	@JoinColumn(name="profile_id")
 	private Profile profile;
 
+	@ManyToMany
+	@JoinTable(name="mixer_attendee", 
+	joinColumns=@JoinColumn(name="mixer_id"), 
+	inverseJoinColumns=@JoinColumn(name="profile_id"))
+	private List<Profile> profiles;
+	
 	public Mixer() {
+	}
+
+	public List<Profile> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
 	}
 
 	public Profile getProfile() {
