@@ -557,6 +557,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `favorite`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `favorite` (`profile_id`, `profile_id1`) VALUES (1, 4);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `star`
 -- -----------------------------------------------------
 START TRANSACTION;

@@ -30,6 +30,10 @@ joinColumns=@JoinColumn(name="question_id"),
 inverseJoinColumns=@JoinColumn(name="profile_id"))
 private List<Profile> profiles;
 
+@OneToMany(mappedBy="question")
+private List<ProfileAnswer> profileAnswer;
+
+
 
 public Question() {
 	super();
@@ -57,6 +61,24 @@ public List<Answer> getAnswers() {
 
 public void setAnswers(List<Answer> answers) {
 	this.answers = answers;
+}
+
+
+
+public List<Profile> getProfiles() {
+	return profiles;
+}
+
+public void setProfiles(List<Profile> profiles) {
+	this.profiles = profiles;
+}
+
+public List<ProfileAnswer> getProfileAnswer() {
+	return profileAnswer;
+}
+
+public void setProfileAnswer(List<ProfileAnswer> profileAnswer) {
+	this.profileAnswer = profileAnswer;
 }
 
 @Override
