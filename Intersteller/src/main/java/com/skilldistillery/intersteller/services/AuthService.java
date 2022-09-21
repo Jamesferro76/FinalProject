@@ -8,4 +8,6 @@ public interface AuthService {
 
 	public User getUserByUsername(String username);
 
+	public User getUserById(int userId);
+
 }
