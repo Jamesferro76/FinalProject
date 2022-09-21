@@ -49,18 +49,18 @@ class ProfileAnswerTest {
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(profileanswer);
-		assertEquals(5, profileanswer.getRating());
+		assertEquals("Quality time", profileanswer.getAnswer().getAnswer());
 	}
 	
 	@Test
 	void test_User_Question_entity_mapping() {
 		assertNotNull(profileanswer);
-		assertEquals("mixer test", profileanswer.getMixer().getName());
+		assertEquals("What do you value most in a relationship?", profileanswer.getQuestion().getQuestion());
 	}
 	@Test
 	void test_User_Profile_entity_mapping() {
 		assertNotNull(profileanswer);
-		assertEquals("Male", profileanswer.getProfile().getSex());
+		assertEquals("Jones", profileanswer.getProfile().getLastName());
 	}
 
 }
