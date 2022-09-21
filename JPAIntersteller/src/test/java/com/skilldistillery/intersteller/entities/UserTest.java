@@ -48,5 +48,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
 	}
+	
+	@Test
+	void test_User_Profile_entity_mapping() {
+		assertNotNull(user);
+		assertEquals(1, user.getProfile().getId());
+	}
 
 }

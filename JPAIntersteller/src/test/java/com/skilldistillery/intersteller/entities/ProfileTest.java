@@ -46,13 +46,19 @@ class ProfileTest {
 	@Test
 	void test_Profile_entity_mapping() {
 		assertNotNull(profile);
-		assertEquals("admin", profile.getFirstName());
+		assertEquals("Admin", profile.getFirstName());
 	}
 	
 	@Test
 	void test_Profile_User_entity_mapping() {
 		assertNotNull(profile);
 		assertEquals(1, profile.getUser().getId());
+	}
+	
+	@Test
+	void test_Profile_Address_entity_mapping() {
+		assertNotNull(profile);
+		assertEquals(1, profile.getAddress().getId());
 	}
 	
 	@Test

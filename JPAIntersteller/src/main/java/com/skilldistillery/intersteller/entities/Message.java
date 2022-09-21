@@ -3,6 +3,7 @@ package com.skilldistillery.intersteller.entities;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,14 +16,15 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 public class Message {
 	
-	@Id
+	  @Id
 	  @GeneratedValue(strategy= GenerationType.IDENTITY)
 	  private int id;
 
 	  private String content;
 
 	  @CreationTimestamp
-	  private LocalDateTime sendDate;
+	  @Column(name="sent_date")
+	  private LocalDateTime sentDate;
 
 	  @ManyToOne
 	  @JoinColumn(name="sender_id")
@@ -52,12 +54,12 @@ public class Message {
 		this.content = content;
 	}
 
-	public LocalDateTime getSendDate() {
-		return sendDate;
+	public LocalDateTime getSentDate() {
+		return sentDate;
 	}
 
-	public void setSendDate(LocalDateTime sendDate) {
-		this.sendDate = sendDate;
+	public void setSentDate(LocalDateTime sentDate) {
+		this.sentDate = sentDate;
 	}
 
 	public Profile getSender() {
@@ -78,7 +80,7 @@ public class Message {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(content, id, recipient, sendDate, sender);
+		return Objects.hash(content, id, recipient, sentDate, sender);
 	}
 
 	@Override
@@ -91,12 +93,12 @@ public class Message {
 			return false;
 		Message other = (Message) obj;
 		return Objects.equals(content, other.content) && id == other.id && Objects.equals(recipient, other.recipient)
-				&& Objects.equals(sendDate, other.sendDate) && Objects.equals(sender, other.sender);
+				&& Objects.equals(sentDate, other.sentDate) && Objects.equals(sender, other.sender);
 	}
 
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", content=" + content + ", sendDate=" + sendDate + "]";
+		return "Message [id=" + id + ", content=" + content + ", sendDate=" + sentDate + "]";
 	}
 	  
 	
