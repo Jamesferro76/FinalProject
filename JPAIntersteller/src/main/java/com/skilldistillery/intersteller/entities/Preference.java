@@ -18,11 +18,12 @@ public class Preference {
 	private int id;
 	
 	private String name;
-//	@ManyToMany
-//	@JoinTable(name="profile_has_preference", 
-//	joinColumns=@JoinColumn(name="preference_id"), 
-//	inverseJoinColumns=@JoinColumn(name="profile_id"))
-//	private List<Profile> profiles;
+	
+	@ManyToMany
+	@JoinTable(name="profile_has_preference", 
+	joinColumns=@JoinColumn(name="preference_id"), 
+	inverseJoinColumns=@JoinColumn(name="profile_id"))
+	private List<Profile> profiles;
 
 	public int getId() {
 		return id;
@@ -42,6 +43,14 @@ public class Preference {
 
 	public Preference() {
 		super();
+	}
+
+	public List<Profile> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
 	}
 	
 	

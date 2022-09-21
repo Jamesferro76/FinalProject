@@ -40,11 +40,19 @@ public class Mixer {
 	@Column(name="image_url")
 	private LocalDate imageUrl;
 	
-//	@OneToOne
-//	@JoinColumn(name="profile_id")
-//	private Profile profile;
+	@OneToOne
+	@JoinColumn(name="profile_id")
+	private Profile profile;
 
 	public Mixer() {
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
 	}
 
 	public int getId() {
