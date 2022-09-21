@@ -2,6 +2,7 @@ package com.skilldistillery.intersteller.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -53,24 +58,24 @@ public class Profile {
 	  private LocalDateTime updatedOn;
 
 
-//	  @ManyToMany
-//	  @JoinTable(name= "profile_has_preference", joinColumns=@JoinColumn(name="profile_id"), inverseJoinColumn(name="preference_id"))
-//	  private List<Preference> preferences;
+	  @ManyToMany
+	  @JoinTable(name= "profile_has_preference", joinColumns=@JoinColumn(name="profile_id"), inverseJoinColumns=@JoinColumn(name="preference_id"))
+	  private List<Preference> preferences;
 //
 //	  @OneToMany(mappedBy="profile")
 //	  private List<Image> images;
 //
-//	  @OneToMany(mappedBy="profile")
-//	  private List<Mixer> mixers;
+	  @OneToMany(mappedBy="profile")
+	  private List<Mixer> mixers;
 //
 //	  @OneToMany(mappedBy="profile")
 //	  private List<MixerAttendee> mixersAttending;
 //
-//	  @OneToMany(mappedBy="sender")
-//	  private List<message> messagesSent;
-//
-//	  @OneToMany(mappedBy="recipient")
-//	  private List<message> messagesReceived;
+	  @OneToMany(mappedBy="sender")
+	  private List<Message> messagesSent;
+
+	  @OneToMany(mappedBy="recipient")
+	  private List<Message> messagesReceived;
 //
 //	  @OneToMany(mappedBy="matcher")
 //	  private List<Friend> matchers;
@@ -80,17 +85,17 @@ public class Profile {
 //
 //	  //there is an extra connection from profile to friend that I'm not sure about
 //
-//	  @ManyToMany(mappedBy="favoriter")
-//	  @JoinTable(name="favorite", 
-//	  joinColumns={@JoinColumn(name="profile_id")}, 
-//	  inverseJoinColumns={@JoinColumn(name="profile_id1")})
-//	  private List<Profile> favorited;
-//
-//	  @ManyToMany(mappedBy="favorited")
-//	  @JoinTable(name="favorite", 
-//	  joinColumns={@JoinColumn(name="profile_id1")}, 
-//	  inverseJoinColumns={@JoinColumn(name="profile_id")})
-//	  private List<Profile> favoriter;
+	  @ManyToMany(mappedBy="favoriter")
+	  @JoinTable(name="favorite", 
+	  joinColumns={@JoinColumn(name="profile_id")}, 
+	  inverseJoinColumns={@JoinColumn(name="profile_id1")})
+	  private List<Profile> favorited;
+
+	  @ManyToMany(mappedBy="favorited")
+	  @JoinTable(name="favorite", 
+	  joinColumns={@JoinColumn(name="profile_id1")}, 
+	  inverseJoinColumns={@JoinColumn(name="profile_id")})
+	  private List<Profile> favoriter;
 //
 //	  @OneToMany(mappedBy="profile")
 //	  private List<ProfileAnswer> profileAnswers;
@@ -223,6 +228,64 @@ public class Profile {
 
 		public void setUpdatedOn(LocalDateTime updatedOn) {
 			this.updatedOn = updatedOn;
+		}
+		
+		public List<Message> getMessagesSent() {
+			return messagesSent;
+		}
+
+
+		public void setMessagesSent(List<Message> messagesSent) {
+			this.messagesSent = messagesSent;
+		}
+
+
+		public List<Message> getMessagesReceived() {
+			return messagesReceived;
+		}
+
+
+		public void setMessagesReceived(List<Message> messagesReceived) {
+			this.messagesReceived = messagesReceived;
+		}
+		
+
+		public List<Preference> getPreferences() {
+			return preferences;
+		}
+
+
+		public void setPreferences(List<Preference> preferences) {
+			this.preferences = preferences;
+		}
+
+
+		public List<Mixer> getMixers() {
+			return mixers;
+		}
+
+
+		public void setMixers(List<Mixer> mixers) {
+			this.mixers = mixers;
+		}
+
+		public List<Profile> getFavorited() {
+			return favorited;
+		}
+
+
+		public void setFavorited(List<Profile> favorited) {
+			this.favorited = favorited;
+		}
+
+
+		public List<Profile> getFavoriter() {
+			return favoriter;
+		}
+
+
+		public void setFavoriter(List<Profile> favoriter) {
+			this.favoriter = favoriter;
 		}
 
 
