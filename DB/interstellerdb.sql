@@ -526,6 +526,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `profile_answer`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `profile_answer` (`answer_id`, `profile_id`, `question_id`) VALUES (1, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `mixer`
 -- -----------------------------------------------------
 START TRANSACTION;
