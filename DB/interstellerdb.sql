@@ -429,6 +429,20 @@ USE `interstellerdb`;
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (1, '123 admin st', 'Seattle', 'WA', '98103', 'United States');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (2, '69 mixer ave', 'Portland', 'OR', '92012', 'United States');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (3, '9027 meridian ave', 'San Diego', 'CA', '97455', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (4, '111 this st', 'Portland', 'OR', '92012', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (5, '222 that st', 'Queens', 'NY', '65123', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (6, '333 here rd', 'Vancouver', 'WA', '93210', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (7, '444 over ave', 'Greensboro', 'NC', '27455', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (8, '555 sled circle', 'Los Angeles', 'CA', '90210', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (9, '666 demon rd', 'Orlando', 'FL', '87123', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (10, '777 lucky dr', 'Las Vegas', 'NV', '71254', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (11, '888 this big st', 'Denver', 'CO', '61290', 'United Statees');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (12, '999 huge ave', 'Austin', 'TX', '20936', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (13, '1020 jug rd', 'Port Orchard', 'WA', '91782', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (14, '926 hillbilly way', 'Louisville', 'KY', '56209', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (15, '2002 greater ln', 'Charlotte ', 'NC', '98166', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (16, '5273 turnaround ln', 'Huntsville', 'AL', '67812', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (17, '2634 little rd', 'Brooklyn', 'NY', '72903', 'United States');
 
 COMMIT;
 
@@ -440,6 +454,20 @@ START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (1, '1993-09-21', 'admin', 'Male', 'Admin', 'Jones', 1, 1, NULL, 1, NULL, NULL);
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (2, '1992-06-21', 'test', 'Male', 'Zach', 'Kotterer', 2, 3, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (3, '1987-07-04', 'daniel', 'Male', 'Daniel', 'Schulenberg', 3, 4, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (4, '1994-08-12', 'james', 'Male', 'James', 'Ferro', 4, 5, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (5, '1985-06-12', 'carmen', 'Female', 'Carmen', 'Electra', 5, 6, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (6, '1970-02-07', 'brad', 'Male', 'Brad', 'Pitt', 6, 7, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (7, '1980-03-12', 'brittney', 'Female', 'Brittney', 'Spears', 7, 8, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (8, '1974-09-01', 'mike', 'Male', 'Mike', 'Myers', 8, 9, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (9, '1972-12-20', 'angelina', 'Female', 'Angelina', 'Jolie', 9, 10, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (10, '1973-04-20', 'tina', 'Female', 'Tina', 'Fey', 10, 11, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (11, '1983-08-27', 'ryan', 'Male', 'Ryan', 'Reynolds', 11, 12, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (12, '1985-10-06', 'blake', 'Female', 'Blake', 'Lively', 12, 13, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (13, '1972-08-06', 'steve', 'Male', 'Steve', 'Carrel', 13, 14, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (14, '1986-09-16', 'jessica', 'Female', 'Jessica', 'Alba', 14, 15, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (15, '1972-01-09', 'matt', 'Male', 'Matt', 'Damon', 15, 16, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (16, '1983-05-12', 'scarlett', 'Female', 'Scarlett', 'Johansen', 16, 17, NULL, 1, NULL, NULL);
 
 COMMIT;
 
@@ -546,6 +574,16 @@ USE `interstellerdb`;
 INSERT INTO `profile_has_preference` (`profile_id`, `preference_id`) VALUES (1, 1);
 INSERT INTO `profile_has_preference` (`profile_id`, `preference_id`) VALUES (1, 3);
 INSERT INTO `profile_has_preference` (`profile_id`, `preference_id`) VALUES (1, 5);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `profile_has_category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (1, 2);
 
 COMMIT;
 
