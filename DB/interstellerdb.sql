@@ -428,6 +428,7 @@ START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (1, '123 admin st', 'Seattle', 'WA', '98103', 'United States');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (2, '69 mixer ave', 'Portland', 'OR', '92012', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (3, '9027 meridian ave', 'San Diego', 'CA', '97455', 'United States');
 
 COMMIT;
 
@@ -438,6 +439,7 @@ COMMIT;
 START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (1, '1993-09-21', 'admin', 'Male', 'Admin', 'Jones', 1, 1, NULL, 1, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (2, '1992-06-21', 'test', 'Male', 'Zach', 'Kotterer', 2, 3, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -486,6 +488,27 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `message` (`id`, `content`, `sent_date`, `sender_id`, `recipient_id`) VALUES (1, 'Maybe now', NULL, 1, 2);
+INSERT INTO `message` (`id`, `content`, `sent_date`, `sender_id`, `recipient_id`) VALUES (2, 'why?', NULL, 2, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `star`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (1, 2, NULL, 1, 2, NULL, 'ugly');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `profile_has_preference`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -493,6 +516,16 @@ USE `interstellerdb`;
 INSERT INTO `profile_has_preference` (`profile_id`, `preference_id`) VALUES (1, 1);
 INSERT INTO `profile_has_preference` (`profile_id`, `preference_id`) VALUES (1, 3);
 INSERT INTO `profile_has_preference` (`profile_id`, `preference_id`) VALUES (1, 5);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `mixer_attendee`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `mixer_attendee` (`mixer_id`, `profile_id`, `rating`, `rating_comment`, `rating_date`) VALUES (1, 1, 5, 'awesome mixer', NULL);
 
 COMMIT;
 
