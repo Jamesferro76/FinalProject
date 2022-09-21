@@ -12,13 +12,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class MessageTest {
-
-private static EntityManagerFactory emf;
+class StarTest {
+	
+	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private Message message;
+	private Star star;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,32 +33,25 @@ private static EntityManagerFactory emf;
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		message = em.find(Message.class, 1);
+		star = em.find(Star.class, 1);
 		
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		message = null;
+		star = null;
 	}
 
 	@Test
-	void test_Message_entity_mapping() {
-		assertNotNull(message);
-		assertEquals("Maybe now", message.getContent());
+	void test_Star_entity_mapping() {
+		assertNotNull(star);
 	}
 	
 	@Test
-	void test_Message_Sender_entity_mapping() {
-		assertNotNull(message);
-		assertEquals(1, message.getSender().getId());
-	}
-	
-	@Test
-	void test_Message_Recipient_entity_mapping() {
-		assertNotNull(message);
-		assertEquals(2, message.getRecipient().getId());
+	void test_Star_Profile_entity_mapping() {
+		assertNotNull(star);
+		assertEquals(1, star.getMatcher().getId());
 	}
 
 }
