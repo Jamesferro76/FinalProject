@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -27,7 +28,7 @@ public class Mixer {
 	@Column(name="event_date")
 	private LocalDate eventDate;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="address_id")
 	private Address address;
 	

@@ -1,10 +1,12 @@
 package com.skilldistillery.intersteller.entities;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -27,11 +29,19 @@ public class Address {
 	@OneToOne(mappedBy="address")               
 	private Profile profile;
 	
-	@OneToOne(mappedBy="address")
-	private Mixer mixer;
+	@OneToMany(mappedBy="address")
+	private List<Mixer> mixers;
 
 	
 	
+	public List<Mixer> getMixers() {
+		return mixers;
+	}
+
+	public void setMixers(List<Mixer> mixers) {
+		this.mixers = mixers;
+	}
+
 	public Address() {
 	super();
 }
@@ -92,13 +102,6 @@ public class Address {
 		this.country = country;
 	}
 
-	public Mixer getMixer() {
-		return mixer;
-	}
-
-	public void setMixer(Mixer mixer) {
-		this.mixer = mixer;
-	}
 	
 	
 	

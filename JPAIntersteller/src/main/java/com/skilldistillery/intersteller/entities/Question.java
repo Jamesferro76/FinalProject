@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,6 +23,13 @@ private String question;
 
 @OneToMany(mappedBy="question")
 private List<Answer> answers;
+
+@ManyToMany
+@JoinTable(name="profile_answer", 
+joinColumns=@JoinColumn(name="question_id"), 
+inverseJoinColumns=@JoinColumn(name="profile_id"))
+private List<Profile> profiles;
+
 
 public Question() {
 	super();

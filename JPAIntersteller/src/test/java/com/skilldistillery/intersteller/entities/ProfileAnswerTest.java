@@ -12,13 +12,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AddressTest {
+class ProfileAnswerTest {
 	
 	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private Address address;
+	private MixerAttendee mixerattendee;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,31 +33,34 @@ class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		address = em.find(Address.class, 2);
+		MixerAttendeeId maid = new MixerAttendeeId();
+		maid.setMixerId(1);
+		maid.setProfileId(1);
+		mixerattendee = em.find(MixerAttendee.class, maid);
 		
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		address = null;
+		mixerattendee = null;
 	}
 
 	@Test
-	void test_Address_entity_mapping() {
-		assertNotNull(address);
-		assertEquals("Portland", address.getCity());
+	void test_User_entity_mapping() {
+		assertNotNull(mixerattendee);
+		assertEquals(5, mixerattendee.getRating());
+	}
+	
+	@Test
+	void test_User_Mixer_entity_mapping() {
+		assertNotNull(mixerattendee);
+		assertEquals("mixer test", mixerattendee.getMixer().getName());
 	}
 	@Test
-	void test_Address_Profile_mapping() {
-		address = em.find(Address.class, 1);
-		assertNotNull(address);
-		assertEquals("Admin", address.getProfile().getFirstName());
-	}
-	@Test
-	void test_Address_Mixer_mapping() {
-		assertNotNull(address);
-		assertEquals("a great place for a first date", address.getMixers().get(0));
+	void test_User_Profile_entity_mapping() {
+		assertNotNull(mixerattendee);
+		assertEquals("Male", mixerattendee.getProfile().getSex());
 	}
 
 }

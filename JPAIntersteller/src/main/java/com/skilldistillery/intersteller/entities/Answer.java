@@ -1,5 +1,6 @@
 package com.skilldistillery.intersteller.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Answer {
@@ -27,6 +29,9 @@ public class Answer {
 	@JoinColumn(name="category_id")
 	private Category category;
 
+	  @OneToMany(mappedBy="answer")
+	  private List<ProfileAnswer> profileAnswers;
+	  
 	public Answer() {
 		super();
 	}
