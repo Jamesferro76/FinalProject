@@ -24,10 +24,10 @@ public class Address {
 	
 	private String country;
 	
-	@OneToOne(mappedBy="address")               
-	private Profile profile;
-	
-	@OneToOne(mappedBy="address")
-	private Mixer mixer;
+//	@OneToOne(mappedBy="address")               
+//	private Profile profile;
+//	
+//	@OneToOne(mappedBy="address")
+//	private Mixer mixer;
 	
 }
