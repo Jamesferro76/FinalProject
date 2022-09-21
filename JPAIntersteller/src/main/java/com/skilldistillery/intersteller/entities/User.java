@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -20,7 +22,8 @@ public class User {
 	  private String password;
 	  private String role;
 	  private boolean active;
-
+	  
+	  @JsonIgnore
 	  @OneToOne(mappedBy="user")
 	  private Profile profile;
 
