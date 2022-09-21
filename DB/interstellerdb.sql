@@ -484,3 +484,15 @@ INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `e
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `profile_has_preference`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `profile_has_preference` (`profile_id`, `preference_id`) VALUES (1, 1);
+INSERT INTO `profile_has_preference` (`profile_id`, `preference_id`) VALUES (1, 3);
+INSERT INTO `profile_has_preference` (`profile_id`, `preference_id`) VALUES (1, 5);
+
+COMMIT;
+
