@@ -46,7 +46,7 @@ private static EntityManagerFactory emf;
 	@Test
 	void test_Message_entity_mapping() {
 		assertNotNull(message);
-		assertEquals("admin", message.getContent());
+		assertEquals("Maybe now", message.getContent());
 	}
 	
 	@Test

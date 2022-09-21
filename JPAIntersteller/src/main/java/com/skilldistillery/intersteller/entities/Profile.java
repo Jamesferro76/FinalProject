@@ -49,7 +49,7 @@ public class Profile {
 	  @Column(name="profile_pic")
 	  private String profilePic;
 
-	  private boolean active;
+	  private Boolean active;
 
 	  @CreationTimestamp
 	  @Column(name="created_on")
@@ -69,10 +69,13 @@ public class Profile {
 //
 	  @OneToMany(mappedBy="profile")
 	  private List<Mixer> mixers;
-//
-//	  @OneToMany(mappedBy="profile")
-//	  private List<MixerAttendee> mixersAttending;
-//
+
+	  @ManyToMany
+	    @JoinTable(name="mixer_attendee", 
+	    joinColumns=@JoinColumn(name="profile_id"), 
+	    inverseJoinColumns=@JoinColumn(name="mixer_id"))
+	    private List<Mixer> mixersAttending;
+	  
 	  @OneToMany(mappedBy="sender")
 	  private List<Message> messagesSent;
 
@@ -203,16 +206,6 @@ public class Profile {
 		}
 
 
-		public boolean isActive() {
-			return active;
-		}
-
-
-		public void setActive(boolean active) {
-			this.active = active;
-		}
-
-
 		public LocalDateTime getCreatedOn() {
 			return createdOn;
 		}
@@ -270,6 +263,8 @@ public class Profile {
 		public void setMixers(List<Mixer> mixers) {
 			this.mixers = mixers;
 		}
+		
+		
 
 //		public List<Profile> getFavorited() {
 //			return favorited;
@@ -289,6 +284,26 @@ public class Profile {
 //		public void setFavoriter(List<Profile> favoriter) {
 //			this.favoriter = favoriter;
 //		}
+
+
+		public Boolean getActive() {
+			return active;
+		}
+
+
+		public void setActive(Boolean active) {
+			this.active = active;
+		}
+
+
+		public List<Mixer> getMixersAttending() {
+			return mixersAttending;
+		}
+
+
+		public void setMixersAttending(List<Mixer> mixersAttending) {
+			this.mixersAttending = mixersAttending;
+		}
 
 
 		@Override

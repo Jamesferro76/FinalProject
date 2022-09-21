@@ -439,7 +439,7 @@ COMMIT;
 START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (1, '1993-09-21', 'admin', 'Male', 'Admin', 'Jones', 1, 1, NULL, 1, NULL, NULL);
-INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (2, '1992-06-21', 'test', 'Male', 'Zach', 'Kotterer', 2, 3, NULL, NULL, NULL, NULL);
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`) VALUES (2, '1992-06-21', 'test', 'Male', 'Zach', 'Kotterer', 2, 3, NULL, 1, NULL, NULL);
 
 COMMIT;
 
@@ -459,6 +459,26 @@ INSERT INTO `category` (`id`, `name`) VALUES (7, 'Ambitious');
 INSERT INTO `category` (`id`, `name`) VALUES (8, 'Unpredictable');
 INSERT INTO `category` (`id`, `name`) VALUES (9, 'Quiet');
 INSERT INTO `category` (`id`, `name`) VALUES (10, 'Sarcastic');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `question`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `question` (`id`, `question`) VALUES (1, 'What do you value most in a relationship?');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `answer`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `answer` (`id`, `answer`, `question_id`, `category_id`) VALUES (1, 'Quality time', 1, 5);
 
 COMMIT;
 
@@ -504,6 +524,16 @@ COMMIT;
 START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (1, 2, NULL, 1, 2, NULL, 'ugly');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `image`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `interstellerdb`;
+INSERT INTO `image` (`id`, `image_url`, `profile_id`) VALUES (1, 'https://live.staticflickr.com/65535/50022047712_239c407207.jpg', 2);
 
 COMMIT;
 
