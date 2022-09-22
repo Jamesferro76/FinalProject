@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+
   newUser: User = new User();
 
   loginUser: User = new User();

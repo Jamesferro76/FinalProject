@@ -1,40 +1,55 @@
 <h1>Interstellar Dating</h1>
 
-
-
-  <button *ngIf="loggedIn()" (click)="logout()">Logout</button>
-
-
-  <div class ="spacing">
-    <div class = "login">
+<div class="spacing" *ngIf="!loggedIn()">
+  <div class="login">
     <div class="row justify-content-center">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZkOIe6WLQlDP1II2E4fgmkqayQzvfyzLf1w&usqp=CAU"
+        class="logo"
+      />
 
-     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZkOIe6WLQlDP1II2E4fgmkqayQzvfyzLf1w&usqp=CAU"  class="logo">
+      <hr />
 
-     <hr>
+      <form>
+        <h3>Log In</h3>
+        <label>Username: </label
+        ><input type="text" name="username" [(ngModel)]="loginUser.username" />
+        <br />
+        <label>Password: </label
+        ><input
+          type="text"
+          name="password"
+          [(ngModel)]="loginUser.password"
+        /><br />
+        <button type="submit" (click)="login(loginUser)">Login</button>
+      </form>
 
-     <form *ngIf="!loggedIn()">
-      <h3>Log In</h3>
-      <label>Username: </label><input type="text" name ="username" [(ngModel)]="loginUser.username"> <br>
-      <label>Password: </label><input type="text" name="password" [(ngModel)]="loginUser.password"><br>
-    <button type="submit" (click)="login(loginUser)">Login</button>
-    </form>
+      <br />
 
-   <br>
-
-    <div class ="register" *ngIf="!loggedIn()">
-
-          <h5>Don't have an account?</h5>
-<form>
-
-  <label>Username: </label><input [(ngModel)]="newUser.username" type="text" name ="username"> <br>
-  <label>Password: </label><input [(ngModel)]="newUser.password" type="password" name="password"><br>
-  <label>Email: </label><input [(ngModel)]="newUser.email" type="text" name ="email"> <br>
-  <button type="submit" (click)="register(newUser)">Register</button>
-</form>
-
+      <div class="register" *ngIf="!loggedIn()">
+        <h5>Don't have an account?</h5>
+        <form>
+          <label>Username: </label
+          ><input [(ngModel)]="newUser.username" type="text" name="username" />
+          <br />
+          <label>Password: </label
+          ><input
+            [(ngModel)]="newUser.password"
+            type="password"
+            name="password"
+          /><br />
+          <label>Email: </label
+          ><input [(ngModel)]="newUser.email" type="text" name="email" /> <br />
+          <button type="submit" (click)="register(newUser)">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
+<div *ngIf="loggedIn()" >
+<h2>Start swiping</h2>
+
+  <button (click)="logout()">Logout</button>
 </div>
-  </div>
-  </div>
+
