@@ -1,15 +1,148 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Mixer } from 'src/app/models/mixer';
+import { MixerService } from 'src/app/services/mixer.service';
 
 @Component({
   selector: 'app-mixer',
   templateUrl: './mixer.component.html',
-  styleUrls: ['./mixer.component.css']
+  styleUrls: ['./mixer.component.css'],
 })
 export class MixerComponent implements OnInit {
+  title = 'ngTodo';
 
-  constructor() { }
+  selected: Mixer | null = null;
 
-  ngOnInit(): void {
+  newMixer = new Mixer();
+
+  editMixer: Mixer | null = null;
+
+  mixers: Mixer[] = [];
+
+  showComplete: boolean = false;
+
+  constructor(
+    private mixerService: MixerService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  addTodo() {
+    this.mixerService.create(this.newMixer).subscribe({
+      next: (result) => {
+        this.newMixer = new Mixer();
+        this.reload();
+      },
+      error: (prob) => {
+        console.error('MixerHttpComponent.addMixer(): error creating mixer:');
+        console.error(prob);
+      },
+    });
   }
 
+  setEditTodo() {
+    this.editMixer = Object.assign({}, this.selected);
+  }
+
+  updateMixer(updatedMixer: Mixer) {
+    this.mixerService.updateMixer(updatedMixer).subscribe({
+      next: (result) => {
+        this.selected = result;
+        this.editMixer = null;
+        this.reload();
+      },
+      error: (prob) => {
+        console.error(
+          'MixerHttpComponent.updateMixer(): error updating mixer:'
+        );
+        console.error(prob);
+      },
+    });
+  }
+
+  updateCompleted(updatedMixer: Mixer) {
+    this.mixerService.updateMixer(updatedMixer).subscribe({
+      next: (result) => {
+        this.reload();
+      },
+      error: (prob) => {
+        console.error(
+          'MixerHttpComponent.updateCompleted(): error updating mixer:'
+        );
+        console.error(prob);
+      },
+    });
+  }
+
+  deleteMixer(id: number) {
+    this.mixerService.delete(id).subscribe({
+      next: () => {
+        this.reload();
+      },
+      error: (prob) => {
+        console.error(
+          'MixerHttpComponent.deleteMixer(): error deleting mxier:'
+        );
+        console.error(prob);
+      },
+    });
+  }
+
+  getNumberOfMixers() {
+    return this.mixers.length;
+  }
+
+  displayTodo(mixer: Mixer) {
+    console.log(mixer);
+  }
+
+  displayTable() {
+    this.selected = null;
+  }
+
+  getBadgeColor(): string {
+    let count = this.getNumberOfMixers();
+    if (count > 10) {
+      return 'bg-danger';
+    } else if (count > 5) {
+      return 'bg-warning';
+    } else {
+      return 'bg-success';
+    }
+  }
+
+  reload(): void {
+    this.mixerService.index().subscribe({
+      next: (mixers) => {
+        this.mixers = mixers;
+      },
+      error: (problem) => {
+        console.error('MixerHttpComponent.reload(): error loading mixer:');
+        console.error(problem);
+      },
+    });
+  }
+
+  ngOnInit(): void {
+    let idStr = this.route.snapshot.paramMap.get('id');
+    if (idStr) {
+      let mixerId = Number.parseInt(idStr);
+      if (!isNaN(mixerId)) {
+        this.mixerService.show(mixerId).subscribe({
+          next: (mixer: Mixer | null) => {
+            this.selected = mixer;
+          },
+          error: (err: any) => {
+            console.error('Error retrieving mixer');
+            console.error(err);
+            this.router.navigateByUrl('noSuchMixer');
+          },
+        });
+      } else {
+        console.error('Invalid id');
+        this.router.navigateByUrl('invalidId');
+      }
+    }
+    this.reload();
+  }
 }
