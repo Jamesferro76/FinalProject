@@ -2,6 +2,7 @@ package com.skilldistillery.intersteller.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +31,8 @@ public class Profile {
 	  private int id;
 
 	  private LocalDate birthday;
+	  
+	  private int age;
 
 	  private String description;
 
@@ -145,9 +148,17 @@ public class Profile {
 			return birthday;
 		}
 
+		public int getAge() {
+			return age;
+		}
+		
+		public void setAge(int age) {
+			this.age = age;
+		}
 
 		public void setBirthday(LocalDate birthday) {
 			this.birthday = birthday;
+			this.age= Period.between(birthday, LocalDate.now()).getYears();
 		}
 
 
@@ -371,11 +382,9 @@ public class Profile {
 			return profileAnswers;
 		}
 
-
 		public void setProfileAnswers(List<ProfileAnswer> profileAnswers) {
 			this.profileAnswers = profileAnswers;
 		}
-
 
 		@Override
 		public int hashCode() {

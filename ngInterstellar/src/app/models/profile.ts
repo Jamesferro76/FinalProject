@@ -4,6 +4,7 @@ export class Profile {
 
     id: number;
     birthday: string;
+    age: number;
     sex: string;
     firstName: string;
     lastName: string;
@@ -29,6 +30,7 @@ export class Profile {
     constructor(
       id: number=0,
       birthday: string="",
+      age: number,
       sex: string="",
       firstName: string="",
       lastName: string="",
@@ -53,6 +55,7 @@ export class Profile {
     ){
       this.id=id;
       this.birthday=birthday;
+      this.age=age;
       this.sex=sex;
       this.firstName=firstName;
       this.lastName=lastName;

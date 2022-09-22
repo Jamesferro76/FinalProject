@@ -1,13 +1,13 @@
 <h1>Interstellar Dating</h1>
 
-<form>
+<form *ngIf="!loggedIn()">
   <label>Username: </label><input type="text" name ="username" [(ngModel)]="loginUser.username"> <br>
   <label>Password: </label><input type="text" name="password" [(ngModel)]="loginUser.password"><br>
 <button type="submit" (click)="login(loginUser)">Login</button>
 </form>
 
 
-<div>
+<div *ngIf="loggedIn()">
   <form>
     <label>Username: </label><input [(ngModel)]="newUser.username" type="text" name ="username"> <br>
     <label>Password: </label><input [(ngModel)]="newUser.password" type="password" name="password"><br>
@@ -16,4 +16,4 @@
   </form>
   </div>
 
-  <button (click)="logout()">Logout</button>
+  <button *ngIf="loggedIn()" (click)="logout()">Logout</button>

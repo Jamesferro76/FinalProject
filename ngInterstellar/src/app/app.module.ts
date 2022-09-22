@@ -10,10 +10,17 @@ import { MixerComponent } from './components/mixer/mixer.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
-import { NavigationComponent } from './components/navigation/navigation.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, MixerComponent, HomeComponent, NavigationComponent],
+  declarations: [
+    AppComponent,
+    MixerComponent,
+    HomeComponent,
+    ProfileComponent,
+    NotFoundComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthService, MixerService, ProfileService, UserService],
   bootstrap: [AppComponent],

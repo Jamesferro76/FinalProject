@@ -24,4 +24,8 @@ public interface ProfileService {
 
 	List<Profile> findByState(String state);
 
+	List<Profile> findByAge(int min, int max);
+
+	List<Profile> findBySexPreferenceStateAge(String sex, int preferenceId, String state, int min, int max);
+
 }
