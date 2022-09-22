@@ -1,19 +1,40 @@
 <h1>Interstellar Dating</h1>
 
-<form *ngIf="!loggedIn()">
-  <label>Username: </label><input type="text" name ="username" [(ngModel)]="loginUser.username"> <br>
-  <label>Password: </label><input type="text" name="password" [(ngModel)]="loginUser.password"><br>
-<button type="submit" (click)="login(loginUser)">Login</button>
-</form>
 
-
-<div *ngIf="!loggedIn()">
-  <form>
-    <label>Username: </label><input [(ngModel)]="newUser.username" type="text" name ="username"> <br>
-    <label>Password: </label><input [(ngModel)]="newUser.password" type="password" name="password"><br>
-    <label>Email: </label><input [(ngModel)]="newUser.email" type="text" name ="email"> <br>
-  <button type="submit" (click)="register(newUser)">Register</button>
-  </form>
-  </div>
 
   <button *ngIf="loggedIn()" (click)="logout()">Logout</button>
+
+
+  <div class ="spacing">
+    <div class = "login">
+    <div class="row justify-content-center">
+
+     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZkOIe6WLQlDP1II2E4fgmkqayQzvfyzLf1w&usqp=CAU"  class="logo">
+
+     <hr>
+
+     <form *ngIf="!loggedIn()">
+      <h3>Log In</h3>
+      <label>Username: </label><input type="text" name ="username" [(ngModel)]="loginUser.username"> <br>
+      <label>Password: </label><input type="text" name="password" [(ngModel)]="loginUser.password"><br>
+    <button type="submit" (click)="login(loginUser)">Login</button>
+    </form>
+
+   <br>
+
+    <div class ="register" *ngIf="!loggedIn()">
+
+          <h5>Don't have an account?</h5>
+<form>
+
+  <label>Username: </label><input [(ngModel)]="newUser.username" type="text" name ="username"> <br>
+  <label>Password: </label><input [(ngModel)]="newUser.password" type="password" name="password"><br>
+  <label>Email: </label><input [(ngModel)]="newUser.email" type="text" name ="email"> <br>
+  <button type="submit" (click)="register(newUser)">Register</button>
+</form>
+
+</div>
+
+</div>
+  </div>
+  </div>
