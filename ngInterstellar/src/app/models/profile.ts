@@ -6,23 +6,23 @@ export class Profile {
     firstName: string;
     lastName: string;
     user?: User;
-    address?: Address;
+    address?: any;
     profilePic: string;
     active: boolean;
     updatedOn: string;
-    preferences?: Preference[];
-    images?: Image[];
-    mixers?: Mixer[];
-    mixersAttending?: Mixer[];
-    messagesSent?:Message[];
-    messagesRecieved?:Message[];
-    matchers?:Star[];
-    matcheds?:Star[];
-    blocked?:Star[];
+    preferences?: any[];
+    images?: any[];
+    mixers?: any[];
+    mixersAttending?: any[];
+    messagesSent?:any[];
+    messagesRecieved?:any[];
+    matchers?:any[];
+    matcheds?:any[];
+    blocked?:any[];
     favorited?:Profile[];
     favoriter?:Profile[];
-    categories?:Category[];
-    profileAnswers?:ProfileAnswer[];
+    categories?:any[];
+    profileAnswers?:any[];
 
     constructor(
       id: number=0,
@@ -30,24 +30,24 @@ export class Profile {
       sex: string="",
       firstName: string="",
       lastName: string="",
-      user?: User,
-      address?: Address,
+      user: User,
+      address: any,
       profilePic: string="",
       active: boolean=true,
       updatedOn: string="",
-      preferences?: Preference[]=[],
-      images?: Image[]=[],
-      mixers?: Mixer[]=[],
-      mixersAttending?: Mixer[]=[],
-      messagesSent?:Message[]=[],
-      messagesRecieved?:Message[]=[],
-      matchers?:Star[]=[],
-      matcheds?:Star[]=[],
-      blocked?:Star[]=[],
-      favorited?:Profile[]=[],
-      favoriter?:Profile[]=[],
-      categories?:Category[]=[],
-      profileAnswers?:ProfileAnswer[]=[]
+      preferences: any[]=[],
+      images: any[]=[],
+      mixers: any[]=[],
+      mixersAttending: any[]=[],
+      messagesSent:any[]=[],
+      messagesRecieved:any[]=[],
+      matchers:any[]=[],
+      matcheds:any[]=[],
+      blocked:any[]=[],
+      favorited:Profile[]=[],
+      favoriter:Profile[]=[],
+      categories:any[]=[],
+      profileAnswers:any[]=[]
     ){
       this.id=id;
       this.birthday=birthday;
