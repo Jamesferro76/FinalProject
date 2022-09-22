@@ -38,7 +38,7 @@ export class MixerComponent implements OnInit {
     });
   }
 
-  setEditTodo() {
+  setEditMixer() {
     this.editMixer = Object.assign({}, this.selected);
   }
 
