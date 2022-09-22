@@ -16,6 +16,8 @@ public class AuthServiceImpl implements AuthService {
 	private UserRepository userRepo;
 	@Autowired
 	private PasswordEncoder encoder;
+	
+	
 
 	@Override
 	public User register(User user) {
@@ -27,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public User getUserByUsername(String username) {
-		// TODO Auto-generated method stub
+
 		return userRepo.findByUsername(username);
 	}
 	

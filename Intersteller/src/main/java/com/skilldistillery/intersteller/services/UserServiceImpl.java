@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.skilldistillery.intersteller.entities.User;
 import com.skilldistillery.intersteller.repositories.UserRepository;
 
@@ -73,5 +72,16 @@ public class UserServiceImpl implements UserService {
 		
 		return deleted;
 	}
+	@Override
+	public User findByUsername(String username) {
+		User userName= userRepo.findByUsername(username);
+	
+			return userName;	
+		}
+		
 
-}
+	}
+	
+
+
+

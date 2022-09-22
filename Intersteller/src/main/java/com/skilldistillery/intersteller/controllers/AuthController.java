@@ -16,43 +16,31 @@ import com.skilldistillery.intersteller.entities.User;
 import com.skilldistillery.intersteller.services.AuthService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost/"})
+@CrossOrigin({ "*", "http://localhost/" })
 public class AuthController {
-	
+
 	@Autowired
 	private AuthService authService;
-	
+
 	@PostMapping("register")
 	public User register(@RequestBody User user, HttpServletResponse res) {
-	  if (user == null) {
-	     res.setStatus(400);
-	     return null;
-	  }
-	  user = authService.register(user);
-	  return user;
+		if (user == null) {
+			res.setStatus(400);
+			return null;
+		}
+		user = authService.register(user);
+		return user;
 	}
-	 
+
 	@GetMapping("authenticate")
 	public User authenticate(Principal principal, HttpServletResponse res) {
-	  if (principal == null) { // no Authorization header sent
-	     res.setStatus(401);
-	     res.setHeader("WWW-Authenticate", "Basic");
-	     return null;
-	  }
-	  return authService.getUserByUsername(principal.getName());
+		if (principal == null) { // no Authorization header sent
+			res.setStatus(401);
+			res.setHeader("WWW-Authenticate", "Basic");
+			return null;
+		}
+		return authService.getUserByUsername(principal.getName());
 	}
-	
-	// SMOKE TEST ONLY, DELETE/COMMENT OUT LATER
-	@GetMapping("test/users/{userId}")
-	public User getUserForTest(
-	  @PathVariable Integer userId,
-	  HttpServletResponse res
-	) {
-	  User user = authService.getUserById(userId);
-	  if (user == null) {
-	    res.setStatus(404);
-	  }
-	  return user;
-	}
+
 
 }

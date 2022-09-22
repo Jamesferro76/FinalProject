@@ -34,13 +34,15 @@ public class UserController {
 		return users;
 	}
 
-	@GetMapping("users/{userId}")
+	@GetMapping("users/profile/{userId}")
 	public User findById(@PathVariable Integer userId, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
 		User user = userServ.show(principal.getName(), userId);
 		if (user == null) {
 			resp.setStatus(404);
 
+		} else {
+			resp.setStatus(202);
 		}
 		return user;
 	}
@@ -102,6 +104,22 @@ public class UserController {
 			e.printStackTrace();
 
 		}
+	}
+
+	@GetMapping("users/{username}")
+	public User getUserForTest(@PathVariable String username, HttpServletResponse resp) {
+		User user = userServ.findByUsername(username);
+
+		if (user != null) {
+
+			return user;
+		}
+
+		else {
+			resp.setStatus(404);
+			user = null;
+		}
+		return user;
 	}
 
 }
