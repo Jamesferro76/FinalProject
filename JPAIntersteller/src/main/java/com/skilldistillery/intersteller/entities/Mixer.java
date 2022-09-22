@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Mixer {
 	
@@ -39,6 +41,7 @@ public class Mixer {
 	@Column(name="event_end")
 	private LocalTime eventEnd;	
 	
+	@CreationTimestamp
 	@Column(name="created_date")
 	private LocalDate createdDate;	
 	
@@ -144,7 +147,8 @@ public class Mixer {
 
 	public void setEventEnd(LocalTime eventEnd) {
 		this.eventEnd = eventEnd;
-	}	
+	}
+
 	
 	
 
