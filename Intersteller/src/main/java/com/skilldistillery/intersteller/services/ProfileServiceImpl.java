@@ -38,7 +38,9 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public Profile create(String username, Profile profile) {
+		System.out.println("Top of create");
 	  User user = userRepo.findByUsername(username);
+	  System.out.println(user.getUsername());
 	  if (user != null) {
 	    profile.setUser(user);
 	    return profileRepo.saveAndFlush(profile);
@@ -72,8 +74,11 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public boolean destroy(String username, int id) {
 		boolean deleted=false;
+		System.out.println(username);
 		User user = userRepo.findByUsername(username);
+		System.out.println(user.getUsername());
 		Profile profileToDelete=profileRepo.findByIdAndUserId(id, user.getId());
+		System.out.println(profileToDelete.getFirstName());
 		if(profileToDelete != null) {
 			try {
 				profileRepo.delete(profileToDelete);

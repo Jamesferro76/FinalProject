@@ -71,9 +71,9 @@ public class ProfileController {
 		return updated;
 	}
 	
-	@DeleteMapping("profiles/{tid}")
-	public boolean deleteTodo(@PathVariable int tid, HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		boolean deleted=profileService.destroy(principal.getName(), tid);
+	@DeleteMapping("profiles/{id}")
+	public boolean deleteProfile(@PathVariable int id, HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		boolean deleted=profileService.destroy(principal.getName(), id);
 		if(deleted) {
 			res.setStatus(204);
 		}else {
