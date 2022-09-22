@@ -10,9 +10,10 @@ import { MixerComponent } from './components/mixer/mixer.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
-  declarations: [AppComponent, MixerComponent, HomeComponent],
+  declarations: [AppComponent, MixerComponent, HomeComponent, NavigationComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthService, MixerService, ProfileService, UserService],
   bootstrap: [AppComponent],
