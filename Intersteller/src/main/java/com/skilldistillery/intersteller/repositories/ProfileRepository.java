@@ -20,4 +20,9 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 	List<Profile> findBySexAndPreferences(String sex, Preference preference);
 
 	List<Profile> findByAddress(Address address);
+
+	List<Profile> findByAgeBetween(int min, int max);
+
+	List<Profile> findBySexAndPreferencesAndAddressAndAgeBetween(String sex, Preference preference, Address address,
+			int min, int max);
 }

@@ -138,4 +138,31 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		return results;
 	}
+
+	@Override
+	public List<Profile> findByAge(int min, int max) {
+		List<Profile> results= profileRepo.findByAgeBetween(min, max);
+		return results;
+	}
+
+	@Override
+	public List<Profile> findBySexPreferenceStateAge(String sex, int preferenceId, String state, int min, int max) {
+		Optional<Preference> preferenceOpt=preferenceRepo.findById(preferenceId);
+		Preference preference=null;
+		 if(preferenceOpt.isPresent()) {
+			 preference=preferenceOpt.get();
+		 }		
+		 List<Profile> results= new ArrayList<Profile>();
+			List<Address> addresses= addressRepo.findByState(state);
+			for (Address address : addresses) {
+				List<Profile> profiles= profileRepo.findBySexAndPreferencesAndAddressAndAgeBetween(sex, preference, address, min, max);
+				results.addAll(profiles);
+			}
+			return results;
+		
+	}
+	
+	
+	
+	
 }

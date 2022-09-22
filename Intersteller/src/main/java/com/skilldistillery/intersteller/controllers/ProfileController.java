@@ -102,5 +102,17 @@ public class ProfileController {
 	public List<Profile> findByState(@PathVariable String state, Principal principal){
 		return profileService.findByState(state);
 	}
+	
+	@GetMapping("profiles/age/{min}/{max}")
+	public List<Profile> findByAge(@PathVariable int min, @PathVariable int max){
+		return profileService.findByAge(min, max);
+	}
+	
+	@GetMapping("profiles/sex/{sex}/preference/{preferenceId}/state/{state}/age/{min}/{max}")
+	public List<Profile> findBySexPreferenceStateAge(@PathVariable String sex, @PathVariable int preferenceId, 
+			@PathVariable String state, @PathVariable int min, @PathVariable int max, Principal principal){
+		return profileService.findBySexPreferenceStateAge(sex, preferenceId, state, min, max);
+	}
+	
 
 }
