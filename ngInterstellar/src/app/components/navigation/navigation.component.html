@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<!-- <nav class="navbar navbar-expand-lg  fixed-bottom bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="['/home']">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZkOIe6WLQlDP1II2E4fgmkqayQzvfyzLf1w&usqp=CAU" alt="" width="30" height="24">
@@ -12,9 +12,34 @@
         <a class="nav-link active" aria-current="page" [routerLink]="['/mixer']">Mixer</a>
           <a class="nav-link active"  aria-current="page" *ngIf="loggedIn()" (click)="logout()" [routerLink]="['/home']">Logout</a>
 
-        <a class="nav-link" href="#">Pricing</a>
-        <a class="nav-link disabled">Disabled</a>
       </div>
+    </div>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-sm fixed-bottom  bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand px-5" [routerLink]="['/home']">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZkOIe6WLQlDP1II2E4fgmkqayQzvfyzLf1w&usqp=CAU" alt="" width="30" height="24">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active px-5" aria-current="page"  [routerLink]="['/profile']">
+            <img src="https://media.istockphoto.com/vectors/the-falling-stars-are-a-simple-drawing-vector-vector-id1014924774?k=20&m=1014924774&s=612x612&w=0&h=LVJLcEOhZBnOiFmSVUzTh_2ErYKw2BtavzTjTeip4wA=" alt="" width="30" height="24">
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active px-5" aria-current="page" [routerLink]="['/mixer']">
+            <img src="https://media.istockphoto.com/photos/when-planets-collide-picture-id526573069?k=20&m=526573069&s=612x612&w=0&h=GSB0shyV8qQd_gq6ZE1nqLUsRGg8281u-hRgaEFKdCc=" alt="" width="30" height="24">
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active px-5"  aria-current="page" *ngIf="loggedIn()" (click)="logout()" [routerLink]="['/home']">
+              <img src="https://media.istockphoto.com/vectors/emergency-exit-line-icon-navigation-concept-exit-sign-on-white-exit-vector-id1254030536?k=20&m=1254030536&s=612x612&w=0&h=8aeIKyPVQsrenCH7MVU-plkuCNkNmRQ7UqgPEY0gqoU=" alt="" width="30" height="24">
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
