@@ -30,14 +30,13 @@
 <h3>Event Start: {{selected.eventStart}}</h3>
 
   <button (click)="displayTable()">Back</button>
-  <button (click)="setEditTodo()">Edit</button>
+  <button (click)="setEditMixer()">Edit</button>
 </div>
 
-<form  *ngIf="editTodo">
- <label>Task: </label> <input type="text" name="task" [(ngModel)]="editTodo.task"> <br>
- <label>Description: </label> <input type="text" name="decription" [(ngModel)]="editTodo.description"> <br>
- <label>Completed: </label><input type="checkbox" name="completed" [(ngModel)]="editTodo.completed" /> <br>
+<form  *ngIf="editMixer">
+ <label>Task: </label> <input type="text" name="task" [(ngModel)]="editMixer.name"> <br>
+ <label>Description: </label> <input type="text" name="decription" [(ngModel)]="editMixer.description"> <br>
 
-<button (click)="editTodo = null">Cancel</button>
-<button (click)="updateTodo(editTodo)">Save</button>
+<button (click)="editMixer = null">Cancel</button>
+<button (click)="updateMixer(editMixer)">Save</button>
 </form>
