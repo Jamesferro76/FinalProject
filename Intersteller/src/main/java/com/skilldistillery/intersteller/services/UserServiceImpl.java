@@ -49,10 +49,10 @@ public class UserServiceImpl implements UserService {
 				updatedUser.setUsername(user.getUsername());
 			}
 			if(user.getPassword() != null) {
-				updatedUser.setUsername(encoder.encode(user.getPassword()));
+				updatedUser.setPassword(encoder.encode(user.getPassword()));
 			}
 			if(user.getEmail() != null) {
-				updatedUser.setUsername(user.getEmail());
+				updatedUser.setEmail(user.getEmail());
 			}
 			userRepo.flush();
 		}
