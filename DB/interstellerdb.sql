@@ -541,7 +541,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `interstellerdb`;
-INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `profile_id`) VALUES (1, 'mixer test', 'a great place for a first date', '2022-09-30', 2, '17:00:00', '20:00:00', NULL, NULL, 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `profile_id`) VALUES (1, 'mixer test', 'a great place for a first date', '2022-09-30', 2, '17:00:00', '20:00:00', NULL, 'https://live.staticflickr.com/65535/50021255956_4dd62a6104_z.jpg', 1);
 
 COMMIT;
 
