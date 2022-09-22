@@ -22,12 +22,16 @@ export class HomeComponent implements OnInit {
 
   register(user: User): void {
     console.log('Registering user:');
-    console.log(user);
     this.userServ.register(user).subscribe({
       next: (registeredUser) => {
+        this.loginUser = registeredUser;
         this.auth.login(user.username, user.password).subscribe({
           next: (loggedInUser: any) => {
-            this.router.navigateByUrl('/todo');
+            console.log('success');
+            console.log(loggedInUser);
+
+
+            this.router.navigateByUrl('/home');
           },
           error: (problem: any) => {
             console.error('RegisterComponent.register(): Error logging in user:');
@@ -46,10 +50,10 @@ export class HomeComponent implements OnInit {
 
 
   login(user: User) {
-    console.log(user);
     this.auth.login(user.username, user.password).subscribe({
       next: (loggedInUser: any) => {
-        this.router.navigateByUrl('todo');
+        console.log(loggedInUser);
+        this.router.navigateByUrl('home');
       },
       error: (problem: any) => {
         console.error('LoginComponent.login(): Error logging in user:');
