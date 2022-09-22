@@ -48,12 +48,7 @@ class AddressTest {
 		assertNotNull(address);
 		assertEquals("Portland", address.getCity());
 	}
-	@Test
-	void test_Address_Profile_mapping() {
-		address = em.find(Address.class, 1);
-		assertNotNull(address);
-		assertEquals("Admin", address.getProfile().getFirstName());
-	}
+	
 	@Test
 	void test_Address_Mixer_mapping() {
 		assertNotNull(address);

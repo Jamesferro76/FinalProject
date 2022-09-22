@@ -29,10 +29,6 @@ public class Address {
 	private String country;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy="address")               
-	private Profile profile;
-	
-	@JsonIgnore
 	@OneToMany(mappedBy="address")
 	private List<Mixer> mixers;
 
@@ -49,14 +45,6 @@ public class Address {
 	public Address() {
 	super();
 }
-
-	public Profile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
 
 	public int getId() {
 		return id;

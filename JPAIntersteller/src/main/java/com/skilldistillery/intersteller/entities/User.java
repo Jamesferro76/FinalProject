@@ -1,12 +1,13 @@
 package com.skilldistillery.intersteller.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,8 +25,8 @@ public class User {
 	  private boolean active;
 	  
 	  @JsonIgnore
-	  @OneToOne(mappedBy="user")
-	  private Profile profile;
+	  @OneToMany(mappedBy="user")
+	  private List<Profile> profiles;
 
 
 	public User() {
@@ -80,18 +81,19 @@ public class User {
 		this.active = active;
 	}
 
-	public Profile getProfile() {
-		return profile;
+
+
+	public List<Profile> getProfiles() {
+		return profiles;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
 	}
-
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(active, email, id, password, profile, role, username);
+		return Objects.hash(active, email, id, password, profiles, role, username);
 	}
 
 	@Override
@@ -104,7 +106,7 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return active == other.active && Objects.equals(email, other.email) && id == other.id
-				&& Objects.equals(password, other.password) && Objects.equals(profile, other.profile)
+				&& Objects.equals(password, other.password) && Objects.equals(profiles, other.profiles)
 				&& Objects.equals(role, other.role) && Objects.equals(username, other.username);
 	}
 

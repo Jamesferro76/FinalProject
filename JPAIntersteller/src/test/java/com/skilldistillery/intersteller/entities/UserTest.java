@@ -52,7 +52,7 @@ class UserTest {
 	@Test
 	void test_User_Profile_entity_mapping() {
 		assertNotNull(user);
-		assertEquals(1, user.getProfile().getId());
+		assertTrue(user.getProfiles().size()>0);
 	}
 
 }
