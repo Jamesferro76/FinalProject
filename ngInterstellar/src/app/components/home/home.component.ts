@@ -20,6 +20,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  loggedIn(){
+    return this.auth.checkLogin();
+  }
+
   register(user: User): void {
     console.log('Registering user:');
     this.userServ.register(user).subscribe({
