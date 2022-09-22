@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `user_id` INT NOT NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   `profile_pic` VARCHAR(500) NULL,
   `active` TINYINT NULL,
   `created_on` DATETIME NULL,
