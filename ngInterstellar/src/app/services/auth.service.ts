@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/internal/operators/catchError';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { throwError } from 'rxjs/internal/observable/throwError';
+import { User } from '../models/user';
+import { tap, catchError, throwError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   // Set port number to server's port
-  private baseUrl = 'http://localhost:8084/';
+  private baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl;
 
   constructor(private http: HttpClient) {}
