@@ -4,6 +4,21 @@
 	
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider </provider>
 
+		<class>com.skilldistillery.intersteller.entities.Address</class>
+		<class>com.skilldistillery.intersteller.entities.Answer</class>
+		<class>com.skilldistillery.intersteller.entities.Category</class>
+		<class>com.skilldistillery.intersteller.entities.Image</class>
+		<class>com.skilldistillery.intersteller.entities.Message</class>
+		<class>com.skilldistillery.intersteller.entities.Mixer</class>
+		<class>com.skilldistillery.intersteller.entities.MixerAttendee</class>
+		<class>com.skilldistillery.intersteller.entities.MixerAttendeeId</class>
+		<class>com.skilldistillery.intersteller.entities.Preference</class>
+		<class>com.skilldistillery.intersteller.entities.Profile</class>
+		<class>com.skilldistillery.intersteller.entities.ProfileAnswer</class>
+		<class>com.skilldistillery.intersteller.entities.ProfileAnswerId</class>
+		<class>com.skilldistillery.intersteller.entities.Question</class>
+		<class>com.skilldistillery.intersteller.entities.Star</class>
+		<class>com.skilldistillery.intersteller.entities.StarId</class>
 		<class>com.skilldistillery.intersteller.entities.User</class>
 
 		<properties>
