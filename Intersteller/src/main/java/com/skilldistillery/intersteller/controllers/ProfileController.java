@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.intersteller.entities.Preference;
 import com.skilldistillery.intersteller.entities.Profile;
 import com.skilldistillery.intersteller.services.ProfileService;
 
@@ -82,5 +83,24 @@ public class ProfileController {
 		return deleted;
 	}
 	
+	@GetMapping("profiles/sex/{sex}")
+	public List<Profile> findBySex(@PathVariable String sex, Principal principal){
+		return profileService.findBySex(sex);
+	}
+	
+	@GetMapping("profiles/preference/{preferenceId}")
+	public List<Profile> findBySex(@PathVariable int preferenceId, Principal principal){
+		return profileService.findByPrefence(preferenceId);
+	}
+	
+	@GetMapping("profiles/sex/{sex}/preference/{preferenceId}")
+	public List<Profile> findBySexAndPreference(@PathVariable String sex, @PathVariable int preferenceId, Principal principal ){
+		return profileService.findBySexAndPreference(sex, preferenceId);
+	}
+	
+	@GetMapping("profiles/state/{state}")
+	public List<Profile> findByState(@PathVariable String state, Principal principal){
+		return profileService.findByState(state);
+	}
 
 }

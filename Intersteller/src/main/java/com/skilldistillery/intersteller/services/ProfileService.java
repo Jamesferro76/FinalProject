@@ -16,4 +16,12 @@ public interface ProfileService {
 
 	boolean destroy(String name, int id);
 
+	List<Profile> findBySex(String sex);
+
+	List<Profile> findByPrefence(int preferenceId);
+
+	List<Profile> findBySexAndPreference(String sex, int preferenceId);
+
+	List<Profile> findByState(String state);
+
 }

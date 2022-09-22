@@ -13,8 +13,21 @@ export class ProfileService {
   private url = environment.baseUrl + 'api/profiles'; // change 'todos' to your API path
     constructor(private http: HttpClient) { }
 
-    index(){
+    findAll(){
       return this.http.get<Profile[]>(this.url).pipe(
+        catchError((err: any)=>{
+          console.log(err);
+          return throwError(
+            ()=>new Error(
+              'ProfileService.index():error retrieving Profile List: '+ err
+            )
+          );
+        })
+      );
+    }
+
+    findById(id: number){
+      return this.http.get<Profile[]>(this.url+"/"+id).pipe(
         catchError((err: any)=>{
           console.log(err);
           return throwError(
