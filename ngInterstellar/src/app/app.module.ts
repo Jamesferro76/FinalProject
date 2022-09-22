@@ -1,3 +1,4 @@
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { UserService } from './services/user.service';
 import { MixerService } from './services/mixer.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +21,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HomeComponent,
     ProfileComponent,
     NotFoundComponent,
+    NavigationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthService, MixerService, ProfileService, UserService],

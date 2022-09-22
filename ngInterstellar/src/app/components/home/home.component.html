@@ -7,7 +7,7 @@
 </form>
 
 
-<div *ngIf="loggedIn()">
+<div *ngIf="!loggedIn()">
   <form>
     <label>Username: </label><input [(ngModel)]="newUser.username" type="text" name ="username"> <br>
     <label>Password: </label><input [(ngModel)]="newUser.password" type="password" name="password"><br>

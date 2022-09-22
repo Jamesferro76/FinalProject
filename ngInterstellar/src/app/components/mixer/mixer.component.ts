@@ -25,7 +25,7 @@ export class MixerComponent implements OnInit {
     private router: Router
   ) {}
 
-  addTodo() {
+  addMixer() {
     this.mixerService.create(this.newMixer).subscribe({
       next: (result) => {
         this.newMixer = new Mixer();
@@ -90,7 +90,7 @@ export class MixerComponent implements OnInit {
     return this.mixers.length;
   }
 
-  displayTodo(mixer: Mixer) {
+  displayMixer(mixer: Mixer) {
     console.log(mixer);
   }
 
