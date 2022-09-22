@@ -25,4 +25,6 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 
 	List<Profile> findBySexAndPreferencesAndAddressAndAgeBetween(String sex, Preference preference, Address address,
 			int min, int max);
+
+	Profile findByUser(User user);
 }

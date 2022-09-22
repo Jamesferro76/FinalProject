@@ -161,6 +161,18 @@ public class ProfileServiceImpl implements ProfileService {
 			return results;
 		
 	}
+
+	@Override
+	public Profile findByUser(int id) {
+		Optional<User> userOpt=userRepo.findById(id);
+		User user=null;
+		 if(userOpt.isPresent()) {
+			 user=userOpt.get();
+		 }		
+		 Profile profile=profileRepo.findByUser(user);
+		
+		return profile;
+	}
 	
 	
 	

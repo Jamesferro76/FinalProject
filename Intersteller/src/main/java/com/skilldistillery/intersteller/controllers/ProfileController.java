@@ -114,5 +114,10 @@ public class ProfileController {
 		return profileService.findBySexPreferenceStateAge(sex, preferenceId, state, min, max);
 	}
 	
+	@GetMapping("profiles/user/{id}")
+	public Profile findByUser(@PathVariable int id) {
+		return profileService.findByUser(id);
+	}
+	
 
 }

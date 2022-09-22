@@ -1,1 +1,15 @@
 <p>profile works!</p>
+<div *ngIf="selected">
+<h1>{{selected?.firstName}}</h1>
+<img [src]="selected?.profilePic"/>
+<p>{{selected?.description}}</p>
+
+<ul>
+  <li>{{selected?.sex}}</li>
+  <div **ngFor="let preference of selected.prefences">
+    <li>{{preference.name}}</li>
+  </div>
+  <li>{{selected?.age}}</li>
+</ul>
+
+</div>
