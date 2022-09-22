@@ -15,8 +15,8 @@ export class UserService {
   private url = this.baseUrl;
 
   constructor(private http: HttpClient,
-    private auth: AuthService,
-    private datePipe: DatePipe) { }
+    private auth: AuthService
+    ) { }
 
 
 

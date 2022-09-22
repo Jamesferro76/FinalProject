@@ -19,8 +19,6 @@ export class MixerComponent implements OnInit {
 
   mixers: Mixer[] = [];
 
-  showComplete: boolean = false;
-
   constructor(
     private mixerService: MixerService,
     private route: ActivatedRoute,

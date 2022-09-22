@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { tap, catchError, throwError, Observable } from 'rxjs';
+import { Buffer } from 'buffer';
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<User> {
+  login(username: string, password: string,): Observable<User> {
     // Make credentials
     const credentials = this.generateBasicAuthCredentials(username, password);
     // Send credentials as Authorization header specifying Basic HTTP authentication
