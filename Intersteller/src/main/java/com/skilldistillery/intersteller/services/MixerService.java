@@ -7,7 +7,7 @@ import com.skilldistillery.intersteller.entities.Mixer;
 public interface MixerService {
     public List<Mixer> index(String username);
 
-    public Mixer show(String username, int mid);
+    public Mixer findById(String username, int mid);
 
     public Mixer create(String username, Mixer mixer);
 

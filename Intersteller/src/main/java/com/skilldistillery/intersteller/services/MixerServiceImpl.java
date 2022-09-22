@@ -26,7 +26,7 @@ public class MixerServiceImpl implements MixerService {
 	}
 
 	@Override
-	public Mixer show(String username, int mid) {
+	public Mixer findById(String username, int mid) {
 		Optional<Mixer> mixerOpt = mixerRepo.findById(mid);
 		Mixer mixer = null;
 		if (mixerOpt.isPresent()) {
@@ -40,27 +40,34 @@ public class MixerServiceImpl implements MixerService {
 	@Override
 	public Mixer create(String username, Mixer mixer) {
 		  User user = userRepo.findByUsername(username);
-		  if (user != null) {
-		    Profile profile = user.getProfile();
-		    mixer.setProfile(profile);
-		    return mixerRepo.saveAndFlush(mixer);
-		  }
-		  return null;
+		  Profile profile = user.getProfiles().get(0);
+		  mixer.setProfile(profile);
+		  mixer.setAddress(profile.getAddress());
+		   return mixerRepo.saveAndFlush(mixer);
 	}
 
 	@Override
 	public Mixer update(String username, int mid, Mixer mixer) {
-		  Mixer updated = show(username,mid);
-		  
-		  updated.setAddress(mixer.getAddress());
-		  
-		// TODO Auto-generated method stub
+			Optional<Mixer> existingOpt= mixerRepo.findById(mid);
+			if(existingOpt.isPresent()) {
+				Mixer existing=existingOpt.get();
+					existing.setName(mixer.getName());
+					existing.setDescription(mixer.getDescription());
+					existing.setEventDate(mixer.getEventDate());
+					existing.setAddress(mixer.getAddress());
+					existing.setEventStart(mixer.getEventStart());
+					existing.setEventEnd(mixer.getEventEnd());
+					existing.setImageUrl(mixer.getImageUrl());
+					existing.setProfile(mixer.getProfile());	
+					mixerRepo.save(existing);
+					return existing;
+				 }
 		return null;
 	}
 
 	@Override
 	public boolean destroy(String username, int mid) {
-			Mixer mixer = show(username,mid);
+			Mixer mixer = findById(username,mid);
 			mixerRepo.deleteById(mixer.getId());
 	        return ! mixerRepo.existsById(mixer.getId());
 	}

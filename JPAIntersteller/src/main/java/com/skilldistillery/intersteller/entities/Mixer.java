@@ -1,6 +1,7 @@
 package com.skilldistillery.intersteller.entities;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -33,10 +34,10 @@ public class Mixer {
 	private Address address;
 	
 	@Column(name="event_start")
-	private LocalDate eventStart;	
+	private LocalTime eventStart;	
 	
 	@Column(name="event_end")
-	private LocalDate eventEnd;	
+	private LocalTime eventEnd;	
 	
 	@Column(name="created_date")
 	private LocalDate createdDate;	
@@ -113,22 +114,6 @@ public class Mixer {
 		this.address = address;
 	}
 
-	public LocalDate getEventStart() {
-		return eventStart;
-	}
-
-	public void setEventStart(LocalDate eventStart) {
-		this.eventStart = eventStart;
-	}
-
-	public LocalDate getEventEnd() {
-		return eventEnd;
-	}
-
-	public void setEventEnd(LocalDate eventEnd) {
-		this.eventEnd = eventEnd;
-	}
-
 	public LocalDate getCreatedDate() {
 		return createdDate;
 	}
@@ -143,6 +128,22 @@ public class Mixer {
 
 	public void setImageUrl(LocalDate imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public LocalTime getEventStart() {
+		return eventStart;
+	}
+
+	public void setEventStart(LocalTime eventStart) {
+		this.eventStart = eventStart;
+	}
+
+	public LocalTime getEventEnd() {
+		return eventEnd;
+	}
+
+	public void setEventEnd(LocalTime eventEnd) {
+		this.eventEnd = eventEnd;
 	}	
 	
 	
