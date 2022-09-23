@@ -22,7 +22,33 @@
 <button (click)="addMixer()">Add Mixer</button>
 </form>
 </div>
-
+<div *ngIf="!selected" >
+  <div *ngFor="let mixer of mixers">
+  <div class="container">
+    <div class="row">
+      <div class ="box-item col-md-4">
+        <div class ="flip-box">
+          <div class ="flip-box-front text-center" style="background-image:url({{mixer.imageUrl}});">
+            <div class="inner color-white">
+              <h3 class ="flip-box-header"> {{mixer.name}}</h3>
+              <p>{{mixer.eventDate}}</p>
+            </div>
+          </div>
+          <div class="flip-box-back text-center" style="background-image:url({{mixer.imageUrl}});">
+            <div class="inner color-white">
+              <h3 class ="flip-box-header"> {{mixer.description}}</h3>
+              <p>{{mixer.eventDate}}</p>
+              <p>{{mixer.eventStart}}</p>
+              <p>{{mixer.eventEnd}}</p>
+              <button class ="flip-box-button">Button info here</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <div *ngIf="selected && !editMixer" >
   <h2>{{selected.id}}</h2>
   <h3>{{selected.name}}</h3>
@@ -47,16 +73,17 @@
     <div class ="box-item col-md-4">
       <div class ="flip-box">
         <div class ="flip-box-front text-center" style="background-image:url({{selected.imageUrl}});">
-          <div class="inner colo-white">
-            <h3 class ="flip-box-header"> Wording here</h3>
-            <p>More wording here</p>
-            <img src="https://s25.postimg.cc/65sttv9b/cta-arrow.png" alt ="" class = "flip-box-img">
+          <div class="inner color-white">
+            <h3 class ="flip-box-header"> {{selected.name}}</h3>
+            <p>{{selected.eventDate}}</p>
           </div>
         </div>
-        <div class="flip-box text-center" style="background-image:url({{selected.imageUrl}});">
-          <div class="inner colo-white">
-            <h3 class ="flip-box-header"> Wording here</h3>
-            <p>More wording here</p>
+        <div class="flip-box-back text-center" style="background-image:url({{selected.imageUrl}});">
+          <div class="inner color-white">
+            <h3 class ="flip-box-header"> {{selected.description}}</h3>
+            <p>{{selected.eventDate}}</p>
+            <p>{{selected.eventStart}}</p>
+            <p>{{selected.eventEnd}}</p>
             <button class ="flip-box-button">Button info here</button>
           </div>
         </div>

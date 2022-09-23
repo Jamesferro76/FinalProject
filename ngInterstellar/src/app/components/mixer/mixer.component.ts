@@ -24,7 +24,6 @@ export class MixerComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
   addMixer() {
     this.mixerService.create(this.newMixer).subscribe({
       next: (result) => {
