@@ -1,13 +1,13 @@
-import { ChatMessageDto } from './../models/chatMessageDto';
 import { Injectable } from '@angular/core';
+import { Message } from '../models/message';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WebSocketService {
+export class MessageService {
 
   webSocket!: WebSocket;
-  chatMessages: ChatMessageDto[]=[];
+  chatMessages: Message[]=[];
 
   constructor() { }
 
@@ -18,8 +18,8 @@ export class WebSocketService {
 
     };
     this.webSocket.onmessage = (event) => {
-    const chatMessageDto = JSON.parse(event.data);
-    this.chatMessages.push(chatMessageDto);
+    const chatMessage= JSON.parse(event.data);
+    this.chatMessages.push(chatMessage);
   };
 
   this.webSocket.onclose = (event) => {
@@ -27,8 +27,8 @@ export class WebSocketService {
   };
 }
 
-public sendMessage(chatMessageDto: ChatMessageDto){
-  this.webSocket.send(JSON.stringify(chatMessageDto));
+public sendMessage(chatMessage: Message){
+  this.webSocket.send(JSON.stringify(chatMessage));
 }
 
 public closeWebSocket(){
