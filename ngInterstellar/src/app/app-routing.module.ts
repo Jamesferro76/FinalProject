@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChatComponent } from './components/chat/chat.component';
 import { HomeComponent } from './components/home/home.component';
 import { MixerComponent } from './components/mixer/mixer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'mixer', component: MixerComponent },
+  { path: 'chat', component: ChatComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
