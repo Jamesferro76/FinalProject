@@ -73,6 +73,9 @@ public class ProfileServiceImpl implements ProfileService {
 				existing.setBirthday(profile.getBirthday());
 				existing.setLastName(profile.getLastName());
 				existing.setProfilePic(profile.getProfilePic());
+				if(profile.getPreferences()!=null) {
+					existing.setPreferences(profile.getPreferences());
+				}
 				profileRepo.save(existing);
 				return existing;
 			 }

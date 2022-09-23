@@ -1,75 +1,106 @@
-<div *ngIf="selected&&!editProfile">
-<h1>{{selected.firstName}}</h1>
-<img [src]="selected.profilePic"/>
-<p>{{selected.description}}</p>
+<div *ngIf="selected && !editProfile">
+  <h1>{{ selected.firstName }}</h1>
+  <img [src]="selected.profilePic" />
+  <p>{{ selected.description }}</p>
 
-<ul>
-  <li>{{selected.sex}}</li>
-  <li>{{selected.age}}</li>
-  <li>{{selected.updatedOn}}</li>
-</ul>
+  <ul>
+    <li>{{ selected.sex }}</li>
+    <li>{{ selected.age }}</li>
+    <li>{{ selected.updatedOn }}</li>
+  </ul>
 
-{{selected.address.street}}{{selected.address.state}}
+  {{ selected.address.street }}{{ selected.address.state }}
 
-<h5>Preferences:</h5>
-<div *ngFor="let pref of selected?.preferences">{{pref.name}}</div>
+  <h5>Preferences:</h5>
+  <div *ngFor="let pref of selected.preferences">{{ pref.name }}</div>
 
-<h5>Categories</h5>
-<div *ngFor="let cat of selected?.categories">{{cat.name}}</div>
+  <h5>Categories</h5>
+  <div *ngFor="let cat of selected?.categories">{{ cat.name }}</div>
 
-<h5>Pics:</h5>
-<button (click)="addImage=true">Add Image</button>
-<div *ngIf="addImage">
-  Image URL:<input type="text" name="imageUrl" [(ngModel)]="newImage.imageUrl">
- <button type="button" (click)="addImageToProfile()">Save</button>
+  <h5>Pics:</h5>
+  <button (click)="addImage = true">Add Image</button>
+  <div *ngIf="addImage">
+    Image URL:<input
+      type="text"
+      name="imageUrl"
+      [(ngModel)]="newImage.imageUrl"
+    />
+    <button type="button" (click)="addImageToProfile()">Save</button>
+  </div>
+  <div *ngFor="let pic of selected.images">
+    <img [src]="pic.imageUrl" />
+  </div>
+
+  <h5>People into you:</h5>
+  <div *ngFor="let fav of selected?.favoriter">
+    {{ fav.firstName }}{{ fav.age }}
+    <img [src]="fav.profilePic" />
+  </div>
+
+  <h5>Mixers Hosting:</h5>
+  <div *ngFor="let mixer of selected?.mixers">{{ mixer.name }}</div>
+
+  <h5>Mixers Attending:</h5>
+  <div *ngFor="let mixer of selected?.mixersAttending">{{ mixer.name }}</div>
+
+  <button (click)="setEditProfile()">update</button>
 </div>
-<div *ngFor="let pic of selected.images">
-  <img [src]="pic.imageUrl"/>
-</div>
 
-<h5>People into you:</h5>
-<div *ngFor="let fav of selected?.favoriter">
-{{fav.firstName}}{{fav.age}}
-<img [src]="fav.profilePic"/>
-</div>
-
-<h5>Mixers Hosting:</h5>
-<div *ngFor="let mixer of selected?.mixers">{{mixer.name}}</div>
-
-<h5>Mixers Attending:</h5>
-<div *ngFor="let mixer of selected?.mixersAttending">{{mixer.name}}</div>
-
-<button (click)="setEditProfile()">update</button>
-</div>
-
-
-<div *ngIf="editProfile&&selected">
+<div *ngIf="editProfile && selected">
   <form action="editProfile">
-    First Name:<input type="text" name="firstName" [(ngModel)]="editProfile.firstName"><br/>
-    Profile Pic:<input type="text" name="profilePic" [(ngModel)]="editProfile.profilePic"><br/>
-    Description:<input type="text" name="description" [(ngModel)]="editProfile.description"><br/>
-    Sex: <input type="text" name="sex" [(ngModel)]="editProfile.sex"><br/>
-    Age: <input type="number" name="age" [(ngModel)]="editProfile.age"><br/>
-    <div *ngFor="let pref of prefs; index as i" >
-
-    {{pref}}:<input name="pref" type="checkbox"
-    [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedPrefs[i]">
-        Index: {{i}} {{selectedPrefs[i]}}
+    First Name:<input
+      type="text"
+      name="firstName"
+      [(ngModel)]="editProfile.firstName"
+    /><br />
+    Profile Pic:<input
+      type="text"
+      name="profilePic"
+      [(ngModel)]="editProfile.profilePic"
+    /><br />
+    Description:<input
+      type="text"
+      name="description"
+      [(ngModel)]="editProfile.description"
+    /><br />
+    Sex: <input type="text" name="sex" [(ngModel)]="editProfile.sex" /><br />
+    Age: <input type="number" name="age" [(ngModel)]="editProfile.age" /><br />
+    <div *ngFor="let pref of preferences; index as i">
+      {{ pref }}:<input
+        name="pref"
+        type="checkbox"
+        [ngModelOptions]="{ standalone: true }"
+        [(ngModel)]="selectedPrefs[i]"
+      />
+      Index: {{ i }} {{ selectedPrefs[i] }}
     </div>
-      <button type="button" (click)="cancelEdit()">Cancel</button><br/>
-  <button type="button" (click)="updateProfile(editProfile)">Save</button>
+    <button type="button" (click)="cancelEdit()">Cancel</button><br />
+    <button type="button" (click)="updateProfile(editProfile)">Save</button>
   </form>
   <button type="button" (click)="deleteProfile()">Delete</button>
 </div>
 
 <div *ngIf="!selected">
   <form action="createProfile">
-    First Name:<input type="text" name="firstName" [(ngModel)]="newProfile.firstName"><br/>
-    Profile Pic:<input type="text" name="profilePic" [(ngModel)]="newProfile.profilePic"><br/>
-    Description:<input type="text" name="description" [(ngModel)]="newProfile.description"><br/>
-    Sex: <input type="text" name="sex" [(ngModel)]="newProfile.sex"><br/>
-    Age: <input type="number" name="age" [(ngModel)]="newProfile.age"><br/>
-    Birthday <input type="text" name="birthday" [(ngModel)]="newProfile.birthday">
-  <button type="button" (click)="addProfile(newProfile)">Save</button>
+    First Name:<input
+      type="text"
+      name="firstName"
+      [(ngModel)]="newProfile.firstName"
+    /><br />
+    Profile Pic:<input
+      type="text"
+      name="profilePic"
+      [(ngModel)]="newProfile.profilePic"
+    /><br />
+    Description:<input
+      type="text"
+      name="description"
+      [(ngModel)]="newProfile.description"
+    /><br />
+    Sex: <input type="text" name="sex" [(ngModel)]="newProfile.sex" /><br />
+    Age: <input type="number" name="age" [(ngModel)]="newProfile.age" /><br />
+    Birthday
+    <input type="text" name="birthday" [(ngModel)]="newProfile.birthday" />
+    <button type="button" (click)="addProfile(newProfile)">Save</button>
   </form>
 </div>
