@@ -1,33 +1,10 @@
-<h1>{{title}}<span class="badge" [ngClass]="getBadgeColor()">{{getNumberOfMixers()}}</span></h1>
-
-<div *ngIf="!selected">
-  <table class="table table-striped table-hover">
-    <thead class="table-dark">
-      <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Completed</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tr *ngFor="let mixer of mixers">
-  <td (click)="displayMixer(mixer); selected = mixer">{{mixer.name}}</td>
-  <td><input (change)="updateCompleted(mixer); selected = null"/></td>
-  <td>{{mixer.description}}</td>
-  <td><button class="btn btn-danger"  (click)="deleteMixer(mixer.id)">X</button></td>
-</tr>
-</table>
-<form *ngIf="!selected">
-<input type="text" name="task" [(ngModel)]="newMixer.name">
-<button (click)="addMixer()">Add Mixer</button>
-</form>
-</div>
+<h1>{{title}}</h1>
 <div *ngIf="!selected" >
-  <div *ngFor="let mixer of mixers">
   <div class="container">
-    <div class="row">
-      <div class ="box-item col-md-4">
-        <div class ="flip-box">
+    <div class="row row-cols-1 row-cols-md-3 g-{{getNumberOfMixers()}}">
+      <div *ngFor="let mixer of mixers">
+      <div class ="box-item">
+        <div class ="flip-box" (click)="displayMixer(mixer); selected = mixer">
           <div class ="flip-box-front text-center" style="background-image:url({{mixer.imageUrl}});">
             <div class="inner color-white">
               <h3 class ="flip-box-header"> {{mixer.name}}</h3>
@@ -49,25 +26,87 @@
   </div>
 </div>
 </div>
-<div *ngIf="selected && !editMixer" >
-  <h2>{{selected.id}}</h2>
-  <h3>{{selected.name}}</h3>
-  <h3>Description: {{selected.description}}</h3>
-<h3>Event Start: {{selected.eventStart}}</h3>
-
-  <button (click)="displayTable()">Back</button>
-  <button (click)="setEditMixer()">Edit</button>
+<div class="addForm">
+<form *ngIf="!selected">
+  <input type="text" name="name" placeholder="Name"[(ngModel)]="newMixer.name"><br>
+  <input type="text" name="description" placeholder="description"[(ngModel)]="newMixer.description"><br>
+  <input type="text" name="imageUrl" placeholder="imageUrl"[(ngModel)]="newMixer.imageUrl"><br>
+  <input type="date" name="eventDate" placeholder="eventDate"[(ngModel)]="newMixer.eventDate"><br>
+  <input type="time" name="eventStart" placeholder="eventStart"[(ngModel)]="newMixer.eventStart"><br>
+  <input type="time" name="eventEnd" placeholder="eventEnd"[(ngModel)]="newMixer.eventEnd"><br>
+  <button (click)="addMixer()">Add Mixer</button>
+  </form>
+  <div class="container">
+    <div class="row">
+      <div class ="box-item col-md-4">
+        <div class ="flip-box">
+          <div class ="flip-box-front-edit text-center" style="background-image:url({{newMixer.imageUrl}});">
+            <div class="inner color-white">
+              <h3 class ="flip-box-header"> {{newMixer.name}}</h3>
+              <p>{{newMixer.eventDate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class ="box-item col-md-4">
+        <div class ="flip-box">
+          <div class="flip-box-back-edit text-center" style="background-image:url({{newMixer.imageUrl}});">
+            <div class="inner color-white">
+              <h3 class ="flip-box-header"> {{newMixer.description}}</h3>
+              <p>{{newMixer.eventDate}}</p>
+              <p>{{newMixer.eventStart}}</p>
+              <p>{{newMixer.eventEnd}}</p>
+              <button class ="flip-box-button">Button info here</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
 <form  *ngIf="editMixer">
  <label>Task: </label> <input type="text" name="task" [(ngModel)]="editMixer.name"> <br>
  <label>Description: </label> <input type="text" name="decription" [(ngModel)]="editMixer.description"> <br>
-
+ <div class="container">
+  <div class="row">
+    <div class ="box-item col-md-4">
+      <div class ="flip-box">
+        <div class ="flip-box-front-edit text-center" style="background-image:url({{editMixer.imageUrl}});">
+          <div class="inner color-white">
+            <h3 class ="flip-box-header"> {{editMixer.name}}</h3>
+            <p>{{editMixer.eventDate}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class ="box-item col-md-4">
+      <div class ="flip-box">
+        <div class="flip-box-back-edit text-center" style="background-image:url({{editMixer.imageUrl}});">
+          <div class="inner color-white">
+            <h3 class ="flip-box-header"> {{editMixer.description}}</h3>
+            <p>{{editMixer.eventDate}}</p>
+            <p>{{editMixer.eventStart}}</p>
+            <p>{{editMixer.eventEnd}}</p>
+            <button class ="flip-box-button">Button info here</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <button (click)="editMixer = null">Cancel</button>
 <button (click)="updateMixer(editMixer)">Save</button>
 </form>
 
-<div *ngIf="selected" >
+<div *ngIf="selected && !editMixer" >
 <div class="container">
   <div class="row">
     <div class ="box-item col-md-4">
@@ -91,4 +130,6 @@
     </div>
   </div>
 </div>
+<button (click)="displayTable()">Back</button>
+<button (click)="setEditMixer()">Edit</button>
 </div>

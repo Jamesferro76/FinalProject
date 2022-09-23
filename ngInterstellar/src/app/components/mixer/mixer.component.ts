@@ -9,7 +9,7 @@ import { MixerService } from 'src/app/services/mixer.service';
   styleUrls: ['./mixer.component.css'],
 })
 export class MixerComponent implements OnInit {
-  title = 'ngTodo';
+  title = 'Mixer Page';
 
   selected: Mixer | null = null;
 
@@ -25,6 +25,9 @@ export class MixerComponent implements OnInit {
     private router: Router
   ) {}
   addMixer() {
+    console.log(this.newMixer.eventDate);
+    let dateString = '' + this.newMixer.eventDate;
+    this.newMixer.eventDate = dateString;
     this.mixerService.create(this.newMixer).subscribe({
       next: (result) => {
         this.newMixer = new Mixer();

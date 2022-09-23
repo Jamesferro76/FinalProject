@@ -6,7 +6,9 @@ body{
 .color-white{
   color:white;
 }
-
+.addForm{
+  margin-top: 50px;
+}
 .flip-box{
   transform-style: preserve-3d;
   perspective: 1000px;
@@ -22,10 +24,20 @@ body{
   transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
   backface-visibility: hidden;
 }
+.flip-box-front-edit,
+.flip-box-back-edit{
+  background-size: cover;
+  background-position:center ;
+  border-radius: 8px;
+  min-height: 475px;
+  transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+  backface-visibility: hidden;
+}
 .flip-box-front{
   transform:rotateY(0deg);
   transform-style: preserve-3d;
 }
+
 
 .flip-box:hover  .flip-box-front{
   transform:rotateY(-180deg);
