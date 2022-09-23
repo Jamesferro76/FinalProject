@@ -8,5 +8,7 @@ public interface PreferenceService {
 
 	List<Preference> findAll();
 
+	Preference findByName(String pname);
+
 	
 }

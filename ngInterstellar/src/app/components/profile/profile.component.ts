@@ -7,6 +7,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { UserService } from 'src/app/services/user.service';
 import { Profile } from './../../models/profile';
 import { Preference } from 'src/app/models/preference';
+import { PreferenceService } from 'src/app/services/preference.service';
 
 @Component({
   selector: 'app-profile',
@@ -33,6 +34,8 @@ export class ProfileComponent implements OnInit {
     'Non-Binary'
   ]
 
+  preference:Preference=new Preference();
+
   selectedPrefs=[
     false,
     false,
@@ -43,6 +46,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
+    private preferenceService: PreferenceService,
     private authService: AuthService,
     private userService: UserService,
     private route: ActivatedRoute,
@@ -110,23 +114,36 @@ export class ProfileComponent implements OnInit {
   updateProfile(updateProfile: Profile){
     if(this.editProfile!=null){
       updateProfile.id=this.editProfile.id;
+      updateProfile.preferences=[];
+      console.log("Outside the if statement outside the for loop"+this.selectedPrefs);
       for(let i=0; i<this.selectedPrefs.length;i++){
-        if(this.selectedPrefs[i]&&!updateProfile.preferences.includes(this.prefs[i])){
-          updateProfile.preferences.push(this.prefs[i]);
-        }else if(!this.selectedPrefs[i]&&updateProfile.preferences.includes(this.prefs[i]))
-          updateProfile.preferences.splice(i,1);
+        console.log("Outside the if statement in the for loop"+this.selectedPrefs[i]);
+        if(this.selectedPrefs[i]){
+          updateProfile.preferences.push(this.findPreferenceByName(this.prefs[i]));
+
+          for(let i=0; i<updateProfile.preferences.length; i++){
+      console.log(updateProfile.preferences[i]);
+    }
+        }
+        // else if(!this.selectedPrefs[i]&&updateProfile.preferences.includes(this.prefs[i]))
+        //   updateProfile.preferences.splice(i,1);
       }
     }
 
+    for(let i=0; i<updateProfile.preferences.length; i++){
+      console.log(updateProfile.preferences[i]);
+    }
 
 
     this.profileService.updateProfile(updateProfile).subscribe(
       {
       next: (result)=>{
         console.log("Inside update Profile");
-        console.log(result.images[0].imageUrl);
-
+        for(let i=0; i<result.preferences.length; i++){
+          console.log(result.preferences[i]);
+        }
         this.selected=result;
+
         this.editProfile=null;
       },
       error:(err)=>{
@@ -167,4 +184,23 @@ addImageToProfile(){
   }
 }
 
+findPreferenceByName(pref:string){
+  this.preferenceService.findByName(pref).subscribe(
+    {
+    next: (result)=>{
+      console.log(result);
+
+      this.preference=result;
+      return this.preference;
+    },
+    error:(err)=>{
+      console.error('ProfileComponent.findPreferenceByName(): error finding Preference: ');
+      console.error(err);
+    }
+    }
+  );
 }
+
+}
+
+
