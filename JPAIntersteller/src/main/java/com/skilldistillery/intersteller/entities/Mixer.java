@@ -46,7 +46,7 @@ public class Mixer {
 	private LocalDate createdDate;	
 	
 	@Column(name="image_url")
-	private LocalDate imageUrl;
+	private String imageUrl;
 	
 	@OneToOne
 	@JoinColumn(name="profile_id")
@@ -125,11 +125,13 @@ public class Mixer {
 		this.createdDate = createdDate;
 	}
 
-	public LocalDate getImageUrl() {
+	
+
+	public String getImageUrl() {
 		return imageUrl;
 	}
 
-	public void setImageUrl(LocalDate imageUrl) {
+	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
 
