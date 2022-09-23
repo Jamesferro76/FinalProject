@@ -9,24 +9,24 @@ export class Profile {
     sex: string;
     firstName: string;
     lastName: string;
-    user?: User;
+    user: User;
     address?: any;
     profilePic: string;
     active: boolean;
     updatedOn: string;
-    preferences?: any[];
-    images?: any[];
-    mixers?: any[];
-    mixersAttending?: any[];
-    messagesSent?:any[];
-    messagesRecieved?:any[];
-    matchers?:any[];
-    matcheds?:any[];
-    blocked?:any[];
-    favorited?:Profile[];
-    favoriter?:Profile[];
-    categories?:any[];
-    profileAnswers?:any[];
+    preferences: any[];
+    images: any[];
+    mixers: any[];
+    mixersAttending: any[];
+    messagesSent:any[];
+    messagesRecieved:any[];
+    matchers:any[];
+    matcheds:any[];
+    blocked:any[];
+    favorited:Profile[];
+    favoriter:Profile[];
+    categories:any[];
+    profileAnswers:any[];
 
     constructor(
       id: number=0,

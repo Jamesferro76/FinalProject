@@ -51,7 +51,6 @@ export class ProfileService {
     }
 
     findByUserId(id: number){
-      console.log(id);
       return this.http.get<Profile>(this.url+"/user/"+id, this.getHttpOptions()).pipe(
         catchError((err: any)=>{
           console.log(err);

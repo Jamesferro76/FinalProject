@@ -6,15 +6,26 @@
 <ul>
   <li>{{selected.sex}}</li>
   <li>{{selected.age}}</li>
-  <li>{{selected.address.state}}</li>
   <li>{{selected.updatedOn}}</li>
 </ul>
+
+{{selected.address.street}}{{selected.address.state}}
 
 <h5>Preferences:</h5>
 <div *ngFor="let pref of selected?.preferences">{{pref.name}}</div>
 
 <h5>Categories</h5>
 <div *ngFor="let cat of selected?.categories">{{cat.name}}</div>
+
+<h5>Pics:</h5>
+<button (click)="addImage=true">Add Image</button>
+<div *ngIf="addImage">
+  Image URL:<input type="text" name="imageUrl" [(ngModel)]="newImage.imageUrl">
+ <button type="button" (click)="addImageToProfile()">Save</button>
+</div>
+<div *ngFor="let pic of selected.images">
+  <img [src]="pic.imageUrl"/>
+</div>
 
 <h5>People into you:</h5>
 <div *ngFor="let fav of selected?.favoriter">
@@ -39,7 +50,13 @@
     Description:<input type="text" name="description" [(ngModel)]="editProfile.description"><br/>
     Sex: <input type="text" name="sex" [(ngModel)]="editProfile.sex"><br/>
     Age: <input type="number" name="age" [(ngModel)]="editProfile.age"><br/>
-    <button type="button" (click)="cancelEdit()">Cancel</button><br/>
+    <div *ngFor="let pref of prefs; index as i" >
+
+    {{pref}}:<input name="pref" type="checkbox"
+    [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedPrefs[i]">
+        Index: {{i}} {{selectedPrefs[i]}}
+    </div>
+      <button type="button" (click)="cancelEdit()">Cancel</button><br/>
   <button type="button" (click)="updateProfile(editProfile)">Save</button>
   </form>
   <button type="button" (click)="deleteProfile()">Delete</button>
