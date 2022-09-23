@@ -6,10 +6,27 @@
 <ul>
   <li>{{selected.sex}}</li>
   <li>{{selected.age}}</li>
-  <li>{{selected.address.street}}</li>
+  <li>{{selected.address.state}}</li>
+  <li>{{selected.updatedOn}}</li>
 </ul>
 
+<h5>Preferences:</h5>
 <div *ngFor="let pref of selected?.preferences">{{pref.name}}</div>
+
+<h5>Categories</h5>
+<div *ngFor="let cat of selected?.categories">{{cat.name}}</div>
+
+<h5>People into you:</h5>
+<div *ngFor="let fav of selected?.favoriter">
+{{fav.firstName}}{{fav.age}}
+<img [src]="fav.profilePic"/>
+</div>
+
+<h5>Mixers Hosting:</h5>
+<div *ngFor="let mixer of selected?.mixers">{{mixer.name}}</div>
+
+<h5>Mixers Attending:</h5>
+<div *ngFor="let mixer of selected?.mixersAttending">{{mixer.name}}</div>
 
 <button (click)="setEditProfile()">update</button>
 </div>
