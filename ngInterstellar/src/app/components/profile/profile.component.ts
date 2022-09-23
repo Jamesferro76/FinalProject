@@ -15,6 +15,9 @@ export class ProfileComponent implements OnInit {
 
   loggedInUser: User|null=null;
   selected: Profile|null=null;
+  displayUpdate: boolean=false;
+  editProfile: Profile|null=null;
+  newProfile: Profile = new Profile();
 
 
   constructor(
@@ -33,6 +36,7 @@ export class ProfileComponent implements OnInit {
         this.profileService.findByUserId(this.loggedInUser.id).subscribe({
           next:(profile)=>{
             this.selected=profile;
+
           },
           error: (err)=>{
             console.error('Error retrieving Profile');
@@ -48,5 +52,69 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
+
+  setEditProfile(){
+    this.editProfile=Object.assign({}, this.selected);
+  }
+
+  cancelEdit(){
+    this.editProfile=null;
+  }
+
+  addProfile(newProfile: Profile){
+    this.profileService.createProfile(newProfile).subscribe(
+      {
+      next: (data)=>{
+        this.newProfile= new Profile();
+        this.selected=data;
+        this.editProfile=null;
+      },
+      error:(err)=>{
+        console.error('AddProfileComponent: error Loading profile: ');
+        console.error(err);
+
+      }
+      }
+    );
+
+  }
+
+  updateProfile(updateProfile: Profile){
+    if(this.editProfile!=null){
+      updateProfile.id=this.editProfile.id;
+    }
+    this.profileService.updateProfile(updateProfile).subscribe(
+      {
+      next: (result)=>{
+        this.selected=result;
+        this.editProfile=null;
+      },
+      error:(err)=>{
+        console.error('UpdateProfileComponent.UpdateTodo(): error Updating todos: ');
+        console.error(err);
+
+      }
+      }
+    );
+  }
+
+  deleteProfile(){
+    if(this.editProfile){
+    this.editProfile.active=false;
+    this.profileService.updateProfile(this.editProfile).subscribe(
+      {
+      next: (result)=>{
+        this.selected=null;
+        this.editProfile=null;
+        this.authService.logout();
+      },
+      error:(err)=>{
+        console.error('TodoListComponent.UpdateTodo(): error Updating todos: ');
+        console.error(err);
+      }
+      }
+    );
+  }
+}
 
 }

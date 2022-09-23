@@ -1,15 +1,41 @@
-<p>profile works!</p>
-<div *ngIf="selected">
-<h1>{{selected?.firstName}}</h1>
-<img [src]="selected?.profilePic"/>
-<p>{{selected?.description}}</p>
+<div *ngIf="selected&&!editProfile">
+<h1>{{selected.firstName}}</h1>
+<img [src]="selected.profilePic"/>
+<p>{{selected.description}}</p>
 
 <ul>
-  <li>{{selected?.sex}}</li>
-  <div **ngFor="let preference of selected.prefences">
-    <li>{{preference.name}}</li>
-  </div>
-  <li>{{selected?.age}}</li>
+  <li>{{selected.sex}}</li>
+  <li>{{selected.age}}</li>
+  <li>{{selected.address.street}}</li>
 </ul>
 
+<div *ngFor="let pref of selected?.preferences">{{pref.name}}</div>
+
+<button (click)="setEditProfile()">update</button>
+</div>
+
+
+<div *ngIf="editProfile&&selected">
+  <form action="editProfile">
+    First Name:<input type="text" name="firstName" [(ngModel)]="editProfile.firstName"><br/>
+    Profile Pic:<input type="text" name="profilePic" [(ngModel)]="editProfile.profilePic"><br/>
+    Description:<input type="text" name="description" [(ngModel)]="editProfile.description"><br/>
+    Sex: <input type="text" name="sex" [(ngModel)]="editProfile.sex"><br/>
+    Age: <input type="number" name="age" [(ngModel)]="editProfile.age"><br/>
+    <button type="button" (click)="cancelEdit()">Cancel</button><br/>
+  <button type="button" (click)="updateProfile(editProfile)">Save</button>
+  </form>
+  <button type="button" (click)="deleteProfile()">Delete</button>
+</div>
+
+<div *ngIf="!selected">
+  <form action="createProfile">
+    First Name:<input type="text" name="firstName" [(ngModel)]="newProfile.firstName"><br/>
+    Profile Pic:<input type="text" name="profilePic" [(ngModel)]="newProfile.profilePic"><br/>
+    Description:<input type="text" name="description" [(ngModel)]="newProfile.description"><br/>
+    Sex: <input type="text" name="sex" [(ngModel)]="newProfile.sex"><br/>
+    Age: <input type="number" name="age" [(ngModel)]="newProfile.age"><br/>
+    Birthday <input type="text" name="birthday" [(ngModel)]="newProfile.birthday">
+  <button type="button" (click)="addProfile(newProfile)">Save</button>
+  </form>
 </div>

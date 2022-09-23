@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
@@ -13,7 +14,7 @@ export class AuthService {
   private baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router:Router) {}
 
   login(username: string, password: string,): Observable<User> {
     // Make credentials
@@ -45,6 +46,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('credentials');
+    this.router.navigateByUrl('home');
   }
 
   getLoggedInUser(): Observable<User> {
