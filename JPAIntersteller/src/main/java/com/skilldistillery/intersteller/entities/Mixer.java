@@ -17,6 +17,8 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Mixer {
 	
@@ -48,10 +50,13 @@ public class Mixer {
 	@Column(name="image_url")
 	private String imageUrl;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="profile_id")
 	private Profile profile;
-
+	
+//	Maybe put JSONignoe on line 57
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="mixer_attendee", 
 	joinColumns=@JoinColumn(name="mixer_id"), 
