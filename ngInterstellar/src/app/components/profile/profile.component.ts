@@ -27,9 +27,10 @@ export class ProfileComponent implements OnInit {
   addImage: boolean = false;
   newImage: Image = new Image();
   editAddress: boolean = false;
-  newAddress: Address= new Address();
+  newAddress: Address = new Address();
 
   preferences: Preference[] = [];
+  preferences1: Preference[] = [];
 
   preference: Preference = new Preference();
 
@@ -103,12 +104,11 @@ pref4: Preference|null=null;
     this.editProfile = null;
   }
 
-  prepProfile(){
+  prepProfile() {
     this.addAddressToProfile();
   }
 
   addProfile() {
-
     this.profileService.createProfile(this.newProfile).subscribe({
       next: (data) => {
         this.newProfile = new Profile();
@@ -206,22 +206,22 @@ pref4: Preference|null=null;
   }
 
   addAddressToProfile() {
-      this.addressService.create(this.newAddress).subscribe({
-        next: (result) => {
-          this.newProfile.address=result;
-          console.log(this.newProfile.address);
-          console.log("Results: "+result);
+    this.addressService.create(this.newAddress).subscribe({
+      next: (result) => {
+        this.newProfile.address = result;
+        console.log(this.newProfile.address);
+        console.log('Results: ' + result);
 
-            this.newAddress = new Address();
-            this.addProfile()
-        },
-        error: (err) => {
-          console.error(
-            'ProfileComponent.addAddressToProfile(): error creating address: '
-          );
-          console.error(err);
-        },
-      });
+        this.newAddress = new Address();
+        this.addProfile();
+      },
+      error: (err) => {
+        console.error(
+          'ProfileComponent.addAddressToProfile(): error creating address: '
+        );
+        console.error(err);
+      },
+    });
   }
 
   updateAddress(newAddress: Address) {
@@ -229,14 +229,14 @@ pref4: Preference|null=null;
 
     if (this.selected) {
       console.log(this.selected.address.id);
-      newAddress.id=this.selected.address.id;
+      newAddress.id = this.selected.address.id;
       console.log(newAddress);
       this.addressService.update(newAddress).subscribe({
         next: (result) => {
           if (this.selected) {
-            this.selected.address=result;
+            this.selected.address = result;
             this.newAddress = new Address();
-            this.editAddress=false;
+            this.editAddress = false;
             this.updateProfile(this.selected);
           }
         },
@@ -252,24 +252,29 @@ pref4: Preference|null=null;
 
   perf(perfPro: Profile) {
     if (this.editProfile != null) {
-
-      // console.log("EditProfile.preferences Before"+this.editProfile.preferences);
-      // console.log("perfPro.preferences"+ perfPro.preferences);
-
-      for(let i=0; i<this.preferences.length; i++){
-        if(this.editProfile.preferences[i]){
-          this.editProfile.preferences[i]=this.preferences[i];
-          console.log("EditProfile.preferences After"+this.editProfile.preferences[i].name);
-        }else{
-          this.editProfile.preferences.splice(i, 1);
+      this.preferences1;
+      for (let i = 0; i < this.preferences.length; i++) {
+        if (this.editProfile.preferences[i]) {
+          if (this.preferences1.includes(this.preferences[i])) {
+          } else {
+            this.preferences1.push(this.preferences[i]);
+          }
+        } else if (!this.editProfile.preferences[i]) {
+          if (this.preferences1.includes(this.preferences[i])) {
+          } else {
+            this.preferences1.splice(i, 1);
+          }
         }
       }
-
-      console.log(this.editProfile.preferences);
-
-
+      this.editProfile.preferences = [];
+      this.editProfile.preferences = this.preferences1;
       this.profileService.updateProfile(this.editProfile).subscribe({
-        next: (result) => {},
+        next: (result) => {
+          if (this.editProfile != null) this.editProfile.preferences = [];
+          this.selected = result;
+
+          this.editProfile = null;
+        },
         error: (err) => {
           console.error(
             'UpdateProfileComponent.UpdateProfile(): error Updating Profile: '
@@ -278,45 +283,7 @@ pref4: Preference|null=null;
         },
       });
     }
-  }
-
-  prefAttempt(){
-    if(this.editProfile){
-      this.editProfile.preferences=[];
-
-      console.log("Pref0: "+this.pref0);
-      if(this.pref0){
-        this.editProfile.preferences.push(this.pref0);
-      }
-      console.log("Pref1: "+this.pref0);
-      if(this.pref1){
-        this.editProfile.preferences.push(this.pref1);
-      }
-      console.log("Pref2: "+this.pref0);
-      if(this.pref2){
-        this.editProfile.preferences.push(this.pref2);
-      }
-      console.log("Pref3: "+this.pref0);
-      if(this.pref3){
-        this.editProfile.preferences.push(this.pref3);
-      }
-      console.log("Pref4: "+this.pref0);
-      if(this.pref4){
-        this.editProfile.preferences.push(this.pref4);
-      }
-      console.log("Preferences: "+this.editProfile.preferences);
-
-    this.profileService.updateProfile(this.editProfile).subscribe({
-      next: (result) => {},
-      error: (err) => {
-        console.error(
-          'UpdateProfileComponent.UpdateProfile(): error Updating Profile: '
-        );
-        console.error(err);
-      },
-    });
-
-    }
+    this.preferences1 = [];
   }
 
 }

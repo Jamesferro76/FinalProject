@@ -98,17 +98,17 @@
     /><br />
     Sex: <input type="text" name="sex" [(ngModel)]="editProfile.sex" /><br />
     Age: <input type="number" name="age" [(ngModel)]="editProfile.age" /><br />
+
     <div *ngFor="let pref of preferences; index as i">
       {{ pref.name }}:<input
         name="pref"
         type="checkbox"
         [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="selectedPrefs[i]"
+        [(ngModel)]="editProfile.preferences[i]"
       />
-      Index: {{ i }} {{ selectedPrefs[i] }}
     </div>
     <button type="button" (click)="cancelEdit()">Cancel</button><br />
-    <button type="button" (click)="updateProfile(editProfile)">Save</button>
+    <button type="button" (click)="perf(editProfile)">Save</button>
   </form>
   <button type="button" (click)="deleteProfile()">Delete</button>
 </div>
@@ -164,28 +164,3 @@
     <button type="button" (click)="prepProfile()">Save</button>
   </form>
 </div>
-
-<div *ngIf="editProfile && selected">
-<form>
-  <div *ngFor="let pref of preferences; index as i">
-    {{ pref.name }}:<input
-      name="pref"
-      type="checkbox"
-      [ngModelOptions]="{ standalone: true }"
-      [(ngModel)]="editProfile.preferences[i]"
-    />
-  </div>
-  <button type="button" (click)="perf(editProfile)">Save</button>
-  </form>
-</div>
-
-
-
-<form action="addPrefs">
-  {{preferences[0].name}}<input type="radio" name="pref0" [(ngModel)]="pref0"}>
-  {{preferences[1].name}}<input type="radio" name="pref1" [(ngModel)]="pref1" value={{preferences[1].name}}>
-  {{preferences[2].name}}<input type="radio" name="pref2" [(ngModel)]="pref2" value={{preferences[2].name}}>
-  {{preferences[3].name}}<input type="radio" name="pref3" [(ngModel)]="pref3" value={{preferences[3].name}}>
-  {{preferences[4].name}}<input type="radio" name="pref4" [(ngModel)]="pref4" value={{preferences[4].name}}>
-  <button type="button" (click)="prefAttempt()">Save</button>
-</form>
