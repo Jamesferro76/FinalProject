@@ -181,3 +181,11 @@
 
 
 
+<form action="addPrefs">
+  {{preferences[0].name}}<input type="radio" name="pref0" [(ngModel)]="pref0"}>
+  {{preferences[1].name}}<input type="radio" name="pref1" [(ngModel)]="pref1" value={{preferences[1].name}}>
+  {{preferences[2].name}}<input type="radio" name="pref2" [(ngModel)]="pref2" value={{preferences[2].name}}>
+  {{preferences[3].name}}<input type="radio" name="pref3" [(ngModel)]="pref3" value={{preferences[3].name}}>
+  {{preferences[4].name}}<input type="radio" name="pref4" [(ngModel)]="pref4" value={{preferences[4].name}}>
+  <button type="button" (click)="prefAttempt()">Save</button>
+</form>

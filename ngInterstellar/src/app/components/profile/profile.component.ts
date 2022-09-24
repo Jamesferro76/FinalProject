@@ -34,6 +34,11 @@ export class ProfileComponent implements OnInit {
   preference: Preference = new Preference();
 
   selectedPrefs = [false, false, false, false, false];
+pref0: Preference|null=null;
+pref1: Preference|null=null;
+pref2: Preference|null=null;
+pref3: Preference|null=null;
+pref4: Preference|null=null;
 
   constructor(
     private profileService: ProfileService,
@@ -272,6 +277,45 @@ export class ProfileComponent implements OnInit {
           console.error(err);
         },
       });
+    }
+  }
+
+  prefAttempt(){
+    if(this.editProfile){
+      this.editProfile.preferences=[];
+
+      console.log("Pref0: "+this.pref0);
+      if(this.pref0){
+        this.editProfile.preferences.push(this.pref0);
+      }
+      console.log("Pref1: "+this.pref0);
+      if(this.pref1){
+        this.editProfile.preferences.push(this.pref1);
+      }
+      console.log("Pref2: "+this.pref0);
+      if(this.pref2){
+        this.editProfile.preferences.push(this.pref2);
+      }
+      console.log("Pref3: "+this.pref0);
+      if(this.pref3){
+        this.editProfile.preferences.push(this.pref3);
+      }
+      console.log("Pref4: "+this.pref0);
+      if(this.pref4){
+        this.editProfile.preferences.push(this.pref4);
+      }
+      console.log("Preferences: "+this.editProfile.preferences);
+
+    this.profileService.updateProfile(this.editProfile).subscribe({
+      next: (result) => {},
+      error: (err) => {
+        console.error(
+          'UpdateProfileComponent.UpdateProfile(): error Updating Profile: '
+        );
+        console.error(err);
+      },
+    });
+
     }
   }
 
