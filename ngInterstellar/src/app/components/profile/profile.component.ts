@@ -98,12 +98,11 @@ export class ProfileComponent implements OnInit {
     this.editProfile = null;
   }
 
-  addProfile(newProfile: Profile) {
-    console.log(this.newAddress);
-
+  prepProfile(){
     this.addAddressToProfile();
+  }
 
-    console.log(this.newProfile.address);
+  addProfile() {
 
     this.profileService.createProfile(this.newProfile).subscribe({
       next: (data) => {
@@ -205,8 +204,11 @@ export class ProfileComponent implements OnInit {
       this.addressService.create(this.newAddress).subscribe({
         next: (result) => {
           this.newProfile.address=result;
+          console.log(this.newProfile.address);
+          console.log("Results: "+result);
+
             this.newAddress = new Address();
-            //this.updateProfile(this.selected);
+            this.addProfile()
         },
         error: (err) => {
           console.error(
