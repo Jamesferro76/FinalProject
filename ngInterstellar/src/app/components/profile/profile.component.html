@@ -107,6 +107,17 @@
         [(ngModel)]="editProfile.preferences[i]"
       />
     </div>
+
+    <h4>Categories</h4>
+    <div *ngFor="let cat of categories; index as i">
+      {{ cat.name }}:<input
+        name="cat"
+        type="checkbox"
+        [ngModelOptions]="{ standalone: true }"
+        [(ngModel)]="editProfile.categories[i]"
+      />
+    </div>
+
     <button type="button" (click)="cancelEdit()">Cancel</button><br />
     <button type="button" (click)="perf(editProfile)">Save</button>
   </form>

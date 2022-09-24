@@ -1,3 +1,4 @@
+import { Category } from 'src/app/models/category';
 import { Preference } from 'src/app/models/preference';
 import { User } from './user';
 
@@ -25,7 +26,7 @@ export class Profile {
   blocked: any[];
   favorited: Profile[];
   favoriter: Profile[];
-  categories: any[];
+  categories: Category[];
   profileAnswers: any[];
 
   constructor(
@@ -52,7 +53,7 @@ export class Profile {
     blocked: any[] = [],
     favorited: Profile[] = [],
     favoriter: Profile[] = [],
-    categories: any[] = [],
+    categories: Category[] = [],
     profileAnswers: any[] = []
   ) {
     this.id = id;

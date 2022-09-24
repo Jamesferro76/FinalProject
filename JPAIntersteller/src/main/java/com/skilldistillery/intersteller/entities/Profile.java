@@ -122,7 +122,6 @@ public class Profile {
 	  @OneToMany(mappedBy="profile")
 	  private List<ProfileAnswer> profileAnswers;
 
-	  @JsonIgnore
 	  @ManyToMany
 	  @JoinTable(name="profile_has_category",
 	  joinColumns={@JoinColumn(name="profile_id")},

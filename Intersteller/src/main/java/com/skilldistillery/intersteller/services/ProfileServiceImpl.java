@@ -74,6 +74,11 @@ public class ProfileServiceImpl implements ProfileService {
 				
 				existing.setAge(profile.getAge());
 				
+				existing.setCategories(profile.getCategories());
+				
+				if(profile.getAddress()!=null) {
+					existing.setAddress(profile.getAddress());
+				}
 				existing.setLastName(profile.getLastName());
 				existing.setProfilePic(profile.getProfilePic());
 				if(profile.getPreferences()!=null) {

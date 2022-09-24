@@ -11,6 +11,8 @@ import { PreferenceService } from 'src/app/services/preference.service';
 import { ImageService } from 'src/app/services/image.service';
 import { AddressService } from 'src/app/services/address.service';
 import { Address } from 'src/app/models/address';
+import { Category } from 'src/app/models/category';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-profile',
@@ -34,18 +36,19 @@ export class ProfileComponent implements OnInit {
 
   preference: Preference = new Preference();
 
+  categories: Category[] = [];
+  categories1: Category[] = [];
+
+  category: Category = new Category();
+
   selectedPrefs = [false, false, false, false, false];
-pref0: Preference|null=null;
-pref1: Preference|null=null;
-pref2: Preference|null=null;
-pref3: Preference|null=null;
-pref4: Preference|null=null;
 
   constructor(
     private profileService: ProfileService,
     private imageService: ImageService,
     private addressService: AddressService,
     private preferenceService: PreferenceService,
+    private categoryService: CategoryService,
     private authService: AuthService,
     private userService: UserService,
     private route: ActivatedRoute,
@@ -62,6 +65,8 @@ pref4: Preference|null=null;
           next: (profile) => {
             this.selected = profile;
             this.loadPreferences();
+            this.loadCategories();
+            console.log("In init"+this.categories);
           },
           error: (err) => {
             console.error('Error retrieving Profile');
@@ -90,9 +95,29 @@ pref4: Preference|null=null;
     });
   }
 
+  loadCategories() {
+    this.categoryService.findAll().subscribe({
+      next: (result) => {
+        //console.log(result);
+
+        this.categories = result;
+        console.log(this.categories);
+      },
+      error: (err) => {
+        console.error('Error retrieving Preferences');
+        console.error(err);
+      },
+    });
+  }
+
   setEditProfile() {
     this.editProfile = Object.assign({}, this.selected);
-
+    if(this.selected){
+    console.log("EditProfileCategories"+this.editProfile.categories);
+    console.log(this.selected.categories);
+    console.log("EditProfilePreferences"+this.editProfile.preferences);
+    console.log(this.selected.preferences);
+    }
     //   for(let i=0; i<this.editProfile.preferences.length; i++){
     //     let index=this.prefs.indexOf(this.editProfile.preferences[i].name);
     //     this.selectedPrefs[index]=true;
@@ -268,9 +293,29 @@ pref4: Preference|null=null;
       }
       this.editProfile.preferences = [];
       this.editProfile.preferences = this.preferences1;
+
+        this.categories1;
+        for (let i = 0; i < this.categories.length; i++) {
+          if (this.editProfile.categories[i]) {
+            if (this.categories1.includes(this.categories[i])) {
+            } else {
+              this.categories1.push(this.categories[i]);
+            }
+          } else if (!this.editProfile.categories[i]) {
+            if (this.categories1.includes(this.categories[i])) {
+            } else {
+              this.categories1.splice(i, 1);
+            }
+          }
+        }
+        this.editProfile.categories = [];
+        this.editProfile.categories = this.categories1;
+
+
       this.profileService.updateProfile(this.editProfile).subscribe({
         next: (result) => {
           if (this.editProfile != null) this.editProfile.preferences = [];
+          if (this.editProfile != null) this.editProfile.categories = [];
           this.selected = result;
 
           this.editProfile = null;
@@ -284,6 +329,8 @@ pref4: Preference|null=null;
       });
     }
     this.preferences1 = [];
+    this.categories1 = [];
   }
 
 }
+
