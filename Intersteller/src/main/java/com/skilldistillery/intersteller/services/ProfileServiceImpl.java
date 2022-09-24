@@ -76,6 +76,8 @@ public class ProfileServiceImpl implements ProfileService {
 				if(profile.getPreferences()!=null) {
 					existing.setPreferences(profile.getPreferences());
 				}
+				System.out.println(profile.getMixersAttending());
+				System.out.println(existing.getMixersAttending());
 				if(profile.getMixersAttending()!=null) {
 					existing.setMixersAttending(profile.getMixersAttending());
 				}

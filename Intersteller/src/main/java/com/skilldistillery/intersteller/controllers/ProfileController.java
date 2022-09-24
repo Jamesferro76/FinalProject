@@ -61,9 +61,10 @@ public class ProfileController {
 	@PutMapping("profiles/{tid}")
 	public Profile updateProfile(@RequestBody Profile profile, @PathVariable int tid, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		Profile updated= null;
-		
+		System.out.println(profile.getDescription());
 		try {
 			updated= profileService.update(principal.getName(), tid, profile);
+			System.out.println(profile.getDescription());
 		}catch(Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);

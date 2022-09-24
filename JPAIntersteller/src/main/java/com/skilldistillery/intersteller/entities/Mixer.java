@@ -52,7 +52,7 @@ public class Mixer {
 	
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name="profile_id")
+	@JoinColumn(name="creator_id")
 	private Profile profile;
 	
 //	Maybe put JSONignoe on line 57

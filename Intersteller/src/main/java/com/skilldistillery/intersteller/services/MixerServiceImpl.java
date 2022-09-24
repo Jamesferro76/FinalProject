@@ -62,7 +62,7 @@ public class MixerServiceImpl implements MixerService {
 					existing.setEventStart(mixer.getEventStart());
 					existing.setEventEnd(mixer.getEventEnd());
 					existing.setImageUrl(mixer.getImageUrl());
-					existing.setProfile(mixer.getProfile());	
+//					existing.setProfile(mixer.getProfile());	 Mixer.getProfile is null, dont use
 					mixerRepo.save(existing);
 					return existing;
 				 }
