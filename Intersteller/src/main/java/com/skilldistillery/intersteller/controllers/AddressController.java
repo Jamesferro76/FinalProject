@@ -1,6 +1,7 @@
 package com.skilldistillery.intersteller.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.intersteller.entities.Address;
-import com.skilldistillery.intersteller.entities.Image;
-import com.skilldistillery.intersteller.entities.Profile;
 import com.skilldistillery.intersteller.services.AddressService;
 
 @RestController
@@ -31,6 +30,16 @@ public class AddressController {
 	@GetMapping("addresses/{id}")
 	public Address findByUrl(@PathVariable int id) {
 		return addressService.findById(id);
+	}
+	
+	@GetMapping("addresses")
+	public List<Address> findAll() {
+		return addressService.findAll();
+	}
+	
+	@GetMapping("addresses/profile")
+	public Address findByProfile(Principal principal) {
+		return addressService.findByProfile(principal.getName());
 	}
 	
 	@PostMapping("addresses")

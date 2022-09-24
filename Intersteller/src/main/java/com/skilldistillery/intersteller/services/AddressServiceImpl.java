@@ -1,5 +1,6 @@
 package com.skilldistillery.intersteller.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class AddressServiceImpl implements AddressService {
 		    
 		    return addressRepo.saveAndFlush(address);
 	}
+	
+	@Override
+	public List<Address> findAll() {
+		return addressRepo.findAll();
+	}
 
 	@Override
 	public Address findById(int id) {
@@ -36,6 +42,14 @@ public class AddressServiceImpl implements AddressService {
 			address=addressOpt.get();
 		}
 		return address;
+	}
+	
+	@Override
+	public Address findByProfile(String name) {
+		User user= userRepo.findByUsername(name);
+		Profile profile= profileRepo.findByUser(user);
+		return profile.getAddress();
+		
 	}
 
 	@Override
@@ -69,9 +83,6 @@ public class AddressServiceImpl implements AddressService {
 		
 		return null;
 	}
-	
-	
 
-	
 
 }

@@ -9,6 +9,8 @@ import { Profile } from './../../models/profile';
 import { Preference } from 'src/app/models/preference';
 import { PreferenceService } from 'src/app/services/preference.service';
 import { ImageService } from 'src/app/services/image.service';
+import { AddressService } from 'src/app/services/address.service';
+import { Address } from 'src/app/models/address';
 
 @Component({
   selector: 'app-profile',
@@ -24,6 +26,8 @@ export class ProfileComponent implements OnInit {
 
   addImage: boolean = false;
   newImage: Image = new Image();
+  editAddress: boolean = false;
+  newAddress: Address= new Address();
 
   preferences: Preference[] = [];
 
@@ -34,6 +38,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private imageService: ImageService,
+    private addressService: AddressService,
     private preferenceService: PreferenceService,
     private authService: AuthService,
     private userService: UserService,
@@ -94,7 +99,13 @@ export class ProfileComponent implements OnInit {
   }
 
   addProfile(newProfile: Profile) {
-    this.profileService.createProfile(newProfile).subscribe({
+    console.log(this.newAddress);
+
+    this.addAddressToProfile();
+
+    console.log(this.newProfile.address);
+
+    this.profileService.createProfile(this.newProfile).subscribe({
       next: (data) => {
         this.newProfile = new Profile();
         this.selected = data;
@@ -189,4 +200,47 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+
+  addAddressToProfile() {
+      this.addressService.create(this.newAddress).subscribe({
+        next: (result) => {
+          this.newProfile.address=result;
+            this.newAddress = new Address();
+            //this.updateProfile(this.selected);
+        },
+        error: (err) => {
+          console.error(
+            'ProfileComponent.addAddressToProfile(): error creating address: '
+          );
+          console.error(err);
+        },
+      });
+  }
+
+  updateAddress(newAddress: Address) {
+    console.log(newAddress);
+
+    if (this.selected) {
+      console.log(this.selected.address.id);
+      newAddress.id=this.selected.address.id;
+      console.log(newAddress);
+      this.addressService.update(newAddress).subscribe({
+        next: (result) => {
+          if (this.selected) {
+            this.selected.address=result;
+            this.newAddress = new Address();
+            this.editAddress=false;
+            this.updateProfile(this.selected);
+          }
+        },
+        error: (err) => {
+          console.error(
+            'ProfileComponent.updateAddress(): error updating Address: '
+          );
+          console.error(err);
+        },
+      });
+    }
+  }
+
 }

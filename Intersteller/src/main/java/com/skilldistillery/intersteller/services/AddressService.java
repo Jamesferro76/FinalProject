@@ -1,7 +1,8 @@
 package com.skilldistillery.intersteller.services;
 
+import java.util.List;
+
 import com.skilldistillery.intersteller.entities.Address;
-import com.skilldistillery.intersteller.entities.Profile;
 
 public interface AddressService {
 
@@ -10,6 +11,10 @@ public interface AddressService {
 	Address findById(int id);
 
 	Address update(String name, Address address);
+
+	List<Address> findAll();
+
+	Address findByProfile(String string);
 
 
 }

@@ -18,7 +18,7 @@
   <div *ngFor="let cat of selected?.categories">{{ cat.name }}</div>
 
   <h5>Pics:</h5>
-  <button (click)="addImage = true">Add Image</button>
+  <button (click)="addImage = !addImage">Add Image</button>
   <div *ngIf="addImage">
     Image URL:<input
       type="text"
@@ -30,6 +30,39 @@
   <div *ngFor="let pic of selected.images">
     <img [src]="pic.imageUrl" />
   </div>
+
+  <button (click)="editAddress = !editAddress">editAddress</button>
+  <div *ngIf="editAddress">
+    <form action="address">
+      Street:<input
+      type="text"
+      name="street"
+      [(ngModel)]="newAddress.street"
+    /><br />
+      city:<input
+      type="text"
+      name="city"
+      [(ngModel)]="newAddress.city"
+    /><br />
+      state:<input
+      type="text"
+      name="state"
+      [(ngModel)]="newAddress.state"
+    /><br />
+      zip:<input
+      type="text"
+      name="zip"
+      [(ngModel)]="newAddress.zip"
+    /><br />
+      country:<input
+      type="text"
+      name="country"
+      [(ngModel)]="newAddress.country"
+    /><br />
+    <button type="button" (click)="updateAddress(newAddress)">Save</button>
+    </form>
+    </div>
+
 
   <h5>People into you:</h5>
   <div *ngFor="let fav of selected?.favoriter">
@@ -99,8 +132,37 @@
     /><br />
     Sex: <input type="text" name="sex" [(ngModel)]="newProfile.sex" /><br />
     Age: <input type="number" name="age" [(ngModel)]="newProfile.age" /><br />
-    Birthday
+    Birthday:
     <input type="text" name="birthday" [(ngModel)]="newProfile.birthday" />
+
+    Street:<input
+    type="text"
+    name="street"
+    [(ngModel)]="newAddress.street"
+  /><br />
+    city:<input
+    type="text"
+    name="city"
+    [(ngModel)]="newAddress.city"
+  /><br />
+    state:<input
+    type="text"
+    name="state"
+    [(ngModel)]="newAddress.state"
+  /><br />
+    zip:<input
+    type="text"
+    name="zip"
+    [(ngModel)]="newAddress.zip"
+  /><br />
+    country:<input
+    type="text"
+    name="country"
+    [(ngModel)]="newAddress.country"
+  /><br />
+
     <button type="button" (click)="addProfile(newProfile)">Save</button>
   </form>
 </div>
+
+
