@@ -216,19 +216,19 @@ CREATE TABLE IF NOT EXISTS `message` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `content` TEXT NULL,
   `sent_date` DATETIME NULL,
-  `sender_id` INT NOT NULL,
-  `recipient_id` INT NOT NULL,
+  `message_from` INT NULL,
+  `message_to` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_message_profile1_idx` (`sender_id` ASC),
-  INDEX `fk_message_profile2_idx` (`recipient_id` ASC),
-  CONSTRAINT `fk_message_profile1`
-    FOREIGN KEY (`sender_id`)
-    REFERENCES `profile` (`id`)
+  INDEX `fk_message_user1_idx` (`message_from` ASC),
+  INDEX `fk_message_user2_idx` (`message_to` ASC),
+  CONSTRAINT `fk_message_user1`
+    FOREIGN KEY (`message_from`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_message_profile2`
-    FOREIGN KEY (`recipient_id`)
-    REFERENCES `profile` (`id`)
+  CONSTRAINT `fk_message_user2`
+    FOREIGN KEY (`message_to`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -551,8 +551,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `interstellerdb`;
-INSERT INTO `message` (`id`, `content`, `sent_date`, `sender_id`, `recipient_id`) VALUES (1, 'Maybe now', NULL, 1, 2);
-INSERT INTO `message` (`id`, `content`, `sent_date`, `sender_id`, `recipient_id`) VALUES (2, 'why?', NULL, 2, 1);
+INSERT INTO `message` (`id`, `content`, `sent_date`, `message_from`, `message_to`) VALUES (1, 'Maybe now', NULL, 2, 1);
+INSERT INTO `message` (`id`, `content`, `sent_date`, `message_from`, `message_to`) VALUES (2, 'why?', NULL, 1, 2);
 
 COMMIT;
 

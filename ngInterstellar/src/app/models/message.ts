@@ -3,19 +3,21 @@ import { Profile } from "./profile";
 export class Message {
 id: number;
 content: string;
-sentDate: number;
-sender: Profile;
-recipient: Profile;
+sender: number;
+recipient: number;
+sentDate?: number;
 
 constructor(id: number,
   content: string,
-  sentDate: number,
-  sender: Profile,
-  recipient: Profile){
+  sender: number,
+  recipient: number,
+  sentDate?: number
+  )
+  {
 this.id = id;
 this.content = content;
-this.sentDate = sentDate;
 this.sender = sender;
 this.recipient = recipient;
+this.sentDate = sentDate;
 }
 }

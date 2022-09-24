@@ -9,6 +9,7 @@ import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { Message } from 'src/app/models/message';
 
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -67,4 +68,5 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.messageService.sendMessage(chatMessage);
     console.log(sendForm.value);
   }
+
 }

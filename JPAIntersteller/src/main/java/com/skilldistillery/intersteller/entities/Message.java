@@ -8,98 +8,99 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Message {
-	
-	  @Id
-	  @GeneratedValue(strategy= GenerationType.IDENTITY)
-	  private int id;
 
-	  private String content;
-	  
-	  @Column(name="sender_id")
-	  private int senderId;
-	  
-	  @Column(name="recipient_id")
-	  private int recipientId;
-	  
-	  @Column(name="sent_date")
-	  private Date sendDate;
-	  
-	  private String channel;
-	  
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	private String content;
+
+//	@Column(name = "message_from")
+//	private int messageFrom;
+//
+//	@Column(name = "message_to")
+//	private int messageTo;
+
+	@Column(name = "sent_date")
+	private Date sendDate;
+
+	@ManyToOne
+	@JoinColumn(name = "message_from")
+	private User sender;
+
+	@ManyToOne
+	@JoinColumn(name = "message_to")
+	private User recipient;
 
 	public Message() {
 		super();
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public String getContent() {
 		return content;
 	}
-
 
 	public void setContent(String content) {
 		this.content = content;
 	}
 
-
-	public int getSenderId() {
-		return senderId;
+	public User getSender() {
+		return sender;
 	}
 
-
-	public void setSenderId(int senderId) {
-		this.senderId = senderId;
+	public void setSender(User sender) {
+		this.sender = sender;
 	}
 
-
-	public int getRecipientId() {
-		return recipientId;
+	public User getRecipient() {
+		return recipient;
 	}
 
-
-	public void setRecipientId(int recipientId) {
-		this.recipientId = recipientId;
+	public void setRecipient(User recipient) {
+		this.recipient = recipient;
 	}
 
+//	public int getMessageFrom() {
+//		return messageFrom;
+//	}
+//
+//	public void setMessageFrom(int messageFrom) {
+//		this.messageFrom = messageFrom;
+//	}
+//
+//	public int getMessageTo() {
+//		return messageTo;
+//	}
+//
+//	public void setMessageTo(int messageTo) {
+//		this.messageTo = messageTo;
+//	}
 
 	public Date getSendDate() {
 		return sendDate;
 	}
 
-
 	public void setSendDate(Date sendDate) {
 		this.sendDate = sendDate;
 	}
-
-
-	public String getChannel() {
-		return channel;
-	}
-
-
-	public void setChannel(String channel) {
-		this.channel = channel;
-	}
-
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -113,7 +114,6 @@ public class Message {
 		return id == other.id;
 	}
 
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -121,19 +121,16 @@ public class Message {
 		builder.append(id);
 		builder.append(", content=");
 		builder.append(content);
-		builder.append(", senderId=");
-		builder.append(senderId);
-		builder.append(", recipientId=");
-		builder.append(recipientId);
 		builder.append(", sendDate=");
 		builder.append(sendDate);
-		builder.append(", channel=");
-		builder.append(channel);
+		builder.append(", sender=");
+		builder.append(sender);
+		builder.append(", recipient=");
+		builder.append(recipient);
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
 
 	
+
 }
