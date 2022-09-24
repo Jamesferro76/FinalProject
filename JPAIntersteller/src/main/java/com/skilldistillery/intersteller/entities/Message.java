@@ -22,17 +22,7 @@ public class Message {
 
 	  private String content;
 
-	  @CreationTimestamp
-	  @Column(name="sent_date")
-	  private LocalDateTime sentDate;
-
-	  @ManyToOne
-	  @JoinColumn(name="sender_id")
-	  private Profile sender;
-
-	  @ManyToOne
-	  @JoinColumn(name="recipient_id")
-	  private Profile recipient;
+	int senderId;
 
 	public Message() {
 		super();
@@ -54,33 +44,17 @@ public class Message {
 		this.content = content;
 	}
 
-	public LocalDateTime getSentDate() {
-		return sentDate;
+	public int getSenderId() {
+		return senderId;
 	}
 
-	public void setSentDate(LocalDateTime sentDate) {
-		this.sentDate = sentDate;
-	}
-
-	public Profile getSender() {
-		return sender;
-	}
-
-	public void setSender(Profile sender) {
-		this.sender = sender;
-	}
-
-	public Profile getRecipient() {
-		return recipient;
-	}
-
-	public void setRecipient(Profile recipient) {
-		this.recipient = recipient;
+	public void setSenderId(int senderId) {
+		this.senderId = senderId;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(content, id, recipient, sentDate, sender);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -92,15 +66,25 @@ public class Message {
 		if (getClass() != obj.getClass())
 			return false;
 		Message other = (Message) obj;
-		return Objects.equals(content, other.content) && id == other.id && Objects.equals(recipient, other.recipient)
-				&& Objects.equals(sentDate, other.sentDate) && Objects.equals(sender, other.sender);
+		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
-		return "Message [id=" + id + ", content=" + content + ", sendDate=" + sentDate + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Message [id=");
+		builder.append(id);
+		builder.append(", content=");
+		builder.append(content);
+		builder.append(", senderId=");
+		builder.append(senderId);
+		builder.append("]");
+		return builder.toString();
 	}
-	  
+
+	
+
+	
 	
 
 }

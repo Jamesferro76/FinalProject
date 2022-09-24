@@ -190,17 +190,17 @@ CREATE TABLE IF NOT EXISTS `mixer` (
   `event_end` TIME NULL,
   `created_date` DATETIME NULL,
   `image_url` VARCHAR(500) NULL,
-  `profile_id` INT NOT NULL,
+  `creator_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_event_address1_idx` (`address_id` ASC),
-  INDEX `fk_mixer_profile1_idx` (`profile_id` ASC),
+  INDEX `fk_mixer_profile1_idx` (`creator_id` ASC),
   CONSTRAINT `fk_event_address1`
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mixer_profile1`
-    FOREIGN KEY (`profile_id`)
+    FOREIGN KEY (`creator_id`)
     REFERENCES `profile` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -541,7 +541,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `interstellerdb`;
-INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `profile_id`) VALUES (1, 'mixer test', 'a great place for a first date', '2022-09-30', 2, '17:00:00', '20:00:00', NULL, 'https://live.staticflickr.com/65535/50021255956_4dd62a6104_z.jpg', 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (1, 'mixer test', 'a great place for a first date', '2022-09-30', 2, '17:00:00', '20:00:00', NULL, 'https://live.staticflickr.com/65535/50021255956_4dd62a6104_z.jpg', 1);
 
 COMMIT;
 

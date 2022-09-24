@@ -49,16 +49,16 @@ private static EntityManagerFactory emf;
 		assertEquals("Maybe now", message.getContent());
 	}
 	
-	@Test
-	void test_Message_Sender_entity_mapping() {
-		assertNotNull(message);
-		assertEquals(1, message.getSender().getId());
-	}
-	
-	@Test
-	void test_Message_Recipient_entity_mapping() {
-		assertNotNull(message);
-		assertEquals(2, message.getRecipient().getId());
-	}
+//	@Test
+//	void test_Message_Sender_entity_mapping() {
+//		assertNotNull(message);
+//		assertEquals(1, message.getSender().getId());
+//	}
+//	
+//	@Test
+//	void test_Message_Recipient_entity_mapping() {
+//		assertNotNull(message);
+//		assertEquals(2, message.getRecipient().getId());
+//	}
 
 }

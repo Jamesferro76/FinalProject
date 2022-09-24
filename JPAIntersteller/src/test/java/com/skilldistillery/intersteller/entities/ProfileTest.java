@@ -61,16 +61,16 @@ class ProfileTest {
 		assertEquals(1, profile.getAddress().getId());
 	}
 	
-	@Test
-	void test_Profile_MessageSent_entity_mapping() {
-		assertNotNull(profile);
-		assertTrue(profile.getMessagesSent().size()>0);
-	}
-	@Test
-	void test_Profile_MessageReveived_entity_mapping() {
-		assertNotNull(profile);
-		assertTrue(profile.getMessagesReceived().size()>0);
-	}
+//	@Test
+//	void test_Profile_MessageSent_entity_mapping() {
+//		assertNotNull(profile);
+//		assertTrue(profile.getMessagesSent().size()>0);
+//	}
+//	@Test
+//	void test_Profile_MessageReveived_entity_mapping() {
+//		assertNotNull(profile);
+//		assertTrue(profile.getMessagesReceived().size()>0);
+//	}
 	
 	@Test
 	void test_Profile_Mixer_entity_mapping() {

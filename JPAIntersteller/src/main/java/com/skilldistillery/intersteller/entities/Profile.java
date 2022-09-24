@@ -84,13 +84,13 @@ public class Profile {
 	    inverseJoinColumns=@JoinColumn(name="mixer_id"))
 	    private List<Mixer> mixersAttending;
 	  
-	  @JsonIgnore
-	  @OneToMany(mappedBy="sender")
-	  private List<Message> messagesSent;
-
-	  @JsonIgnore
-	  @OneToMany(mappedBy="recipient")
-	  private List<Message> messagesReceived;
+//	  @JsonIgnore
+//	  @OneToMany(mappedBy="sender")
+//	  private List<Message> messagesSent;
+//
+//	  @JsonIgnore
+//	  @OneToMany(mappedBy="recipient")
+//	  private List<Message> messagesReceived;
 
 	  @JsonIgnore
 	  @OneToMany(mappedBy="matcher")
@@ -251,24 +251,24 @@ public class Profile {
 			this.updatedOn = updatedOn;
 		}
 		
-		public List<Message> getMessagesSent() {
-			return messagesSent;
-		}
-
-
-		public void setMessagesSent(List<Message> messagesSent) {
-			this.messagesSent = messagesSent;
-		}
-
-
-		public List<Message> getMessagesReceived() {
-			return messagesReceived;
-		}
-
-
-		public void setMessagesReceived(List<Message> messagesReceived) {
-			this.messagesReceived = messagesReceived;
-		}
+//		public List<Message> getMessagesSent() {
+//			return messagesSent;
+//		}
+//
+//
+//		public void setMessagesSent(List<Message> messagesSent) {
+//			this.messagesSent = messagesSent;
+//		}
+//
+//
+//		public List<Message> getMessagesReceived() {
+//			return messagesReceived;
+//		}
+//
+//
+//		public void setMessagesReceived(List<Message> messagesReceived) {
+//			this.messagesReceived = messagesReceived;
+//		}
 		
 
 		public List<Preference> getPreferences() {
