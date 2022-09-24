@@ -98,17 +98,17 @@
     /><br />
     Sex: <input type="text" name="sex" [(ngModel)]="editProfile.sex" /><br />
     Age: <input type="number" name="age" [(ngModel)]="editProfile.age" /><br />
+
     <div *ngFor="let pref of preferences; index as i">
       {{ pref.name }}:<input
         name="pref"
         type="checkbox"
         [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="selectedPrefs[i]"
+        [(ngModel)]="editProfile.preferences[i]"
       />
-      Index: {{ i }} {{ selectedPrefs[i] }}
     </div>
     <button type="button" (click)="cancelEdit()">Cancel</button><br />
-    <button type="button" (click)="updateProfile(editProfile)">Save</button>
+    <button type="button" (click)="perf(editProfile)">Save</button>
   </form>
   <button type="button" (click)="deleteProfile()">Delete</button>
 </div>
