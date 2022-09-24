@@ -8,6 +8,8 @@ import { MixerService } from 'src/app/services/mixer.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { User } from 'src/app/models/user';
 import { Preference } from 'src/app/models/preference';
+import { Address } from 'src/app/models/address';
+import { AddressService } from 'src/app/services/address.service';
 
 @Component({
   selector: 'app-mixer',
@@ -29,10 +31,14 @@ export class MixerComponent implements OnInit {
 
   loggedInUser: User | null = null;
 
+  editAddress: boolean = false;
+  newAddress: Address = new Address();
+
   constructor(
     private mixerService: MixerService,
     private profileService: ProfileService,
     private authService: AuthService,
+    private addressService: AddressService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -119,7 +125,9 @@ export class MixerComponent implements OnInit {
     if (this.editProfile != null) {
       this.editProfile.mixersAttending.push(joinMixer);
       this.profileService.updateProfile(this.editProfile).subscribe({
-        next: (result) => {},
+        next: (result) => {
+          this.selected = null;
+        },
         error: (err) => {
           console.error(
             'UpdateProfileComponent.UpdateProfile(): error Updating Profile: '

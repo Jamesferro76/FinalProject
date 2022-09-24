@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.intersteller.entities.Address;
 import com.skilldistillery.intersteller.entities.Mixer;
 import com.skilldistillery.intersteller.entities.Profile;
 import com.skilldistillery.intersteller.entities.User;
+import com.skilldistillery.intersteller.repositories.AddressRepository;
 import com.skilldistillery.intersteller.repositories.MixerRepository;
 import com.skilldistillery.intersteller.repositories.ProfileRepository;
 import com.skilldistillery.intersteller.repositories.UserRepository;
@@ -23,6 +25,9 @@ public class MixerServiceImpl implements MixerService {
 	 
 	 @Autowired
 	 private ProfileRepository profileRepo;
+	 
+	 @Autowired
+	 private AddressRepository addressRepo;
 	 
 	@Override
 	public List<Mixer> index(String username) {
@@ -46,7 +51,8 @@ public class MixerServiceImpl implements MixerService {
 		  User user = userRepo.findByUsername(username);
 		  Profile profile = user.getProfiles().get(0);
 		  mixer.setProfile(profile);
-		  mixer.setAddress(profile.getAddress());
+		  Address address =addressRepo.saveAndFlush(mixer.getAddress());
+		  mixer.setAddress(address);
 		   return mixerRepo.saveAndFlush(mixer);
 	}
 
@@ -58,6 +64,7 @@ public class MixerServiceImpl implements MixerService {
 					existing.setName(mixer.getName());
 					existing.setDescription(mixer.getDescription());
 					existing.setEventDate(mixer.getEventDate());
+					addressRepo.save(mixer.getAddress());
 					existing.setAddress(mixer.getAddress());
 					existing.setEventStart(mixer.getEventStart());
 					existing.setEventEnd(mixer.getEventEnd());
