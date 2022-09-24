@@ -7,6 +7,7 @@ import { Profile } from 'src/app/models/profile';
 import { MixerService } from 'src/app/services/mixer.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { User } from 'src/app/models/user';
+import { Preference } from 'src/app/models/preference';
 
 @Component({
   selector: 'app-mixer',
@@ -65,6 +66,7 @@ export class MixerComponent implements OnInit {
         this.profileService.findByUserId(this.loggedInUser.id).subscribe({
           next: (profile) => {
             this.editProfile = profile;
+            console.log(this.editProfile);
           },
           error: (err) => {
             console.error('Error retrieving Profile');
@@ -116,14 +118,8 @@ export class MixerComponent implements OnInit {
   joinMixer(joinMixer: Mixer) {
     if (this.editProfile != null) {
       this.editProfile.mixersAttending.push(joinMixer);
-      console.log('In Mixer');
-      console.log(this.editProfile.mixersAttending);
       this.profileService.updateProfile(this.editProfile).subscribe({
-        next: (result) => {
-          for (let i = 0; i < result.preferences.length; i++) {
-            console.log(result.preferences[i]);
-          }
-        },
+        next: (result) => {},
         error: (err) => {
           console.error(
             'UpdateProfileComponent.UpdateProfile(): error Updating Profile: '

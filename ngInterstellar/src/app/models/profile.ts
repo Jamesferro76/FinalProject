@@ -1,3 +1,4 @@
+import { Preference } from 'src/app/models/preference';
 import { User } from './user';
 
 export class Profile {
@@ -13,7 +14,7 @@ export class Profile {
   profilePic: string;
   active: boolean;
   updatedOn: string;
-  preferences: any[];
+  preferences: Preference[];
   images: any[];
   mixers: any[];
   mixersAttending: any[];
@@ -40,7 +41,7 @@ export class Profile {
     profilePic: string = '',
     active: boolean = true,
     updatedOn: string = '',
-    preferences: any[] = [],
+    preferences: Preference[] = [],
     images: any[] = [],
     mixers: any[] = [],
     mixersAttending: any[] = [],

@@ -1,3 +1,14 @@
+<!-- Updating perfernces help -->
+<!-- <form *ngIf="editProfile">
+  <div *ngFor="let pref of preferences">
+    {{ pref }}:<input
+      name="pref"
+      type="checkbox"
+      [(ngModel)]="preferences"
+    />
+  </div>
+  <button type="button" (click)="perf(editProfile)">Save</button>
+  </form> -->
 <!-- Shows List of all mixers -->
 <div *ngIf="!selected" >
   <h1>{{title}}</h1>
@@ -27,6 +38,7 @@
   </div>
 </div>
 </div>
+
 <!-- Shows how to add a form -->
 
 <div class="addForm" *ngIf="!selected">
