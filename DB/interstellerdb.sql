@@ -444,6 +444,10 @@ INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (15, '2002 greater ln', 'Charlotte ', 'NC', '98166', 'United States');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (16, '5273 turnaround ln', 'Huntsville', 'AL', '67812', 'United States');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (17, '2634 little rd', 'Brooklyn', 'NY', '72903', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (18, '3415 mixer ad', 'Charlotte', 'NC', '27865', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (19, '6754 mixer st', 'Huntersville', 'NC', '27564', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (20, '7776 mixer ln', 'San Clemente', 'CA', '97345', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (21, '8891 mixer dr', 'Sacramento', 'CA', '98162', 'United States');
 
 COMMIT;
 
@@ -542,6 +546,10 @@ COMMIT;
 START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (1, 'mixer test', 'a great place for a first date', '2022-09-30', 2, '17:00:00', '20:00:00', NULL, 'https://live.staticflickr.com/65535/50021255956_4dd62a6104_z.jpg', 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (2, 'Drinks N\' the Park', 'a park... drinks.... romance...', '2022-10-04', 18, '18:00:00', '22:00:00', NULL, NULL, 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (3, 'Molded by Love', 'makes some cool pottery with the person you want to bang', '2022-11-17', 19, '16:00:00', '21:00:00', NULL, NULL, 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (4, 'Dave\'s Drive In', 'get comfy and sensual at the drive in', '2023-01-22', 20, '19:00:00', '22:00:00', NULL, NULL, 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (5, 'Active couples', 'get your fat ass up and get active', '2022-12-13', 21, '18:00:00', '22:00:00', NULL, NULL, 1);
 
 COMMIT;
 

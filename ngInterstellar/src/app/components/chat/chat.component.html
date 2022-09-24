@@ -1,4 +1,6 @@
-<body>
+<!-- <body>
+
+
 
   <main class="chat">
     <div class="container" >
@@ -29,4 +31,56 @@
   </div>
 </main>
 
-  </body>
+  </body> -->
+
+  <body>
+		<div class="container-fluid h-100">
+
+			<div class="row justify-content-center h-100">
+
+				<div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
+ 					<div class="card-header">
+					</div>
+					<div class="card-body contacts_body">
+						<ul class="contacts"  id="usersList">
+              <li>{{loggedInUser.username}}</li>
+						</ul>
+					</div>
+
+				</div>
+				</div>
+				<div class="col-md-8 col-xl-6 chat">
+					<div class="card">
+						<div class="card-header msg_head" id="formMessageHeader">
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+									<img src="" class="rounded-circle user_img">
+									<span class="online_icon"></span>
+								</div>
+								<div class="user_info">
+									<span id="username"></span>
+									<p></p>
+								</div>
+							</div>
+
+						</div>
+						<div class="card-body msg_card_body" id="formMessageBody">
+
+						</div>
+						<div class="card-footer">
+							<div class="input-group" id="formSubmit">
+								<!-- <div class="input-group-append">
+									<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+								</div> -->
+								<textarea id="message-to-send" name="message-to-send" class="form-control type_msg" placeholder="Type your message..."></textarea>
+
+							</div>
+              <div class="col-2">
+                <button type="submit" class="btn btn-primary">Send</button>
+              </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
