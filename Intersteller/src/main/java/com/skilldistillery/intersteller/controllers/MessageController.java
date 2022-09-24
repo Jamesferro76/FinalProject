@@ -1,44 +1,75 @@
 package com.skilldistillery.intersteller.controllers;
 
-import java.util.Date;
+import java.security.Principal;
+import java.util.List;
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.intersteller.entities.Message;
-import com.skilldistillery.intersteller.repositories.MessageRepository;
+import com.skilldistillery.intersteller.services.MessagingService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost" })
 public class MessageController {
 
-	 @Autowired
-	    MessageRepository messageRepository;
-	 
-	 @Autowired
-	    private SimpMessagingTemplate template;
+	@Autowired
+	MessagingService messageService;
 
-	    @GetMapping(value = "/messages/{channelId}")
-	    public Page<Message> findMessages(Pageable pageable, @PathVariable("channelId") String channelId) {
-	        return messageRepository.findAllByChannel(channelId, pageable);
-	    }
-	    
-	    @MessageMapping("/messages")
-	    public void handleMessage(Message message) {
-	        message.setSendDate(new Date());
-	        messageRepository.save(message);
-	        template.convertAndSend("/channel/chat/" + message.getChannel(), message);
-	    }
+	@GetMapping("chat")
+	public List<Message> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		return messageService.index(principal.getName());
+	}
 
+	@GetMapping("chat/{recipient}")
+	public List<Message> chatLog(HttpServletRequest req, HttpServletResponse res, Principal principal,
+			@PathVariable String recipient) {
+		return messageService.chatLog(principal.getName(), recipient);
+	}
 	
-}
+	@GetMapping("chat/history/{recipient}")
+	public List<Message> chatHistory(HttpServletRequest req, HttpServletResponse res, Principal principal,
+			@PathVariable String recipient) {
+		return messageService.chatHistory(principal.getName(), recipient);
+	}
 
+	@PostMapping("chat/send/{recipient}")
+	public Message create(HttpServletRequest req, HttpServletResponse res, @PathVariable String recipient, @RequestBody Message message,
+			Principal principal) {
+		Message msg = null;
+		try {
+			msg = messageService.addMessage(principal.getName(), message, recipient);
+			res.setStatus(201);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return msg;
+
+	}
+
+//	@PostMapping("/chat/{recipient}")
+//	public void sendPersonalMessage( @PathVariable String recipient, @RequestBody Message message, Principal principal) {
+//		Message msg = null;
+//		msg = messageService.sendMessage(recipient, message);
+//	}
+
+//	@GetMapping("listmessage/{from}/{to}")
+//	public List<Map<String, Object>> getListMessageChat(@PathVariable("from") Integer from,
+//			@PathVariable("to") Integer to) {
+//		return messageService.getListMessage(from, to);
+//	}
+
+}
