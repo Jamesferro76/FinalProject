@@ -1,5 +1,6 @@
-<h1>{{title}}</h1>
+<!-- Shows List of all mixers -->
 <div *ngIf="!selected" >
+  <h1>{{title}}</h1>
   <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-{{getNumberOfMixers()}}">
       <div *ngFor="let mixer of mixers">
@@ -17,7 +18,7 @@
               <p>{{mixer.eventDate}}</p>
               <p>{{mixer.eventStart}}</p>
               <p>{{mixer.eventEnd}}</p>
-              <button class ="flip-box-button">Button info here</button>
+              <button class ="flip-box-button">Get more Info</button>
             </div>
           </div>
         </div>
@@ -26,8 +27,10 @@
   </div>
 </div>
 </div>
-<div class="addForm">
-<form *ngIf="!selected">
+<!-- Shows how to add a form -->
+
+<div class="addForm" *ngIf="!selected">
+<form>
   <input type="text" name="name" placeholder="Name"[(ngModel)]="newMixer.name"><br>
   <input type="text" name="description" placeholder="description"[(ngModel)]="newMixer.description"><br>
   <input type="text" name="imageUrl" placeholder="imageUrl"[(ngModel)]="newMixer.imageUrl"><br>
@@ -60,7 +63,7 @@
               <p>{{newMixer.eventDate}}</p>
               <p>{{newMixer.eventStart}}</p>
               <p>{{newMixer.eventEnd}}</p>
-              <button class ="flip-box-button">Button info here</button>
+              <button class ="flip-box-button">Get More Info</button>
             </div>
           </div>
         </div>
@@ -68,14 +71,14 @@
     </div>
   </div>
 </div>
+
+<!-- Edits a Mixer -->
 <form  *ngIf="editMixer">
- <label>Task: </label> <input type="text" name="task" [(ngModel)]="editMixer.name"> <br>
- <label>Description: </label> <input type="text" name="decription" [(ngModel)]="editMixer.description"> <br>
- <div class="container">
-  <div class="row">
-    <div class ="box-item col-md-4">
-      <div class ="flip-box">
-        <div class ="flip-box-front-edit text-center" style="background-image:url({{editMixer.imageUrl}});">
+  <div class="container">
+    <div class="row">
+      <div class ="box-item col-md-4">
+        <div class ="flip-box">
+          <div class ="flip-box-front-edit text-center" style="background-image:url({{editMixer.imageUrl}});">
           <div class="inner color-white">
             <h3 class ="flip-box-header"> {{editMixer.name}}</h3>
             <p>{{editMixer.eventDate}}</p>
@@ -101,12 +104,21 @@
       </div>
     </div>
   </div>
-</div>
+</div><br><br>
+<label>Name: </label> <input type="text" name="name" [(ngModel)]="editMixer.name">
+<label>Description: </label> <input type="text" name="decription" [(ngModel)]="editMixer.description">
+<label>Photo: </label> <input type="text" name="imageUrl" [(ngModel)]="editMixer.imageUrl">
+<label>Date: </label> <input type="date" name="eventDate" [(ngModel)]="editMixer.eventDate">
+<label>Start Time: </label> <input type="time" name="eventStart" [(ngModel)]="editMixer.eventStart">
+<label>End Time: </label> <input type="time" name="eventEnd" [(ngModel)]="editMixer.eventEnd"><br>
 <button (click)="editMixer = null">Cancel</button>
 <button (click)="updateMixer(editMixer)">Save</button>
 </form>
 
+<!-- Displays a mixer -->
 <div *ngIf="selected && !editMixer" >
+  <a (click)="displayTable()" class="previous round">&#8249;</a>
+
 <div class="container">
   <div class="row">
     <div class ="box-item col-md-4">
@@ -123,13 +135,12 @@
             <p>{{selected.eventDate}}</p>
             <p>{{selected.eventStart}}</p>
             <p>{{selected.eventEnd}}</p>
-            <button class ="flip-box-button">Button info here</button>
+            <button (click)="joinMixer(selected)" class ="flip-box-button">Button info here</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<button (click)="displayTable()">Back</button>
 <button (click)="setEditMixer()">Edit</button>
 </div>

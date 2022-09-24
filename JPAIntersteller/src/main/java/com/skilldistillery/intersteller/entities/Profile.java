@@ -76,8 +76,8 @@ public class Profile {
 	  @JsonIgnore
 	  @OneToMany(mappedBy="profile")
 	  private List<Mixer> mixers;
-
-	  @JsonIgnore
+//Change line 80 so no JSNOIGNORE
+	  
 	  @ManyToMany
 	    @JoinTable(name="mixer_attendee", 
 	    joinColumns=@JoinColumn(name="profile_id"), 

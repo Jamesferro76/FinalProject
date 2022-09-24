@@ -1,7 +1,11 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Mixer } from 'src/app/models/mixer';
+import { Profile } from 'src/app/models/profile';
 import { MixerService } from 'src/app/services/mixer.service';
+import { ProfileService } from 'src/app/services/profile.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-mixer',
@@ -19,15 +23,63 @@ export class MixerComponent implements OnInit {
 
   mixers: Mixer[] = [];
 
+  editProfile: Profile | null = null;
+
+  loggedInUser: User | null = null;
+
   constructor(
     private mixerService: MixerService,
+    private profileService: ProfileService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
+  ngOnInit(): void {
+    let idStr = this.route.snapshot.paramMap.get('id');
+    if (idStr) {
+      let mixerId = Number.parseInt(idStr);
+      if (!isNaN(mixerId)) {
+        this.mixerService.show(mixerId).subscribe({
+          next: (mixer: Mixer | null) => {
+            this.selected = mixer;
+          },
+          error: (err: any) => {
+            console.error('Error retrieving mixer');
+            console.error(err);
+            this.router.navigateByUrl('noSuchMixer');
+          },
+        });
+      } else {
+        console.error('Invalid id');
+        this.router.navigateByUrl('invalidId');
+      }
+    }
+    this.reload();
+
+    this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        console.log(user);
+
+        this.loggedInUser = user;
+        this.profileService.findByUserId(this.loggedInUser.id).subscribe({
+          next: (profile) => {
+            this.editProfile = profile;
+          },
+          error: (err) => {
+            console.error('Error retrieving Profile');
+            console.error(err);
+            this.router.navigateByUrl('NotFound');
+          },
+        });
+      },
+      error: (err) => {
+        console.error('Error retrieving User');
+        console.error(err);
+        this.router.navigateByUrl('home');
+      },
+    });
+  }
   addMixer() {
-    console.log(this.newMixer.eventDate);
-    let dateString = '' + this.newMixer.eventDate;
-    this.newMixer.eventDate = dateString;
     this.mixerService.create(this.newMixer).subscribe({
       next: (result) => {
         this.newMixer = new Mixer();
@@ -58,6 +110,16 @@ export class MixerComponent implements OnInit {
         console.error(prob);
       },
     });
+  }
+
+  joinMixer(joinMixer: Mixer) {
+    if (this.editProfile != null) {
+      console.log(joinMixer.name);
+      this.editProfile.mixersAttending = [];
+      this.editProfile.mixersAttending.push(joinMixer);
+      console.log(this.editProfile.mixersAttending);
+      this.profileService.updateProfile(this.editProfile);
+    }
   }
 
   updateCompleted(updatedMixer: Mixer) {
@@ -121,28 +183,5 @@ export class MixerComponent implements OnInit {
         console.error(problem);
       },
     });
-  }
-
-  ngOnInit(): void {
-    let idStr = this.route.snapshot.paramMap.get('id');
-    if (idStr) {
-      let mixerId = Number.parseInt(idStr);
-      if (!isNaN(mixerId)) {
-        this.mixerService.show(mixerId).subscribe({
-          next: (mixer: Mixer | null) => {
-            this.selected = mixer;
-          },
-          error: (err: any) => {
-            console.error('Error retrieving mixer');
-            console.error(err);
-            this.router.navigateByUrl('noSuchMixer');
-          },
-        });
-      } else {
-        console.error('Invalid id');
-        this.router.navigateByUrl('invalidId');
-      }
-    }
-    this.reload();
   }
 }

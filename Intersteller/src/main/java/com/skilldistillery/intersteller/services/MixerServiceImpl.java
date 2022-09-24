@@ -10,6 +10,7 @@ import com.skilldistillery.intersteller.entities.Mixer;
 import com.skilldistillery.intersteller.entities.Profile;
 import com.skilldistillery.intersteller.entities.User;
 import com.skilldistillery.intersteller.repositories.MixerRepository;
+import com.skilldistillery.intersteller.repositories.ProfileRepository;
 import com.skilldistillery.intersteller.repositories.UserRepository;
 @Service
 public class MixerServiceImpl implements MixerService {
@@ -19,6 +20,9 @@ public class MixerServiceImpl implements MixerService {
 	 
 	 @Autowired
 	 private UserRepository userRepo;
+	 
+	 @Autowired
+	 private ProfileRepository profileRepo;
 	 
 	@Override
 	public List<Mixer> index(String username) {
