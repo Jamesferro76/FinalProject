@@ -13,31 +13,23 @@ import { ImageService } from 'src/app/services/image.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-
-  loggedInUser: User|null=null;
-  selected: Profile|null=null;
-  displayUpdate: boolean=false;
-  editProfile: Profile|null=null;
+  loggedInUser: User | null = null;
+  selected: Profile | null = null;
+  displayUpdate: boolean = false;
+  editProfile: Profile | null = null;
   newProfile: Profile = new Profile();
 
-  addImage: boolean=false;
+  addImage: boolean = false;
   newImage: Image = new Image();
 
-  preferences: Preference[]= [];
+  preferences: Preference[] = [];
 
+  preference: Preference = new Preference();
 
-  preference:Preference=new Preference();
-
-  selectedPrefs=[
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]
+  selectedPrefs = [false, false, false, false, false];
 
   constructor(
     private profileService: ProfileService,
@@ -47,168 +39,154 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
     this.authService.getLoggedInUser().subscribe({
-      next:(user)=>{
+      next: (user) => {
         console.log(user);
 
-        this.loggedInUser=user;
+        this.loggedInUser = user;
         this.profileService.findByUserId(this.loggedInUser.id).subscribe({
-          next:(profile)=>{
-            this.selected=profile;
+          next: (profile) => {
+            this.selected = profile;
             this.loadPreferences();
-
           },
-          error: (err)=>{
+          error: (err) => {
             console.error('Error retrieving Profile');
             console.error(err);
             this.router.navigateByUrl('NotFound');
-          }
-        })
+          },
+        });
       },
-      error: (err)=>{
+      error: (err) => {
         console.error('Error retrieving User');
         console.error(err);
         this.router.navigateByUrl('home');
-      }
-    })
+      },
+    });
   }
 
-  loadPreferences(){
+  loadPreferences() {
     this.preferenceService.findAll().subscribe({
-      next:(preferences)=>{
-        this.preferences=preferences;
-
+      next: (preferences) => {
+        this.preferences = preferences;
       },
-      error: (err)=>{
+      error: (err) => {
         console.error('Error retrieving Preferences');
         console.error(err);
-      }
-    })
-  }
-
-  setEditProfile(){
-    this.editProfile=Object.assign({}, this.selected);
-
-  //   for(let i=0; i<this.editProfile.preferences.length; i++){
-  //     let index=this.prefs.indexOf(this.editProfile.preferences[i].name);
-  //     this.selectedPrefs[index]=true;
-  //   }
-  //   console.log(this.selectedPrefs);
-
-    }
-
-  cancelEdit(){
-    this.editProfile=null;
-  }
-
-  addProfile(newProfile: Profile){
-    this.profileService.createProfile(newProfile).subscribe(
-      {
-      next: (data)=>{
-        this.newProfile= new Profile();
-        this.selected=data;
-        this.editProfile=null;
       },
-      error:(err)=>{
+    });
+  }
+
+  setEditProfile() {
+    this.editProfile = Object.assign({}, this.selected);
+
+    //   for(let i=0; i<this.editProfile.preferences.length; i++){
+    //     let index=this.prefs.indexOf(this.editProfile.preferences[i].name);
+    //     this.selectedPrefs[index]=true;
+    //   }
+    //   console.log(this.selectedPrefs);
+  }
+
+  cancelEdit() {
+    this.editProfile = null;
+  }
+
+  addProfile(newProfile: Profile) {
+    this.profileService.createProfile(newProfile).subscribe({
+      next: (data) => {
+        this.newProfile = new Profile();
+        this.selected = data;
+        this.editProfile = null;
+      },
+      error: (err) => {
         console.error('AddProfileComponent: error Loading profile: ');
         console.error(err);
-
-      }
-      }
-    );
-
+      },
+    });
   }
 
-  updateProfile(updateProfile: Profile){
+  updateProfile(updateProfile: Profile) {
     console.log(updateProfile);
 
-    if(this.editProfile!=null){
-      updateProfile.id=this.editProfile.id;
-    //   updateProfile.preferences=[];
-    //   for(let i=0; i<this.selectedPrefs.length;i++){
-    //     console.log("Outside the if statement in the for loop"+this.selectedPrefs[i]);
-    //     if(this.selectedPrefs[i]){
-    //       updateProfile.preferences.push(this.findPreferenceByName(this.prefs[i]));
+    if (this.editProfile != null) {
+      updateProfile.id = this.editProfile.id;
+      //   updateProfile.preferences=[];
+      //   for(let i=0; i<this.selectedPrefs.length;i++){
+      //     console.log("Outside the if statement in the for loop"+this.selectedPrefs[i]);
+      //     if(this.selectedPrefs[i]){
+      //       updateProfile.preferences.push(this.findPreferenceByName(this.prefs[i]));
 
-    //       for(let i=0; i<updateProfile.preferences.length; i++){
-    //   console.log(updateProfile.preferences[i]);
-    // }
-    //     }
-    //     console.log("This is the number of preferences in updateProfile:"+ updateProfile.preferences.length);
+      //       for(let i=0; i<updateProfile.preferences.length; i++){
+      //   console.log(updateProfile.preferences[i]);
+      // }
+      //     }
+      //     console.log("This is the number of preferences in updateProfile:"+ updateProfile.preferences.length);
 
-        // else if(!this.selectedPrefs[i]&&updateProfile.preferences.includes(this.prefs[i]))
-        //   updateProfile.preferences.splice(i,1);
-     // }
+      // else if(!this.selectedPrefs[i]&&updateProfile.preferences.includes(this.prefs[i]))
+      //   updateProfile.preferences.splice(i,1);
+      // }
     }
 
-    for(let i=0; i<updateProfile.preferences.length; i++){
+    for (let i = 0; i < updateProfile.preferences.length; i++) {
       console.log(updateProfile.preferences[i]);
     }
-
-
-    this.profileService.updateProfile(updateProfile).subscribe(
-      {
-      next: (result)=>{
-        console.log("Inside update Profile");
-        for(let i=0; i<result.preferences.length; i++){
+    this.profileService.updateProfile(updateProfile).subscribe({
+      next: (result) => {
+        for (let i = 0; i < result.preferences.length; i++) {
           console.log(result.preferences[i]);
         }
-        this.selected=result;
+        this.selected = result;
 
-        this.editProfile=null;
+        this.editProfile = null;
       },
-      error:(err)=>{
-        console.error('UpdateProfileComponent.UpdateProfile(): error Updating Profile: ');
+      error: (err) => {
+        console.error(
+          'UpdateProfileComponent.UpdateProfile(): error Updating Profile: '
+        );
         console.error(err);
-
-      }
-      }
-    );
+      },
+    });
   }
 
-  deleteProfile(){
-    if(this.editProfile){
-    this.editProfile.active=false;
-    this.profileService.updateProfile(this.editProfile).subscribe(
-      {
-      next: (result)=>{
-        this.selected=null;
-        this.editProfile=null;
-        this.authService.logout();
-      },
-      error:(err)=>{
-        console.error('ProfileComponent.DeleteProfile(): error Deleting Profile: ');
-        console.error(err);
-      }
-      }
-    );
+  deleteProfile() {
+    if (this.editProfile) {
+      this.editProfile.active = false;
+      this.profileService.updateProfile(this.editProfile).subscribe({
+        next: (result) => {
+          this.selected = null;
+          this.editProfile = null;
+          this.authService.logout();
+        },
+        error: (err) => {
+          console.error(
+            'ProfileComponent.DeleteProfile(): error Deleting Profile: '
+          );
+          console.error(err);
+        },
+      });
+    }
   }
-}
 
-addImageToProfile(){
-  if(this.selected){
-    this.imageService.create(this.newImage).subscribe(
-      {
-        next: (result)=>{
-          if(this.selected){
-          this.selected.images.push(result);
-          this.newImage=new Image();
-          this.addImage=false;
-          this.updateProfile(this.selected);
+  addImageToProfile() {
+    if (this.selected) {
+      this.imageService.create(this.newImage).subscribe({
+        next: (result) => {
+          if (this.selected) {
+            this.selected.images.push(result);
+            this.newImage = new Image();
+            this.addImage = false;
+            this.updateProfile(this.selected);
           }
-    },
-    error:(err)=>{
-      console.error('ProfileComponent.findPreferenceByName(): error finding Preference: ');
-      console.error(err);
+        },
+        error: (err) => {
+          console.error(
+            'ProfileComponent.findPreferenceByName(): error finding Preference: '
+          );
+          console.error(err);
+        },
+      });
     }
-    }
-  );
-}
-
-}
-
+  }
 }

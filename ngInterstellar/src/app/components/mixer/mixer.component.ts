@@ -1,3 +1,4 @@
+import { ProfileComponent } from './../profile/profile.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -114,11 +115,22 @@ export class MixerComponent implements OnInit {
 
   joinMixer(joinMixer: Mixer) {
     if (this.editProfile != null) {
-      console.log(joinMixer.name);
-      this.editProfile.mixersAttending = [];
       this.editProfile.mixersAttending.push(joinMixer);
+      console.log('In Mixer');
       console.log(this.editProfile.mixersAttending);
-      this.profileService.updateProfile(this.editProfile);
+      this.profileService.updateProfile(this.editProfile).subscribe({
+        next: (result) => {
+          for (let i = 0; i < result.preferences.length; i++) {
+            console.log(result.preferences[i]);
+          }
+        },
+        error: (err) => {
+          console.error(
+            'UpdateProfileComponent.UpdateProfile(): error Updating Profile: '
+          );
+          console.error(err);
+        },
+      });
     }
   }
 

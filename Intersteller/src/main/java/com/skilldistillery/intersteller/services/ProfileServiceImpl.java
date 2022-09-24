@@ -76,6 +76,9 @@ public class ProfileServiceImpl implements ProfileService {
 				if(profile.getPreferences()!=null) {
 					existing.setPreferences(profile.getPreferences());
 				}
+				if(profile.getMixersAttending()!=null) {
+					existing.setMixersAttending(profile.getMixersAttending());
+				}
 				profileRepo.save(existing);
 				return existing;
 			 }
