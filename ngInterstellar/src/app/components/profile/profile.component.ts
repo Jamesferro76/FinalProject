@@ -245,4 +245,34 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  perf(perfPro: Profile) {
+    if (this.editProfile != null) {
+
+      // console.log("EditProfile.preferences Before"+this.editProfile.preferences);
+      // console.log("perfPro.preferences"+ perfPro.preferences);
+
+      for(let i=0; i<this.preferences.length; i++){
+        if(this.editProfile.preferences[i]){
+          this.editProfile.preferences[i]=this.preferences[i];
+          console.log("EditProfile.preferences After"+this.editProfile.preferences[i].name);
+        }else{
+          this.editProfile.preferences.splice(i, 1);
+        }
+      }
+
+      console.log(this.editProfile.preferences);
+
+
+      this.profileService.updateProfile(this.editProfile).subscribe({
+        next: (result) => {},
+        error: (err) => {
+          console.error(
+            'UpdateProfileComponent.UpdateProfile(): error Updating Profile: '
+          );
+          console.error(err);
+        },
+      });
+    }
+  }
+
 }
