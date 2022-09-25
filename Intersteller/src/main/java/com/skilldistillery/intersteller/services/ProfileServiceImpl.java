@@ -63,9 +63,10 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public Profile update(String username, int id, Profile profile) {
+		Profile existing=null;
 		Optional<Profile> existingOpt= profileRepo.findById(id);
 		if(existingOpt.isPresent()) {
-			Profile existing=existingOpt.get();
+			existing=existingOpt.get();
 			if(existing.getUser().getUsername().equals(username)) {
 				
 				if(profile.getFirstName()!=null) {
@@ -105,9 +106,16 @@ public class ProfileServiceImpl implements ProfileService {
 				
 				profileRepo.save(existing);
 				return existing;
+			 }else {
+				 List<Profile>favs=existing.getFavoriter();
+				 User user = userRepo.findByUsername(username);
+				 Profile userProfile=profileRepo.findByUser(user);
+				favs.add(userProfile);
+				profileRepo.save(existing);
+				return existing;
 			 }
 		}
-		return null;
+		return existing;
 	}
 
 	@Override
