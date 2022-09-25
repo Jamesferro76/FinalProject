@@ -387,5 +387,13 @@ export class ProfileComponent implements OnInit {
   }
   }
 
+  counterForPic:number=0;
+  selectPic(images:Image[]){
+    this.counterForPic++;
+    if(this.counterForPic>=images.length){
+    this.counterForPic=0;
+    }
+  }
+
 }
 

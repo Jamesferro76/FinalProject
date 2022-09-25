@@ -277,7 +277,6 @@
   name="profilePic"
   [(ngModel)]="editProfile.profilePic"
   /><br />
-  <button type="button" (click)="addImageToProfile()">Change profile?</button>
   <div *ngFor="let pic of editProfile.images; index as i" (click)="deletePic(i)">
     <img [src]="pic.imageUrl" />
   </div>
@@ -288,4 +287,31 @@
   />
   <button type="button" (click)="addImageToProfile()">Add another image?</button>
   <button type="button" (click)="picsEditSave()">Save</button>
+</div>
+
+
+<!-- Trying out cards to display profile  -->
+<div *ngIf="selected" >
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-{{1}}">
+      <div class ="box-item">
+        <div class ="flip-box">
+          <div class ="flip-box-front text-left" style="background-image:url({{selected.profilePic}});">
+            <div class="inner color-white">
+              <h3 class ="flip-box-header"> {{selected.firstName}} {{selected.age}}</h3>
+              <span>{{selected.sex}} {{selected.address.state}}</span><br/>
+              Preferences: <span *ngFor="let pref of selected.preferences">{{pref.name}} </span><br/>
+            </div>
+          </div>
+          <div class="flip-box-back text-center" style="background-image:url({{selected.images[counterForPic].imageUrl}});">
+            <div class="inner color-white background-purple">
+              <h1 (click)="selectPic(selected.images)">Next pic</h1>
+              Categories: <span *ngFor="let cat of selected.categories">{{cat.name}} </span>
+              <p>{{selected.description}}</p>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>
 </div>
