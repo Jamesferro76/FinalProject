@@ -117,22 +117,19 @@ export class HomeComponent implements OnInit {
   likedAProfile(){
     if(this.loginProfile&&this.selected){
       this.loginProfile.favorited.push(this.selected);
-      // this.loginProfile=this.updateProfile(this.loginProfile);
+      this.loginProfile=this.updateProfile(this.loginProfile);
       this.selected.favoriter.push(this.loginProfile);
-      // this.selected=this.updateProfile(this.selected);
-
-
-
+      this.selected=this.updateProfile(this.selected);
     }
   }
 
   checkForMatch(){
-    // if(this.loginProfile&&this.selected){
-    // const match= this.loginProfile.favoriter.find( ({id})=>{
-    //  id===this.selected.id);
-    // }
-    // }
-    // Look into how to find an element of an array. Then create a match
+    if(this.loginProfile&&this.selected){
+    const match= this.loginProfile.favoriter.find(fav=>fav==this.selected);
+    if(match){
+        //create a match and maybe update both people with a match
+    }
+    }
   }
 
   getLogginProfile(){
@@ -155,10 +152,12 @@ export class HomeComponent implements OnInit {
       error: (err) => {
         console.error(
           'HomeComponent.UpdateProfile(): error Updating Profile: '
-        );
-        console.error(err);
+          );
+          console.error(err);
+          return updateProfile;
       },
     });
+    return updateProfile;
   }
 
 
