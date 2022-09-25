@@ -388,10 +388,16 @@ export class ProfileComponent implements OnInit {
   }
 
   counterForPic:number=0;
-  selectPic(images:Image[]){
+  selectPicForward(images:Image[]){
     this.counterForPic++;
     if(this.counterForPic>=images.length){
     this.counterForPic=0;
+    }
+  }
+  selectPicBackward(images:Image[]){
+    this.counterForPic--;
+    if(this.counterForPic<0){
+    this.counterForPic=images.length-1;
     }
   }
 
