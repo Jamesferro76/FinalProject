@@ -34,7 +34,7 @@ public class MixerController {
 	public List<Mixer> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		
 		return mixerServe.index(principal.getName());
-
+		
 	}
 	
 	@GetMapping("mixers/{id}")
