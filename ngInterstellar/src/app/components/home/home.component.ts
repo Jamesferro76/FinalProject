@@ -19,16 +19,43 @@ export class HomeComponent implements OnInit {
 
   loginUser: User = new User();
 
+  loggedInUser: User|null=null;
+
   loginProfile: Profile|null=null;
 
   selected: Profile|null=null;
+
+  randomProfiles: Profile[]=[];
+
+  defaultImageUrl: string="https://s3.envato.com/files/158241052/1.jpg";
 
 
   constructor(private userServ: UserService, private profileService: ProfileService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.findAllProfiles()
-    this.getLogginProfile();
+    this.auth.getLoggedInUser().subscribe({
+      next: (user) => {
+        console.log(user);
+
+        this.loggedInUser = user;
+        this.profileService.findByUserId(this.loggedInUser.id).subscribe({
+          next: (profile) => {
+            this.loginProfile = profile;
+          },
+          error: (err) => {
+            console.error('Error retrieving Profile');
+            console.error(err);
+            this.router.navigateByUrl('profile');
+          },
+        });
+      },
+      error: (err) => {
+        console.error('Error retrieving User');
+        console.error(err);
+
+      },
+    });
   }
 
   loggedIn(){
@@ -44,6 +71,7 @@ export class HomeComponent implements OnInit {
           next: (loggedInUser: any) => {
             console.log('success');
             console.log(loggedInUser);
+            this.loggedInUser=loggedInUser;
 
 
             this.router.navigateByUrl('/home');
@@ -67,6 +95,7 @@ export class HomeComponent implements OnInit {
   login(user: User) {
     this.auth.login(user.username, user.password).subscribe({
       next: (loggedInUser: any) => {
+        this.loggedInUser=loggedInUser
         console.log(loggedInUser);
         this.router.navigateByUrl('home');
       },
@@ -101,7 +130,8 @@ export class HomeComponent implements OnInit {
   findAllProfiles(){
     this.profileService.findAll().subscribe({
       next: (profiles) => {
-        this.selectRandomProfile(profiles);
+        this.randomProfiles=profiles
+        this.selectRandomProfile();
       },
       error: (problem: any) => {
         console.error('HomeComponent.findAllProfiles(): Error FindAllProfiles failed:');
@@ -110,20 +140,44 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  selectRandomProfile(profiles: Profile[]){
-    this.selected=profiles[Math.floor(Math.random()*profiles.length)];
+  selectRandomProfile(){
+    this.selected=this.randomProfiles[Math.floor(Math.random()*this.randomProfiles.length)];
+    if(!this.selected.profilePic){
+      this.selected.profilePic=this.defaultImageUrl;
+    }
+    if(this.selected.images.length<1){
+        this.selected.images.push(new Image(0, this.selected.profilePic));
+    }
   }
 
   likedAProfile(){
+    console.log("Inside LikeAProfile");
+
     if(this.loginProfile&&this.selected){
+      console.log(this.loginProfile);
+      console.log(this.loginProfile.favorited);
+      if(!this.loginProfile.favorited){
+        this.loginProfile.favorited=[];
+      }
       this.loginProfile.favorited.push(this.selected);
       this.loginProfile=this.updateProfile(this.loginProfile);
+      if(!this.selected.favoriter){
+        this.selected.favoriter=[];
+      }
       this.selected.favoriter.push(this.loginProfile);
       this.selected=this.updateProfile(this.selected);
+      this.checkForMatch();
+      this.selectRandomProfile();
+    }else{
+      console.log("this.loginProfile"+this.loginProfile);
+      console.log("this.selected"+this.selected);
+
     }
   }
 
   checkForMatch(){
+    console.log("You made it to checkForMatch. This doesn't work yet");
+
     if(this.loginProfile&&this.selected){
     const match= this.loginProfile.favoriter.find(fav=>fav==this.selected);
     if(match){
@@ -133,9 +187,17 @@ export class HomeComponent implements OnInit {
   }
 
   getLogginProfile(){
+    console.log("In getLogginProfile");
+    console.log("this.loginUser"+this.loginUser.id);
+
+
     this.profileService.findByUserId(this.loginUser.id).subscribe({
       next: (profile) => {
         this.loginProfile = profile;
+        console.log("this.loginProfile"+this.loginProfile);
+        console.log("Results: "+profile);
+
+
       },
       error: (err) => {
         console.error('Error retrieving Profile');

@@ -55,6 +55,7 @@
       <div class ="box-item">
         <div class ="flip-box">
           <div class ="flip-box-front text-left" style="background-image:url({{selected.profilePic}});">
+
             <div class="inner color-white">
               <h3 class ="flip-box-header"> {{selected.firstName}} {{selected.age}}</h3>
               <span>{{selected.sex}} {{selected.address.state}}</span><br/>
@@ -74,6 +75,9 @@
     </div>
   </div>
   </div>
+
+  <button (click)="selectRandomProfile()">NEXT</button>
+  <button (click)="likedAProfile()">LIKE</button>
 
 </div>
 
