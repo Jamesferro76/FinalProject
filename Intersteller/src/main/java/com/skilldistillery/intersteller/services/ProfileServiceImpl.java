@@ -63,27 +63,31 @@ public class ProfileServiceImpl implements ProfileService {
 		if(existingOpt.isPresent()) {
 			Profile existing=existingOpt.get();
 			if(existing.getUser().getUsername().equals(username)) {
+				
 				if(profile.getFirstName()!=null) {
 					existing.setFirstName(profile.getFirstName());
 				}
+				existing.setLastName(profile.getLastName());
+				existing.setDescription(profile.getDescription());
+				existing.setBirthday(profile.getBirthday());
+				existing.setAge(profile.getAge());
+				
+				
 				if(profile.getSex()!=null) {
 					existing.setSex(profile.getSex());
 				}
-				existing.setDescription(profile.getDescription());
-				existing.setBirthday(profile.getBirthday());
-				
-				existing.setAge(profile.getAge());
-				
 				existing.setCategories(profile.getCategories());
+				if(profile.getPreferences()!=null) {
+					existing.setPreferences(profile.getPreferences());
+				}
 				
 				if(profile.getAddress()!=null) {
 					existing.setAddress(profile.getAddress());
 				}
-				existing.setLastName(profile.getLastName());
+				
 				existing.setProfilePic(profile.getProfilePic());
-				if(profile.getPreferences()!=null) {
-					existing.setPreferences(profile.getPreferences());
-				}
+				existing.setImages(profile.getImages());
+				
 				System.out.println(profile.getMixersAttending());
 				System.out.println(existing.getMixersAttending());
 				if(profile.getMixersAttending()!=null) {

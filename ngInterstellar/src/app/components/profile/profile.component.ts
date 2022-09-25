@@ -41,6 +41,11 @@ export class ProfileComponent implements OnInit {
 
   category: Category = new Category();
 
+  basicEdit: boolean = false;
+  sexualityEdit: boolean = false;
+  locationEdit: boolean = false;
+  picsEdit: boolean = false;
+
   selectedPrefs = [false, false, false, false, false];
 
   constructor(
@@ -64,6 +69,7 @@ export class ProfileComponent implements OnInit {
         this.profileService.findByUserId(this.loggedInUser.id).subscribe({
           next: (profile) => {
             this.selected = profile;
+            this.editProfile= profile;
             this.loadPreferences();
             this.loadCategories();
             console.log("In init"+this.categories);
@@ -138,7 +144,7 @@ export class ProfileComponent implements OnInit {
       next: (data) => {
         this.newProfile = new Profile();
         this.selected = data;
-        this.editProfile = null;
+        this.editProfile = data;
       },
       error: (err) => {
         console.error('AddProfileComponent: error Loading profile: ');
@@ -179,7 +185,6 @@ export class ProfileComponent implements OnInit {
         }
         this.selected = result;
 
-        this.editProfile = null;
       },
       error: (err) => {
         console.error(
@@ -210,14 +215,14 @@ export class ProfileComponent implements OnInit {
   }
 
   addImageToProfile() {
-    if (this.selected) {
+    if (this.editProfile) {
       this.imageService.create(this.newImage).subscribe({
         next: (result) => {
-          if (this.selected) {
-            this.selected.images.push(result);
+          if (this.editProfile) {
+            this.editProfile.images.push(result);
             this.newImage = new Image();
             this.addImage = false;
-            this.updateProfile(this.selected);
+            this.updateProfile(this.editProfile);
           }
         },
         error: (err) => {
@@ -233,12 +238,14 @@ export class ProfileComponent implements OnInit {
   addAddressToProfile() {
     this.addressService.create(this.newAddress).subscribe({
       next: (result) => {
-        this.newProfile.address = result;
-        console.log(this.newProfile.address);
+        if(this.editProfile){
+        this.editProfile.address = result;
+        console.log(this.editProfile.address);
         console.log('Results: ' + result);
 
         this.newAddress = new Address();
-        this.addProfile();
+        this.perf();
+        }
       },
       error: (err) => {
         console.error(
@@ -275,7 +282,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  perf(perfPro: Profile) {
+  perf() {
     if (this.editProfile != null) {
       this.preferences1;
       for (let i = 0; i < this.preferences.length; i++) {
@@ -318,7 +325,6 @@ export class ProfileComponent implements OnInit {
           if (this.editProfile != null) this.editProfile.categories = [];
           this.selected = result;
 
-          this.editProfile = null;
         },
         error: (err) => {
           console.error(
@@ -330,6 +336,55 @@ export class ProfileComponent implements OnInit {
     }
     this.preferences1 = [];
     this.categories1 = [];
+  }
+
+  createProfile(){
+    this.basicEdit=true;
+    this.sexualityEdit=true;
+    this.locationEdit=true;
+    this.picsEdit=true;
+  }
+
+  basicEditCreate(){
+    this.basicEdit=false;
+    this.editProfile=this.newProfile;
+    this.addProfile();
+  }
+
+  basicEditSave(){
+    this.basicEdit=false;
+    this.perf();
+  }
+
+  sexualityEditSave(){
+    this.sexualityEdit=false;
+    this.perf();
+  }
+
+  locationEditSave(newAddress:Address){
+    this.locationEdit=false;
+    if(this.selected){
+      if(this.selected.address){
+        this.updateAddress(newAddress);
+      }else{
+      this.addAddressToProfile();
+    }
+  }
+  }
+
+  picsEditSave(){
+    this.picsEdit=false;
+    this.perf();
+  }
+
+  deletePic(i: number){
+    console.log(i);
+
+    if(this.editProfile){
+    this.editProfile.images.splice(i, 1);
+    console.log(this.editProfile.images);
+    this.perf();
+  }
   }
 
 }
