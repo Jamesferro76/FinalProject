@@ -316,3 +316,44 @@
     </div>
   </div>
 </div>
+
+<!-- Edit profile -->
+<div *ngIf="selected" >
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-{{1}}">
+      <div class ="box-item">
+        <div class ="flip-box">
+          <div class ="flip-box-front-edit text-left" style="background-image:url({{selected.profilePic}});">
+            <div class="inner color-white">
+              <h3 class ="flip-box-header" (click)="basicEdit=true"> {{selected.firstName}} {{selected.age}}</h3>
+              <span (click)="locationEdit=true">{{selected.sex}} {{selected.address.state}}</span><br/>
+              <div (click)="sexualityEdit=true">
+              Preferences: <span *ngFor="let pref of selected.preferences">{{pref.name}} </span><br/>
+            </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+
+          <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-{{1}}">
+              <div class ="box-item">
+                <div class ="flip-box">
+          <div class="flip-box-back-edit" style="background-image:url({{selected.images[counterForPic].imageUrl}});">
+            <div class="inner color-white background-purple">
+              <span class="text-start" (click)="selectPicBackward(selected.images)">Last pic </span>
+              <span class="text-center" (click)="picsEdit=true">Edit pics</span>
+              <span class="float-end" (click)="selectPicForward(selected.images)">Next pic</span><br/>
+              <div (click)="sexualityEdit=true">
+              Categories: <span *ngFor="let cat of selected.categories">{{cat.name}} </span>
+            </div>
+              <p (click)="basicEdit=true">{{selected.description}}</p>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
