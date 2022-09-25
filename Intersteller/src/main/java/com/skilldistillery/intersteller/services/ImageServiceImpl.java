@@ -52,6 +52,25 @@ public class ImageServiceImpl implements ImageService {
 		return image;
 	}
 
+	@Override
+	public boolean destroy(String username, int id) {
+		boolean deleted=false;
+		System.out.println(username);
+		User user = userRepo.findByUsername(username);
+		Profile profile=profileRepo.findByUser(user);
+		System.out.println(user.getUsername());
+		Image imageToDelete=imageRepo.findByIdAndProfile(id, profile);
+		if(imageToDelete != null) {
+			try {
+				imageRepo.delete(imageToDelete);
+				deleted=true;
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return deleted;
+	}
 	
 
 }

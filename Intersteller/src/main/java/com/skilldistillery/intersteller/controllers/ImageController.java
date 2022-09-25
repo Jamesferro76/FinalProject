@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +44,18 @@ public class ImageController {
 		}
 		return created;
 	}
+	
+	@DeleteMapping("images/{id}")
+	public boolean deleteImage(@PathVariable int id, HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		boolean deleted=imageService.destroy(principal.getName(), id);
+		if(deleted) {
+			res.setStatus(204);
+		}else {
+			res.setStatus(404);
+		}
+		return deleted;
+	}
+	
 	
 
 

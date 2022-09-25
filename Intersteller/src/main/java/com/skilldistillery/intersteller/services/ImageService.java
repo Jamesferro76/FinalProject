@@ -13,6 +13,8 @@ public interface ImageService {
 	Image findByUrl(String url);
 
 	Image findById(int id);
+
+	boolean destroy(String username, int id);
    
 
 }

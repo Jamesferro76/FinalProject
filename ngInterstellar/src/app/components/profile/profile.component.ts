@@ -22,7 +22,11 @@ import { CategoryService } from 'src/app/services/category.service';
 export class ProfileComponent implements OnInit {
   loggedInUser: User | null = null;
   selected: Profile | null = null;
+
+  displayAllInfo: boolean = false;
   displayUpdate: boolean = false;
+  displayProfile: boolean = false;
+
   editProfile: Profile | null = null;
   newProfile: Profile = new Profile();
 
@@ -70,6 +74,7 @@ export class ProfileComponent implements OnInit {
           next: (profile) => {
             this.selected = profile;
             this.editProfile= profile;
+            this.displayProfilePage();
             this.loadPreferences();
             this.loadCategories();
             console.log("In init"+this.categories);
@@ -376,14 +381,29 @@ export class ProfileComponent implements OnInit {
     this.picsEdit=false;
     this.perf();
   }
-
+  picToDelete:Image|null=null;
   deletePic(i: number){
     console.log(i);
 
     if(this.editProfile){
+      this.picToDelete=this.editProfile.images[i];
     this.editProfile.images.splice(i, 1);
-    console.log(this.editProfile.images);
-    this.perf();
+    if(this.picToDelete){
+    this.imageService.delete(this.picToDelete).subscribe({
+      next: (result) => {
+        if(this.editProfile){
+          this.picToDelete=null;
+          this.perf();
+        }
+      },
+      error: (err) => {
+        console.error(
+          'ProfileComponent.deletePic(): error Pic not deleted: '
+        );
+        console.error(err);
+      },
+    });
+  }
   }
   }
 
@@ -400,6 +420,23 @@ export class ProfileComponent implements OnInit {
     this.counterForPic=images.length-1;
     }
   }
+
+  displayAllInfoPage(){
+    this.displayAllInfo=true;
+    this.displayUpdate=false;
+    this.displayProfile=false;
+  }
+  displayUpdatePage(){
+    this.displayAllInfo=false;
+    this.displayUpdate=true;
+    this.displayProfile=false;
+  }
+  displayProfilePage(){
+    this.displayAllInfo=false;
+    this.displayUpdate=false;
+    this.displayProfile=true;
+  }
+
 
 }
 

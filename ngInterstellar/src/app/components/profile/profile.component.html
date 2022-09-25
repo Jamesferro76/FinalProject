@@ -1,34 +1,41 @@
-<div *ngIf="selected &&!basicEdit&&!sexualityEdit&&!locationEdit&&!picsEdit">
-  <h1>{{ selected.firstName }}</h1>
-  <img [src]="selected.profilePic" />
-  <p>{{ selected.description }}</p>
-
-  <ul>
-    <li>{{ selected.sex }}</li>
-    <li>{{ selected.age }}</li>
-    <li>{{ selected.updatedOn }}</li>
-  </ul>
+<div *ngIf="selected &&displayAllInfo">
+  <h1>Basic info:</h1>
+  <h4>{{ selected.firstName }} {{selected.lastName}}</h4>
+  <p>Description: {{ selected.description }}</p>
+  <p>Age: {{ selected.age }} </p>
+  <p>Age: {{ selected.birthday }} </p>
+  <p>{{ selected.updatedOn }}</p>
   <button (click)="basicEdit=true">Edit basics</button>
 <hr>
-<div *ngIf="selected.address">
-{{ selected.address.street }}{{ selected.address.state }}
-</div>
-<button (click)="locationEdit=true">editAddress</button>
 <hr>
 
+<h1>Location:</h1>
+<div *ngIf="selected.address">
+  <p>{{ selected.address.street }} {{selected.address.city}}
+    {{ selected.address.state }} {{selected.address.zip}} {{selected.address.country}}</p>
+  </div>
+  <button (click)="locationEdit=true">editAddress</button>
+  <hr>
+  <hr>
+
+<h1>Sexuality:</h1>
+<p>{{ selected.sex }}</p>
 <h5>Preferences:</h5>
 <div *ngFor="let pref of selected.preferences">{{ pref.name }}</div>
-<button (click)="sexualityEdit=true">Edit Sexuality</button>
-<hr>
-
 <h5>Categories</h5>
 <div *ngFor="let cat of selected?.categories">{{ cat.name }}</div>
-
+<button (click)="sexualityEdit=true">Edit Sexuality</button>
+<hr>
+<hr>
+<h1>Images:</h1>
+Profile Pic:
+<img [src]="selected.profilePic" />
 <h5>Pics:</h5>
 <div *ngFor="let pic of selected.images">
   <img [src]="pic.imageUrl" />
 </div>
 <button (click)="picsEdit=true">Edit pictures</button>
+<hr>
 <hr>
 
 
@@ -291,7 +298,7 @@
 
 
 <!-- Trying out cards to display profile  -->
-<div *ngIf="selected" >
+<div *ngIf="selected&&displayProfile" >
   <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-{{1}}">
       <div class ="box-item">
@@ -318,16 +325,16 @@
 </div>
 
 <!-- Edit profile -->
-<div *ngIf="selected" >
+<div *ngIf="selected&&displayUpdate" >
   <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-{{1}}">
       <div class ="box-item">
         <div class ="flip-box">
           <div class ="flip-box-front-edit text-left" style="background-image:url({{selected.profilePic}});">
             <div class="inner color-white">
-              <h3 class ="flip-box-header" (click)="basicEdit=true"> {{selected.firstName}} {{selected.age}}</h3>
-              <span (click)="locationEdit=true">{{selected.sex}} {{selected.address.state}}</span><br/>
-              <div (click)="sexualityEdit=true">
+              <h3 class ="flip-box-header" (click)="basicEdit=!basicEdit"> {{selected.firstName}} {{selected.age}}</h3>
+              <span (click)="locationEdit=!locationEdit">{{selected.sex}} {{selected.address.state}}</span><br/>
+              <div (click)="sexualityEdit=!sexualityEdit">
               Preferences: <span *ngFor="let pref of selected.preferences">{{pref.name}} </span><br/>
             </div>
             </div>
@@ -344,16 +351,22 @@
           <div class="flip-box-back-edit" style="background-image:url({{selected.images[counterForPic].imageUrl}});">
             <div class="inner color-white background-purple">
               <span class="text-start" (click)="selectPicBackward(selected.images)">Last pic </span>
-              <span class="text-center" (click)="picsEdit=true">Edit pics</span>
+              <span class="text-center" (click)="picsEdit=!picsEdit">Edit pics</span>
               <span class="float-end" (click)="selectPicForward(selected.images)">Next pic</span><br/>
-              <div (click)="sexualityEdit=true">
+              <div (click)="sexualityEdit=!sexualityEdit">
               Categories: <span *ngFor="let cat of selected.categories">{{cat.name}} </span>
             </div>
-              <p (click)="basicEdit=true">{{selected.description}}</p>
+              <p (click)="basicEdit=!basicEdit">{{selected.description}}</p>
             </div>
           </div>
         </div>
     </div>
     </div>
   </div>
+</div>
+
+<div>
+  <button (click)="displayAllInfoPage()">See all profile info</button>
+  <button (click)="displayUpdatePage()">Edit profile</button>
+  <button (click)="displayProfilePage()">See Profile</button>
 </div>

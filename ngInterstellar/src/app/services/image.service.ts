@@ -35,4 +35,16 @@ export class ImageService {
         })
       );
     }
+
+    delete(newImage: Image){
+
+      return this.http.delete<boolean>(this.url+"/"+ newImage.id, this.getHttpOptions()).pipe(
+        catchError((err: any) => {
+          console.error(err);
+          return throwError(
+             () => new Error( 'ProfileService.create(): error creating Profile: ' + err )
+          );
+        })
+      );
+    }
 }
