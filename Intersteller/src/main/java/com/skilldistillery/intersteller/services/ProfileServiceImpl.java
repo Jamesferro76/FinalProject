@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.intersteller.entities.Address;
+import com.skilldistillery.intersteller.entities.Image;
 import com.skilldistillery.intersteller.entities.Preference;
 import com.skilldistillery.intersteller.entities.Profile;
 import com.skilldistillery.intersteller.entities.User;
@@ -50,6 +51,9 @@ public class ProfileServiceImpl implements ProfileService {
 		System.out.println("Top of create");
 	  User user = userRepo.findByUsername(username);
 	  System.out.println(user.getUsername());
+	  if(profile.getProfilePic()==null||profile.getProfilePic().equals("")) {
+		  profile.setProfilePic("https://s3.envato.com/files/158241052/1.jpg");
+	  }
 	  if (user != null) {
 	    profile.setUser(user);
 	    return profileRepo.saveAndFlush(profile);
@@ -77,15 +81,14 @@ public class ProfileServiceImpl implements ProfileService {
 					existing.setSex(profile.getSex());
 				}
 				existing.setCategories(profile.getCategories());
-				if(profile.getPreferences()!=null) {
 					existing.setPreferences(profile.getPreferences());
-				}
 				
 				if(profile.getAddress()!=null) {
 					existing.setAddress(profile.getAddress());
 				}
-				
-				existing.setProfilePic(profile.getProfilePic());
+				if(profile.getProfilePic()!=null||!profile.getProfilePic().equals("")) {
+					existing.setProfilePic(profile.getProfilePic());
+				}
 				existing.setImages(profile.getImages());
 				
 				System.out.println(profile.getMixersAttending());
@@ -93,6 +96,13 @@ public class ProfileServiceImpl implements ProfileService {
 				if(profile.getMixersAttending()!=null) {
 					existing.setMixersAttending(profile.getMixersAttending());
 				}
+				
+				if(profile.getImages().size()<1) {
+					List<Image> images=new ArrayList<Image>();
+					images.add(new Image(profile.getProfilePic()));
+					existing.setImages(images);
+				}
+				
 				profileRepo.save(existing);
 				return existing;
 			 }

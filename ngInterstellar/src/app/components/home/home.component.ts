@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Profile } from 'src/app/models/profile';
 import { User } from 'src/app/models/user';
+import { Image } from 'src/app/models/image';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +19,13 @@ export class HomeComponent implements OnInit {
 
   loginUser: User = new User();
 
+  selected: Profile|null=null;
 
-  constructor(private userServ: UserService, private auth: AuthService, private router: Router) { }
+
+  constructor(private userServ: UserService, private profileService: ProfileService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.findAllProfiles()
   }
 
   loggedIn(){
@@ -74,5 +80,35 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('home');
 
     }
+
+    counterForPic:number=0;
+  selectPicForward(images:Image[]){
+    this.counterForPic++;
+    if(this.counterForPic>=images.length){
+    this.counterForPic=0;
+    }
+  }
+  selectPicBackward(images:Image[]){
+    this.counterForPic--;
+    if(this.counterForPic<0){
+    this.counterForPic=images.length-1;
+    }
+  }
+
+  findAllProfiles(){
+    this.profileService.findAll().subscribe({
+      next: (profiles) => {
+        this.selectRandomProfile(profiles);
+      },
+      error: (problem: any) => {
+        console.error('HomeComponent.findAllProfiles(): Error FindAllProfiles failed:');
+        console.error(problem);
+      },
+    });
+  }
+
+  selectRandomProfile(profiles: Profile[]){
+    this.selected=profiles[Math.floor(Math.random()*profiles.length)];
+  }
 
 }

@@ -329,6 +329,7 @@ export class ProfileComponent implements OnInit {
           if (this.editProfile != null) this.editProfile.preferences = [];
           if (this.editProfile != null) this.editProfile.categories = [];
           this.selected = result;
+          this.editProfile=this.selected;
 
         },
         error: (err) => {

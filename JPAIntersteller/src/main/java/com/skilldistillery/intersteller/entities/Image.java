@@ -31,6 +31,9 @@ public class Image {
 		super();
 	}
 
+	public Image(String profilePic) {
+	}
+
 	public int getId() {
 		return id;
 	}
