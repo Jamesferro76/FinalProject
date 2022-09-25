@@ -62,7 +62,6 @@ export class MixerComponent implements OnInit {
         this.router.navigateByUrl('invalidId');
       }
     }
-    this.reload();
 
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
@@ -87,6 +86,7 @@ export class MixerComponent implements OnInit {
         this.router.navigateByUrl('home');
       },
     });
+    this.reload();
   }
   addMixer() {
     this.mixerService.create(this.newMixer).subscribe({
