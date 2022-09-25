@@ -1,7 +1,10 @@
 package com.skilldistillery.intersteller.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import com.skilldistillery.intersteller.repositories.MixerRepository;
 import com.skilldistillery.intersteller.repositories.ProfileRepository;
 import com.skilldistillery.intersteller.repositories.UserRepository;
 @Service
+@Transactional
 public class MixerServiceImpl implements MixerService {
 
 	 @Autowired
@@ -24,14 +28,21 @@ public class MixerServiceImpl implements MixerService {
 	 private UserRepository userRepo;
 	 
 	 @Autowired
-	 private ProfileRepository profileRepo;
-	 
-	 @Autowired
 	 private AddressRepository addressRepo;
+	 
 	 
 	@Override
 	public List<Mixer> index(String username) {
-		  return mixerRepo.findAll();
+		  User user = userRepo.findByUsername(username);
+		  Profile profile = user.getProfiles().get(0);
+		  List<Mixer> joinedMixers = profile.getMixersAttending();
+		  List<Mixer> allMixers = mixerRepo.findAll();
+		  for(Mixer each:joinedMixers) {
+			  if(allMixers.contains(each)) {
+				  allMixers.remove(each);
+			  }
+		  }
+		  return allMixers;
 	}
 
 	@Override
@@ -82,5 +93,6 @@ public class MixerServiceImpl implements MixerService {
 			mixerRepo.deleteById(mixer.getId());
 	        return ! mixerRepo.existsById(mixer.getId());
 	}
+
 
 }

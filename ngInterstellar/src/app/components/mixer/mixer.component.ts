@@ -136,6 +136,7 @@ export class MixerComponent implements OnInit {
         },
       });
     }
+    this.reload;
   }
 
   updateCompleted(updatedMixer: Mixer) {
