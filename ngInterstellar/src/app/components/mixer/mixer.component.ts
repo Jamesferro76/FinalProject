@@ -42,6 +42,7 @@ export class MixerComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
+
   ngOnInit(): void {
     let idStr = this.route.snapshot.paramMap.get('id');
     if (idStr) {
@@ -127,6 +128,7 @@ export class MixerComponent implements OnInit {
       this.profileService.updateProfile(this.editProfile).subscribe({
         next: (result) => {
           this.selected = null;
+          this.reload;
         },
         error: (err) => {
           console.error(
@@ -177,17 +179,6 @@ export class MixerComponent implements OnInit {
 
   displayTable() {
     this.selected = null;
-  }
-
-  getBadgeColor(): string {
-    let count = this.getNumberOfMixers();
-    if (count > 10) {
-      return 'bg-danger';
-    } else if (count > 5) {
-      return 'bg-warning';
-    } else {
-      return 'bg-success';
-    }
   }
 
   reload(): void {
