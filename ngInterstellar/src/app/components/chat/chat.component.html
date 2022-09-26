@@ -71,12 +71,12 @@
 						<div class="card-body msg_card_body" id="formMessageBody">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item" *ngFor="let chatMessage of messageService.chatMessages" >
-                  <strong>{{chatMessage.sender.username}}</strong>
+                  <strong>{{chatMessage.sender.username}}:</strong>
                   <span>{{chatMessage.content}}</span>
                 </li>
               </ul>
 						</div>
-            <form (ngSubmit)="sendMessage(sendForm)" #sendForm="ngForm">
+            <form (ngSubmit)="sendMessage()" #sendForm="ngForm">
 						<div class="card-footer">
 							<div class="input-group" id="formSubmit">
 

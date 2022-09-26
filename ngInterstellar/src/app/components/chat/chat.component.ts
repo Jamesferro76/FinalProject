@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
      this.messageService.openWebSocket();
-    this.reload();
+    // this.reload();
 
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
@@ -84,27 +84,27 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.messageService.closeWebSocket();
   }
 
-  reload(){
-    this.messageService.index().subscribe(
-      data => {
-        this.messages = data;
-        data.forEach( (message) => {
-          if (message.recipient.id === this.loggedInUser.id) {
-            this.receivedMessages.push(message);
-          }
-          if (message.sender.id === this.loggedInUser.id) {
-            this.sentMessages.push(message);
-          }
+  // reload(){
+  //   this.messageService.index().subscribe(
+  //     data => {
+  //       this.messages = data;
+  //       data.forEach( (message) => {
+  //         if (message.recipient.id === this.loggedInUser.id) {
+  //           this.receivedMessages.push(message);
+  //         }
+  //         if (message.sender.id === this.loggedInUser.id) {
+  //           this.sentMessages.push(message);
+  //         }
 
-          // this.messageService.getMessageCount();
+  //         // this.messageService.getMessageCount();
 
-        });
-      },
-      err => {
-        console.error('Error getting messages from service: ' + err);
-      }
-    );
-  }
+  //       });
+  //     },
+  //     err => {
+  //       console.error('Error getting messages from service: ' + err);
+  //     }
+  //   );
+  // }
 
   displaySingleMessage(message: Message): void {
     this.selected = message;
@@ -112,7 +112,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   displayAllMessages(): void {
     this.selected = null;
-    this.reload();
+    // this.reload();
   }
 
   displayNewMessage(): void {
@@ -121,35 +121,35 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
 
-  sendMessage(sendForm: NgForm) {
-    const chatMessage = new Message(
-      sendForm.value.sender,
-      sendForm.value.content,
-      sendForm.value.recipient,
-      sendForm.value.sentDate,
-      sendForm.value.id,
+  // sendMessage(sendForm: NgForm) {
+  //   const chatMessage = new Message(
+  //     sendForm.value.sender,
+  //     sendForm.value.content,
+  //     sendForm.value.recipient,
+  //     sendForm.value.sentDate,
+  //     sendForm.value.id,
 
+  //   );
+
+
+  //   this.messageService.sendMessage(chatMessage);
+  //   console.log(sendForm.value);
+  // }
+
+  sendMessage(){
+    this.messageService.create(this.newMessage).subscribe(
+      data => {
+        this.receivedMessages = [];
+        this.sentMessages = [];
+        // this.reload();
+      },
+      error =>{
+        console.log(error);
+        console.log("Error");
+      }
     );
-
-
-    this.messageService.sendMessage(chatMessage);
-    console.log(sendForm.value);
+    this.newMessage = new Message();
+  }
   }
 
-  // sendMessage(){
-  //   this.messageService.sendMessage(this.newMessage).subscribe(
-  //     data => {
-  //       this.receivedMessages = [];
-  //       this.sentMessages = [];
-  //       this.reload();
-  //     },
-  //     error =>{
-  //       console.log(error);
-  //       console.log("Error");
-  //     }
-  //   );
-  //   this.newMessage = new Message();
-  // }
-  // }
 
-}

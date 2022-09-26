@@ -43,9 +43,9 @@ public class MessageServiceImpl implements MessagingService {
 			newMessage.setSendDate(message.getSendDate());
 			newMessage.setSender(sender);
 			newMessage.setRecipient(recipient);
-			return msgRepo.saveAndFlush(newMessage);
+			
 		}
-		return null;
+		return msgRepo.saveAndFlush(newMessage);
 	}
 
 	@Override

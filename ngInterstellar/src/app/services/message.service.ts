@@ -54,9 +54,9 @@ export class MessageService {
     );
   }
 
-  public sendMessage(message: Message) {
+  public create(message: Message) {
     console.log(message.recipient.username);
-    // this.webSocket.send(JSON.stringify(message))
+    this.webSocket.send(JSON.stringify(message));
 
     return this.http
       .post<Message>(
@@ -86,9 +86,9 @@ export class MessageService {
   //   })
   // );
 
-  // public sendMessage(chatMessage: Message){
-  //   this.webSocket.send(JSON.stringify(chatMessage));
-  // }
+  public sendMessage(chatMessage: Message) {
+    this.webSocket.send(JSON.stringify(chatMessage));
+  }
 
   public closeWebSocket() {
     this.webSocket.close();
