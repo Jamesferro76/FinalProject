@@ -17,6 +17,7 @@ import { Message } from 'src/app/models/message';
 })
 export class ChatComponent implements OnInit, OnDestroy {
   loggedInUser: User = new User();
+  recipient: User = new User();
   selected: Profile | null = null;
 
   constructor(
@@ -65,6 +66,11 @@ export class ChatComponent implements OnInit, OnDestroy {
       sendForm.value.id,
 
     );
+    const recipient = new User(
+      sendForm.value.username,
+      sendForm.value.id
+    );
+
     this.messageService.sendMessage(chatMessage);
     console.log(sendForm.value);
   }

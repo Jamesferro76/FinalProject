@@ -1,5 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Message } from '../models/message';
+import { User } from '../models/user';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +14,11 @@ export class MessageService {
   webSocket!: WebSocket;
   chatMessages: Message[]=[];
 
-  constructor() { }
+  private bUrl=environment.baseUrl;
+  private url = environment.baseUrl + 'api/chat';
+
+
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   public openWebSocket(){
     this.webSocket = new WebSocket('ws://localhost:8090/chat');
@@ -26,6 +35,30 @@ export class MessageService {
     console.log('Close: ' + event);
   };
 }
+
+getHttpOptions() {
+  let options = {
+    headers: {
+      Authorization: 'Basic ' + this.auth.getCredentials(),
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+  };
+  return options;
+}
+
+
+
+// public sendMessage(chatMessage: Message){
+
+//   return this.http.post<Message>(this.url+"/"+ "send" + this.getHttpOptions()).pipe(
+
+//      catchError((err: any) => {
+//     console.error(err);
+//     return throwError(
+//        () => new Error( 'MessageService.create(): error creating Profile: ' + err )
+//     );
+//   })
+// );
 
 public sendMessage(chatMessage: Message){
   this.webSocket.send(JSON.stringify(chatMessage));

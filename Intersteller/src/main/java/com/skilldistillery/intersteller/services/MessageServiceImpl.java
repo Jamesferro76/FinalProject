@@ -1,5 +1,6 @@
 package com.skilldistillery.intersteller.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ public class MessageServiceImpl implements MessagingService {
 	@Autowired
 	private MessageRepository msgRepo;
 
-
 //	public List<Map<String, Object>> getListMessage(@PathVariable("from") Integer from,
 //			@PathVariable("to") Integer to) {
 //		return jdbcTemplate.queryForList("SELECT * from message where (message_from = ? AND message_to = ?)"
@@ -33,26 +33,30 @@ public class MessageServiceImpl implements MessagingService {
 //	}
 
 	@Override
-	public Message addMessage(String senderName, Message message, String recipName) {
+	public Message addMessage(Message message, String senderName, String recipName) {
 		User recipient = userRepo.findByUsername(recipName);
-
 		User sender = userRepo.findByUsername(senderName);
-		if (sender != null) {
-			message.setSender(sender);
-			message.setRecipient(recipient);
-			return msgRepo.saveAndFlush(message);
+		Message newMessage = null;
+		if (sender != null && recipient != null) {
+			newMessage = new Message();
+			newMessage.setContent(message.getContent());
+			newMessage.setSendDate(message.getSendDate());
+			newMessage.setSender(sender);
+			newMessage.setRecipient(recipient);
+			return msgRepo.saveAndFlush(newMessage);
 		}
 		return null;
 	}
 
 	@Override
-	public List<Message> index(String username) {
+	public List<Message> index(String username, String username2) {
+		List<Message> messages = null;
 		User sender = userRepo.findByUsername(username);
 		if (sender != null) {
 
-			return msgRepo.findBySender(sender);
+			messages = msgRepo.findBySender_UsernameOrRecipient_Username(username, username2);
 		}
-		return null;
+		return messages;
 
 	}
 
@@ -75,9 +79,22 @@ public class MessageServiceImpl implements MessagingService {
 
 			return msgRepo.findBySenderAndRecipientOrSenderAndRecipient(sender, recipient, recipient, sender);
 		}
-		
-		
+
 		return null;
+	}
+	
+	@Override
+	public List<Message> show(String username1, String username2, int userId) {
+		
+		List<Message> messages = index(username1, username2);
+		List<Message> userMessages = new ArrayList<>(); 
+		
+		for(Message message : messages) {
+			if(message.getRecipient().getId() == userId) {
+				userMessages.add(message);
+			}
+		}
+		return userMessages; 
 	}
 
 }

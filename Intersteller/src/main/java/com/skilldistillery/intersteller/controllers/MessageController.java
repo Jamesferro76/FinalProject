@@ -30,13 +30,18 @@ public class MessageController {
 
 	@GetMapping("chat")
 	public List<Message> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		return messageService.index(principal.getName());
+		List<Message> myMessages = 	messageService.index(principal.getName(), principal.getName());	
+		if(myMessages == null) {
+			res.setStatus(404);
+		}
+		
+		return myMessages;
 	}
 
-	@GetMapping("chat/{recipient}")
+	@GetMapping("chat/{userId}")
 	public List<Message> chatLog(HttpServletRequest req, HttpServletResponse res, Principal principal,
-			@PathVariable String recipient) {
-		return messageService.chatLog(principal.getName(), recipient);
+			@PathVariable int userId) {
+		return messageService.show(principal.getName(), principal.getName(), userId);
 	}
 	
 	@GetMapping("chat/history/{recipient}")
@@ -45,12 +50,12 @@ public class MessageController {
 		return messageService.chatHistory(principal.getName(), recipient);
 	}
 
-	@PostMapping("chat/send/{recipient}")
+	@PostMapping("chat/{recipient}")
 	public Message create(HttpServletRequest req, HttpServletResponse res, @PathVariable String recipient, @RequestBody Message message,
 			Principal principal) {
 		Message msg = null;
 		try {
-			msg = messageService.addMessage(principal.getName(), message, recipient);
+			msg = messageService.addMessage(message, principal.getName(),  recipient);
 			res.setStatus(201);
 		} catch (Exception e) {
 			e.printStackTrace();
