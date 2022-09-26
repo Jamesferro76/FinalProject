@@ -16,46 +16,110 @@ import { Message } from 'src/app/models/message';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  loggedInUser: User = new User();
-  recipient: User = new User();
-  selected: Profile | null = null;
+  loginProfile: Profile|null=null;
+
+  loggedInUser: User = new User ();
+  messages: Message[] = [];
+  sentMessages: Message [] = [];
+  receivedMessages: Message [] = [];
+  selected: Message | null = null;
+  newMessage: Message = new Message();
+  usernames: string[] = [];
+  sendingMessage: boolean = false;
+  viewingInbox: boolean = true;
+  viewingSent: boolean = false;
+  closeResult = '';
+  activeTab: string = 'inbox';
+  messageToDelete: Message = new Message();
+  unreadMessageCount: number = 0;
 
   constructor(
     public messageService: MessageService,
-    private userServ: UserService,
+    private userService: UserService,
     private authService: AuthService,
     private profileService: ProfileService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.messageService.openWebSocket();
+     this.messageService.openWebSocket();
+    this.reload();
 
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
+        console.log(user);
+
         this.loggedInUser = user;
         this.profileService.findByUserId(this.loggedInUser.id).subscribe({
           next: (profile) => {
-            this.selected = profile;
+            this.loginProfile = profile;
           },
           error: (err) => {
             console.error('Error retrieving Profile');
             console.error(err);
-            this.router.navigateByUrl('NotFound');
+            this.router.navigateByUrl('profile');
           },
         });
       },
       error: (err) => {
         console.error('Error retrieving User');
         console.error(err);
-        this.router.navigateByUrl('NotFound');
+
       },
     });
   }
+  //   this.userService.getAllUsernames().subscribe(
+  //     usernames => {
+  //       this.usernames = usernames;
+  //     },
+  //     fail => {
+  //       console.log('Invalid User ');
+  //     }
+  //   );
+  // }
+
+
 
   ngOnDestroy(): void {
     this.messageService.closeWebSocket();
   }
+
+  reload(){
+    this.messageService.index().subscribe(
+      data => {
+        this.messages = data;
+        data.forEach( (message) => {
+          if (message.recipient.id === this.loggedInUser.id) {
+            this.receivedMessages.push(message);
+          }
+          if (message.sender.id === this.loggedInUser.id) {
+            this.sentMessages.push(message);
+          }
+
+          // this.messageService.getMessageCount();
+
+        });
+      },
+      err => {
+        console.error('Error getting messages from service: ' + err);
+      }
+    );
+  }
+
+  displaySingleMessage(message: Message): void {
+    this.selected = message;
+  }
+
+  displayAllMessages(): void {
+    this.selected = null;
+    this.reload();
+  }
+
+  displayNewMessage(): void {
+    this.selected = null;
+    this.sendingMessage = true;
+  }
+
 
   sendMessage(sendForm: NgForm) {
     const chatMessage = new Message(
@@ -66,13 +130,26 @@ export class ChatComponent implements OnInit, OnDestroy {
       sendForm.value.id,
 
     );
-    const recipient = new User(
-      sendForm.value.username,
-      sendForm.value.id
-    );
+
 
     this.messageService.sendMessage(chatMessage);
     console.log(sendForm.value);
   }
+
+  // sendMessage(){
+  //   this.messageService.sendMessage(this.newMessage).subscribe(
+  //     data => {
+  //       this.receivedMessages = [];
+  //       this.sentMessages = [];
+  //       this.reload();
+  //     },
+  //     error =>{
+  //       console.log(error);
+  //       console.log("Error");
+  //     }
+  //   );
+  //   this.newMessage = new Message();
+  // }
+  // }
 
 }

@@ -2,17 +2,17 @@ import { User } from 'src/app/models/user';
 import { Profile } from "./profile";
 
 export class Message {
-id: number = 0;
-content: string = '';
-sender: any = null;
-recipient: any = null;
-sentDate: Date;
+id: number;
+content: string;
+sender: User;
+recipient: User;
+sentDate: String;
 
-constructor(id: number,
+constructor(id: number = 0,
   content: string = '',
-  sender: any = null,
-  recipient: any = null,
-  sentDate: Date
+  sender: User = new User(),
+  recipient:User = new User(),
+  sentDate: string = ''
   )
   {
 this.id = id;
