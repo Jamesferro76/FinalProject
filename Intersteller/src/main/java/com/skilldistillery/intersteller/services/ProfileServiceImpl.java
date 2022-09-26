@@ -229,6 +229,13 @@ public class ProfileServiceImpl implements ProfileService {
 		
 		return profile;
 	}
+
+	@Override
+	public Profile checkFavorited(int id, String name) {
+		Profile profile= profileRepo.findByUserUsername(name);
+		return profileRepo.findByIdAndFavorited(id, profile);
+		
+	}
 	
 	
 	

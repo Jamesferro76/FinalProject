@@ -126,5 +126,11 @@ public class ProfileController {
 		return profileService.addFavorited(id, principal.getName());
 	}
 	
+	@GetMapping("profiles/favorite/check/{id}")
+	public Profile checkFavorited(@PathVariable int id, Principal principal) {
+		System.out.println(principal.getName());
+		return profileService.checkFavorited(id, principal.getName());
+	}
+	
 
 }

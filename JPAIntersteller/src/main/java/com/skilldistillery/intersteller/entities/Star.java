@@ -13,17 +13,29 @@ import javax.persistence.MapsId;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Star {
 	
 	@EmbeddedId
 	private StarId id;
 	
+	@JsonIgnoreProperties({"favorited", "favoriter", "birthday","sex",
+		"age", "description", "firstName", "lastName", "user",
+		"address", "profilePic", "active", "createdOn",
+		"updatedOn", "preferences", "images", "mixers", "mixersAttending",
+		"matchers", "matcheds", "blocked", "profileAnswers", "categories"})
 	@ManyToOne
 	@JoinColumn(name="matcher_id")
 	@MapsId(value="matcherId")
 	private Profile matcher;
 	
+	@JsonIgnoreProperties({"favorited", "favoriter", "birthday","sex",
+		"age", "description", "firstName", "lastName", "user",
+		"address", "profilePic", "active", "createdOn",
+		"updatedOn", "preferences", "images", "mixers", "mixersAttending",
+		"matchers", "matcheds", "blocked", "profileAnswers", "categories"})
 	@ManyToOne
 	@JoinColumn(name="matched_id")
 	@MapsId(value="matchedId")
@@ -35,6 +47,11 @@ public class Star {
 	
 	private boolean blocked;
 	
+	@JsonIgnoreProperties({"favorited", "favoriter", "birthday", "sex",
+		"age", "description", "firstName", "lastName", "user",
+		"address", "profilePic", "active", "createdOn",
+		"updatedOn", "preferences", "images", "mixers", "mixersAttending",
+		"matchers", "matcheds", "blocked", "profileAnswers", "categories"})
 	@ManyToOne
 	@JoinColumn(name="blocked_by_id")
 	private Profile blockedBy;

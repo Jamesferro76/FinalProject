@@ -32,4 +32,6 @@ public interface ProfileService {
 	
 	Profile addFavorited(int id, String username);
 
+	Profile checkFavorited(int id, String name);
+
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.intersteller.entities.Profile;
 import com.skilldistillery.intersteller.entities.Star;
+import com.skilldistillery.intersteller.entities.StarId;
 import com.skilldistillery.intersteller.entities.User;
 import com.skilldistillery.intersteller.repositories.ProfileRepository;
 import com.skilldistillery.intersteller.repositories.StarRepository;
@@ -28,14 +29,16 @@ public class StarServiceImpl implements StarService {
 
 	@Override
 	public Star create(String name, Star star) {
-		User user = userRepo.findByUsername(name);
-		if(user!=null) {
-			Profile profile= profileRepo.findByUser(user);
-			if(profile!=null) {
+		Profile profile = profileRepo.findByUserUsername(name);
+		System.out.println("Above if statement in create");
+			if(profile.getId()==star.getMatched().getId()||profile.getId()==star.getMatcher().getId()) {
+				
+				StarId starId= new StarId(star.getMatched().getId(), star.getMatcher().getId());
+				star.setId(starId);
+				System.out.println("Inside if statement in create");
 				
 				return starRepo.saveAndFlush(star);
 			}
-		}
 		return null;
 	}
 

@@ -39,7 +39,7 @@ public class StarController {
 	}
 	
 	@PostMapping("stars")
-	public Star createImage(@RequestBody Star star, HttpServletRequest req, HttpServletResponse res, Principal principal) {
+	public Star createStar(@RequestBody Star star, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		Star created = null;
 		
 		try {
@@ -47,7 +47,7 @@ public class StarController {
 			res.setStatus(201);
 		}catch(Exception e) {
 			e.printStackTrace();
-			res.setStatus(400);
+			res.setStatus(401);
 		}
 		return created;
 	}

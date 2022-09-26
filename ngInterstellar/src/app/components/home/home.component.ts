@@ -6,6 +6,8 @@ import { Image } from 'src/app/models/image';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { ProfileService } from 'src/app/services/profile.service';
+import { StarService } from 'src/app/services/star.service';
+import { Star } from 'src/app/models/star';
 
 @Component({
   selector: 'app-home',
@@ -27,10 +29,12 @@ export class HomeComponent implements OnInit {
 
   randomProfiles: Profile[]=[];
 
+  star: Star= new Star();
+
   defaultImageUrl: string="https://s3.envato.com/files/158241052/1.jpg";
 
 
-  constructor(private userServ: UserService, private profileService: ProfileService, private auth: AuthService, private router: Router) { }
+  constructor(private userServ: UserService, private starService: StarService, private profileService: ProfileService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.findAllProfiles()
@@ -155,6 +159,7 @@ export class HomeComponent implements OnInit {
 
     if(this.loginProfile&&this.selected){
       console.log(this.loginProfile);
+      console.log(this.loggedInUser)
       console.log(this.loginProfile.favorited);
       if(!this.loginProfile.favorited){
         this.loginProfile.favorited=[];
@@ -162,7 +167,7 @@ export class HomeComponent implements OnInit {
       // this.loginProfile.favorited.push(this.selected);
       this.loginProfile=this.updateProfile(this.selected.id);
 
-      // this.checkForMatch();
+      this.checkForMatch();
       this.selectRandomProfile();
     }else{
       console.log("this.loginProfile"+this.loginProfile);
@@ -175,12 +180,37 @@ export class HomeComponent implements OnInit {
     console.log("You made it to checkForMatch. This doesn't work yet");
 
     if(this.loginProfile&&this.selected){
-    const match= this.selected.favorited.find(fav=>fav==this.loginProfile);
-    if(match){
-        //create a match and maybe update both people with a match
-    }
+
+      this.profileService.checkFavorited(this.selected.id).subscribe({
+        next: (result) => {
+          console.log(result);
+          if(this.loginProfile&&this.selected){
+            this.star.matcher=this.loginProfile;
+          this.star.matched=this.selected;
+            this.createStar();
+          }
+        },
+        error: (err) => {
+          console.error('Error checkForMatch');
+          console.error(err);
+        },
+      });
     }
   }
+
+    createStar(){
+        this.starService.create(this.star).subscribe({
+          next: (result) => {
+            //Make a message pop up that you have a match
+            console.log(result);
+          },
+          error: (err) => {
+            console.error('Error creating match');
+            console.error(err);
+          },
+        });
+    }
+
 
   getLogginProfile(){
     console.log("In getLogginProfile");
