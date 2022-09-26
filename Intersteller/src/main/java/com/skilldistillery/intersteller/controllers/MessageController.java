@@ -28,7 +28,7 @@ public class MessageController {
 	@Autowired
 	MessagingService messageService;
 
-	@GetMapping("chat")
+	@GetMapping("ichat")
 	public List<Message> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		List<Message> myMessages = 	messageService.index(principal.getName(), principal.getName());	
 		if(myMessages == null) {
@@ -38,19 +38,19 @@ public class MessageController {
 		return myMessages;
 	}
 
-	@GetMapping("chat/{userId}")
+	@GetMapping("ichat/{userId}")
 	public List<Message> chatLog(HttpServletRequest req, HttpServletResponse res, Principal principal,
 			@PathVariable int userId) {
 		return messageService.show(principal.getName(), principal.getName(), userId);
 	}
 	
-	@GetMapping("chat/history/{recipient}")
+	@GetMapping("ichat/history/{recipient}")
 	public List<Message> chatHistory(HttpServletRequest req, HttpServletResponse res, Principal principal,
 			@PathVariable String recipient) {
 		return messageService.chatHistory(principal.getName(), recipient);
 	}
 
-	@PostMapping("chat/{recipient}")
+	@PostMapping("ichat")
 	public Message create(HttpServletRequest req, HttpServletResponse res, @PathVariable String recipient, @RequestBody Message message,
 			Principal principal) {
 		Message msg = null;

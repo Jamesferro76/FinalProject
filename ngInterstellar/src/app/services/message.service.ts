@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { catchError, throwError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Message } from '../models/message';
 import { User } from '../models/user';
@@ -17,6 +17,14 @@ export class MessageService {
   private url = environment.baseUrl + 'api/chat';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
+
+
+
+
+
+
+
+
 
   public openWebSocket() {
     this.webSocket = new WebSocket('ws://localhost:8090/chat');
@@ -54,7 +62,7 @@ export class MessageService {
     );
   }
 
-  public create(message: Message) {
+  create(message: Message): Observable<Message> {
     console.log(message.recipient.username);
     this.webSocket.send(JSON.stringify(message));
 
@@ -69,8 +77,10 @@ export class MessageService {
           console.log(message.content);
           console.log(err);
 
-          return throwError(`Error creating message:` + err);
-        })
+          return throwError(
+            () => new Error('Blah blah blah' + err)
+          );
+          })
       );
   }
 

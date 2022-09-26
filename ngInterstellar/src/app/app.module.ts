@@ -14,6 +14,7 @@ import { ProfileService } from './services/profile.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { InterChatComponent } from './inter-chat/inter-chat.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ChatComponent } from './components/chat/chat.component';
     NotFoundComponent,
     NavigationComponent,
     ChatComponent,
+    InterChatComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthService, MixerService, ProfileService, UserService],
