@@ -159,14 +159,10 @@ export class HomeComponent implements OnInit {
       if(!this.loginProfile.favorited){
         this.loginProfile.favorited=[];
       }
-      this.loginProfile.favorited.push(this.selected);
-      this.loginProfile=this.updateProfile(this.loginProfile);
-      if(!this.selected.favoriter){
-        this.selected.favoriter=[];
-      }
-      this.selected.favoriter.push(this.loginProfile);
-      this.selected=this.updateProfile(this.selected);
-      this.checkForMatch();
+      // this.loginProfile.favorited.push(this.selected);
+      this.loginProfile=this.updateProfile(this.selected.id);
+
+      // this.checkForMatch();
       this.selectRandomProfile();
     }else{
       console.log("this.loginProfile"+this.loginProfile);
@@ -179,7 +175,7 @@ export class HomeComponent implements OnInit {
     console.log("You made it to checkForMatch. This doesn't work yet");
 
     if(this.loginProfile&&this.selected){
-    const match= this.loginProfile.favoriter.find(fav=>fav==this.selected);
+    const match= this.selected.favorited.find(fav=>fav==this.loginProfile);
     if(match){
         //create a match and maybe update both people with a match
     }
@@ -206,8 +202,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  updateProfile(updateProfile:Profile){
-    this.profileService.updateProfile(updateProfile).subscribe({
+  updateProfile(likedProfileId: number){
+    console.log("In updateProfile likedProfileId"+likedProfileId);
+
+    this.profileService.addFavorited(likedProfileId).subscribe({
       next: (result) => {
         return result;
       },
@@ -216,10 +214,10 @@ export class HomeComponent implements OnInit {
           'HomeComponent.UpdateProfile(): error Updating Profile: '
           );
           console.error(err);
-          return updateProfile;
+          return this.loginProfile;
       },
     });
-    return updateProfile;
+    return this.loginProfile;
   }
 
 

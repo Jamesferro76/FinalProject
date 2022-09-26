@@ -87,7 +87,7 @@ public class ProfileServiceImpl implements ProfileService {
 				if(profile.getAddress()!=null) {
 					existing.setAddress(profile.getAddress());
 				}
-				if(profile.getProfilePic()!=null||!profile.getProfilePic().equals("")) {
+				if(profile.getProfilePic()!=null&&!profile.getProfilePic().equals("")) {
 					existing.setProfilePic(profile.getProfilePic());
 				}
 				existing.setImages(profile.getImages());
@@ -104,6 +104,9 @@ public class ProfileServiceImpl implements ProfileService {
 					existing.setImages(images);
 				}
 				
+				System.out.println(profile.getFavorited().get(0));
+				
+				existing.setFavorited(profile.getFavorited());
 				profileRepo.save(existing);
 				return existing;
 			 }else {
@@ -208,6 +211,21 @@ public class ProfileServiceImpl implements ProfileService {
 			 user=userOpt.get();
 		 }		
 		 Profile profile=profileRepo.findByUser(user);
+		
+		return profile;
+	}
+
+	@Override
+	public Profile addFavorited(int id, String username) {
+		
+		Profile profile= profileRepo.findByUserUsername(username);
+		Optional<Profile> liked= profileRepo.findById(id);
+		if(liked.isPresent()) {
+			Profile likedProfile=liked.get();
+//			likedProfile.getFavoriter().add(profile);
+			profile.getFavorited().add(likedProfile);
+			profileRepo.save(profile);
+		}
 		
 		return profile;
 	}

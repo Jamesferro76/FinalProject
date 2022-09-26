@@ -22,6 +22,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Profile {
@@ -104,7 +105,7 @@ public class Profile {
 	  @OneToMany(mappedBy="blockedBy")
 	  private List<Star> blocked;
 
-	  @JsonIgnore
+	  @JsonIgnoreProperties({"favorited", "favoriter"})
 	  @ManyToMany
 	  @JoinTable(name="favorite", 
 	  joinColumns={@JoinColumn(name="profile_id")}, 

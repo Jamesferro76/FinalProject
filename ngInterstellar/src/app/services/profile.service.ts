@@ -101,6 +101,17 @@ export class ProfileService {
       );
     }
 
+    addFavorited(likedProfileId: number){
+      return this.http.get<Profile>(this.url+"/favorite/"+likedProfileId, this.getHttpOptions()).pipe(
+        catchError((err: any) => {
+          console.error(err);
+          return throwError(
+             () => new Error( 'ProfileService.addFavorited(): error adding favorited: ' + err )
+          );
+        })
+      );
+    }
+
 
 
 }

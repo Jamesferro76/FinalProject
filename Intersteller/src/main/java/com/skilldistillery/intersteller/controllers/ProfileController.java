@@ -120,5 +120,11 @@ public class ProfileController {
 		return profileService.findByUser(id);
 	}
 	
+	@GetMapping("profiles/favorite/{id}")
+	public Profile addFavorited(@PathVariable int id, Principal principal) {
+		System.out.println(principal.getName());
+		return profileService.addFavorited(id, principal.getName());
+	}
+	
 
 }

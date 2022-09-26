@@ -27,4 +27,6 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 			int min, int max);
 
 	Profile findByUser(User user);
+
+	Profile findByUserUsername(String username);
 }
