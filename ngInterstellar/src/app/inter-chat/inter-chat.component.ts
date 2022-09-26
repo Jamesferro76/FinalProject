@@ -3,7 +3,7 @@ import { ProfileService } from './../services/profile.service';
 import { Message } from 'src/app/models/message';
 import { ChatService } from './../services/chat.service';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
@@ -14,20 +14,27 @@ import { Profile } from '../models/profile';
   templateUrl: './inter-chat.component.html',
   styleUrls: ['./inter-chat.component.css']
 })
-export class InterChatComponent implements OnInit, OnDestroy {
+export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
+  @ViewChild('scrollBottom')
+  private scrollBottom!: ElementRef;
 
-loginProfile: Profile|null=null;
+loginProfile: Profile = new Profile();
 
-loggedInUser: User|null=null;
+loggedInUser: User = new User();
 
-selected: Message | null = null;
+selected: User | null = null;
 
 sent: Message | null = null;
 
 newMessage = new Message();
 
-messages: Message[]=[];
+chatHistory: Message [] =[];
+
+
+
 ChatService: any;
+
+msg ='';
 
 
 
@@ -42,6 +49,26 @@ ChatService: any;
     ) { }
 
 
+    ngAfterViewChecked() {
+      this.scrollToBottom();
+     }
+
+     scrollToBottom(): void {
+         try {
+             this.scrollBottom.nativeElement.scrollTop = this.scrollBottom.nativeElement.scrollHeight;
+         } catch(err) { }
+     }
+
+     handleKeyUp(e: { keyCode: number; }){
+      if(e.keyCode === 13){
+         this.handleSubmit(e);
+      }
+   }
+
+   handleSubmit(e: { keyCode?: number; preventDefault?: any; }){
+    e.preventDefault();
+    alert(this.msg);
+  }
 
 
   ngOnInit(): void {
@@ -49,10 +76,17 @@ ChatService: any;
 
     this.reload();
 
+    this.scrollToBottom();
+
   }
 
   ngOnDestroy(): void {
     this.chatService.closeWebSocket();
+
+  }
+
+  display():void{
+    this.chatLog();
   }
 
 
@@ -62,16 +96,6 @@ ChatService: any;
         console.log(user);
 
         this.loggedInUser = user;
-        this.profileService.findByUserId(this.loggedInUser.id).subscribe({
-          next: (profile) => {
-            this.loginProfile = profile;
-          },
-          error: (err) => {
-            console.error('Error retrieving Profile');
-            console.error(err);
-            this.router.navigateByUrl('profile');
-          },
-        });
       },
       error: (err) => {
         console.error('Error retrieving User');
@@ -80,27 +104,42 @@ ChatService: any;
       },
     });
 
-    this.chatService.index().subscribe({
-      next: (messages) => {
-        this.messages = messages;
-      },
-      error: (prob) => {
-        console.error('InterChatComponet.reload(): error loading messages');
-        console.error(prob);
-      }
-    })
+  }
+
+  chatLog(){
+if(this.selected != null){
+
+  this.chatService.index(this.selected).subscribe({
+    next: (messages) => {
+      this.chatHistory = messages;
+      console.log('component.ts' + this.chatHistory);
+
+    },
+    error: (prob) => {
+      console.error('InterChatComponet.reload(): error loading messages');
+      console.error(prob);
+    }
+  });
+}
   }
 
 
 
   addMessage(){
+    this.newMessage.sender = this.loggedInUser;
+    console.log('sender:' + this.loggedInUser.username)
+    console.log('content:' + this.newMessage.content)
+
+    if(this.selected != null){
+      this.newMessage.recipient= this.selected;
+      console.log('recipient:' + this.selected.username)
+    }
+
+
     this.chatService.create(this.newMessage).subscribe({
       next: (result) => {
         console.log(result)
-        const newMessage = new Message();
-        this.messages = [];
-        this.messages.push(newMessage);
-        this.reload();
+        this.display();
       },
       error: (prob) => {
         console.error('ChatComponent.addMessage(): error sending message:');

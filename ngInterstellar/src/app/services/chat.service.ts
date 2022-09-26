@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
@@ -12,6 +13,7 @@ export class ChatService {
 
   webSocket!: WebSocket;
   imessages: Message[] = [];
+  imessage = new Message();
 
   private bUrl = environment.baseUrl;
   private url = environment.baseUrl + 'api/ichat';
@@ -22,12 +24,15 @@ export class ChatService {
 
 
 
-  index() {
-    return this.http.get<Message[]>(this.url).pipe(
+  index(user: User) {
+    console.log(this.imessages);
+console.log(user.username);
+
+    return this.http.get<Message[]>(this.url + '/history/' + user.username,  this.getHttpOptions() ).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(
-           () => new Error( 'TodoService.create(): error creating Todo: ' + err )
+           () => new Error( 'ChatService.index(): error retrieving chat log: ' + err )
         );
       })
     );
@@ -37,9 +42,9 @@ export class ChatService {
 
 create(imessage: Message):Observable<Message>{
   // this.webSocket.send(JSON.stringify(message));
-  console.log(imessage.content);
-  console.log(imessage.sender.username);
-  return this.http.post<Message>(this.url, imessage).pipe(
+  // console.log(imessage.content);
+  // console.log(imessage.sender.username);
+  return this.http.post<Message>(this.url + '/' + imessage.recipient.username, imessage,  this.getHttpOptions()).pipe(
     catchError((err: any)  => {
       console.error(err);
 

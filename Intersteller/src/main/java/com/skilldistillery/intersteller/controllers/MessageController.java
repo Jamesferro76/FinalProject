@@ -50,7 +50,7 @@ public class MessageController {
 		return messageService.chatHistory(principal.getName(), recipient);
 	}
 
-	@PostMapping("ichat")
+	@PostMapping("ichat/{recipient}")
 	public Message create(HttpServletRequest req, HttpServletResponse res, @PathVariable String recipient, @RequestBody Message message,
 			Principal principal) {
 		Message msg = null;

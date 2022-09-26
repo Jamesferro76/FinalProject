@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Message {
 
@@ -30,10 +32,12 @@ public class Message {
 	private Date sendDate;
 
 	@ManyToOne
+	@JsonIgnoreProperties({ "messagesSent", "messagesReceived" })
 	@JoinColumn(name = "message_from")
 	private User sender;
 
 	@ManyToOne
+	@JsonIgnoreProperties({ "messagesSent", "messagesReceived" })
 	@JoinColumn(name = "message_to")
 	private User recipient;
 
@@ -130,7 +134,5 @@ public class Message {
 		builder.append("]");
 		return builder.toString();
 	}
-
-	
 
 }

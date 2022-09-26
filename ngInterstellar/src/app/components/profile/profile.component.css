@@ -155,3 +155,76 @@ a:hover {
 .round {
   border-radius: 50%;
 }
+
+
+.topLeft{
+  position: absolute;
+  left:0px;
+  top: 30px;
+  width: 250px;
+  border: 1px solid black;
+  padding:  12px;
+  padding-bottom: 10px;
+}
+
+.upperLeft{
+  position: absolute;
+  left:0px;
+  top: 360px;
+  width: 250px;
+  border: 1px solid black;
+  padding:  12px;
+}
+
+.midLeft{
+  position: absolute;
+  left:0px;
+  top: 630px;
+  width: 250px;
+  border: 1px solid black;
+  padding:  12px;
+}
+
+
+.topRight{
+  position: absolute;
+  top: 30px;
+  right:0px;
+  width: 250px;
+  border: 1px solid black;
+  padding:  12px;
+}
+
+.upperRight{
+  position: absolute;
+  right:0px;
+  top: 280px;
+  width: 250px;
+  border: 1px solid black;
+  padding:  12px;
+}
+
+.midRight{
+  position: absolute;
+  right:0px;
+  top: 370px;
+  width: 250px;
+  border: 1px solid black;
+  padding:  12px;
+}
+
+.bottomCenter{
+  position:absolute;
+align-items: center;
+justify-content: center;
+  top: 700px;
+  width: 700px;
+  border: 1px solid black;
+  padding:  12px;
+}
+
+
+
+.pfp{
+  width:200px
+}

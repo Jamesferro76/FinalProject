@@ -1,3 +1,5 @@
+import { Profile } from "./profile";
+
 export class User {
   id: number = 0;
   username: string = '';
@@ -5,6 +7,11 @@ export class User {
   email: string = '';
   role: string = '';
   active: boolean = true;
+  profile: Profile = new Profile();
+  messagesSent: any[];
+  messagesReceived: any[];
+
+
 
   constructor(
     id: number = 0,
@@ -12,7 +19,11 @@ export class User {
     password: string = '',
     email: string = '',
     role: string = '',
-    active: boolean = true
+    active: boolean = true,
+    profile: Profile = new Profile(),
+    messagesSent: any[] = [],
+    messagesReceived: any[] = []
+
 
   ) {
     this.id = id;
@@ -21,6 +32,9 @@ export class User {
     this.email = email;
     this.role = role;
     this.active = active;
+    this.profile = profile;
+    this.messagesSent = messagesSent;
+    this.messagesReceived = messagesReceived;
   }
 }
 

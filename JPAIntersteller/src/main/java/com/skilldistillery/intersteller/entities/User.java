@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -28,11 +29,9 @@ public class User {
 	  @OneToMany(mappedBy="user")
 	  private List<Profile> profiles;
 	  
-	  @JsonIgnore
 	  @OneToMany(mappedBy="sender")
 	  private List<Message> messagesSent;
 
-	  @JsonIgnore
 	  @OneToMany(mappedBy="recipient")
 	  private List<Message> messagesReceived;
 

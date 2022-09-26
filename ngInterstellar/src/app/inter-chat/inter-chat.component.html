@@ -1,30 +1,70 @@
+
+
+
 <body>
 
+  <div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
+ 					<div class="card-header">
+             <h2>Matches</h2>
+					</div>
+					<div class="card-body contacts_body">
+						<ul class="contacts"  id="usersList">
+              <!-- <li class="list-group-item" *ngFor="let match of loginProfile.matcheds">
+                <strong>{{match.profile.user.username}}</strong>
+              </li> -->
+              <li class="list-group-item" *ngFor="let message of loggedInUser.messagesReceived" (click)="display();selected = message.sender">
+                <strong>{{message.sender.username}}</strong>
+              </li>
+						</ul>
+					</div>
+
+				</div>
+				</div>
 
 
-  <main class="chat">
-    <div class="container" >
-    <div class="chat-content">
-      <div class="card">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let message of chatService.imessages">
-            <strong>{{message.sender.username}}:</strong>
+
+        <main class="chat" *ngIf="selected">
+          <div class="container-fluid h-100" >
+      <form>
+        <div class="chat-content">
+          <div class="card" >
+        <div class="card-header">
+          <h2>Your chat with {{selected.username}}</h2>
+       </div>
+        <ul class="list-group list-group-flush" #scrollBottom>
+          <li class="list-group-item" *ngFor="let message of chatHistory">
+            <div *ngIf="loggedInUser.username == message.sender.username" class="alignRight">
+            <strong class="myText">You:</strong> <br>
             <span>{{message.content}}</span>
+            </div>
+            <div *ngIf="loggedInUser.username != message.sender.username">
+              <strong class="myText">{{message.sender.username}}:</strong> <br>
+              <span>{{message.content}}</span>
+              </div>
           </li>
+          <!-- <li class="list-group-item" *ngFor="let message of loggedInUser.messagesSent">
+            <div *ngIf="message.recipient.username == selected.username">
+              <strong>{{message.sender.username}}:</strong>
+              <span>{{message.content}}</span>
+            </div>
+          </li> -->
         </ul>
+
       </div>
+      <div id="anchor"></div>
     </div>
-    <form (ngSubmit)="addMessage()"  >
       <div class="chat-send row">
         <div class="col-2">
-          <input type="hidden" class="form-control" name="sender" id="input-user" ngModel="{{loggedInUser?.username}}">
+          <input type="hidden" class="form-control" name="sender" id="input-user" [(ngModel)]="newMessage.sender">
         </div>
         <div class="col-8">
-          <input type="text" class="form-control" name="content" id="input-message" ngModel>
-
+          <input type="hidden" class="form-control" name="recipient" id="input-message" [(ngModel)]="selected.username" >
+        </div>
+        <div class="col-8">
+          <input class="form-control" name="content" placeholder="Type your message..." id="input-message"  [(ngModel)]="newMessage.content">
         </div>
         <div class="col-2">
-          <button type="submit" class="btn btn-primary">Send</button>
+          <button type="submit" class="btn btn-primary" (click)="addMessage()">Send</button>
         </div>
       </div>
     </form>

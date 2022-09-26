@@ -2,6 +2,7 @@ import { User } from 'src/app/models/user';
 import { Profile } from "./profile";
 
 export class Message {
+[x: string]: any;
 id: number;
 content: string;
 sender: User;
