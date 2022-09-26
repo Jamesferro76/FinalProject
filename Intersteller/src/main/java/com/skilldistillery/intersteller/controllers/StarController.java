@@ -33,6 +33,11 @@ public class StarController {
 		return starService.findByUser(principal.getName());
 	}
 	
+	@GetMapping("stars/{id}")
+	public Star findSpecificStar(@PathVariable int id,Principal principal){
+		return starService.findSpecificStar(id, principal.getName());
+	}
+	
 	@PostMapping("stars")
 	public Star createImage(@RequestBody Star star, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		Star created = null;

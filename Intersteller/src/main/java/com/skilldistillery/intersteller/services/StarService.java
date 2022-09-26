@@ -11,7 +11,7 @@ public interface StarService {
 
 	List<Profile> findByUser(String username);
 
-	Star findById(int id);
+	Star findSpecificStar(int id, String username);
 
 	boolean destroy(String username, int id);
    

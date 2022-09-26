@@ -41,11 +41,23 @@ public class StarServiceImpl implements StarService {
 
 
 	@Override
-	public Star findById(int id) {
+	public Star findSpecificStar(int id, String username) {
 		Star star=null;
-		Optional<Star> starOpt= starRepo.findById(id);
+		
+		Profile profile1= profileRepo.findByUserUsername(username);
+		Optional<Profile> profile2Opt= profileRepo.findById(id);
+		if(profile2Opt.isPresent()) {
+			Profile profile2=profile2Opt.get();
+		Optional<Star> starOpt= starRepo.findByMatcherAndMatched(profile1, profile2);
 		if(starOpt.isPresent()) {
 			star=starOpt.get();
+			return star;
+		}
+		starOpt= starRepo.findByMatcherAndMatched(profile2, profile1);
+		if(starOpt.isPresent()) {
+			star=starOpt.get();
+			return star;
+		}
 		}
 		return star;
 	}
