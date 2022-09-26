@@ -50,6 +50,8 @@ export class ProfileComponent implements OnInit {
   locationEdit: boolean = false;
   picsEdit: boolean = false;
 
+  defaultImageUrl: string="https://s3.envato.com/files/158241052/1.jpg";
+
   selectedPrefs = [false, false, false, false, false];
 
   constructor(
@@ -72,6 +74,13 @@ export class ProfileComponent implements OnInit {
         this.loggedInUser = user;
         this.profileService.findByUserId(this.loggedInUser.id).subscribe({
           next: (profile) => {
+            if(!profile.profilePic){
+              profile.profilePic=this.defaultImageUrl;
+            }
+            if(profile.images.length<1){
+                profile.images.push(new Image(0, profile.profilePic));
+            }
+
             this.selected = profile;
             this.editProfile= profile;
             this.displayProfilePage();
