@@ -115,7 +115,6 @@ public class ProfileServiceImpl implements ProfileService {
 					existing.setImages(images);
 				}
 				
-				System.out.println(profile.getFavorited().get(0));
 				
 				existing.setFavorited(profile.getFavorited());
 				profileRepo.save(existing);
