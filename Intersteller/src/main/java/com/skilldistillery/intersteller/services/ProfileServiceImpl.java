@@ -32,7 +32,18 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public List<Profile> findAll(String username) {
-		return profileRepo.findAll();
+		List<Profile> profiles= profileRepo.findAll();
+		Profile prof = profileRepo.findByUserUsername(username);
+		List<Profile> likedProfiles= prof.getFavorited();
+		profiles.remove(prof);
+		for(Profile pro: likedProfiles) {
+			if(profiles.contains(pro)) {
+				profiles.remove(pro);
+			}
+			
+		}
+		
+		return profiles;
 	}
 	
 	@Override

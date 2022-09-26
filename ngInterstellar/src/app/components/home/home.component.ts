@@ -31,6 +31,8 @@ export class HomeComponent implements OnInit {
 
   star: Star= new Star();
 
+  profileIndex:number=0;
+
   defaultImageUrl: string="https://s3.envato.com/files/158241052/1.jpg";
 
 
@@ -145,7 +147,8 @@ export class HomeComponent implements OnInit {
   }
 
   selectRandomProfile(){
-    this.selected=this.randomProfiles[Math.floor(Math.random()*this.randomProfiles.length)];
+    this.profileIndex=Math.floor(Math.random()*this.randomProfiles.length);
+    this.selected=this.randomProfiles[this.profileIndex];
     if(!this.selected.profilePic){
       this.selected.profilePic=this.defaultImageUrl;
     }
@@ -168,7 +171,9 @@ export class HomeComponent implements OnInit {
       this.loginProfile=this.updateProfile(this.selected.id);
 
       this.checkForMatch();
+      this.randomProfiles.splice(this.profileIndex, 1);
       this.selectRandomProfile();
+
     }else{
       console.log("this.loginProfile"+this.loginProfile);
       console.log("this.selected"+this.selected);

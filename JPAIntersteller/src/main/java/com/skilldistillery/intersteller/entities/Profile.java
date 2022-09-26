@@ -105,7 +105,11 @@ public class Profile {
 	  @OneToMany(mappedBy="blockedBy")
 	  private List<Star> blocked;
 
-	  @JsonIgnoreProperties({"favorited", "favoriter"})
+	  @JsonIgnoreProperties({"favorited", "favoriter", "birthday","sex",
+			"age", "description", "firstName", "lastName", "user",
+			"address", "profilePic", "active", "createdOn",
+			"updatedOn", "preferences", "images", "mixers", "mixersAttending",
+			"matchers", "matcheds", "blocked", "profileAnswers", "categories"})
 	  @ManyToMany
 	  @JoinTable(name="favorite", 
 	  joinColumns={@JoinColumn(name="profile_id")}, 
