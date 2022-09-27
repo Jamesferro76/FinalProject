@@ -246,6 +246,14 @@ public class ProfileServiceImpl implements ProfileService {
 		
 	}
 	
+	public User findUserByProfile(int id) {
+		Profile profile=null;
+		Optional<Profile> profileOpt= profileRepo.findById(id);
+		if(profileOpt.isPresent())
+			profile=profileOpt.get();
+		return profile.getUser();
+	}
+	
 	
 	
 	
