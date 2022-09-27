@@ -45,7 +45,7 @@ public class Star {
 	@Column(name="matched_on")
 	private LocalDateTime matchedOn;
 	
-	private boolean blocked;
+	private Boolean blocked;
 	
 	@JsonIgnoreProperties({"favorited", "favoriter", "birthday", "sex",
 		"age", "description", "firstName", "lastName", "user",
