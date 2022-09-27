@@ -19,6 +19,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { SearchComponent } from './components/search/search.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
+import { ContactPageComponent } from './components/contact-page/contact-page.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
     SearchComponent,
     ContactComponent,
     ViewProfileComponent,
+    ContactPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthService, MixerService, ProfileService, UserService],
