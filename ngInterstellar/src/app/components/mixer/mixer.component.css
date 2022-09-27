@@ -79,6 +79,7 @@ body{
   height: 135px;
   width: 300px;
   overflow-y: hidden;
+  white-space: normal;
 }
 
 .flip-box p{

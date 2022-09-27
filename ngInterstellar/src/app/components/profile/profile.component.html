@@ -219,37 +219,37 @@
 <div *ngIf="!sexualityEdit&&locationEdit&&editProfile">
   <form action="createProfile">
 
-    <Label for="sex" *ngIf="newAddress.street==''" class="red=letters">Street:</Label>
+    <Label for="sex" *ngIf="newAddress.street==''" class="red-letters">Street:</Label>
       <Label for="sex" *ngIf="newAddress.street!=''">Street:</Label>
-        Street:<input
+        <input
         type="text"
         name="street"
         [(ngModel)]="newAddress.street"
       /><br />
 
-      <Label for="sex" *ngIf="newAddress.city==''" class="red=letters">City:</Label>
+      <Label for="sex" *ngIf="newAddress.city==''" class="red-letters">City:</Label>
       <Label for="sex" *ngIf="newAddress.city!=''">City:</Label>
-        city:<input
+        <input
         type="text"
         name="city"
         [(ngModel)]="newAddress.city"
       /><br />
 
-    <Label for="sex" *ngIf="newAddress.state==''" class="red=letters">State:</Label>
+    <Label for="sex" *ngIf="newAddress.state==''" class="red-letters">State:</Label>
     <Label for="sex" *ngIf="newAddress.state!=''">State:</Label>
       <select name="state" [(ngModel)]="newAddress.state">
           <option *ngFor="let state of stateAbr" value="{{state}}">{{state}}</option>
         </select>
         <br/>
 
-        <Label for="sex" *ngIf="newAddress.zip==''" class="red=letters">Zip:</Label>
+        <Label for="sex" *ngIf="newAddress.zip==''" class="red-letters">Zip:</Label>
       <Label for="sex" *ngIf="newAddress.zip!=''">Zip:</Label>
         <input
         type="text"
         name="zip"
         [(ngModel)]="newAddress.zip"
       /><br />
-      <Label for="sex" *ngIf="newAddress.country==''" class="red=letters">Country:</Label>
+      <Label for="sex" *ngIf="newAddress.country==''" class="red-letters">Country:</Label>
       <Label for="sex" *ngIf="newAddress.country!=''">Country:</Label>
         <input
         type="text"
@@ -265,7 +265,7 @@
 
 <div *ngIf="!locationEdit&&picsEdit&&editProfile">
   <img [src]="editProfile.profilePic" />
-  <Label for="sex" *ngIf="editProfile.profilePic==''" class="red=letters">Profile Pic:</Label>
+  <Label for="sex" *ngIf="editProfile.profilePic==''" class="red-letters">Profile Pic:</Label>
   <Label for="sex" *ngIf="editProfile.profilePic!=''">Profile Pic:</Label>
   <input
   type="text"
