@@ -33,13 +33,14 @@ export class HomeComponent implements OnInit {
 
   profileIndex:number=0;
 
+  outOfMatches: boolean=false;
+
   defaultImageUrl: string="https://s3.envato.com/files/158241052/1.jpg";
 
 
   constructor(private userServ: UserService, private starService: StarService, private profileService: ProfileService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.findAllProfiles()
     this.auth.getLoggedInUser().subscribe({
       next: (user) => {
         console.log(user);
@@ -48,6 +49,7 @@ export class HomeComponent implements OnInit {
         this.profileService.findByUserId(this.loggedInUser.id).subscribe({
           next: (profile) => {
             this.loginProfile = profile;
+            this.findAllProfiles();
           },
           error: (err) => {
             console.error('Error retrieving Profile');
@@ -103,7 +105,8 @@ export class HomeComponent implements OnInit {
       next: (loggedInUser: any) => {
         this.loggedInUser=loggedInUser
         console.log(loggedInUser);
-        this.router.navigateByUrl('home');
+        this.ngOnInit()
+        // this.router.navigateByUrl('home');
       },
       error: (problem: any) => {
         console.error('LoginComponent.login(): Error logging in user:');
@@ -137,6 +140,9 @@ export class HomeComponent implements OnInit {
     this.profileService.findAll().subscribe({
       next: (profiles) => {
         this.randomProfiles=profiles
+        if(this.randomProfiles.length>0){
+          this.outOfMatches=false;
+        }
         this.selectRandomProfile();
       },
       error: (problem: any) => {
@@ -147,6 +153,7 @@ export class HomeComponent implements OnInit {
   }
 
   selectRandomProfile(){
+    if(this.randomProfiles.length>0){
     this.profileIndex=Math.floor(Math.random()*this.randomProfiles.length);
     this.selected=this.randomProfiles[this.profileIndex];
     if(!this.selected.profilePic){
@@ -155,29 +162,43 @@ export class HomeComponent implements OnInit {
     if(this.selected.images.length<1){
         this.selected.images.push(new Image(0, this.selected.profilePic));
     }
+    }else{
+        this.outOfMatches=true;
+    }
+
   }
 
   likedAProfile(){
     console.log("Inside LikeAProfile");
 
     if(this.loginProfile&&this.selected){
-      console.log(this.loginProfile);
-      console.log(this.loggedInUser)
-      console.log(this.loginProfile.favorited);
       if(!this.loginProfile.favorited){
         this.loginProfile.favorited=[];
       }
-      // this.loginProfile.favorited.push(this.selected);
       this.loginProfile=this.updateProfile(this.selected.id);
 
       this.checkForMatch();
       this.randomProfiles.splice(this.profileIndex, 1);
-      this.selectRandomProfile();
+
+      if(this.randomProfiles.length<1){
+        this.findAllProfiles()
+      }else{
+        this.selectRandomProfile();
+      }
 
     }else{
       console.log("this.loginProfile"+this.loginProfile);
       console.log("this.selected"+this.selected);
 
+    }
+  }
+
+  nextAProfile(){
+    this.randomProfiles.splice(this.profileIndex, 1);
+    if(this.randomProfiles.length<1){
+      this.findAllProfiles()
+    }else{
+      this.selectRandomProfile();
     }
   }
 

@@ -47,7 +47,7 @@
   </div>
 </div>
 
-<div *ngIf="loggedIn()" >
+<div *ngIf="loggedIn()&&!outOfMatches" >
 <h2>Start swiping</h2>
 <div *ngIf="selected">
   <div class="container">
@@ -76,8 +76,12 @@
   </div>
   </div>
 
-  <button (click)="selectRandomProfile()">NEXT</button>
+  <button (click)="nextAProfile()">NEXT</button>
   <button (click)="likedAProfile()">LIKE</button>
 
+</div>
+
+<div *ngIf="outOfMatches">
+<h1>Out of matches, check back later to see if anyone likes you back</h1>
 </div>
 
