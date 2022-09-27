@@ -122,4 +122,19 @@ public class UserController {
 		return user;
 	}
 
+	@GetMapping("ichat/profile/{profileId}")
+	public User findByProfile(@PathVariable int profileId, HttpServletRequest req, HttpServletResponse resp,
+			Principal principal) {
+		User user = userServ.findByProfile(profileId);
+
+		if (user != null) {
+			return user;
+		}
+		else {
+			resp.setStatus(404);
+			user = null;
+		}
+		return user;
+	}
+
 }

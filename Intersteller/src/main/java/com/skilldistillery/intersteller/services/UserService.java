@@ -18,4 +18,6 @@ public interface UserService {
 	public boolean destroy(String username,  Integer userId);
 
 	public User findByUsername(String username);
+	
+	public User findByProfile(int profileId);
 }

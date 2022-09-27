@@ -2,24 +2,27 @@
 
 
 <body>
+<div class="container-fluid h-100">
 
-  <div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
+  <div class="col-md-4 col-xl-3 chat">
+    <div class="card mb-sm-3 mb-md-0 contacts_card">
  					<div class="card-header">
              <h2>Matches</h2>
 					</div>
 					<div class="card-body contacts_body">
 						<ul class="contacts"  id="usersList">
-              <!-- <li class="list-group-item" *ngFor="let match of loginProfile.matcheds">
-                <strong>{{match.profile.user.username}}</strong>
-              </li> -->
-              <li class="list-group-item" *ngFor="let message of loggedInUser.messagesReceived" (click)="display();selected = message.sender">
-                <strong>{{message.sender.username}}</strong>
+              <li class="list-group-item" *ngFor="let match of matches" (click)="id=match.id; display()">
+                <strong>{{match.firstName}}</strong>
               </li>
+              <!-- <li class="list-group-item" *ngFor="let message of loggedInUser.messagesReceived" (click)="display();selected = message.sender">
+                <strong>{{message.sender.username}}</strong>
+              </li> -->
 						</ul>
 					</div>
 
 				</div>
 				</div>
+</div>
 
 
 

@@ -26,9 +26,21 @@ export class ChatService {
 
   index(user: User) {
     console.log(this.imessages);
-console.log(user.username);
+    console.log(user.username);
 
     return this.http.get<Message[]>(this.url + '/history/' + user.username,  this.getHttpOptions() ).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+           () => new Error( 'ChatService.index(): error retrieving chat log: ' + err )
+        );
+      })
+    );
+  }
+
+
+  profile(id: number){
+    return this.http.get<User>(this.url + '/profile/' + id,  this.getHttpOptions() ).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(

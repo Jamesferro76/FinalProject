@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit {
 
   defaultImageUrl: string="https://s3.envato.com/files/158241052/1.jpg";
 
+  registerP: boolean = false;
+
 
   constructor(private userServ: UserService, private starService: StarService, private profileService: ProfileService, private auth: AuthService, private router: Router) { }
 
@@ -65,6 +67,8 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+
+
 
   loggedIn(){
     return this.auth.checkLogin();

@@ -41,7 +41,11 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   ChatService: any;
 
+  matches: Profile[] = [];
+
   msg = '';
+
+  id: number = 0;
 
   constructor(
     private http: HttpClient,
@@ -64,54 +68,76 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     } catch (err) {}
   }
 
-  handleKeyUp(e: { keyCode: number }) {
-    if (e.keyCode === 13) {
-      this.handleSubmit(e);
-    }
-  }
 
-  handleSubmit(e: { keyCode?: number; preventDefault?: any }) {
-    e.preventDefault();
-    alert(this.msg);
-  }
 
   ngOnInit(): void {
     this.chatService.openWebSocket();
 
     this.reload();
 
+
     this.scrollToBottom();
 
-    setInterval(() => {
-      this.display();
-      console.log();
-    }, 4000);
+    // setInterval(() => {
+    //   this.display();
+    //   console.log();
+    // }, 4000);
   }
 
   ngOnDestroy(): void {
     this.chatService.closeWebSocket();
   }
 
-  refresh(): void {
-    location.reload();
-  }
+
 
   display(): void {
+    this.findUserByProfile(this.id);
     this.chatLog();
   }
+
+
 
   reload(): void {
     this.auth.getLoggedInUser().subscribe({
       next: (user) => {
         console.log(user);
-
         this.loggedInUser = user;
+        this.getMatches();
       },
       error: (err) => {
         console.error('Error retrieving User');
         console.error(err);
       },
     });
+  }
+
+  findUserByProfile(id: number){
+    console.log(id);
+
+   this.chatService.profile(id).subscribe({
+      next: (profile) => {
+        console.log(profile);
+        this.selected = profile;
+      },
+      error: (err) => {
+        console.error('Error retrieving matches');
+        console.error(err);
+      },
+    });
+  }
+
+  getMatches(){
+    this.starServ.findByUser().subscribe({
+      next: (profile) => {
+        console.log(profile);
+        this.matches = profile;
+      },
+      error: (err) => {
+        console.error('Error retrieving matches');
+        console.error(err);
+      },
+    });
+
   }
 
   chatLog() {

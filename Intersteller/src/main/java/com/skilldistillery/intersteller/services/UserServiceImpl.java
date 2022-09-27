@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.skilldistillery.intersteller.entities.Profile;
 import com.skilldistillery.intersteller.entities.User;
+import com.skilldistillery.intersteller.repositories.ProfileRepository;
 import com.skilldistillery.intersteller.repositories.UserRepository;
 
 @Service
@@ -14,8 +17,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
 	@Autowired
 	private PasswordEncoder encoder;
+	
+	@Autowired
+	private ProfileRepository proRepo;
 
 	@Override
 	public List<User> index(String username) {
@@ -79,7 +86,18 @@ public class UserServiceImpl implements UserService {
 	
 			return userName;	
 		}
-		
+
+	@Override
+	public User findByProfile(int profileId) {
+		Profile profile=null;
+        Optional<Profile> profileOpt= proRepo.findById(profileId);
+        if(profileOpt.isPresent()) {
+        	profile=profileOpt.get();
+        	
+        }
+		return profile.getUser();	
+	
+	}
 
 	}
 	
