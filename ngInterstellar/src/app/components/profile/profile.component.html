@@ -84,115 +84,9 @@
 
 </div>
 
-  <!-- <button (click)="setEditProfile()">update</button> -->
 </div>
 
-<!-- <div *ngIf="editProfile && selected">
-  <form action="editProfile">
-    First Name:<input
-      type="text"
-      name="firstName"
-      [(ngModel)]="editProfile.firstName"
-    /><br />
-    First Name:<input
-      type="text"
-      name="lastName"
-      [(ngModel)]="editProfile.lastName"
-    /><br />
-    Profile Pic:<input
-      type="text"
-      name="profilePic"
-      [(ngModel)]="editProfile.profilePic"
-    /><br />
-    Description:<input
-      type="text"
-      name="description"
-      [(ngModel)]="editProfile.description"
-    /><br />
-    Sex: <input type="text" name="sex" [(ngModel)]="editProfile.sex" /><br />
-    Age: <input type="number" name="age" [(ngModel)]="editProfile.age" /><br />
 
-    <div *ngFor="let pref of preferences; index as i">
-      {{ pref.name }}:<input
-        name="pref"
-        type="checkbox"
-        [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="editProfile.preferences[i]"
-      />
-    </div>
-
-    <h4>Categories</h4>
-    <div *ngFor="let cat of categories; index as i">
-      {{ cat.name }}:<input
-        name="cat"
-        type="checkbox"
-        [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="editProfile.categories[i]"
-      />
-    </div>
-
-    <button type="button" (click)="cancelEdit()">Cancel</button><br />
-    <button type="button" (click)="perf()">Save</button>
-  </form>
-  <button type="button" (click)="deleteProfile()">Delete</button>
-</div> -->
-
-<!-- <div *ngIf="!selected">
-  <form action="createProfile">
-    First Name:<input
-      type="text"
-      name="firstName"
-      [(ngModel)]="newProfile.firstName"
-    /><br />
-    Last Name:<input
-      type="text"
-      name="lastName"
-      [(ngModel)]="newProfile.lastName"
-    /><br />
-    Profile Pic:<input
-      type="text"
-      name="profilePic"
-      [(ngModel)]="newProfile.profilePic"
-    /><br />
-    Description:<input
-      type="text"
-      name="description"
-      [(ngModel)]="newProfile.description"
-    /><br />
-    Sex: <input type="text" name="sex" [(ngModel)]="newProfile.sex" /><br />
-    Age: <input type="number" name="age" [(ngModel)]="newProfile.age" /><br />
-    Birthday:
-    <input type="text" name="birthday" [(ngModel)]="newProfile.birthday" />
-
-    Street:<input
-    type="text"
-    name="street"
-    [(ngModel)]="newAddress.street"
-  /><br />
-    city:<input
-    type="text"
-    name="city"
-    [(ngModel)]="newAddress.city"
-  /><br />
-    state:<input
-    type="text"
-    name="state"
-    [(ngModel)]="newAddress.state"
-  /><br />
-    zip:<input
-    type="text"
-    name="zip"
-    [(ngModel)]="newAddress.zip"
-  /><br />
-    country:<input
-    type="text"
-    name="country"
-    [(ngModel)]="newAddress.country"
-  /><br />
-
-    <button type="button" (click)="prepProfile()">Save</button>
-  </form>
-</div> -->
 
 <div *ngIf="!selected&&!editProfile">
   <h1>It seems you don't have a profile</h1>
@@ -222,7 +116,7 @@
     Birthday:
     <input type="text" name="birthday" [(ngModel)]="newProfile.birthday" />
 
-    <button type="button" (click)="basicEditCreate()">Continue</button>
+    <button type="button" (click)="basicEditCreate()">Save</button>
   </form>
 </div>
 
@@ -247,7 +141,8 @@
     Birthday:
     <input type="text" name="birthday" [(ngModel)]="editProfile.birthday" />
 
-    <button type="button" (click)="basicEditSave()">Continue</button>
+    <button type="button" (click)="basicEditSave()">Save</button>
+    <button type="button" *ngIf="!initialCreate" (click)="basicEdit=false">Cancel</button>
   </form>
 </div>
 
@@ -275,7 +170,8 @@
       />
     </div>
 
-    <button type="button" (click)="sexualityEditSave()">Continue</button>
+    <button type="button" (click)="sexualityEditSave()">Save</button>
+    <button type="button" *ngIf="!initialCreate" (click)="sexualityEdit=false">Cancel</button>
   </form>
 </div>
 
@@ -307,6 +203,7 @@
         [(ngModel)]="newAddress.country"
       /><br />
     <button type="button" (click)="locationEditSave(newAddress)">Save</button>
+    <button type="button" *ngIf="!initialCreate" (click)="locationEdit=false">Cancel</button>
   </form>
 </div>
 
@@ -327,11 +224,12 @@
   />
   <button type="button" (click)="addImageToProfile()">Add another image?</button>
   <button type="button" (click)="picsEditSave()">Save</button>
+  <button type="button" *ngIf="!initialCreate" (click)="picsEdit=false">Cancel</button>
 </div>
 
 
 <!-- Trying out cards to display profile  -->
-<div *ngIf="selected&&displayProfile" >
+<div *ngIf="selected&&displayProfile&&!initialCreate" >
   <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-{{1}}">
       <div class ="box-item">
@@ -365,9 +263,9 @@
         <div class ="flip-box">
           <div class ="flip-box-front-edit text-left" style="background-image:url({{selected.profilePic}});">
             <div class="inner color-white">
-              <h3 class ="flip-box-header" (click)="basicEdit=!basicEdit"> {{selected.firstName}} {{selected.age}}</h3>
-              <span (click)="locationEdit=!locationEdit">{{selected.sex}} {{selected.address.state}}</span><br/>
-              <div (click)="sexualityEdit=!sexualityEdit">
+              <h3 class ="flip-box-header" (click)="displayBasicEdit()"> {{selected.firstName}} {{selected.age}}</h3>
+              <span (click)="displayLocationEdit()">{{selected.sex}} {{selected.address.state}}</span><br/>
+              <div (click)="displaySexualityEdit()">
               Preferences: <span *ngFor="let pref of selected.preferences">{{pref.name}} </span><br/>
             </div>
             </div>
@@ -384,12 +282,12 @@
           <div class="flip-box-back-edit" style="background-image:url({{selected.images[counterForPic].imageUrl}});">
             <div class="inner color-white background-purple">
               <span class="text-start" (click)="selectPicBackward(selected.images)">Last pic </span>
-              <span class="text-center" (click)="picsEdit=!picsEdit">Edit pics</span>
+              <span class="text-center" (click)="displayPicsEdit()">Edit pics</span>
               <span class="float-end" (click)="selectPicForward(selected.images)">Next pic</span><br/>
-              <div (click)="sexualityEdit=!sexualityEdit">
+              <div (click)="displaySexualityEdit()">
               Categories: <span *ngFor="let cat of selected.categories">{{cat.name}} </span>
             </div>
-              <p (click)="basicEdit=!basicEdit">{{selected.description}}</p>
+              <p (click)="displayBasicEdit()">{{selected.description}}</p>
             </div>
           </div>
         </div>
@@ -398,7 +296,7 @@
   </div>
 </div>
 
-<div>
+<div *ngIf="selected&&!initialCreate">
   <button (click)="displayAllInfoPage()">See all profile info</button>
   <button (click)="displayUpdatePage()">Edit profile</button>
   <button (click)="displayProfilePage()">See Profile</button>

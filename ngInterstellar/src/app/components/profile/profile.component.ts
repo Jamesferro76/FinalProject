@@ -49,6 +49,7 @@ export class ProfileComponent implements OnInit {
   sexualityEdit: boolean = false;
   locationEdit: boolean = false;
   picsEdit: boolean = false;
+  initialCreate: boolean=false;
 
   defaultImageUrl: string="https://s3.envato.com/files/158241052/1.jpg";
 
@@ -74,19 +75,19 @@ export class ProfileComponent implements OnInit {
         this.loggedInUser = user;
         this.profileService.findByUserId(this.loggedInUser.id).subscribe({
           next: (profile) => {
-            if(!profile.profilePic){
-              profile.profilePic=this.defaultImageUrl;
-            }
-            if(profile.images.length<1){
-                profile.images.push(new Image(0, profile.profilePic));
-            }
+            this.loadPreferences();
+            this.loadCategories();
+            // if(!profile.profilePic){
+            //   profile.profilePic=this.defaultImageUrl;
+            // }
+            // if(profile.images.length<1){
+            //     profile.images.push(new Image(0, profile.profilePic));
+            // }
 
             this.selected = profile;
             this.editProfile= profile;
             this.displayProfilePage();
-            this.loadPreferences();
-            this.loadCategories();
-            console.log("In init"+this.categories);
+
           },
           error: (err) => {
             console.error('Error retrieving Profile');
@@ -358,6 +359,7 @@ export class ProfileComponent implements OnInit {
     this.sexualityEdit=true;
     this.locationEdit=true;
     this.picsEdit=true;
+    this.initialCreate=true;
   }
 
   basicEditCreate(){
@@ -371,9 +373,22 @@ export class ProfileComponent implements OnInit {
     this.perf();
   }
 
+  displayBasicEdit(){
+    this.basicEdit=!this.basicEdit;
+    this.sexualityEdit=false;
+    this.locationEdit=false;
+    this.picsEdit=false;
+  }
+
   sexualityEditSave(){
     this.sexualityEdit=false;
     this.perf();
+  }
+  displaySexualityEdit(){
+    this.sexualityEdit=!this.sexualityEdit;
+    this.basicEdit=false;
+    this.locationEdit=false;
+    this.picsEdit=false;
   }
 
   locationEditSave(newAddress:Address){
@@ -387,9 +402,23 @@ export class ProfileComponent implements OnInit {
   }
   }
 
+  displayLocationEdit(){
+    this.locationEdit=!this.locationEdit;
+    this.sexualityEdit=false;
+    this.basicEdit=false;
+    this.picsEdit=false;
+  }
+
   picsEditSave(){
     this.picsEdit=false;
+    this.initialCreate=false;
     this.perf();
+  }
+  displayPicsEdit(){
+    this.picsEdit=!this.picsEdit;
+    this.sexualityEdit=false;
+    this.locationEdit=false;
+    this.basicEdit=false;
   }
   picToDelete:Image|null=null;
   deletePic(i: number){

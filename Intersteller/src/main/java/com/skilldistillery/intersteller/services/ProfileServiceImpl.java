@@ -78,11 +78,13 @@ public class ProfileServiceImpl implements ProfileService {
 		Optional<Profile> existingOpt= profileRepo.findById(id);
 		if(existingOpt.isPresent()) {
 			existing=existingOpt.get();
+			
 			if(existing.getUser().getUsername().equals(username)) {
 				
 				if(profile.getFirstName()!=null) {
 					existing.setFirstName(profile.getFirstName());
 				}
+				
 				existing.setLastName(profile.getLastName());
 				existing.setDescription(profile.getDescription());
 				existing.setBirthday(profile.getBirthday());
@@ -109,11 +111,8 @@ public class ProfileServiceImpl implements ProfileService {
 					existing.setMixersAttending(profile.getMixersAttending());
 				}
 				
-				if(profile.getImages().size()<1) {
-					List<Image> images=new ArrayList<Image>();
-					images.add(new Image(profile.getProfilePic()));
-					existing.setImages(images);
-				}
+				
+					existing.setImages(profile.getImages());
 				
 				
 				existing.setFavorited(profile.getFavorited());
