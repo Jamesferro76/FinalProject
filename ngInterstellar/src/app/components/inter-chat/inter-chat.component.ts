@@ -81,17 +81,19 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     this.scrollToBottom();
 
-    setInterval(() => {
-      this.display();
-      console.log();
-    }, 1000);
+    // setInterval(() => {
+    //   this.display();
+    //   console.log();
+    // }, 1000);
   }
 
   ngOnDestroy(): void {
     this.chatService.closeWebSocket();
   }
 
-
+  toProfilePage(id: number){
+    this.router.navigateByUrl('profile/'+id);
+  }
 
   display(): void {
     this.findUserByProfile(this.id);
