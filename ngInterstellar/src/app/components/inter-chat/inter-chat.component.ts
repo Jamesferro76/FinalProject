@@ -48,6 +48,8 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   id: number = 0;
 
+  switch=false;
+
   chatter: Profile = new Profile();
 
   constructor(
@@ -71,7 +73,10 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     } catch (err) {}
   }
 
-
+   chatref=setInterval(() => {
+    this.display();
+    console.log();
+  }, 1000);
 
   ngOnInit(): void {
     this.chatService.openWebSocket();
@@ -81,13 +86,13 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     this.scrollToBottom();
 
-    // setInterval(() => {
-    //   this.display();
-    //   console.log();
-    // }, 1000);
+
   }
 
   ngOnDestroy(): void {
+    if(true){
+      clearInterval(this.chatref);
+    }
     this.chatService.closeWebSocket();
   }
 
