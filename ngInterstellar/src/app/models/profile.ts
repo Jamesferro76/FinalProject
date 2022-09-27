@@ -1,5 +1,6 @@
 import { Category } from 'src/app/models/category';
 import { Preference } from 'src/app/models/preference';
+import { Mixer } from './mixer';
 import { User } from './user';
 
 export class Profile {
@@ -17,7 +18,7 @@ export class Profile {
   updatedOn: string;
   preferences: Preference[];
   images: any[];
-  mixers: any[];
+  mixers: Mixer[];
   mixersAttending: any[];
   messagesSent: any[];
   messagesRecieved: any[];
@@ -44,7 +45,7 @@ export class Profile {
     updatedOn: string = '',
     preferences: Preference[] = [],
     images: any[] = [],
-    mixers: any[] = [],
+    mixers: Mixer[] = [],
     mixersAttending: any[] = [],
     messagesSent: any[] = [],
     messagesRecieved: any[] = [],

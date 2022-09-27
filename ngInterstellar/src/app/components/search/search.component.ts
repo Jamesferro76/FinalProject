@@ -162,16 +162,23 @@ export class SearchComponent implements OnInit {
 
   displayList() {
     if (this.counter % 2 != 0) {
-      console.log(this.selectedType);
-      console.log(this.selectedCat);
-      console.log(this.selectedState);
-      console.log(this.ageMax);
-      console.log(this.ageMin);
       this.displayProfiles = [];
       this.profiles.forEach((each) => {
-        console.log('In profile loop' + each.firstName);
+        if (each.categories.length === 0) {
+          if (
+            each.sex === this.selectedType ||
+            (this.selectedType === '' &&
+              (each.address.state === this.selectedState ||
+                this.selectedCat === '') &&
+              each.age > this.ageMin &&
+              each.age < this.ageMax)
+          ) {
+            if (!this.displayProfiles.includes(each)) {
+              this.displayProfiles.push(each);
+            }
+          }
+        }
         each.categories.forEach((cat) => {
-          console.log('In cat loop' + each.firstName);
           if (
             each.sex === this.selectedType ||
             (this.selectedType === '' &&
@@ -181,8 +188,9 @@ export class SearchComponent implements OnInit {
               each.age > this.ageMin &&
               each.age < this.ageMax)
           ) {
-            this.displayProfiles.push(each);
-            console.log(this.displayProfiles.length);
+            if (!this.displayProfiles.includes(each)) {
+              this.displayProfiles.push(each);
+            }
           }
         });
       });
@@ -197,16 +205,33 @@ export class SearchComponent implements OnInit {
     } else {
       this.displayProfiles = [];
       this.profiles.forEach((each) => {
+        if (each.categories.length === 0) {
+          if (
+            each.sex === this.selectedType ||
+            (this.selectedType === '' &&
+              (each.address.state === this.selectedState ||
+                this.selectedCat === '') &&
+              each.age > this.ageMin &&
+              each.age < this.ageMax)
+          ) {
+            if (!this.displayProfiles.includes(each)) {
+              this.displayProfiles.push(each);
+            }
+          }
+        }
         each.categories.forEach((cat) => {
           if (
-            each.sex === this.selectedType &&
-            cat.name === this.selectedCat &&
-            each.address.state === this.selectedState &&
-            each.age > this.ageMin &&
-            each.age < this.ageMax
+            each.sex === this.selectedType ||
+            (this.selectedType === '' &&
+              (cat.name === this.selectedCat || this.selectedCat === '') &&
+              (each.address.state === this.selectedState ||
+                this.selectedCat === '') &&
+              each.age > this.ageMin &&
+              each.age < this.ageMax)
           ) {
-            this.displayProfiles.push(each);
-            console.log(each);
+            if (!this.displayProfiles.includes(each)) {
+              this.displayProfiles.push(each);
+            }
           }
         });
       });

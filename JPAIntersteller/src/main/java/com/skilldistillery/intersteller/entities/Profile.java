@@ -74,7 +74,6 @@ public class Profile {
 	  @OneToMany(mappedBy="profile")
 	  private List<Image> images;
 
-	  @JsonIgnore
 	  @OneToMany(mappedBy="profile")
 	  private List<Mixer> mixers;
 //Change line 80 so no JSNOIGNORE
