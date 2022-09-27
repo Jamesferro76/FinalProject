@@ -33,6 +33,7 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   selected: User | null = null;
 
+
   sent: Message | null = null;
 
   newMessage = new Message();
@@ -46,6 +47,8 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   msg = '';
 
   id: number = 0;
+
+  chatter: Profile = new Profile();
 
   constructor(
     private http: HttpClient,
@@ -78,10 +81,10 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     this.scrollToBottom();
 
-    // setInterval(() => {
-    //   this.display();
-    //   console.log();
-    // }, 4000);
+    setInterval(() => {
+      this.display();
+      console.log();
+    }, 1000);
   }
 
   ngOnDestroy(): void {
@@ -92,7 +95,6 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   display(): void {
     this.findUserByProfile(this.id);
-    this.chatLog();
   }
 
 
@@ -118,6 +120,8 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       next: (profile) => {
         console.log(profile);
         this.selected = profile;
+        this.chatLog();
+
       },
       error: (err) => {
         console.error('Error retrieving matches');

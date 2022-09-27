@@ -11,12 +11,9 @@
 					</div>
 					<div class="card-body contacts_body">
 						<ul class="contacts"  id="usersList">
-              <li class="list-group-item" *ngFor="let match of matches" (click)="id=match.id; display()">
+              <li class="list-group-item" *ngFor="let match of matches" (click)="id=match.id;display()">
                 <strong>{{match.firstName}}</strong>
               </li>
-              <!-- <li class="list-group-item" *ngFor="let message of loggedInUser.messagesReceived" (click)="display();selected = message.sender">
-                <strong>{{message.sender.username}}</strong>
-              </li> -->
 						</ul>
 					</div>
 

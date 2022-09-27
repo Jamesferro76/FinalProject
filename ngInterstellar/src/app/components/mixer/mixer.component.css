@@ -77,9 +77,9 @@ body{
 .flip-box-header-back{
   font-size: 30px;
   height: 135px;
-  width: 300px;
-  overflow-y: hidden;
-  white-space: normal;
+  /* width: 300px; */
+  overflow-y: auto;
+  white-space: nowrap;
 }
 
 .flip-box p{
