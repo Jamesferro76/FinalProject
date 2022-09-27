@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `mixer` (
   `event_start` TIME NULL,
   `event_end` TIME NULL,
   `created_date` DATETIME NULL,
-  `image_url` VARCHAR(500) NULL,
+  `image_url` VARCHAR(700) NULL,
   `creator_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_event_address1_idx` (`address_id` ASC),
@@ -448,6 +448,7 @@ INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (19, '6754 mixer st', 'Huntersville', 'NC', '27564', 'United States');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (20, '7776 mixer ln', 'San Clemente', 'CA', '97345', 'United States');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (21, '8891 mixer dr', 'Sacramento', 'CA', '98162', 'United States');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country`) VALUES (22, '9990 mixer ct', 'Los Angeles', 'CA', '87192', 'United Staes');
 
 COMMIT;
 
@@ -546,10 +547,11 @@ COMMIT;
 START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (1, 'mixer test', 'a great place for a first date', '2022-09-30', 2, '17:00:00', '20:00:00', NULL, 'https://live.staticflickr.com/65535/50021255956_4dd62a6104_z.jpg', 1);
-INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (2, 'Drinks N\' the Park', 'a park... drinks.... romance...', '2022-10-04', 18, '18:00:00', '22:00:00', NULL, NULL, 1);
-INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (3, 'Molded by Love', 'makes some cool pottery with the person you want to bang', '2022-11-17', 19, '16:00:00', '21:00:00', NULL, NULL, 1);
-INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (4, 'Dave\'s Drive In', 'get comfy and sensual at the drive in', '2023-01-22', 20, '19:00:00', '22:00:00', NULL, NULL, 1);
-INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (5, 'Active couples', 'get your fat ass up and get active', '2022-12-13', 21, '18:00:00', '22:00:00', NULL, NULL, 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (2, 'Drinks N\' the Park', 'a park... drinks.... romance...', '2022-10-04', 18, '18:00:00', '22:00:00', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPWPFX1jZzLBk2ou7yoAJvGJb8G2Yzz_et4A&usqp=CAU', 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (3, 'Molded by Love', 'makes some cool pottery with the person you want accidentally matched with and they reponded so fast, and you felt bad and said yes to this mixer... which youre dreading... because they already asked you to meet their mother....you can proably make a cool bowl though', '2022-11-17', 19, '16:00:00', '21:00:00', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_8AblEWcyY9BZW0amu99pXg5VdC5SpOM4nA&usqp=CAU', 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (4, 'Dave\'s Drive In', 'get comfy and sensual at the drive in', '2023-01-22', 20, '19:00:00', '22:00:00', NULL, 'https://www.ucf.edu/news/files/2021/02/date-night-ideas.jpg', 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (5, 'Active couples', 'get your heart pumpin and get off the couch, its been a year since your ex left....seriously.. take better care of yourself... and go to this mixer to meet an active person who will get you into shape... and maybe find love...maybe', '2022-12-13', 21, '18:00:00', '22:00:00', NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtxLUUiCIXJeKWyWfkVL7AGzhYu-7gGuYkKw&usqp=CAU', 1);
+INSERT INTO `mixer` (`id`, `name`, `description`, `event_date`, `address_id`, `event_start`, `event_end`, `created_date`, `image_url`, `creator_id`) VALUES (6, 'Love At The Lake', 'Find your anchor at Larry\'s Lake mixer', '2023-06-21', 22, '17:00:00', '23:59:00', NULL, 'https://media.timeout.com/images/105915468/image.jpg', 1);
 
 COMMIT;
 
@@ -581,6 +583,8 @@ COMMIT;
 START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (1, 2, NULL, 1, 2, NULL, 'ugly');
+INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (2, 4, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (2, 6, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
