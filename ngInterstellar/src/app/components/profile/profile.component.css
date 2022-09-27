@@ -238,3 +238,7 @@ justify-content: center;
     -1px 1px 0 #000,
     1px 1px 0 #000;
 }
+
+.red-letters{
+  color: red;
+}

@@ -10,7 +10,7 @@ export class Profile {
   sex: string;
   firstName: string;
   lastName: string;
-  // user: User;
+  user: User;
   address?: any;
   profilePic: string;
   active: boolean;
@@ -32,12 +32,12 @@ export class Profile {
   constructor(
     id: number = 0,
     birthday: string = '',
-    age: number = 0,
+    age: number = 18,
     description: string = '',
     sex: string = '',
     firstName: string = '',
     lastName: string = '',
-    // user: User = new User(),
+    user: User = new User(),
     address: any = null,
     profilePic: string = '',
     active: boolean = true,
@@ -63,7 +63,7 @@ export class Profile {
     this.sex = sex;
     this.firstName = firstName;
     this.lastName = lastName;
-    // this.user = user;
+    this.user = user;
     this.address = address;
     this.profilePic = profilePic;
     this.active = active;

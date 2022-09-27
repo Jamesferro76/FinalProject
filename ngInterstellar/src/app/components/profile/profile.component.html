@@ -88,67 +88,108 @@
 
 
 
-<div *ngIf="!selected&&!editProfile">
+<div *ngIf="!selected&&!editProfile&&!basicEdit">
   <h1>It seems you don't have a profile</h1>
   <h4>Let's get one set up in 4 simple steps</h4>
   <button type="button" (click)="createProfile()">Let's get started</button>
 </div>
 
 <div *ngIf="basicEdit&&!editProfile">
-  Create
+  <h1>Basic Info</h1>
   <form action="createProfile">
-    First Name:<input
+    <label for="firstName" *ngIf="newProfile.firstName==''" class="red-letters">First Name:</label>
+    <label for="firstName" *ngIf="newProfile.firstName!=''">First Name:</label>
+    <input
       type="text"
       name="firstName"
       [(ngModel)]="newProfile.firstName"
     /><br />
-    Last Name:<input
+    <label for="lastName" *ngIf="newProfile.lastName==''" class="red-letters">Last Name:</label>
+    <label for="lastName" *ngIf="newProfile.lastName!=''">Last Name:</label>
+    <input
       type="text"
       name="lastName"
       [(ngModel)]="newProfile.lastName"
     /><br />
-    Description:<input
+    <label for="lastName" *ngIf="newProfile.description==''" class="red-letters">Description:</label>
+    <label for="lastName" *ngIf="newProfile.description!=''">Description:</label>
+    <input
       type="text"
       name="description"
       [(ngModel)]="newProfile.description"
     /><br />
-    Age: <input type="number" name="age" [(ngModel)]="newProfile.age" /><br />
-    Birthday:
-    <input type="text" name="birthday" [(ngModel)]="newProfile.birthday" />
+    <label for="lastName" *ngIf="newProfile.age<18" class="red-letters">Age:</label>
+    <label for="lastName" *ngIf="newProfile.age>=18">Age:</label>
+    <input type="number" name="age" min="18" [(ngModel)]="newProfile.age"/><br />
 
-    <button type="button" (click)="basicEditCreate()">Save</button>
+    <label for="lastName" *ngIf="newProfile.birthday==''" class="red-letters">Birthday:</label>
+    <label for="lastName" *ngIf="newProfile.birthday!=''">Birthday:</label>
+
+    <input type="date" name="birthday" [(ngModel)]="newProfile.birthday"/>
+
+    <button type="button" *ngIf="newProfile.firstName!=''&&newProfile.lastName!=''&&newProfile.description!=''
+    &&newProfile.age>=18&&newProfile.birthday!=''"
+    (click)="basicEditCreate()">Save</button>
+    <div *ngIf="newProfile.firstName==''||newProfile.lastName==''||newProfile.description==''
+    ||newProfile.age<18||newProfile.birthday==''" class="redletters">
+  Please fill out all the information before saving.
+  </div>
   </form>
 </div>
 
 <div *ngIf="basicEdit&&editProfile">
   <form action="createProfile">
-    First Name:<input
+    <label for="firstName" *ngIf="editProfile.firstName==''" class="red-letters">First Name:</label>
+    <label for="firstName" *ngIf="editProfile.firstName!=''">First Name:</label>
+    <input
       type="text"
       name="firstName"
       [(ngModel)]="editProfile.firstName"
+      required
     /><br />
-    Last Name:<input
+    <label for="lastName" *ngIf="editProfile.lastName==''" class="red-letters">Last Name:</label>
+    <label for="lastName" *ngIf="editProfile.lastName!=''">Last Name:</label>
+    <input
       type="text"
       name="lastName"
       [(ngModel)]="editProfile.lastName"
+      required
     /><br />
-    Description:<input
+    <label for="lastName" *ngIf="editProfile.description==''" class="red-letters">Description:</label>
+    <label for="lastName" *ngIf="editProfile.description!=''">Description:</label>
+    <input
       type="text"
       name="description"
       [(ngModel)]="editProfile.description"
     /><br />
-    Age: <input type="number" name="age" [(ngModel)]="editProfile.age" /><br />
-    Birthday:
-    <input type="text" name="birthday" [(ngModel)]="editProfile.birthday" />
+    <label for="lastName" *ngIf="editProfile.age<18" class="red-letters">Age:</label>
+    <label for="lastName" *ngIf="editProfile.age>=18">Age:</label>
+    <input type="number" name="age" min="18" [(ngModel)]="editProfile.age"/><br />
 
-    <button type="button" (click)="basicEditSave()">Save</button>
+    <label for="lastName" *ngIf="editProfile.birthday==''" class="red-letters">Birthday:</label>
+    <label for="lastName" *ngIf="editProfile.birthday!=''">Birthday:</label>
+    <input type="text" name="birthday" [(ngModel)]="editProfile.birthday"/>
+
+    <button type="button" *ngIf="newProfile.firstName!=''&&newProfile.lastName!=''&&newProfile.description!=''
+    &&newProfile.age>=18&&newProfile.birthday!=''" (click)="basicEditSave()">Save</button>
     <button type="button" *ngIf="!initialCreate" (click)="basicEdit=false">Cancel</button>
   </form>
 </div>
 
 <div *ngIf="!basicEdit&&sexualityEdit&&editProfile">
   <form action="createProfile">
-    Sex: <input type="text" name="sex" [(ngModel)]="editProfile.sex" /><br />
+
+    <Label for="sex" *ngIf="editProfile.sex==''" class="red=letters">Sex:</Label>
+    <Label for="sex" *ngIf="editProfile.sex!=''">Sex:</Label>
+    <select name="sex" [(ngModel)]="editProfile.sex">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Non-Binary">Non-Binary</option>
+      <option value="Trans Man">Trans Man</option>
+      <option value="Trans Woman">Trans Woman</option>
+      <option value="Gender-Fluid">Gender-Fluid</option>
+      <option value="None">Prefer not to say</option>
+    </select>
 
     <h4>Preferences</h4>
     <div *ngFor="let pref of preferences; index as i">
@@ -170,13 +211,14 @@
       />
     </div>
 
-    <button type="button" (click)="sexualityEditSave()">Save</button>
+    <button type="button" *ngIf="editProfile.sex!=''" (click)="sexualityEditSave()">Save</button>
     <button type="button" *ngIf="!initialCreate" (click)="sexualityEdit=false">Cancel</button>
   </form>
 </div>
 
 <div *ngIf="!sexualityEdit&&locationEdit&&editProfile">
   <form action="createProfile">
+
         Street:<input
         type="text"
         name="street"
@@ -192,6 +234,11 @@
         name="state"
         [(ngModel)]="newAddress.state"
       /><br />
+      <select name="state" [(ngModel)]="editProfile.sex">
+        <div *ngFor="let state of stateAbr">
+          <option value="{{state}}">{{state}}</option>
+        </div>
+        </select>
         zip:<input
         type="text"
         name="zip"
@@ -202,7 +249,9 @@
         name="country"
         [(ngModel)]="newAddress.country"
       /><br />
-    <button type="button" (click)="locationEditSave(newAddress)">Save</button>
+    <button type="button" *ngIf="newAddress.street!=''&&newAddress.city!=''&&newAddress.state!=''
+    &&newAddress.zip!=''&&newAddress.country!=''"
+    (click)="locationEditSave(newAddress)">Save</button>
     <button type="button" *ngIf="!initialCreate" (click)="locationEdit=false">Cancel</button>
   </form>
 </div>
