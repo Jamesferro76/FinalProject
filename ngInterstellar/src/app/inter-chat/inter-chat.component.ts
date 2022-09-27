@@ -1,3 +1,4 @@
+import { StarService } from 'src/app/services/star.service';
 import { UserService } from 'src/app/services/user.service';
 import { ProfileService } from './../services/profile.service';
 import { Message } from 'src/app/models/message';
@@ -8,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { Profile } from '../models/profile';
+import { Observable, interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-inter-chat',
@@ -17,6 +19,8 @@ import { Profile } from '../models/profile';
 export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   @ViewChild('scrollBottom')
   private scrollBottom!: ElementRef;
+
+
 
 loginProfile: Profile = new Profile();
 
@@ -45,7 +49,8 @@ msg ='';
      public chatService: ChatService,
      private profileService: ProfileService,
      private user:UserService,
-     private router: Router
+     private router: Router,
+     private starServ: StarService
     ) { }
 
 
@@ -78,12 +83,21 @@ msg ='';
 
     this.scrollToBottom();
 
+    setInterval(() => {
+      this.display();
+      console.log();
+    }, 4000);
+
   }
 
   ngOnDestroy(): void {
     this.chatService.closeWebSocket();
 
   }
+
+  refresh(): void {
+    location.reload();
+}
 
   display():void{
     this.chatLog();
@@ -125,6 +139,8 @@ if(this.selected != null){
 
 
 
+
+
   addMessage(){
     this.newMessage.sender = this.loggedInUser;
     console.log('sender:' + this.loggedInUser.username)
@@ -140,6 +156,7 @@ if(this.selected != null){
       next: (result) => {
         console.log(result)
         this.display();
+        this.newMessage.content = '';
       },
       error: (prob) => {
         console.error('ChatComponent.addMessage(): error sending message:');
