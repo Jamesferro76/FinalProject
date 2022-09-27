@@ -5,7 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MixerComponent } from './components/mixer/mixer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { InterChatComponent } from './inter-chat/inter-chat.component';
+import { InterChatComponent } from './components/inter-chat/inter-chat.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },

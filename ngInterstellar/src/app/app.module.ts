@@ -14,10 +14,10 @@ import { ProfileService } from './services/profile.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ChatComponent } from './components/chat/chat.component';
-import { InterChatComponent } from './inter-chat/inter-chat.component';
+import { InterChatComponent } from './components/inter-chat/inter-chat.component';
 import { SettingsComponent } from './settings/settings.component';
-import { SearchComponent } from './search/search.component';
-import { ContactComponent } from './contact/contact.component';
+import { SearchComponent } from './components/search/search.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
