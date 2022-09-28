@@ -179,6 +179,7 @@ export class SearchComponent implements OnInit {
 
   displayList() {
     if (this.counter % 2 != 0) {
+      console.log(this.selectedState);
       this.displayProfiles = [];
       this.profiles.forEach((each) => {
         if (each.categories.length === 0) {
@@ -186,7 +187,7 @@ export class SearchComponent implements OnInit {
             each.sex === this.selectedType ||
             (this.selectedType === '' &&
               (each.address.state === this.selectedState ||
-                this.selectedCat === '') &&
+                this.selectedState === '') &&
               each.age > this.ageMin &&
               each.age < this.ageMax)
           ) {
@@ -201,7 +202,7 @@ export class SearchComponent implements OnInit {
             (this.selectedType === '' &&
               (cat.name === this.selectedCat || this.selectedCat === '') &&
               (each.address.state === this.selectedState ||
-                this.selectedCat === '') &&
+                this.selectedState === '') &&
               each.age > this.ageMin &&
               each.age < this.ageMax)
           ) {
@@ -224,12 +225,11 @@ export class SearchComponent implements OnInit {
       this.profiles.forEach((each) => {
         if (each.categories.length === 0) {
           if (
-            each.sex === this.selectedType ||
-            (this.selectedType === '' &&
-              (each.address.state === this.selectedState ||
-                this.selectedCat === '') &&
-              each.age > this.ageMin &&
-              each.age < this.ageMax)
+            (each.sex === this.selectedType || this.selectedType === '') &&
+            (each.address.state === this.selectedState ||
+              this.selectedState === '') &&
+            each.age > this.ageMin &&
+            each.age < this.ageMax
           ) {
             if (!this.displayProfiles.includes(each)) {
               this.displayProfiles.push(each);
@@ -238,13 +238,12 @@ export class SearchComponent implements OnInit {
         }
         each.categories.forEach((cat) => {
           if (
-            each.sex === this.selectedType ||
-            (this.selectedType === '' &&
-              (cat.name === this.selectedCat || this.selectedCat === '') &&
-              (each.address.state === this.selectedState ||
-                this.selectedCat === '') &&
-              each.age > this.ageMin &&
-              each.age < this.ageMax)
+            (each.sex === this.selectedType || this.selectedType === '') &&
+            (cat.name === this.selectedCat || this.selectedCat === '') &&
+            (each.address.state === this.selectedState ||
+              this.selectedState === '') &&
+            each.age > this.ageMin &&
+            each.age < this.ageMax
           ) {
             if (!this.displayProfiles.includes(each)) {
               this.displayProfiles.push(each);
