@@ -71,16 +71,40 @@
             </div>
 
             <div *ngIf="showMixers" class="mixers">
-              <h4>Mixers Hosting:</h4>
-                <div *ngFor="let mixer of selected?.mixers">{{ mixer.name }}</div>
+              <div>
+
+                <h4>Mixers Hosting:</h4>
+                  <div *ngFor="let mixer of selected?.mixers">
+                    <ul>
+
+                      <li> {{ mixer.name }} </li>
+                    </ul>
+                  </div>
+              </div>
+
+              <div>
+
                 <h4>Mixers Attending:</h4>
-                <div *ngFor="let mixer of selected?.mixersAttending">{{ mixer.name }}</div>
+                <div *ngFor="let mixer of selected?.mixersAttending">
+                  <ul>
+
+                    <li>{{ mixer.name }}</li>
+                  </ul>
+
+                </div>
+              </div>
               </div>
 
               <div *ngIf="showInterests" class="interests">
-                <h5>Categories:</h5>
-                <div *ngFor="let cat of selected?.categories">
-                  {{ cat.name }}
+                <div>
+
+                  <h5>Categories:</h5>
+                  <div *ngFor="let cat of selected?.categories">
+                    <ul>
+
+                      <p>{{ cat.name }}</p>
+                    </ul>
+                  </div>
                 </div>
                 </div>
 

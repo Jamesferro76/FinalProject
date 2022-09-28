@@ -58,10 +58,11 @@ export class SettingsComponent implements OnInit {
 
     this.userService.update(user).subscribe({
       next: (updatedUser) => {
-        this.editedUser = null;
         if (user.username != null) {
           this.loginUser = updatedUser;
+          console.log(this.loginUser);
         }
+        this.reLogin();
       },
       error: (err) => {
         console.error(
@@ -69,6 +70,26 @@ export class SettingsComponent implements OnInit {
         );
       },
     });
+    console.log(this.loginUser.password);
+  }
+  reLogin() {
+    console.log('in reload' + this.loginUser.password);
+    if (this.editedUser != null) {
+      this.auth
+        .login(this.editedUser.username, this.editedUser.password)
+        .subscribe({
+          next: (loggedInUser: any) => {
+            this.editedUser = null;
+            this.loginUser = loggedInUser;
+            console.log(loggedInUser);
+            this.ngOnInit();
+          },
+          error: (problem: any) => {
+            console.error('LoginComponent.login(): Error logging in user:');
+            console.error(problem);
+          },
+        });
+    }
   }
 
   reload(): void {

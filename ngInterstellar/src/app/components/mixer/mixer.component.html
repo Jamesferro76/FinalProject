@@ -1,3 +1,4 @@
+<body>
 <!-- Shows all mixers -->
 <div *ngIf="!selected" >
   <h1>{{title}}</h1>
@@ -128,7 +129,7 @@
 </form>
 
 <!-- Displays a mixer -->
-<div *ngIf="selected && !editMixer" >
+<!-- <div *ngIf="selected && !editMixer" >
   <a (click)="displayTable()" class="previous round">&#8249;</a>
 
 <div class="container">
@@ -156,4 +157,73 @@
   </div>
 </div>
 <button (click)="setEditMixer()">Edit</button>
-</div>
+</div> -->
+
+
+
+  <div class="header__wrapper" *ngIf="selected && !editMixer">
+    <header></header>
+    <div class="cols__container">
+      <div class="left__col">
+        <div class="img__container">
+          <img [src]="selected.imageUrl"/>
+          <span></span>
+        </div>
+        <h2>{{selected.name}} </h2>
+        <p>{{selected.eventDate}}</p>
+
+
+
+        <div class="content">
+          <p>
+            {{ selected.description }}
+          </p>
+
+          <button (click)="setEditMixer()">Edit</button>
+
+
+        </div>
+
+
+      </div>
+      <div class="right__col">
+        <nav>
+          <ul>
+            <li><a (click)="detailsLinkToggle()">details</a></li>
+            <li><a (click)="hostLinkToggle()">host</a></li>
+          </ul>
+
+        </nav>
+
+        <div *ngIf="showDetails" class="details">
+          <div>
+
+
+
+              <p>Date: {{selected.eventDate}} </p>
+               <p>Start Time: {{selected.eventStart}}</p>
+              <p>End Time: {{selected.eventEnd}}</p>
+              <p>Where: {{selected.address.city}}, {{ selected.address.state }}</p>
+              <p>Address: {{selected.address.city}}, {{ selected.address.state }}</p>
+              <p> {{selected.address.zip}} {{selected.address.country}}</p>
+
+          </div>
+
+        </div>
+
+        <div *ngIf="showHost" class="host">
+          <h2>Host</h2>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- <img src="https://cdn-icons-png.flaticon.com/128/7915/7915208.png" width="40" height="40" (click)="displayTable()" class="previous round"> -->
+    <a (click)="displayTable()" class="previous round">&#8249;</a>
+
+<!-- <img src="https://cdn-icons-png.flaticon.com/128/5869/5869150.png" width="40" height="40" (click)="joinMixer(selected)" class="next oval"> -->
+      <a (click)="joinMixer(selected)" class="next oval">Join Mixer!</a>
+
+  </div>
+</body>

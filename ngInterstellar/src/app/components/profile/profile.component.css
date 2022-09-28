@@ -387,6 +387,8 @@ ul {
   align-items: center;
 }
 
+
+
 a {
   text-decoration: none;
 }
@@ -530,24 +532,14 @@ a {
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 20px;
 }
-.header__wrapper .cols__container .right__col .mixers img {
-  max-width: 100%;
-  display: block;
-  height: 100%;
-  object-fit: cover;
-}
+
 
 .header__wrapper .cols__container .right__col .interests {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 20px;
 }
-.header__wrapper .cols__container .right__col .interests img {
-  max-width: 100%;
-  display: block;
-  height: 100%;
-  object-fit: cover;
-}
+
 
 /* Responsiveness */
 

@@ -34,6 +34,10 @@ export class MixerComponent implements OnInit {
   editAddress: boolean = false;
   newAddress: Address = new Address();
 
+  showDetails: boolean = true;
+
+  showHost: boolean = false;
+
   constructor(
     private mixerService: MixerService,
     private profileService: ProfileService,
@@ -128,7 +132,7 @@ export class MixerComponent implements OnInit {
       this.profileService.updateProfile(this.editProfile).subscribe({
         next: (result) => {
           this.selected = null;
-          this.reload;
+          this.reload();
         },
         error: (err) => {
           console.error(
@@ -138,7 +142,6 @@ export class MixerComponent implements OnInit {
         },
       });
     }
-    this.reload;
   }
 
   updateCompleted(updatedMixer: Mixer) {
@@ -191,5 +194,15 @@ export class MixerComponent implements OnInit {
         console.error(problem);
       },
     });
+  }
+
+  detailsLinkToggle() {
+    this.showDetails = true;
+    this.showHost = false;
+  }
+
+  hostLinkToggle() {
+    this.showDetails = false;
+    this.showHost = true;
   }
 }
