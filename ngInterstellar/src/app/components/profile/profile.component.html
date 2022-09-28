@@ -1,92 +1,111 @@
-
-  <div *ngIf="selected &&displayAllInfo && !basicEdit && !sexualityEdit && !locationEdit">
-
-
+<div class="background">
+  <div *ngIf="selected &&displayAllInfo && !basicEdit && !sexualityEdit && !locationEdit && !picsEdit">
 
 
-    <div class="topLeft" >
 
-  <h1>Basic info:</h1>
-  <h4>{{ selected.firstName }} {{selected.lastName}}</h4>
-  <p>Description: {{ selected.description }}</p>
-  <p>Age: {{ selected.age }} </p>
-  <p>Birthday: {{ selected.birthday }} </p>
-  <p>{{ selected.updatedOn }}</p>
-  <button (click)="basicEdit=true">Edit basics</button>
-  <hr>
-  <hr>
+    <div class="container-fluid">
 
+      <div class="topLeft" >
+        <h3>{{selected.firstName }} {{selected.lastName}}</h3>
+    <img id="profilePic" [src]="selected.profilePic" />
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="topLeftish">
+
+      <p>Age: {{ selected.age }} </p>
+      <p>Birthday: {{ selected.birthday }} </p>
+      <p>{{ selected.updatedOn }}</p>
+      <button (click)="basicEdit=true">Edit basics</button> <br>
+      <div *ngIf="selected.address">
+        <br>
+        <p>{{selected.address.city}}, {{ selected.address.state }}</p>
+        <p> {{selected.address.zip}} {{selected.address.country}}</p>
+        </div>
+        <button (click)="locationEdit=true">editAddress</button>
+    </div>
   </div>
 
-  <div class="topRight">
 
-    <h1>Location:</h1>
-    <div *ngIf="selected.address">
-      <p>{{ selected.address.street }} {{selected.address.city}}
-        {{ selected.address.state }} {{selected.address.zip}} {{selected.address.country}}</p>
+
+    <div class="container">
+      <div class="topRight">
+        <h2>About:</h2>
+        <p>{{ selected.description }}</p>
       </div>
-      <button (click)="locationEdit=true">editAddress</button>
-      <hr>
-      <hr>
+    </div>
 
-  </div>
+   <!-- <div class="upperLeft">
 
-  <div class="upperLeft">
-
-    <h1>Sexuality:</h1>
-    <p>{{ selected.sex }}</p>
-    <h5>Preferences:</h5>
-    <div *ngFor="let pref of selected.preferences">{{ pref.name }}</div>
-    <h5>Categories</h5>
-    <div *ngFor="let cat of selected?.categories">{{ cat.name }}</div>
-    <button (click)="sexualityEdit=true">Edit Sexuality</button>
     <hr>
     <hr>
 
-  </div>
+  </div>  -->
 
   <div class="bottomCenter">
 
-    <h1>Images:</h1>
-  Profile Pic:
-  <img [src]="selected.profilePic" />
-  <h5>Pics:</h5>
+    <h1>Photos:</h1>
+  <!-- Profile Pic:
+  <img [src]="selected.profilePic" /> -->
+  <!-- <h5>Photos:</h5> -->
   <div *ngFor="let pic of selected.images">
     <img [src]="pic.imageUrl" class="pfp" />
   </div>
   <button (click)="picsEdit=true">Edit pictures</button>
-  <hr>
-  <hr>
+
 
   </div>
 
-<div class="midLeft">
-
-  <h5>People into you:</h5>
-  <div *ngFor="let fav of selected?.favoriter">
-    {{ fav.firstName }}{{ fav.age }}
-    <img [src]="fav.profilePic" />
+  <div class="container-fluid">
+    <div class="innerMidLeft">
+      <h5>Gender:</h5>
+      <p>{{ selected.sex }}</p>
+    </div>
   </div>
 
+  <div class="container-fluid">
+    <div class="midLeft">
+      <h5>Preferences:</h5>
+      <div *ngFor="let pref of selected.preferences">{{ pref.name }}</div>
+    </div>
+  </div>
+
+<div class="container-fluid">
+<div class="outerMidLeft">
+  <h5>Categories:</h5>
+  <div *ngFor="let cat of selected?.categories">
+        {{ cat.name }}
+  </div>
+  <div class="sexBtn">
+
+    <button (click)="sexualityEdit=true">Edit Sexuality</button>
+  </div>
+</div>
 </div>
 
-<div class="upperRight">
 
-  <h5>Mixers Hosting:</h5>
-  <div *ngFor="let mixer of selected?.mixers">{{ mixer.name }}</div>
 
+
+<div class="container-fluid">
+  <div class="upperRight">
+
+    <h4>Mixers Hosting:</h4>
+    <div *ngFor="let mixer of selected?.mixers">{{ mixer.name }}</div>
+
+  </div>
 </div>
 
 <div class="midRight">
 
-  <h5>Mixers Attending:</h5>
+  <h4>Mixers Attending:</h4>
   <div *ngFor="let mixer of selected?.mixersAttending">{{ mixer.name }}</div>
 
 </div>
 
 </div>
 
-
+</div>
 
 <div *ngIf="!selected&&!editProfile&&!basicEdit">
   <h1>It seems you don't have a profile</h1>
@@ -170,8 +189,8 @@
     <label for="lastName" *ngIf="editProfile.birthday!=''">Birthday:</label>
     <input type="text" name="birthday" [(ngModel)]="editProfile.birthday"/>
 
-    <button type="button" *ngIf="newProfile.firstName!=''&&newProfile.lastName!=''&&newProfile.description!=''
-    &&newProfile.age>=18&&newProfile.birthday!=''" (click)="basicEditSave()">Save</button>
+    <button type="button" *ngIf="editProfile.firstName!=''&&editProfile.lastName!=''&&editProfile.description!=''
+    &&editProfile.age>=18&&editProfile.birthday!=''" (click)="basicEditSave()">Save</button>
     <button type="button" *ngIf="!initialCreate" (click)="basicEdit=false">Cancel</button>
   </form>
 </div>

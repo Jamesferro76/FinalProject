@@ -157,70 +157,109 @@ a:hover {
 }
 
 
+
 .topLeft{
   position: absolute;
   left:0px;
-  top: 30px;
+  top: 3rem;
   width: 250px;
-  border: 1px solid black;
   padding:  12px;
+  padding-bottom: 10px;
+
+}
+
+.topLeftish{
+  position: absolute;
+  left:22rem;
+  top: 5rem;
+  width: 250px;
+  padding:  2rem;
   padding-bottom: 10px;
 }
 
-.upperLeft{
-  position: absolute;
-  left:0px;
-  top: 360px;
-  width: 250px;
-  border: 1px solid black;
-  padding:  12px;
-}
+
 
 .midLeft{
   position: absolute;
-  left:0px;
-  top: 630px;
+  left:7rem;
+  top: 27rem;
   width: 250px;
-  border: 1px solid black;
   padding:  12px;
+}
+.innerMidLeft{
+  position: absolute;
+  left:0rem;
+  top: 27rem;
+  width: 250px;
+  padding:  12px;
+}
+.outerMidLeft{
+  position: absolute;
+  left:16rem;
+  top: 27rem;
+  width: 250px;
+  padding:  12px;
+}
+
+.sexBtn{
+  position: absolute;
+  left:-15rem;
+  top: 10rem;
+  width: 250px;
+  padding:  12px;
+  overflow-y: auto;
 }
 
 
 .topRight{
+
   position: absolute;
-  top: 30px;
-  right:0px;
-  width: 250px;
-  border: 1px solid black;
-  padding:  12px;
+  top: 7rem;
+  right:34rem;
+  width: 500px;
+  padding-right:  5rem;
+  padding-left: 5rem;
 }
 
 .upperRight{
   position: absolute;
-  right:0px;
-  top: 280px;
-  width: 250px;
-  border: 1px solid black;
-  padding:  12px;
+  right:5rem;
+  top: 19rem;
+  width: 350px;
+  padding-right:  5rem;
+  padding-left: 5rem;
+}
+
+#profilePic{
+     width: 315px;
+      height: 315px;
+      text-align: center;
+    clip-path: circle(50% at 50% 50%);
+    /* width: 250px;
+    height: 250px;
+    clip-path: path('M213.1,6.7c-32.4-14.4-73.7,0-88.1,30.6C110.6,4.9,67.5-9.5,36.9,6.7C2.8,22.9-13.4,62.4,13.5,110.9 C33.3,145.1,67.5,170.3,125,217c59.3-46.7,93.5-71.9,111.5-106.1C263.4,64.2,247.2,22.9,213.1,6.7z');
+    object-fit: cover;
+    margin: 0; */
 }
 
 .midRight{
   position: absolute;
-  right:0px;
-  top: 370px;
-  width: 250px;
-  border: 1px solid black;
-  padding:  12px;
-}
+  right:5rem;
+  top: 5.5rem;
+  width: 350px;
+  padding-right:  5rem;
+  padding-left: 5rem;}
 
 .bottomCenter{
   position:absolute;
 align-items: center;
 justify-content: center;
-  top: 700px;
+  top: 25rem;
+  left:41rem;
+  right:22rem;
+
   width: 700px;
-  border: 1px solid black;
-  padding:  12px;
+  padding:  2rem;
 }
 
 
