@@ -132,7 +132,7 @@ export class MixerComponent implements OnInit {
       this.profileService.updateProfile(this.editProfile).subscribe({
         next: (result) => {
           this.selected = null;
-          this.reload;
+          this.reload();
         },
         error: (err) => {
           console.error(
@@ -142,7 +142,6 @@ export class MixerComponent implements OnInit {
         },
       });
     }
-    this.reload;
   }
 
   updateCompleted(updatedMixer: Mixer) {
@@ -197,13 +196,12 @@ export class MixerComponent implements OnInit {
     });
   }
 
-
-  detailsLinkToggle(){
+  detailsLinkToggle() {
     this.showDetails = true;
     this.showHost = false;
   }
 
-  hostLinkToggle(){
+  hostLinkToggle() {
     this.showDetails = false;
     this.showHost = true;
   }
