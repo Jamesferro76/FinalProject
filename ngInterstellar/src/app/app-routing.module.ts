@@ -8,6 +8,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { InterChatComponent } from './components/inter-chat/inter-chat.component';
 import { SearchComponent } from './components/search/search.component';
+import { ContactPageComponent } from './components/contact-page/contact-page.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'ichat', component: InterChatComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'contact', component: ContactPageComponent },
 
   { path: '**', component: NotFoundComponent },
 ];
