@@ -52,6 +52,8 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   chatter: Profile = new Profile();
 
+  reason: string= '';
+
   constructor(
     private http: HttpClient,
     private auth: AuthService,
@@ -184,6 +186,27 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       },
       error: (prob) => {
         console.error('ChatComponent.addMessage(): error sending message:');
+        console.error(prob);
+      },
+    });
+  }
+
+  block(){
+    console.log("Inside block id:"+ this.id);
+    console.log(this.reason);
+    if(this.reason==''){
+      this.reason="Blocked";
+    }
+
+    this.starServ.update(this.id, this.reason).subscribe({
+      next: (result) => {
+        this.reason="";
+        this.getMatches();
+        this.display();
+        // this.newMessage.content = '';
+      },
+      error: (prob) => {
+        console.error('ChatComponent.block(): error sending message:');
         console.error(prob);
       },
     });

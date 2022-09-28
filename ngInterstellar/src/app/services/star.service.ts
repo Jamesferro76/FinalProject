@@ -59,4 +59,15 @@ export class StarService {
       );
     }
 
+    update(id:number, reason:string){
+      return this.http.put<Star>(this.url+"/block/"+id, reason, this.getHttpOptions()).pipe(
+        catchError((err: any) => {
+          console.error(err);
+          return throwError(
+             () => new Error( 'ProfileService.create(): error creating Profile: ' + err )
+          );
+        })
+      );
+    }
+
 }
