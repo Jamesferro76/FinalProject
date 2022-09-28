@@ -1,1 +1,79 @@
-<p>settings works!</p>
+
+<button (click)="editedUser = loginUser">Update?</button>
+
+<div class="container container-fluid" *ngIf="editedUser">
+  <div class="updateLogin">
+    <form class="css-form form-control">
+        <h3>Username</h3>
+        <input type="text" name="username" placeholder="{{editedUser.username}}">
+        <h3>Password</h3>
+        <input type="password" name="password" placeholder="{{editedUser.password}}">
+      </form>
+      <button type="submit" (click)="updateLogin(editedUser)">Update Login</button>
+    </div>
+  </div>
+
+
+  <!-- ////////////////////////// -->
+
+  <div class="form-style-3">
+    <form>
+    <fieldset><legend>Login</legend>
+    <label for="field1"><span>Userame <span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
+    <label for="field2"><span>Email <span class="required">*</span></span><input type="email" class="input-field" name="field2" value="" /></label>
+    <label for="field3"><span>Password <span class="required">*</span></span><input type="text" class="input-field" name="field3" value="" /></label>
+    <label for="field4"><span>Subject</span><select name="field4" class="select-field">
+    <option value="Appointment">Appointment</option>
+    <option value="Interview">Interview</option>
+    <option value="Regarding a post">Regarding a post</option>
+    </select></label>
+    </fieldset>
+    </form>
+    </div>
+
+
+
+    <!-- ////////////////// -->
+
+    <div class="form-style-8">
+      <h2>Login to your account</h2>
+      <form>
+        <input type="text" name="field1" placeholder="Username" />
+        <input type="email" name="field2" placeholder="Email" />
+        <input type="password" name="field3" placeholder="Password" />
+        <input type="button" value="Login" />
+      </form>
+    </div>
+
+
+
+    <!-- //////////////////////////////////////////////////// -->
+
+    <div class="login-box">
+      <h2>Login</h2>
+      <form>
+        <div class="user-box">
+          <input type="text" name="" required="">
+          <label>Username</label>
+        </div>
+        <div class="user-box">
+          <input type="password" name="" required="">
+          <label>Password</label>
+        </div>
+        <a href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Submit
+        </a>
+      </form>
+    </div>
+
+
+
+
+    <!-- /////////// -->
+
+
+

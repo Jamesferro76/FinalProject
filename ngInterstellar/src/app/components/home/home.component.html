@@ -1,6 +1,6 @@
 <h1>Interstellar Dating</h1>
 
-<div class="spacing" *ngIf="!loggedIn() && registerP == false">
+<!-- <div class="spacing" *ngIf="!loggedIn() && registerP == false">
   <div class="login">
     <div class="row justify-content-center">
       <img
@@ -35,6 +35,28 @@
       </div>
     </div>
   </div>
+</div> -->
+
+
+<div class="login-box" *ngIf="!loggedIn() && registerP == false">
+  <h2>Login</h2>
+  <form>
+    <div class="user-box">
+      <input type="text" name="username" required="true" [(ngModel)]="loginUser.username">
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" required="true" [(ngModel)]="loginUser.password">
+      <label>Password</label>
+    </div>
+    <a (click)="login(loginUser)">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+  </form>
 </div>
 
 

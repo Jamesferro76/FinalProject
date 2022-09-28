@@ -158,22 +158,27 @@ a:hover {
 
 
 
-.topLeft{
+.nameNpfp{
   position: absolute;
-  left:0px;
-  top: 3rem;
   width: 250px;
-  padding:  12px;
+  padding-top:  4rem;
   padding-bottom: 10px;
 
 }
 
-.topLeftish{
+.interests{
   position: absolute;
-  left:22rem;
-  top: 5rem;
-  width: 250px;
-  padding:  2rem;
+  background-color: #8419C5;
+  padding-top: 28rem;
+}
+
+
+
+.infoMe{
+  position: absolute;
+  padding-left:22rem;
+  padding-top: 9rem;
+  width: 650px;
   padding-bottom: 10px;
 }
 
@@ -181,53 +186,36 @@ a:hover {
 
 .midLeft{
   position: absolute;
-  left:7rem;
-  top: 27rem;
-  width: 250px;
-  padding:  12px;
+  padding-left: 6.5rem;
+
 }
 .innerMidLeft{
   position: absolute;
-  left:0rem;
-  top: 27rem;
-  width: 250px;
-  padding:  12px;
 }
 .outerMidLeft{
   position: absolute;
-  left:16rem;
-  top: 27rem;
-  width: 250px;
-  padding:  12px;
+  padding-left:15rem;
 }
 
 .sexBtn{
   position: absolute;
-  left:-15rem;
-  top: 10rem;
+  padding-top: 5rem;
   width: 250px;
-  padding:  12px;
-  overflow-y: auto;
 }
 
 
-.topRight{
-
+.aboutMe{
   position: absolute;
-  top: 7rem;
-  right:34rem;
-  width: 500px;
-  padding-right:  5rem;
-  padding-left: 5rem;
+
+  width: 999px;
+  padding-top: 4rem;
+  padding-right: 5rem;
+  padding-left: 37rem;
 }
 
 .upperRight{
   position: absolute;
-  right:5rem;
-  top: 19rem;
   width: 350px;
-  padding-right:  5rem;
-  padding-left: 5rem;
 }
 
 #profilePic{
@@ -242,24 +230,27 @@ a:hover {
     margin: 0; */
 }
 
+#mixers{
+  position:absolute;
+  padding-left: 65rem;
+  padding-top: 4rem;
+
+}
+
 .midRight{
   position: absolute;
-  right:5rem;
-  top: 5.5rem;
+  padding-top: 5.5rem;
   width: 350px;
-  padding-right:  5rem;
-  padding-left: 5rem;}
+  }
 
-.bottomCenter{
+.photosMe{
   position:absolute;
-align-items: center;
-justify-content: center;
-  top: 25rem;
-  left:41rem;
-  right:22rem;
-
-  width: 700px;
-  padding:  2rem;
+  align-items: center;
+  justify-content: center;
+  padding-top: 25rem;
+  padding-left:37rem;
+  padding-right:5rem;
+  width: 900px;
 }
 
 
@@ -280,4 +271,16 @@ justify-content: center;
 
 .red-letters{
   color: red;
+}
+
+h2{
+  text-align: center;
+  font: copperplate;
+  font-style: italic;
+  text-transform: lowercase;
+}
+h4{
+  font: copperplate;
+  font-style: italic;
+  text-transform: lowercase;
 }

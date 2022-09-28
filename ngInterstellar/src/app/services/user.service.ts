@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 export class UserService {
 
   private baseUrl = 'http://localhost:8090/';
-  private url = this.baseUrl;
+  private url = this.baseUrl + 'api/users';
 
   constructor(private http: HttpClient,
     private auth: AuthService
@@ -22,7 +22,7 @@ export class UserService {
 
   register(user: User): Observable<User> {
     // Create POST request to register a new account
-    return this.http.post<User>(this.url + 'register', user).pipe(
+    return this.http.post<User>(this.baseUrl + 'register', user).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -43,7 +43,7 @@ export class UserService {
   }
 
   index(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl, this.getHttpOptions()).pipe(
+    return this.http.get<User[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err:any) =>{
         console.log(err);
         return throwError(
@@ -54,7 +54,7 @@ export class UserService {
   }
 
   show(userId: any): Observable<User> {
-    return this.http.get<User>(this.baseUrl + '/' +  userId, this.getHttpOptions()).pipe(
+    return this.http.get<User>(this.url + '/' +  userId, this.getHttpOptions()).pipe(
       catchError((err:any) =>{
         console.log(err);
         return throwError(
@@ -66,7 +66,7 @@ export class UserService {
 
 
   create(user: User) {
-    return this.http.post<User>(this.baseUrl, user, this.getHttpOptions()).pipe(
+    return this.http.post<User>(this.url, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(
@@ -76,9 +76,9 @@ export class UserService {
     );
   }
 
-  update(updatedUser: User) {
+  update(user: User):Observable<User> {
 
-    return this.http.put<User>(this.baseUrl + '/' + updatedUser.id, updatedUser, this.getHttpOptions()).pipe(
+    return this.http.put<User>(this.url , user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(
