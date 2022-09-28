@@ -14,6 +14,8 @@ public interface StarService {
 	Star findSpecificStar(int id, String username);
 
 	boolean destroy(String username, int id);
+
+	Star update(String name, int id, String reason);
    
 
 }

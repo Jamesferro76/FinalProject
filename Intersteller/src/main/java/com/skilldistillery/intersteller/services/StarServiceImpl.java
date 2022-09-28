@@ -1,5 +1,7 @@
 package com.skilldistillery.intersteller.services;
 
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.intersteller.entities.Profile;
 import com.skilldistillery.intersteller.entities.Star;
 import com.skilldistillery.intersteller.entities.StarId;
-import com.skilldistillery.intersteller.entities.User;
 import com.skilldistillery.intersteller.repositories.ProfileRepository;
 import com.skilldistillery.intersteller.repositories.StarRepository;
 import com.skilldistillery.intersteller.repositories.UserRepository;
@@ -90,6 +91,33 @@ public class StarServiceImpl implements StarService {
 		}
 		
 		return profilesMatched;
+	}
+
+
+	@Override
+	public Star update(String name, int id, String reason) {
+		Profile profile1= profileRepo.findByUserUsername(name);
+		Profile profile2=null;
+		Star star=null;
+		Optional<Profile> profileOpt= profileRepo.findById(id);
+		if(profileOpt.isPresent()) {
+			profile2=profileOpt.get();
+		}
+		Optional<Star> starOpt= starRepo.findByMatcherAndMatched(profile1, profile2);
+		if(starOpt.isPresent()) {
+			star=starOpt.get();
+		}else {
+			starOpt= starRepo.findByMatcherAndMatched(profile2, profile1);;
+			if(starOpt.isPresent()) {
+				star=starOpt.get();
+		}
+		}
+		star.setBlocked(true);
+		star.setBlockedReason(reason);
+		star.setBlockedBy(profile1);
+		star.setBlocked_date(LocalDateTime.now());
+		starRepo.save(star);
+		return star;
 	}
 	
 
