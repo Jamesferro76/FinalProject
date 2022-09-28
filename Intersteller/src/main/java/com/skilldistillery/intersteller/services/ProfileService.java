@@ -34,4 +34,6 @@ public interface ProfileService {
 
 	Profile checkFavorited(int id, String name);
 
+	List<Profile> findAllIncludingInactive(String username);
+
 }

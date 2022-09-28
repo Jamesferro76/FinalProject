@@ -20,6 +20,7 @@ import { SearchComponent } from './components/search/search.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
+import { ActivePipe } from './pipes/active.pipe';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,9 @@ import { ContactPageComponent } from './components/contact-page/contact-page.com
     ContactComponent,
     ViewProfileComponent,
     ContactPageComponent,
+    ActivePipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, ActivePipe, FormsModule, HttpClientModule],
   providers: [AuthService, MixerService, ProfileService, UserService],
   bootstrap: [AppComponent],
 })
