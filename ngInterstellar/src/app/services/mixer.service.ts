@@ -50,17 +50,14 @@ export class MixerService {
   }
 
   create(mixer: Mixer) {
-    return this.http
-      .post<Mixer>(this.url, mixer, this.getHttpOptions())
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError(
-            () =>
-              new Error('MixerService.create(): error creating mixer: ' + err)
-          );
-        })
-      );
+    return this.http.post<Mixer>(this.url, mixer, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('MixerService.create(): error creating mixer: ' + err)
+        );
+      })
+    );
   }
   updateMixer(mixer: Mixer) {
     return this.http
