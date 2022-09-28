@@ -102,8 +102,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User update( User user, String username) {
-		User current =userRepo.findByUsername(user.getUsername());
+//		User current =userRepo.findByUsername(user.getUsername());
+		User current =show(username, user.getId());
 		System.out.println(user.getUsername());
+		System.out.println(current.getUsername());
 		if(current != null) {
 			current.setUsername(user.getUsername());
 			System.out.println(user.getPassword());
@@ -119,6 +121,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 	
-
+//$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe
+//$2a$10$p9nj/DvHfTj8Lgb2seux7.WwapTlVWgcB3d75uS0RnsaJUsZcDpDi
 
 
