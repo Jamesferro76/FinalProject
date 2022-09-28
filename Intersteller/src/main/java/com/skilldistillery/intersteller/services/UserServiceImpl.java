@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User update(String username, Integer userId, User user) {
+	public User adminUpdate(String username, Integer userId, User user) {
 		Optional<User> userOpt = userRepo.findById(userId);
 		User updatedUser = null;
 		if(userOpt.isPresent()) {
@@ -97,6 +97,19 @@ public class UserServiceImpl implements UserService {
         }
 		return profile.getUser();	
 	
+	}
+
+	@Override
+	public User update( User user, String username) {
+		User current =userRepo.findByUsername(username);
+		if(current != null) {
+			current.setUsername(user.getUsername());
+			current.setPassword(encoder.encode(user.getPassword()));
+			current.setEmail(user.getEmail());
+			userRepo.saveAndFlush(current);
+
+		}
+		return current;
 	}
 
 	}

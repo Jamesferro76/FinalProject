@@ -70,7 +70,7 @@ public class UserController {
 	public User updateUser(@PathVariable Integer userId, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal, @RequestBody User user) {
 		try {
-			user = userServ.update(principal.getName(), userId, user);
+			user = userServ.adminUpdate(principal.getName(), userId, user);
 
 			if (user == null) {
 				resp.setStatus(404);
@@ -85,6 +85,22 @@ public class UserController {
 
 		}
 		return user;
+	}
+	
+	@PutMapping("users")
+	public User update( HttpServletRequest req, HttpServletResponse resp,
+			Principal principal, @RequestBody User user) {
+		
+		User updatedUser = userServ.update(user, principal.getName());
+
+			if (updatedUser == null) {
+				resp.setStatus(404);
+			} else {
+				resp.setStatus(201);
+			}
+
+	
+		return updatedUser;
 	}
 
 	@DeleteMapping("users/{userId}")
@@ -122,7 +138,7 @@ public class UserController {
 		return user;
 	}
 
-	@GetMapping("ichat/profile/{profileId}")
+	@GetMapping("ichat/{profileId}")
 	public User findByProfile(@PathVariable int profileId, HttpServletRequest req, HttpServletResponse resp,
 			Principal principal) {
 		User user = userServ.findByProfile(profileId);

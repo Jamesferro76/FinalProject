@@ -583,8 +583,8 @@ COMMIT;
 START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (1, 2, NULL, 1, 2, NULL, 'ugly');
-INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (2, 4, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (2, 6, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (2, 4, NULL, 0, NULL, NULL, NULL);
+INSERT INTO `star` (`matcher_id`, `matched_id`, `matched_on`, `blocked`, `blocked_by_id`, `blocked_date`, `blocked_reason`) VALUES (2, 6, NULL, 0, NULL, NULL, NULL);
 
 COMMIT;
 

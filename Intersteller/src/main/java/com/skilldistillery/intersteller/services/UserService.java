@@ -13,7 +13,9 @@ public interface UserService {
 	
 	public User create(String Username, User user);
 	
-	public User update(String username, Integer userId, User user);
+	public User adminUpdate(String username, Integer userId, User user);
+	
+	public User update( User user, String username);
 	
 	public boolean destroy(String username,  Integer userId);
 
