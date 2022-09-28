@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
   displayUpdate: boolean = false;
   displayProfile: boolean = false;
 
+  editButtons: boolean=false;
 
   editProfile: Profile | null = null;
   newProfile: Profile = new Profile();
@@ -482,6 +483,10 @@ export class ProfileComponent implements OnInit {
     this.displayAllInfo=false;
     this.displayUpdate=false;
     this.displayProfile=true;
+  }
+
+  editButtonsToggle(){
+    this.editButtons=!this.editButtons;
   }
 
 
