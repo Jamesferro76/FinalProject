@@ -168,25 +168,27 @@ a:hover {
 
 .interests{
   position: absolute;
-  background-color: #8419C5;
-  padding-top: 28rem;
+  width: 400px;
+  margin-top: 28rem;
+  background-color: #ceb2e0;
 }
 
 
 
 .infoMe{
   position: absolute;
-  padding-left:22rem;
-  padding-top: 9rem;
-  width: 650px;
-  padding-bottom: 10px;
+  margin-left:22rem;
+  margin-top: 9rem;
+  width: 200px;
+  margin-bottom: 10px;
+  background: rgb(219, 51, 51);
 }
 
 
 
 .midLeft{
   position: absolute;
-  padding-left: 6.5rem;
+  margin-left: 6.5rem;
 
 }
 .innerMidLeft{
@@ -194,23 +196,24 @@ a:hover {
 }
 .outerMidLeft{
   position: absolute;
-  padding-left:15rem;
+  margin-left:15rem;
 }
 
 .sexBtn{
   position: absolute;
-  padding-top: 5rem;
+  margin-top: 5rem;
   width: 250px;
 }
 
 
 .aboutMe{
   position: absolute;
-
-  width: 999px;
-  padding-top: 4rem;
-  padding-right: 5rem;
-  padding-left: 37rem;
+background-color: aliceblue;
+text-align: center;
+  width: 400px;
+  margin-top: 10rem;
+  margin-right: 5rem;
+  margin-left: 39rem;
 }
 
 .upperRight{
@@ -232,8 +235,11 @@ a:hover {
 
 #mixers{
   position:absolute;
-  padding-left: 65rem;
-  padding-top: 4rem;
+  background-color: rgb(219, 141, 46);
+  width: 250px;
+  margin-left: 40rem;
+  margin-top: 24rem;
+  margin-right: 28rem;
 
 }
 
@@ -244,13 +250,14 @@ a:hover {
   }
 
 .photosMe{
+  background: #8419C5;
   position:absolute;
+  margin-top: 4rem;
+  margin-left: 65rem;
+  margin-bottom: 4rem;
   align-items: center;
-  justify-content: center;
-  padding-top: 25rem;
-  padding-left:37rem;
-  padding-right:5rem;
-  width: 900px;
+  padding: 5px;
+  width: 210px;
 }
 
 

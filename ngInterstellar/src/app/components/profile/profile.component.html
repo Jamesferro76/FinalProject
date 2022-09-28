@@ -14,9 +14,11 @@
 <!-- Personal Info -->
   <div class="container-fluid">
     <div class="infoMe">
+      <div>
         <p>Age: {{ selected.age }} </p>
         <p>Birthday: {{ selected.birthday }} </p>
         <p>{{ selected.updatedOn }}</p>
+      </div>
          <button (click)="basicEdit=true">Edit basics</button> <br>
            <div *ngIf="selected.address">
              <br>
