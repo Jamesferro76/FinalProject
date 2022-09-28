@@ -31,7 +31,7 @@
 
 <!-- Shows how to add a form -->
 
-<div class="addForm" *ngIf="!selected">
+<div class="form-style-8" *ngIf="!selected">
 <form>
   <input type="text" name="name" placeholder="Name"[(ngModel)]="newMixer.name"><br>
   <input type="text" name="description" placeholder="description"[(ngModel)]="newMixer.description"><br>
@@ -80,7 +80,7 @@
 </div>
 
 <!-- Edits a Mixer -->
-<form  *ngIf="editMixer">
+<form class="form-style-8" *ngIf="editMixer">
   <div class="container">
     <div class="row">
       <div class ="box-item col-md-4">

@@ -36,7 +36,7 @@
     </div>
   </div>
 </div> -->
-
+<!--
 
 <div class="login-box" *ngIf="!loggedIn() && registerP == false">
   <h2>Login</h2>
@@ -57,6 +57,8 @@
       Login
     </a>
   </form>
+        <h5>Don't have an account?</h5>
+        <button (click)="registerP = true">Sign up</button>
 </div>
 
 
@@ -76,5 +78,33 @@
     <input [(ngModel)]="newUser.email" type="text" name="email" /> <br />
     <button type="submit" (click)="register(newUser)">Register</button>
   </form>
-</div>
+</div> -->
 
+
+
+<body>
+
+
+<div class="main" *ngIf="!loggedIn() && registerP == false">
+  <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="signup">
+      <form>
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="text" name="txt" placeholder="User name" required="true" [(ngModel)]="newUser.username">
+        <input type="email" name="email" placeholder="Email" required="true" [(ngModel)]="newUser.email">
+        <input type="password" name="pswd" placeholder="Password" required="true"  [(ngModel)]="newUser.password">
+        <button type="submit"  (click)="register(newUser)">Sign up</button>
+      </form>
+    </div>
+
+    <div class="login">
+      <form>
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="text" name="User name" placeholder="Username" required="true" [(ngModel)]="loginUser.username">
+        <input type="password" name="pswd" placeholder="Password" required="true" [(ngModel)]="loginUser.password">
+        <button type="submit"  (click)="login(loginUser)">Login</button>
+      </form>
+    </div>
+</div>
+</body>
