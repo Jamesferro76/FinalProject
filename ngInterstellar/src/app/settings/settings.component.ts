@@ -29,6 +29,7 @@ export class SettingsComponent implements OnInit {
         console.log(user);
 
         this.loginUser = user;
+        this.editedUser=user;
         this.profileService.findByUserId(this.loginUser.id).subscribe({
           next: (profile) => {
             this.loginProfile = profile;
@@ -48,6 +49,11 @@ export class SettingsComponent implements OnInit {
   }
 
   updateLogin(user: User) {
+    console.log(user);
+    console.log(user.username);
+    console.log(user.password);
+
+
     this.userService.update(user).subscribe({
       next: (updatedUser) => {
     this.editedUser = null;
