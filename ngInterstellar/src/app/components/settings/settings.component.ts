@@ -15,6 +15,7 @@ export class SettingsComponent implements OnInit {
   loginUser: User = new User();
   editedUser: User | null = null;
   loginProfile: Profile | null = null;
+  users: User[] = [];
 
   constructor(
     private auth: AuthService,
@@ -46,6 +47,7 @@ export class SettingsComponent implements OnInit {
         console.error(err);
       },
     });
+    this.reload();
   }
 
   updateLogin(user: User) {
@@ -64,6 +66,19 @@ export class SettingsComponent implements OnInit {
         console.error(
           'HomeComponent.UpdateProfile(): error Updating Profile: '
         );
+      },
+    });
+  }
+
+  reload(): void {
+    this.userService.index().subscribe({
+      next: (users) => {
+        this.users = users;
+        console.log(this.users);
+      },
+      error: (problem) => {
+        console.error('MixerHttpComponent.reload(): error loading mixer:');
+        console.error(problem);
       },
     });
   }

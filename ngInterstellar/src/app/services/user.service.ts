@@ -5,20 +5,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { DatePipe } from '@angular/common';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   private baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/users';
 
-  constructor(private http: HttpClient,
-    private auth: AuthService
-    ) { }
-
-
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   register(user: User): Observable<User> {
     // Create POST request to register a new account
@@ -44,62 +38,58 @@ export class UserService {
 
   index(): Observable<User[]> {
     return this.http.get<User[]>(this.url, this.getHttpOptions()).pipe(
-      catchError((err:any) =>{
+      catchError((err: any) => {
         console.log(err);
         return throwError(
           () => new Error('UserService.index(): error retrieving user' + err)
-          );
+        );
       })
     );
   }
 
   show(userId: any): Observable<User> {
-    return this.http.get<User>(this.url + '/' +  userId, this.getHttpOptions()).pipe(
-      catchError((err:any) =>{
-        console.log(err);
-        return throwError(
-          () => new Error('UserService.index(): error retrieving user' + err)
+    return this.http
+      .get<User>(this.url + '/' + userId, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('UserService.index(): error retrieving user' + err)
           );
-      })
-    );
+        })
+      );
   }
-
 
   create(user: User) {
     return this.http.post<User>(this.url, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(
-           () => new Error( 'UserService.create(): error creating User: ' + err )
+          () => new Error('UserService.create(): error creating User: ' + err)
         );
       })
     );
   }
 
-  update(user: User):Observable<User> {
-
-    return this.http.put<User>(this.url , user, this.getHttpOptions()).pipe(
+  update(user: User): Observable<User> {
+    return this.http.put<User>(this.url, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(
-           () => new Error( 'UserService.update(): error updating User: ' + err )
+          () => new Error('UserService.update(): error updating User: ' + err)
         );
       })
     );
-
   }
 
-  destroy(id: number){
+  destroy(id: number) {
     return this.http.delete<void>(this.baseUrl + '/' + id).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(
-           () => new Error( 'UserService.delete(): error deleting User: ' + err )
+          () => new Error('UserService.delete(): error deleting User: ' + err)
         );
       })
     );
-
   }
-
-
 }

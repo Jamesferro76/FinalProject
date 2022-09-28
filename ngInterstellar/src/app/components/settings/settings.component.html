@@ -39,6 +39,41 @@
 
 
 
-    <!-- /////////// -->
+    <!-- Admin Functions -->
+    <div *ngIf="loginUser.role==='ADMIN'">
+      <h1>Im an Admin!</h1>
+      <div class="container-fluid">
+        <div class="space">
+        <h1>User Results</h1>
 
 
+        <table class="table table-striped table-hover">
+            <thead class="table-light">
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Password</th>
+                <th>Status</th>
+                <th>Update User</th>
+                <th>Change User Status</th>
+
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor=" let user of users">
+                  <td>{{user.id}}</td>
+                  <td>{{user.username}}</td>
+                  <td>{{user.password}}</td>
+                  <td *ngIf="loginUser.active">Active</td>
+                  <td *ngIf="!loginUser.active">Inactive</td>
+                  <td *ngIf="loginUser.active">
+                  <form><input type="hidden" name="userId" value="${user.id}"><button type="submit" class="btn btn-dark btn-sm">Disable this User</button></form>
+
+                  <form><input type="hidden" name="userId" value="${user.id}"><button type="submit"class="btn btn-success btn-sm">Enable this User</button></form>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+    </div>
