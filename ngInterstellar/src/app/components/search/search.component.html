@@ -1,3 +1,4 @@
+<!-- Filter criteria -->
 State:<select name="state" [(ngModel)]="selectedState">
     <option *ngFor="let state of stateAbr" [ngValue]="state" value="{{state}}">{{state}}</option>
   </select><br>
@@ -14,6 +15,8 @@ Maximum Age:<select name="ageMax" [(ngModel)]="ageMax">
   <option *ngFor="let age of ages" [ngValue]="age" value="{{age}}">{{age}}</option>
   </select><br>
 <button (click)="displayList()">Search</button>
+
+<!-- Shows Profiles Based on Search Criteria -->
 <div *ngIf="loggedIn()&&!outOfMatches && displayProfiles.length!=0" >
   <h2>Start swiping</h2>
   <div *ngIf="selected">
@@ -54,6 +57,7 @@ Maximum Age:<select name="ageMax" [(ngModel)]="ageMax">
       </span>
     </a>
   </div>
+
 
   <div *ngIf="outOfMatches">
   <h1>Out of matches, check back later to see if anyone likes you back</h1>
