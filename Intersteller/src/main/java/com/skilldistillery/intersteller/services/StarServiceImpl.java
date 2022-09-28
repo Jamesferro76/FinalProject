@@ -77,8 +77,10 @@ public class StarServiceImpl implements StarService {
 	public List<Profile> findByUser(String username) {
 		Profile profile=profileRepo.findByUserUsername(username);
 		List<Profile> profilesMatched= new ArrayList<Profile>();
-		List<Star> starsMatched=starRepo.findByMatched(profile);
-		List<Star> starsMatcher=starRepo.findByMatcher(profile);
+//		List<Star> starsMatched=starRepo.findByMatched(profile);
+//		List<Star> starsMatcher=starRepo.findByMatcher(profile);
+		List<Star> starsMatched=starRepo.findByMatchedAndBlocked(profile, false);
+		List<Star> starsMatcher=starRepo.findByMatcherAndBlocked(profile, false);
 		
 		for(Star starMatched : starsMatched) {
 			profilesMatched.add(starMatched.getMatcher());

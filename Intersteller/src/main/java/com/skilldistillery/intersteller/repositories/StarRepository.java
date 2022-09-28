@@ -17,6 +17,10 @@ public interface StarRepository extends JpaRepository<Star, Integer> {
 
 	Optional<Star> findByMatcherAndMatched(Profile profile1, Profile profile2);
 
+	List<Star> findByMatchedAndBlocked(Profile profile, boolean b);
+
+	List<Star> findByMatcherAndBlocked(Profile profile, boolean b);
+
 
 
 }
