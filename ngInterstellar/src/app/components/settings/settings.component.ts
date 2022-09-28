@@ -2,9 +2,9 @@ import { UserService } from 'src/app/services/user.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../models/user';
-import { AuthService } from '../services/auth.service';
-import { Profile } from '../models/profile';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
+import { Profile } from '../../models/profile';
 
 @Component({
   selector: 'app-settings',
@@ -29,7 +29,7 @@ export class SettingsComponent implements OnInit {
         console.log(user);
 
         this.loginUser = user;
-        this.editedUser=user;
+        this.editedUser = user;
         this.profileService.findByUserId(this.loginUser.id).subscribe({
           next: (profile) => {
             this.loginProfile = profile;
@@ -53,19 +53,17 @@ export class SettingsComponent implements OnInit {
     console.log(user.username);
     console.log(user.password);
 
-
     this.userService.update(user).subscribe({
       next: (updatedUser) => {
-    this.editedUser = null;
-    if(user.username != null){
-      this.loginUser = updatedUser;
-    }
+        this.editedUser = null;
+        if (user.username != null) {
+          this.loginUser = updatedUser;
+        }
       },
       error: (err) => {
         console.error(
           'HomeComponent.UpdateProfile(): error Updating Profile: '
         );
-
       },
     });
   }
