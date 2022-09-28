@@ -11,8 +11,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class MixerService {
-  private baseUrl = 'http://localhost:8090/api/mixers';
-  private url = environment.baseUrl;
+  // private baseUrl = 'http://localhost:8090';
+  private url = environment.baseUrl+"api/mixers";
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
