@@ -5,9 +5,9 @@
   <div class="updateLogin">
     <form class="css-form form-control">
         <h3>Username</h3>
-        <input type="text" name="username" placeholder="{{editedUser.username}}">
+        <input type="text" name="username" [(ngModel)]="editedUser.username">
         <h3>Password</h3>
-        <input type="password" name="password" placeholder="{{editedUser.password}}">
+        <input type="password" name="password" [(ngModel)]="editedUser.password">
       </form>
       <button type="submit" (click)="updateLogin(editedUser)">Update Login</button>
     </div>

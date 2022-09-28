@@ -104,8 +104,10 @@ public class UserServiceImpl implements UserService {
 		User current =userRepo.findByUsername(username);
 		if(current != null) {
 			current.setUsername(user.getUsername());
+			System.out.println(user.getPassword());
 			current.setPassword(encoder.encode(user.getPassword()));
 			current.setEmail(user.getEmail());
+			System.out.println(current);
 			userRepo.saveAndFlush(current);
 
 		}
