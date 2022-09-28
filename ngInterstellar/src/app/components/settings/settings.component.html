@@ -54,7 +54,6 @@
                 <th>Name</th>
                 <th>Password</th>
                 <th>Status</th>
-                <th>Update User</th>
                 <th>Change User Status</th>
 
               </tr>
@@ -64,13 +63,14 @@
                   <td>{{user.id}}</td>
                   <td>{{user.username}}</td>
                   <td>{{user.password}}</td>
-                  <td *ngIf="loginUser.active">Active</td>
-                  <td *ngIf="!loginUser.active">Inactive</td>
-                  <td *ngIf="loginUser.active">
-                  <form><input type="hidden" name="userId" value="${user.id}"><button type="submit" class="btn btn-dark btn-sm">Disable this User</button></form>
-
-                  <form><input type="hidden" name="userId" value="${user.id}"><button type="submit"class="btn btn-success btn-sm">Enable this User</button></form>
-                  </td>
+                  <td *ngIf="user.active">Active</td>
+                  <td *ngIf="!user.active">Inactive</td>
+                  <td *ngIf="user.active">
+                  <form><input type="hidden" name="active" value="{{user.active}}"><button type="submit" class="btn btn-dark btn-sm" (click)="user.active=false;adminUpdate(user)">Disable this User</button></form>
+                </td>
+                <td *ngIf="!user.active">
+                  <form><input type="hidden" name="active" value="{{user.active}}"><button type="submit"class="btn btn-success btn-sm" (click)="user.active=true;adminUpdate(user)">Enable this User</button></form>
+                </td>
                 </tr>
             </tbody>
           </table>

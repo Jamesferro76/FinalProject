@@ -14,6 +14,7 @@ import { Profile } from '../../models/profile';
 export class SettingsComponent implements OnInit {
   loginUser: User = new User();
   editedUser: User | null = null;
+  adminUser: User = new User();
   loginProfile: Profile | null = null;
   users: User[] = [];
 
@@ -79,6 +80,21 @@ export class SettingsComponent implements OnInit {
       error: (problem) => {
         console.error('MixerHttpComponent.reload(): error loading mixer:');
         console.error(problem);
+      },
+    });
+  }
+  adminUpdate(user: User) {
+    console.log(user);
+    console.log(user.username);
+    console.log(user.password);
+    console.log(user.active);
+
+    this.userService.update(user).subscribe({
+      next: (updatedUser) => {},
+      error: (err) => {
+        console.error(
+          'HomeComponent.UpdateProfile(): error Updating Profile: '
+        );
       },
     });
   }
