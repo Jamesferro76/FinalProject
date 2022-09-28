@@ -32,7 +32,8 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public List<Profile> findAll(String username) {
-		List<Profile> profiles= profileRepo.findAll();
+//		List<Profile> profiles= profileRepo.findAll();
+		List<Profile> profiles= profileRepo.findByActive(true);
 		Profile prof = profileRepo.findByUserUsername(username);
 		List<Profile> likedProfiles= prof.getFavorited();
 		profiles.remove(prof);
@@ -44,6 +45,17 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		
 		return profiles;
+	}
+	
+	@Override
+	public List<Profile> findAllIncludingInactive(String username) {
+		Profile prof = profileRepo.findByUserUsername(username);
+		if(prof.getActive()) {
+			List<Profile> profiles= profileRepo.findAll();
+			return profiles;
+			
+		}
+			return null;
 	}
 	
 	@Override

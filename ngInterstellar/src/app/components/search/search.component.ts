@@ -116,6 +116,7 @@ export class SearchComponent implements OnInit {
   outOfMatches: boolean = false;
 
   selected: Profile | null = null;
+  lastSelected: Profile | null = null;
 
   defaultImageUrl: string = 'https://s3.envato.com/files/158241052/1.jpg';
 
@@ -297,10 +298,11 @@ export class SearchComponent implements OnInit {
     console.log('Inside LikeAProfile');
 
     if (this.loginProfile && this.selected) {
+      this.lastSelected=this.selected;
       if (!this.loginProfile.favorited) {
         this.loginProfile.favorited = [];
       }
-      this.loginProfile = this.updateProfile(this.selected.id);
+      this.loginProfile = this.updateProfile(this.lastSelected.id);
 
       this.checkForMatch();
       this.displayProfiles.splice(this.profileIndex, 1);
@@ -326,15 +328,15 @@ export class SearchComponent implements OnInit {
   }
 
   checkForMatch() {
-    console.log("You made it to checkForMatch. This doesn't work yet");
+    console.log("You made it to checkForMatch.");
 
-    if (this.loginProfile && this.selected) {
-      this.profileService.checkFavorited(this.selected.id).subscribe({
+    if (this.loginProfile && this.lastSelected) {
+      this.profileService.checkFavorited(this.lastSelected.id).subscribe({
         next: (result) => {
-          console.log(result);
-          if (this.loginProfile && this.selected) {
+          console.log("In checkFavorited"+result);
+          if (this.loginProfile && this.lastSelected&&result) {
             this.star.matcher = this.loginProfile;
-            this.star.matched = this.selected;
+            this.star.matched = this.lastSelected;
             this.createStar();
           }
         },
@@ -347,6 +349,8 @@ export class SearchComponent implements OnInit {
   }
 
   createStar() {
+    console.log("In create a star");
+
     this.starService.create(this.star).subscribe({
       next: (result) => {
         //Make a message pop up that you have a match

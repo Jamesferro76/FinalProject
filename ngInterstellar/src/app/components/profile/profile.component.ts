@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
   displayUpdate: boolean = false;
   displayProfile: boolean = false;
 
+
   editProfile: Profile | null = null;
   newProfile: Profile = new Profile();
 

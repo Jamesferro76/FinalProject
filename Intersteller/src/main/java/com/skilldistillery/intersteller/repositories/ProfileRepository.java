@@ -31,4 +31,6 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
 	Profile findByUserUsername(String username);
 
 	Profile findByIdAndFavorited(int id, Profile profile);
+
+	List<Profile> findByActive(boolean b);
 }

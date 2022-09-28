@@ -34,6 +34,11 @@ public class ProfileController {
 		return profileService.findAll(principal.getName());
 	}
 	
+	@GetMapping("profiles/including/inactive")
+	public List<Profile> findAllProfilesIncludingInactive(Principal principal){
+		return profileService.findAllIncludingInactive(principal.getName());
+	}
+	
 	@GetMapping("profiles/{id}")
 	public Profile findById(@PathVariable int id, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		

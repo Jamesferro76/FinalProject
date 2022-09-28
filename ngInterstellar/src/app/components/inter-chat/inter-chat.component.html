@@ -38,7 +38,7 @@
             <span>{{message.content}}</span>
             </div>
             <div *ngIf="loggedInUser.username != message.sender.username">
-              <strong class="myText">{{message.sender.username}}:</strong> <br>
+              <strong class="yourText">{{message.sender.username}}:</strong> <br>
               <span>{{message.content}}</span>
               </div>
           </li>
