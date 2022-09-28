@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active px-5" aria-current="page"  [routerLink]="['/profile']">
+          <a class="nav-link active px-5" aria-current="page" *ngIf="loggedIn()"  [routerLink]="['/profile']">
             <span class="material-symbols-outlined">
               person_filled
               </span>
@@ -19,28 +19,28 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active px-5" aria-current="page" [routerLink]="['/mixer']">
+          <a class="nav-link active px-5" aria-current="page" *ngIf="loggedIn()" [routerLink]="['/mixer']">
             <span class="material-symbols-outlined">
               diversity_1
               </span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active px-5" aria-current="page" [routerLink]="['/ichat']">
+          <a class="nav-link active px-5" aria-current="page" *ngIf="loggedIn()"  [routerLink]="['/ichat']">
           <span class="material-symbols-outlined">
             forum
             </span>
         </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active px-5"  aria-current="page"  [routerLink]="['/search']">
+          <a class="nav-link active px-5"  aria-current="page"  *ngIf="loggedIn()" [routerLink]="['/search']">
             <span class="material-symbols-outlined">
               person_search
             </span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active px-5"  aria-current="page" [routerLink]="['/contact']">
+          <a class="nav-link active px-5"  aria-current="page" *ngIf="loggedIn()"  [routerLink]="['/contact']">
             <span class="material-symbols-outlined">
               settings
             </span>
