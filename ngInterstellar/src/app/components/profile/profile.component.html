@@ -2,17 +2,106 @@
   <div *ngIf="selected &&displayAllInfo && !basicEdit && !sexualityEdit && !locationEdit && !picsEdit">
 
 
-<!-- Profile Pic -->
-    <div class="container-fluid">
-      <div class="nameNpfp" >
-        <h2>{{selected.firstName }} {{selected.lastName}}</h2>
-         <img id="profilePic" [src]="selected.profilePic" />
+
+
+
+     <body>
+      <div class="header__wrapper">
+        <header></header>
+        <div class="cols__container">
+          <div class="left__col">
+            <div class="img__container">
+              <img [src]="selected.profilePic"/>
+              <span></span>
+            </div>
+            <h2>{{selected.firstName }} {{selected.lastName}}</h2>
+            <p>{{ selected.age }} years old</p>
+            <p>{{selected.address.city}}, {{ selected.address.state }}</p>
+            <p> {{selected.address.zip}} {{selected.address.country}}</p>
+            <button *ngIf="editButtons" (click)="locationEdit=true">editAddress</button>
+
+
+            <ul class="about">
+              <li><span>Sex</span>{{ selected.sex }}</li>
+              <li><span>Preferences</span><div *ngFor="let pref of selected.preferences">{{ pref.name }}</div></li>
+            </ul>
+            <button *ngIf="editButtons" (click)="sexualityEdit=true">Edit Sexuality</button>
+
+
+            <div class="content">
+              <p>
+                {{ selected.description }}
+              </p>
+              <button *ngIf="editButtons" (click)="basicEdit=true">Edit basics</button> <br>
+
+
+              <ul>
+                <a href="">
+                  <img src="https://cdn-icons-png.flaticon.com/128/1377/1377213.png" alt="" width="40" height="40">
+                </a>
+                <a href="">
+                  <img src="https://cdn-icons-png.flaticon.com/128/1051/1051275.png"width="40" height="40">
+                </a>
+                <a href="">
+                  <img src="https://cdn-icons-png.flaticon.com/128/3670/3670166.png"width="40" height="40">
+                </a>
+                <a href="">
+                  <img src="https://cdn-icons-png.flaticon.com/128/4138/4138124.png"width="40" height="40">
+                </a>
+              </ul>
+            </div>
+          </div>
+          <div class="right__col">
+            <nav>
+              <ul>
+                <li><a (click)="photoLinkToggle()">photos</a></li>
+                <li><a (click)="mixerLinkToggle()">mixers</a></li>
+                <li><a (click)="interestLinkToggle()">interests</a></li>
+                <li><a href="">hobbies</a></li>
+              </ul>
+
+            </nav>
+
+            <div *ngIf="showPhotos" class="photos">
+             <div *ngFor="let pic of selected.images">
+              <img [src]="pic.imageUrl" class="pfp" />
+
+            </div>
+            <button *ngIf="editButtons" (click)="picsEdit=true">Edit pictures</button>
+            </div>
+
+            <div *ngIf="showMixers" class="mixers">
+              <h4>Mixers Hosting:</h4>
+                <div *ngFor="let mixer of selected?.mixers">{{ mixer.name }}</div>
+                <h4>Mixers Attending:</h4>
+                <div *ngFor="let mixer of selected?.mixersAttending">{{ mixer.name }}</div>
+              </div>
+
+              <div *ngIf="showInterests" class="interests">
+                <h5>Categories:</h5>
+                <div *ngFor="let cat of selected?.categories">
+                  {{ cat.name }}
+                </div>
+                </div>
+
+
+          </div>
+        </div>
       </div>
-    </div>
+    </body>
+
+
+<!-- Profile Pic -->
+    <!-- <div class="container-fluid">
+      <div class="nameNpfp" >
+        <img id="profilePic" [src]="selected.profilePic" />
+        <h2>{{selected.firstName }} {{selected.lastName}}</h2>
+      </div>
+    </div> -->
 
 
 <!-- Personal Info -->
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <div class="infoMe">
       <div>
         <p>Age: {{ selected.age }} </p>
@@ -27,22 +116,22 @@
             </div>
          <button *ngIf="editButtons" (click)="locationEdit=true">editAddress</button>
     </div>
-  </div>
+  </div> -->
 
 
 
 <!-- About Me -->
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
       <div class="aboutMe">
         <h2>About:</h2>
         <p>{{ selected.description }}</p>
       </div>
-    </div>
+    </div> -->
 
 
 <!-- Photos -->
 
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <div class="photosMe">
       <h2>Photos:</h2>
        <div *ngFor="let pic of selected.images">
@@ -50,12 +139,12 @@
         </div>
       <button *ngIf="editButtons" (click)="picsEdit=true">Edit pictures</button>
     </div>
-  </div>
+  </div> -->
 
 
  <!-- Preference Info   -->
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="interests">
       <div class="innerMidLeft">
         <h5>Gender:</h5>
@@ -75,12 +164,12 @@
         <button *ngIf="editButtons" (click)="sexualityEdit=true">Edit Sexuality</button>
       </div>
 </div>
-</div>
+</div> -->
 
 
 <!-- Mixer Info   -->
 
-<div class="container-fluid" id="mixers">
+<!-- <div class="container-fluid" id="mixers">
   <div class="row row-cols-1">
     <div class="upperRight">
       <h4>Mixers Hosting:</h4>
@@ -91,7 +180,7 @@
         <div *ngFor="let mixer of selected?.mixersAttending">{{ mixer.name }}</div>
       </div>
     </div>
-  </div>
+  </div> -->
   </div>
 </div>
 
@@ -400,7 +489,7 @@
 </div>
 
 <!-- Buttons For See All Profile info -->
-<div *ngIf="selected&&!initialCreate&&displayAllInfo">
+<div *ngIf="selected&&!initialCreate&&displayAllInfo&&!basicEdit && !sexualityEdit && !locationEdit && !picsEdit">
 <button (click)="editButtonsToggle()">Edit </button>
 <button (click)="displayProfilePage()">Back</button>
 </div>
