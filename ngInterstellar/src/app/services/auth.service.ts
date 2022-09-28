@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { tap, catchError, throwError, Observable } from 'rxjs';
 import { Buffer } from 'buffer';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import { Buffer } from 'buffer';
 export class AuthService {
   // Set port number to server's port
   private baseUrl = 'http://localhost:8090/';
-  private url = this.baseUrl;
+  private url = environment.baseUrl;
 
   constructor(private http: HttpClient, private router:Router) {}
 

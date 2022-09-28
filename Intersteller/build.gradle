@@ -5,6 +5,13 @@ plugins {
 	id 'war'
 }
 
+apply plugin: 'war'
+war {
+  enabled = true
+  archiveFileName = "${archivesBaseName}.war"
+  destinationDirectory = file("../")        
+}
+
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
