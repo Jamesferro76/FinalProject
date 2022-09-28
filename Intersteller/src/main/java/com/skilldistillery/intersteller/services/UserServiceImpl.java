@@ -60,6 +60,7 @@ public class UserServiceImpl implements UserService {
 			if(user.getEmail() != null) {
 				updatedUser.setEmail(user.getEmail());
 			}
+				updatedUser.setActive(user.isActive());
 			userRepo.flush();
 		}
 		return updatedUser;
@@ -101,12 +102,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User update( User user, String username) {
-		User current =userRepo.findByUsername(username);
+		User current =userRepo.findByUsername(user.getUsername());
+		System.out.println(user.getUsername());
 		if(current != null) {
 			current.setUsername(user.getUsername());
 			System.out.println(user.getPassword());
 			current.setPassword(encoder.encode(user.getPassword()));
 			current.setEmail(user.getEmail());
+			current.setActive(user.isActive());
 			System.out.println(current);
 			userRepo.saveAndFlush(current);
 

@@ -72,6 +72,8 @@ export class UserService {
   }
 
   update(user: User): Observable<User> {
+    console.log(user.username);
+    console.log(user.password);
     return this.http.put<User>(this.url, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
