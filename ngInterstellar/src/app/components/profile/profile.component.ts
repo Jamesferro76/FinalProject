@@ -27,6 +27,11 @@ export class ProfileComponent implements OnInit {
   displayUpdate: boolean = false;
   displayProfile: boolean = false;
 
+  showMixers: boolean = false;
+  showInterests: boolean= false;
+  showPhotos: boolean= true;
+
+
   editButtons: boolean=false;
 
   editProfile: Profile | null = null;
@@ -488,6 +493,25 @@ export class ProfileComponent implements OnInit {
   editButtonsToggle(){
     this.editButtons=!this.editButtons;
   }
+
+  photoLinkToggle(){
+    this.showPhotos = true;
+    this.showMixers = false;
+    this.showInterests = false;
+  }
+
+  mixerLinkToggle(){
+    this.showPhotos = false;
+    this.showMixers = true;
+    this.showInterests = false;
+  }
+
+  interestLinkToggle(){
+    this.showPhotos = false;
+    this.showMixers = false;
+    this.showInterests = true;
+  }
+
 
 
 }
