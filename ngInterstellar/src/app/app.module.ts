@@ -39,7 +39,7 @@ import { ActivePipe } from './pipes/active.pipe';
     ContactPageComponent,
     ActivePipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, ActivePipe, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthService, MixerService, ProfileService, UserService],
   bootstrap: [AppComponent],
 })

@@ -124,7 +124,6 @@ export class SearchComponent implements OnInit {
   star: Star = new Star();
 
   loginUser: User = new User();
-  showInactive: boolean=false;
 
   constructor(
     private userServ: UserService,
