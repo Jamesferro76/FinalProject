@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { StarService } from 'src/app/services/star.service';
 import { UserService } from 'src/app/services/user.service';
+import { Star } from 'src/app/models/star';
 
 @Component({
   selector: 'app-search',
@@ -111,6 +112,19 @@ export class SearchComponent implements OnInit {
   ];
   ageMin = 18;
   ageMax = 65;
+
+  outOfMatches: boolean = false;
+
+  selected: Profile | null = null;
+
+  defaultImageUrl: string = 'https://s3.envato.com/files/158241052/1.jpg';
+
+  profileIndex: number = 0;
+
+  star: Star = new Star();
+
+  loginUser: User = new User();
+
   constructor(
     private userServ: UserService,
     private starService: StarService,
@@ -142,6 +156,9 @@ export class SearchComponent implements OnInit {
         console.error(err);
       },
     });
+  }
+  loggedIn() {
+    return this.auth.checkLogin();
   }
   findAllProfiles() {
     this.profileService.findAll().subscribe({
@@ -242,5 +259,138 @@ export class SearchComponent implements OnInit {
       this.ageMax = 65;
       this.counter++;
     }
+    this.selectRandomProfile();
+  }
+  counterForPic: number = 0;
+  selectPicForward(images: Image[]) {
+    this.counterForPic++;
+    if (this.counterForPic >= images.length) {
+      this.counterForPic = 0;
+    }
+  }
+  selectPicBackward(images: Image[]) {
+    this.counterForPic--;
+    if (this.counterForPic < 0) {
+      this.counterForPic = images.length - 1;
+    }
+  }
+
+  selectRandomProfile() {
+    if (this.displayProfiles.length > 0) {
+      this.profileIndex = Math.floor(
+        Math.random() * this.displayProfiles.length
+      );
+      this.selected = this.displayProfiles[this.profileIndex];
+      console.log(this.selected);
+      if (!this.selected.profilePic) {
+        this.selected.profilePic = this.defaultImageUrl;
+      }
+      if (this.selected.images.length < 1) {
+        this.selected.images.push(new Image(0, this.selected.profilePic));
+      }
+    } else {
+      this.outOfMatches = true;
+    }
+  }
+
+  likedAProfile() {
+    console.log('Inside LikeAProfile');
+
+    if (this.loginProfile && this.selected) {
+      if (!this.loginProfile.favorited) {
+        this.loginProfile.favorited = [];
+      }
+      this.loginProfile = this.updateProfile(this.selected.id);
+
+      this.checkForMatch();
+      this.displayProfiles.splice(this.profileIndex, 1);
+
+      if (this.displayProfiles.length < 1) {
+        this.findAllProfiles();
+      } else {
+        this.selectRandomProfile();
+      }
+    } else {
+      console.log('this.loginProfile' + this.loginProfile);
+      console.log('this.selected' + this.selected);
+    }
+  }
+
+  nextAProfile() {
+    this.displayProfiles.splice(this.profileIndex, 1);
+    if (this.displayProfiles.length < 1) {
+      this.findAllProfiles();
+    } else {
+      this.selectRandomProfile();
+    }
+  }
+
+  checkForMatch() {
+    console.log("You made it to checkForMatch. This doesn't work yet");
+
+    if (this.loginProfile && this.selected) {
+      this.profileService.checkFavorited(this.selected.id).subscribe({
+        next: (result) => {
+          console.log(result);
+          if (this.loginProfile && this.selected) {
+            this.star.matcher = this.loginProfile;
+            this.star.matched = this.selected;
+            this.createStar();
+          }
+        },
+        error: (err) => {
+          console.error('Error checkForMatch');
+          console.error(err);
+        },
+      });
+    }
+  }
+
+  createStar() {
+    this.starService.create(this.star).subscribe({
+      next: (result) => {
+        //Make a message pop up that you have a match
+        console.log(result);
+      },
+      error: (err) => {
+        console.error('Error creating match');
+        console.error(err);
+      },
+    });
+  }
+
+  getLogginProfile() {
+    console.log('In getLogginProfile');
+    console.log('this.loginUser' + this.loginUser.id);
+
+    this.profileService.findByUserId(this.loginUser.id).subscribe({
+      next: (profile) => {
+        this.loginProfile = profile;
+        console.log('this.loginProfile' + this.loginProfile);
+        console.log('Results: ' + profile);
+      },
+      error: (err) => {
+        console.error('Error retrieving Profile');
+        console.error(err);
+      },
+    });
+  }
+
+  updateProfile(likedProfileId: number) {
+    console.log('In updateProfile likedProfileId' + likedProfileId);
+
+    this.profileService.addFavorited(likedProfileId).subscribe({
+      next: (result) => {
+        return result;
+      },
+      error: (err) => {
+        console.error(
+          'HomeComponent.UpdateProfile(): error Updating Profile: '
+        );
+        console.error(err);
+        return this.loginProfile;
+      },
+    });
+    return this.loginProfile;
   }
 }

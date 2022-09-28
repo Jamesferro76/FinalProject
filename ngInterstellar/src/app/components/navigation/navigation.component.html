@@ -1,28 +1,9 @@
-<!-- <nav class="navbar navbar-expand-lg  fixed-bottom bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/home']">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZkOIe6WLQlDP1II2E4fgmkqayQzvfyzLf1w&usqp=CAU" alt="" width="30" height="24">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" [routerLink]="['/profile']">Profile</a>
-        <a class="nav-link active" aria-current="page" [routerLink]="['/mixer']">Mixer</a>
-          <a class="nav-link active"  aria-current="page" *ngIf="loggedIn()" (click)="logout()" [routerLink]="['/home']">Logout</a>
-
-      </div>
-    </div>
-  </div>
-</nav> -->
 <head>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <nav class="navbar navbar-expand-sm fixed-bottom  bg-light">
     <div class="container-fluid">
       <a class="navbar-brand px-5" [routerLink]="['/home']">
-        <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZkOIe6WLQlDP1II2E4fgmkqayQzvfyzLf1w&usqp=CAU" alt="" width="30" height="24"> -->
         <span class="material-symbols-outlined">
           home
           </span>
@@ -31,7 +12,6 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active px-5" aria-current="page"  [routerLink]="['/profile']">
-            <!-- <img src="https://media.istockphoto.com/vectors/the-falling-stars-are-a-simple-drawing-vector-vector-id1014924774?k=20&m=1014924774&s=612x612&w=0&h=LVJLcEOhZBnOiFmSVUzTh_2ErYKw2BtavzTjTeip4wA=" alt="" width="30" height="24"> -->
             <span class="material-symbols-outlined">
               person_filled
               </span>
@@ -40,7 +20,6 @@
 
         <li class="nav-item">
           <a class="nav-link active px-5" aria-current="page" [routerLink]="['/mixer']">
-            <!-- <img src="https://media.istockphoto.com/photos/when-planets-collide-picture-id526573069?k=20&m=526573069&s=612x612&w=0&h=GSB0shyV8qQd_gq6ZE1nqLUsRGg8281u-hRgaEFKdCc=" alt="" width="30" height="24"> -->
             <span class="material-symbols-outlined">
               diversity_1
               </span>
@@ -48,41 +27,29 @@
         </li>
         <li class="nav-item">
           <a class="nav-link active px-5" aria-current="page" [routerLink]="['/ichat']">
-          <!-- <img src="data:image/jpeg;base64,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" alt="" width="30" height="24"> -->
           <span class="material-symbols-outlined">
             forum
             </span>
         </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active px-5"  aria-current="page" *ngIf="loggedIn()" (click)="logout()" [routerLink]="['/home']">
-              <!-- <img src="https://media.istockphoto.com/vectors/emergency-exit-line-icon-navigation-concept-exit-sign-on-white-exit-vector-id1254030536?k=20&m=1254030536&s=612x612&w=0&h=8aeIKyPVQsrenCH7MVU-plkuCNkNmRQ7UqgPEY0gqoU=" alt="" width="30" height="24"> -->
-              <span class="material-symbols-outlined">
-                logout
-                </span>
-            </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active px-5"  aria-current="page"  [routerLink]="['/search']">
-              <!-- <img src="https://media.istockphoto.com/vectors/emergency-exit-line-icon-navigation-concept-exit-sign-on-white-exit-vector-id1254030536?k=20&m=1254030536&s=612x612&w=0&h=8aeIKyPVQsrenCH7MVU-plkuCNkNmRQ7UqgPEY0gqoU=" alt="" width="30" height="24"> -->
-              <span class="material-symbols-outlined">
-                person_search
-                </span>
-            </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active px-5"  aria-current="page" *ngIf="loggedIn()" (click)="logout()" [routerLink]="['/home']">
-              <!-- <img src="https://media.istockphoto.com/vectors/emergency-exit-line-icon-navigation-concept-exit-sign-on-white-exit-vector-id1254030536?k=20&m=1254030536&s=612x612&w=0&h=8aeIKyPVQsrenCH7MVU-plkuCNkNmRQ7UqgPEY0gqoU=" alt="" width="30" height="24"> -->
-              <span class="material-symbols-outlined">
-                settings
-                </span>
-            </a>
+            <span class="material-symbols-outlined">
+              person_search
+            </span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link active px-5"  aria-current="page" [routerLink]="['/contact']">
-              <!-- <img src="https://media.istockphoto.com/vectors/emergency-exit-line-icon-navigation-concept-exit-sign-on-white-exit-vector-id1254030536?k=20&m=1254030536&s=612x612&w=0&h=8aeIKyPVQsrenCH7MVU-plkuCNkNmRQ7UqgPEY0gqoU=" alt="" width="30" height="24"> -->
+            <span class="material-symbols-outlined">
+              settings
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active px-5"  aria-current="page" *ngIf="loggedIn()" (click)="logout()" [routerLink]="['/home']">
               <span class="material-symbols-outlined">
-                settings
+                logout
                 </span>
             </a>
         </li>
