@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { User } from '../models/user';
@@ -10,7 +11,7 @@ import { DatePipe } from '@angular/common';
 })
 export class UserService {
   private baseUrl = 'http://localhost:8090/';
-  private url = this.baseUrl + 'api/users';
+  private url = environment.baseUrl + 'api/users';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
