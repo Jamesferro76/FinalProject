@@ -90,6 +90,15 @@
 
     <div class="signup">
       <form>
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="text" name="User name" placeholder="Username" required="true" [(ngModel)]="loginUser.username">
+        <input type="password" name="pswd" placeholder="Password" required="true" [(ngModel)]="loginUser.password">
+        <button type="submit"  (click)="login(loginUser)">Login</button>
+      </form>
+    </div>
+
+    <div class="login">
+      <form>
         <label for="chk" aria-hidden="true">Sign up</label>
         <input type="text" name="txt" placeholder="User name" required="true" [(ngModel)]="newUser.username">
         <input type="email" name="email" placeholder="Email" required="true" [(ngModel)]="newUser.email">
@@ -97,14 +106,6 @@
         <button type="submit"  (click)="register(newUser)">Sign up</button>
       </form>
     </div>
-
-    <div class="login">
-      <form>
-        <label for="chk" aria-hidden="true">Login</label>
-        <input type="text" name="User name" placeholder="Username" required="true" [(ngModel)]="loginUser.username">
-        <input type="password" name="pswd" placeholder="Password" required="true" [(ngModel)]="loginUser.password">
-        <button type="submit"  (click)="login(loginUser)">Login</button>
-      </form>
-    </div>
 </div>
 </body>
+

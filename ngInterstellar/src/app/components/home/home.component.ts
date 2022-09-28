@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
             this.loggedInUser=loggedInUser;
 
 
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('profile');
           },
           error: (problem: any) => {
             console.error('RegisterComponent.register(): Error logging in user:');
@@ -109,8 +109,8 @@ export class HomeComponent implements OnInit {
       next: (loggedInUser: any) => {
         this.loggedInUser=loggedInUser
         console.log(loggedInUser);
-        this.ngOnInit()
-        // this.router.navigateByUrl('home');
+        // this.ngOnInit()
+        this.router.navigateByUrl('search');
       },
       error: (problem: any) => {
         console.error('LoginComponent.login(): Error logging in user:');
