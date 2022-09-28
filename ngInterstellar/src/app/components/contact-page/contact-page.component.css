@@ -94,7 +94,7 @@ body{
   outline: 1px solid transparent;
   perspective: inherit;
   z-index: 2;
-  transform: translateY(-50%)translateZ(60px) scale(.94);
+  transform: translateY(-60%)translateZ(60px) scale(.94);
   top: 50%;
 }
 

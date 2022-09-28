@@ -26,6 +26,7 @@ export class ContactPageComponent implements OnInit {
   link21:string="https://www.linkedin.com/in/zachary-kotterer-8226b2184/";
   link22:string="https://github.com/zachkott";
   link23:string="http://50.112.59.150:8080/RewardForPay/";
+  link24:string="http://50.112.59.150/"
 
   link31:string="https://www.linkedin.com/in/jamesferro/";
   link32:string="https://github.com/Jamesferro76";
