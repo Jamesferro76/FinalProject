@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `last_name` VARCHAR(45) NULL,
   `user_id` INT NOT NULL,
   `address_id` INT NULL,
-  `profile_pic` VARCHAR(1000) NULL,
+  `profile_pic` TEXT NULL,
   `active` TINYINT NULL,
   `created_on` DATETIME NULL,
   `updated_on` DATETIME NULL,
@@ -406,18 +406,18 @@ INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VAL
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (2, 'zachkott@gmail.com', 'zkott', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'ADMIN', 1);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (3, 'dshoe@gmail.com', 'dshoe', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'ADMIN', 1);
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (4, 'jferro@gmail.com', 'jferro', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'ADMIN', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (5, 'celectra@gmail.com', 'electra', 'electra', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (6, 'bpitt@gmail.com', 'bpitt', 'bpitt', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (7, 'spears@gmail.com', 'bspears', 'bspears', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (8, 'mmyers@gmail.com', 'mmyers', 'mmyers', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (9, 'ajolie@gmail.com', 'ajolie', 'ajolie', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (10, 'tfey@gmail.com', 'tfey', 'tfey', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (11, 'rreynolds@gmail.com', 'ryanr', 'ryanr', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (12, 'blively@gmail.com', 'blakel', 'blakel', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (13, 'scarrel@gmail.com', 'stevec', 'stevec', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (14, 'jalba@gmail.com', 'jalba', 'jalba', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (15, 'mdamon@gmail.com', 'damonm', 'damonm', 'USER', 1);
-INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (16, 'scarjo@gmail.com', 'scarjo', 'scarjo', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (5, 'celectra@gmail.com', 'electra', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (6, 'bpitt@gmail.com', 'bpitt', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (7, 'spears@gmail.com', 'bspears', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (8, 'mmyers@gmail.com', 'mmyers', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (9, 'ajolie@gmail.com', 'ajolie', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (10, 'tfey@gmail.com', 'tfey', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (11, 'rreynolds@gmail.com', 'ryanr', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (12, 'blively@gmail.com', 'blakel', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (13, 'scarrel@gmail.com', 'stevec', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (14, 'jalba@gmail.com', 'jalba', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (15, 'mdamon@gmail.com', 'damonm', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role`, `active`) VALUES (16, 'scarjo@gmail.com', 'scarjo', '$2a$10$heZNWDolzWRAikNAHAIsAeu3T7PgVyl.R59wrUqQb8K5CtZXKyEGe', 'USER', 1);
 
 COMMIT;
 
@@ -460,11 +460,11 @@ START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (1, '1993-09-21', 'admin', 'Male', 'Rob', 'Roselius', 1, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbDR9QZ2giGpDUwFPg2gSjgSgA0iR0Kl_8hI_V_tBZzaWN-7WbkfoJALr04m4JgdpUE24&usqp=CAU', 1, NULL, NULL, '87');
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (2, '1992-06-21', 'test', 'Male', 'Zach', 'Kotterer', 2, 3, 'https://live.staticflickr.com/65535/50021279553_f178d7328f_n.jpg', 1, NULL, NULL, '29');
-INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (3, '1987-07-04', 'daniel', 'Male', 'Daniel', 'Schulenberg', 3, 4, 'https://i.dailymail.co.uk/i/pix/2016/02/22/16/31734FC200000578-0-image-a-8_1456157880094.jpg', 1, NULL, NULL, '35');
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (3, '1987-07-04', 'daniel', 'Male', 'Daniel', 'Schulenberg', 3, 4, 'https://compote.slate.com/images/18392094-d41b-46b3-a6c9-4c424799117c.jpg?crop=590%2C791%2Cx0%2Cy0', 1, NULL, NULL, '35');
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (4, '1994-08-12', 'james', 'Male', 'James', 'Ferro', 4, 5, 'https://cdn.punchng.com/wp-content/uploads/2021/07/24003431/Lauren-James.jpg', 1, NULL, NULL, '28');
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (5, '1985-06-12', 'carmen', 'Female', 'Carmen', 'Electra', 5, 6, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2VBnQB4HLEaJ8UJxZcS8fXxRWhQJmW2xOVQ&usqp=CAU', 1, NULL, NULL, '33');
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (6, '1970-02-07', 'brad', 'Male', 'Brad', 'Pitt', 6, 7, 'https://i.insider.com/586d2e10dd08955e118b45eb?width=700', 1, NULL, NULL, '33');
-INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (7, '1980-03-12', 'brittney', 'Female', 'Brittney', 'Spears', 7, 8, '2wCEAAoHCBUWFRgWFRYYGRgaHBwcGhkcGBocHBwZGhwaHhwYHBwcIS4lHB4rJBwZJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QHxISHjQkJCs0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NP', 1, NULL, NULL, '44');
+INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (7, '1980-03-12', 'brittney', 'Female', 'Brittney', 'Spears', 7, 8, 'https://hips.hearstapps.com/hmg-prod/images/britney-spears-during-the-2000-mtv-video-music-awards-at-news-photo-1600877657.jpg', 1, NULL, NULL, '44');
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (8, '1974-09-01', 'mike', 'Male', 'Mike', 'Myers', 8, 9, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCwlbnH-SYwDoB-ZgqZ-Z8T36lO16QlCZb9Q&usqp=CAU', 1, NULL, NULL, '35');
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (9, '1972-12-20', 'angelina', 'Female', 'Angelina', 'Jolie', 9, 10, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYsX8onM_XgY4RxipUndTsqbjc5WJD-GRpdQ&usqp=CAU', 1, NULL, NULL, '54');
 INSERT INTO `profile` (`id`, `birthday`, `description`, `sex`, `first_name`, `last_name`, `user_id`, `address_id`, `profile_pic`, `active`, `created_on`, `updated_on`, `age`) VALUES (10, '1973-04-20', 'tina', 'Female', 'Tina', 'Fey', 10, 11, 'https://media.vanityfair.com/photos/573c9264f4b19f731d188a92/master/pass/Tina-Fey-Annie-Leibovitz-Jan-2009.jpg', 1, NULL, NULL, '33');
@@ -617,6 +617,15 @@ COMMIT;
 START TRANSACTION;
 USE `interstellerdb`;
 INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (1, 2);
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (2, 2);
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (2, 6);
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (2, 4);
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (3, 2);
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (3, 3);
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (3, 5);
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (4, 6);
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (4, 1);
+INSERT INTO `profile_has_category` (`profile_id`, `category_id`) VALUES (4, 2);
 
 COMMIT;
 
