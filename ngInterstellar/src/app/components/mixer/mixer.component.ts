@@ -34,6 +34,10 @@ export class MixerComponent implements OnInit {
   editAddress: boolean = false;
   newAddress: Address = new Address();
 
+  showDetails: boolean = true;
+
+  showHost: boolean = false;
+
   constructor(
     private mixerService: MixerService,
     private profileService: ProfileService,
@@ -191,5 +195,16 @@ export class MixerComponent implements OnInit {
         console.error(problem);
       },
     });
+  }
+
+
+  detailsLinkToggle(){
+    this.showDetails = true;
+    this.showHost = false;
+  }
+
+  hostLinkToggle(){
+    this.showDetails = false;
+    this.showHost = true;
   }
 }
