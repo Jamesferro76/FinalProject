@@ -126,6 +126,8 @@ export class SearchComponent implements OnInit {
 
   loginUser: User = new User();
 
+  starName: string= "StarName";
+
   constructor(
     private userServ: UserService,
     private starService: StarService,
@@ -353,6 +355,10 @@ export class SearchComponent implements OnInit {
       next: (result) => {
         //Make a message pop up that you have a match
         console.log(result);
+        if(this.lastSelected){
+          this.starName=this.lastSelected.firstName
+        }
+        this.openPopup();
       },
       error: (err) => {
         console.error('Error creating match');
@@ -395,4 +401,26 @@ export class SearchComponent implements OnInit {
     });
     return this.loginProfile;
   }
+
+
+  displayStyle = "none";
+
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
+
+  toProfilePage(){
+    if(this.lastSelected){
+      this.router.navigateByUrl('profile/'+this.lastSelected.id);
+    }
+  }
+
+  toChat(){
+
+    this.router.navigateByUrl('ichat');
+  }
+
 }
