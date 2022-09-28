@@ -44,7 +44,7 @@ export class ChatService {
       catchError((err: any) => {
         console.error(err);
         return throwError(
-           () => new Error( 'ChatService.index(): error retrieving chat log: ' + err )
+           () => new Error( 'ChatService.profile(): error retrieving chat log: ' + err )
         );
       })
     );
