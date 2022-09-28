@@ -111,7 +111,7 @@ export class SearchComponent implements OnInit {
     94, 95, 96, 97, 98, 99, 100,
   ];
   ageMin = 18;
-  ageMax = 65;
+  ageMax = 100;
 
   outOfMatches: boolean = false;
 
@@ -137,13 +137,10 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.auth.getLoggedInUser().subscribe({
       next: (user) => {
-        console.log(user);
-
         this.loggedInUser = user;
         this.profileService.findByUserId(this.loggedInUser.id).subscribe({
           next: (profile) => {
             this.loginProfile = profile;
-            this.findAllProfiles();
           },
           error: (err) => {
             console.error('Error retrieving Profile');
@@ -157,7 +154,9 @@ export class SearchComponent implements OnInit {
         console.error(err);
       },
     });
+    this.findAllProfiles();
   }
+
   loggedIn() {
     return this.auth.checkLogin();
   }
@@ -165,6 +164,8 @@ export class SearchComponent implements OnInit {
     this.profileService.findAll().subscribe({
       next: (profiles) => {
         this.profiles = profiles;
+        this.displayProfiles = this.profiles;
+        this.selectRandomProfile();
       },
       error: (problem: any) => {
         console.error(
@@ -180,7 +181,6 @@ export class SearchComponent implements OnInit {
 
   displayList() {
     if (this.counter % 2 != 0) {
-      console.log(this.selectedState);
       this.displayProfiles = [];
       this.profiles.forEach((each) => {
         if (each.categories.length === 0) {
@@ -218,7 +218,7 @@ export class SearchComponent implements OnInit {
       this.selectedCat = '';
       this.selectedState = '';
       this.ageMin = 18;
-      this.ageMax = 65;
+      this.ageMax = 100;
       console.log(this.displayProfiles.length);
       this.counter++;
     } else {
@@ -256,7 +256,7 @@ export class SearchComponent implements OnInit {
       this.selectedCat = '';
       this.selectedState = '';
       this.ageMin = 18;
-      this.ageMax = 65;
+      this.ageMax = 100;
       this.counter++;
     }
     this.selectRandomProfile();
@@ -276,13 +276,11 @@ export class SearchComponent implements OnInit {
   }
 
   selectRandomProfile() {
-    console.log(this.displayProfiles.length);
     if (this.displayProfiles.length > 0) {
       this.profileIndex = Math.floor(
         Math.random() * this.displayProfiles.length
       );
       this.selected = this.displayProfiles[this.profileIndex];
-      console.log(this.selected);
       if (!this.selected.profilePic) {
         this.selected.profilePic = this.defaultImageUrl;
       }
@@ -298,7 +296,7 @@ export class SearchComponent implements OnInit {
     console.log('Inside LikeAProfile');
 
     if (this.loginProfile && this.selected) {
-      this.lastSelected=this.selected;
+      this.lastSelected = this.selected;
       if (!this.loginProfile.favorited) {
         this.loginProfile.favorited = [];
       }
@@ -328,13 +326,13 @@ export class SearchComponent implements OnInit {
   }
 
   checkForMatch() {
-    console.log("You made it to checkForMatch.");
+    console.log('You made it to checkForMatch.');
 
     if (this.loginProfile && this.lastSelected) {
       this.profileService.checkFavorited(this.lastSelected.id).subscribe({
         next: (result) => {
-          console.log("In checkFavorited"+result);
-          if (this.loginProfile && this.lastSelected&&result) {
+          console.log('In checkFavorited' + result);
+          if (this.loginProfile && this.lastSelected && result) {
             this.star.matcher = this.loginProfile;
             this.star.matched = this.lastSelected;
             this.createStar();
@@ -349,7 +347,7 @@ export class SearchComponent implements OnInit {
   }
 
   createStar() {
-    console.log("In create a star");
+    console.log('In create a star');
 
     this.starService.create(this.star).subscribe({
       next: (result) => {
