@@ -275,6 +275,7 @@ export class SearchComponent implements OnInit {
   }
 
   selectRandomProfile() {
+    console.log(this.displayProfiles.length);
     if (this.displayProfiles.length > 0) {
       this.profileIndex = Math.floor(
         Math.random() * this.displayProfiles.length
