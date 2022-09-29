@@ -17,6 +17,8 @@ export class SettingsComponent implements OnInit {
   adminUser: User = new User();
   loginProfile: Profile | null = null;
   users: User[] = [];
+  admin: boolean = false;
+
 
   constructor(
     private auth: AuthService,
@@ -31,7 +33,7 @@ export class SettingsComponent implements OnInit {
         console.log(user);
 
         this.loginUser = user;
-        this.editedUser = user;
+        // this.editedUser = user;
         this.profileService.findByUserId(this.loginUser.id).subscribe({
           next: (profile) => {
             this.loginProfile = profile;
@@ -134,4 +136,17 @@ export class SettingsComponent implements OnInit {
       },
     });
   }
+
+  displayUpdateLogin(){
+  this.editedUser = null;
+  }
+
+  displayUpdateUsers(){
+    this.admin = !this.admin;
+    console.log(this.loginUser.role);
+    console.log(this.editedUser);
+    console.log(this.admin);
+
+  }
 }
+

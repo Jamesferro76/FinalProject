@@ -348,4 +348,34 @@ body {
 
 
 /* ////// */
+.cards{
+  padding: 20px;
+}
+
+.card{
+  width: 500px;
+}
+.card-header{
+  border-bottom: 1px solid gray;
+  padding: 20px;
+}
+
+.card-body{
+  padding: 20px;
+  position: relative;
+}
+  #account-card{
+    width: 500px;
+    margin-left: 40rem;
+    margin-top: -44rem;
+  }
+
+  #admin-card{
+    width: 500px;
+    margin-left: 40rem;
+    margin-top: -29rem;
+  }
+
+
+
 
