@@ -1,7 +1,7 @@
 <body>
   <!-- filter criteria -->
   State:<select name="state" [(ngModel)]="selectedState">
-    <option *ngFor="let mixer of mixers" [ngValue]="mixer.address.state" value="{{mixer.address.state}}">{{mixer.address.state}}</option>
+    <option *ngFor="let mixer of mixers | duplicates" [ngValue]="mixer.address.state" value="{{mixer.address.state}}">{{mixer.address.state}}</option>
   </select><br>
   City:<select name="state" [(ngModel)]="selectedCity">
     <option *ngFor="let mixer of mixers" [ngValue]="mixer.address.city" value="{{mixer.address.city}}">{{mixer.address.city}}</option>

@@ -42,7 +42,13 @@ import { DuplicatesPipe } from './pipes/duplicates.pipe';
     DuplicatesPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [AuthService, MixerService, ProfileService, UserService],
+  providers: [
+    AuthService,
+    MixerService,
+    ProfileService,
+    UserService,
+    DuplicatesPipe,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
