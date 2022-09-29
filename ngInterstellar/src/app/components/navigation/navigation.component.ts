@@ -10,16 +10,17 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavigationComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
 
+  mobile: boolean = false;
+
   ngOnInit(): void {}
 
   loggedIn() {
     return this.auth.checkLogin();
   }
 
-  logout(){
-    console.log("logout");
+  logout() {
+    console.log('logout');
     this.auth.logout();
     this.router.navigateByUrl('home');
-
-    }
+  }
 }
