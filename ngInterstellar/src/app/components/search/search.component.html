@@ -1,5 +1,6 @@
 <main>
-<button (click)="openPopupSearch()">Filter</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+(click)="openPopupSearch()">Filter</button>
 
 <!-- Shows Profiles Based on Search Criteria -->
 <div *ngIf="loggedIn()&&!outOfMatches && displayProfiles.length!=0" >
@@ -58,7 +59,7 @@
   tabindex="-1"
   role="dialog"
   [ngStyle]="{'display':displayStyle}">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">You have a Star</h4>
@@ -85,7 +86,9 @@
   tabindex="-1"
   role="dialog"
   [ngStyle]="{'display':displayStyleSearch}">
-  <div class="modal-dialog" role="document">
+
+
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Filter</h4>
@@ -118,3 +121,4 @@
   </div>
 </div>
 </main>
+

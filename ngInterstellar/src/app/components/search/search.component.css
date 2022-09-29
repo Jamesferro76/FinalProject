@@ -188,3 +188,17 @@ background-color: #F9E0D9;
 .center-things{
 	margin: auto;
 }
+
+.modal-content{
+  background-color: #E6DBD0;
+  /* opacity: 85%; */
+}
+
+strong{
+  color:#8419C5;
+}
+
+strong:hover{
+  color: #03cafc;
+}
+
