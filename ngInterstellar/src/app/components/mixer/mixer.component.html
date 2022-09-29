@@ -171,20 +171,12 @@
         </div>
         <h2>{{selected.name}} </h2>
         <p>{{selected.eventDate}}</p>
-
-
-
         <div class="content">
           <p>
             {{ selected.description }}
           </p>
-
           <button (click)="setEditMixer()">Edit</button>
-
-
         </div>
-
-
       </div>
       <div class="right__col">
         <nav>
@@ -192,30 +184,20 @@
             <li><a (click)="detailsLinkToggle()">details</a></li>
             <li><a (click)="hostLinkToggle()">host</a></li>
           </ul>
-
         </nav>
-
         <div *ngIf="showDetails" class="details">
           <div>
-
-
-
               <p>Date: {{selected.eventDate}} </p>
                <p>Start Time: {{selected.eventStart}}</p>
               <p>End Time: {{selected.eventEnd}}</p>
               <p>Where: {{selected.address.city}}, {{ selected.address.state }}</p>
               <p>Address: {{selected.address.city}}, {{ selected.address.state }}</p>
               <p> {{selected.address.zip}} {{selected.address.country}}</p>
-
           </div>
-
         </div>
-
         <div *ngIf="showHost" class="host">
           <h2>Host</h2>
-
         </div>
-
       </div>
     </div>
 

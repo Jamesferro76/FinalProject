@@ -29,6 +29,9 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   loginProfile: Profile = new Profile();
 
+  selectedProfile: Profile = new Profile();
+
+
   loggedInUser: User = new User();
 
   selected: User | null = null;

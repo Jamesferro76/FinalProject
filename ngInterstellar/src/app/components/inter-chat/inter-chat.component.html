@@ -11,7 +11,7 @@
 					</div>
 					<div class="card-body contacts_body">
 						<ul class="contacts"  id="usersList">
-              <li class="list-group-item" *ngFor="let match of matches" (click)="id=match.id;display()">
+              <li class="list-group-item" *ngFor="let match of matches" (click)="selectedProfile = match;id=match.id;display()">
                 <strong>{{match.firstName}}</strong>
               </li>
 						</ul>
@@ -29,7 +29,7 @@
         <div class="chat-content" >
           <div class="card" >
         <div class="card-header">
-          <h2 (click)="toProfilePage(selected.id)">Your chat with {{selected.username}}</h2>
+          <h2 (click)="toProfilePage(selected.id)">Your chat with {{selectedProfile.firstName}}</h2>
         </div>
 
         <ul class="list-group list-group-flush" #scrollBottom id="dataDiv">
@@ -39,7 +39,7 @@
             <span>{{message.content}}</span>
             </div>
             <div *ngIf="loggedInUser.username != message.sender.username">
-              <strong class="yourText">{{message.sender.username}}:</strong> <br>
+              <strong class="yourText">{{selectedProfile.firstName}}:</strong> <br>
               <span>{{message.content}}</span>
               </div>
           </li>
