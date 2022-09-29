@@ -20,6 +20,7 @@ overflow-y: scroll;
 
 
 .list-group{
+  width:600px;
 margin: auto;
 overflow-x: hidden;
   overflow-y: auto;
