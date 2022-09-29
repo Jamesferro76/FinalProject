@@ -43,29 +43,28 @@ export class HomeComponent implements OnInit {
   constructor(private userServ: UserService, private starService: StarService, private profileService: ProfileService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.auth.getLoggedInUser().subscribe({
-      next: (user) => {
-        console.log(user);
+    // this.auth.getLoggedInUser().subscribe({
+    //   next: (user) => {
+    //     console.log(user);
 
-        this.loggedInUser = user;
-        this.profileService.findByUserId(this.loggedInUser.id).subscribe({
-          next: (profile) => {
-            this.loginProfile = profile;
-            this.findAllProfiles();
-          },
-          error: (err) => {
-            console.error('Error retrieving Profile');
-            console.error(err);
-            this.router.navigateByUrl('profile');
-          },
-        });
-      },
-      error: (err) => {
-        console.error('Error retrieving User');
-        console.error(err);
+    //     this.loggedInUser = user;
+    //     this.profileService.findByUserId(this.loggedInUser.id).subscribe({
+    //       next: (profile) => {
+    //         this.loginProfile = profile;
+    //       },
+    //       error: (err) => {
+    //         console.error('Error retrieving Profile');
+    //         console.error(err);
+    //         this.router.navigateByUrl('profile');
+    //       },
+    //     });
+    //   },
+    //   error: (err) => {
+    //     console.error('Error retrieving User');
+    //     console.error(err);
 
-      },
-    });
+    //   },
+    // });
   }
 
 
@@ -126,159 +125,7 @@ export class HomeComponent implements OnInit {
 
     }
 
-    counterForPic:number=0;
-  selectPicForward(images:Image[]){
-    this.counterForPic++;
-    if(this.counterForPic>=images.length){
-    this.counterForPic=0;
-    }
-  }
-  selectPicBackward(images:Image[]){
-    this.counterForPic--;
-    if(this.counterForPic<0){
-    this.counterForPic=images.length-1;
-    }
-  }
 
-  findAllProfiles(){
-    this.profileService.findAll().subscribe({
-      next: (profiles) => {
-        this.randomProfiles=profiles
-        if(this.randomProfiles.length>0){
-          this.outOfMatches=false;
-        }
-        this.selectRandomProfile();
-      },
-      error: (problem: any) => {
-        console.error('HomeComponent.findAllProfiles(): Error FindAllProfiles failed:');
-        console.error(problem);
-      },
-    });
-  }
-
-  selectRandomProfile(){
-    if(this.randomProfiles.length>0){
-    this.profileIndex=Math.floor(Math.random()*this.randomProfiles.length);
-    this.selected=this.randomProfiles[this.profileIndex];
-    if(!this.selected.profilePic){
-      this.selected.profilePic=this.defaultImageUrl;
-    }
-    if(this.selected.images.length<1){
-        this.selected.images.push(new Image(0, this.selected.profilePic));
-    }
-    }else{
-        this.outOfMatches=true;
-    }
-
-  }
-
-  likedAProfile(){
-    console.log("Inside LikeAProfile");
-
-    if(this.loginProfile&&this.selected){
-      if(!this.loginProfile.favorited){
-        this.loginProfile.favorited=[];
-      }
-      this.loginProfile=this.updateProfile(this.selected.id);
-
-      this.checkForMatch();
-      this.randomProfiles.splice(this.profileIndex, 1);
-
-      if(this.randomProfiles.length<1){
-        this.findAllProfiles()
-      }else{
-        this.selectRandomProfile();
-      }
-
-    }else{
-      console.log("this.loginProfile"+this.loginProfile);
-      console.log("this.selected"+this.selected);
-
-    }
-  }
-
-  nextAProfile(){
-    this.randomProfiles.splice(this.profileIndex, 1);
-    if(this.randomProfiles.length<1){
-      this.findAllProfiles()
-    }else{
-      this.selectRandomProfile();
-    }
-  }
-
-  checkForMatch(){
-    console.log("You made it to checkForMatch. This doesn't work yet");
-
-    if(this.loginProfile&&this.selected){
-
-      this.profileService.checkFavorited(this.selected.id).subscribe({
-        next: (result) => {
-          console.log(result);
-          if(this.loginProfile&&this.selected){
-            this.star.matcher=this.loginProfile;
-          this.star.matched=this.selected;
-            this.createStar();
-          }
-        },
-        error: (err) => {
-          console.error('Error checkForMatch');
-          console.error(err);
-        },
-      });
-    }
-  }
-
-    createStar(){
-        this.starService.create(this.star).subscribe({
-          next: (result) => {
-            //Make a message pop up that you have a match
-            console.log(result);
-          },
-          error: (err) => {
-            console.error('Error creating match');
-            console.error(err);
-          },
-        });
-    }
-
-
-  getLogginProfile(){
-    console.log("In getLogginProfile");
-    console.log("this.loginUser"+this.loginUser.id);
-
-
-    this.profileService.findByUserId(this.loginUser.id).subscribe({
-      next: (profile) => {
-        this.loginProfile = profile;
-        console.log("this.loginProfile"+this.loginProfile);
-        console.log("Results: "+profile);
-
-
-      },
-      error: (err) => {
-        console.error('Error retrieving Profile');
-        console.error(err);
-      },
-    });
-  }
-
-  updateProfile(likedProfileId: number){
-    console.log("In updateProfile likedProfileId"+likedProfileId);
-
-    this.profileService.addFavorited(likedProfileId).subscribe({
-      next: (result) => {
-        return result;
-      },
-      error: (err) => {
-        console.error(
-          'HomeComponent.UpdateProfile(): error Updating Profile: '
-          );
-          console.error(err);
-          return this.loginProfile;
-      },
-    });
-    return this.loginProfile;
-  }
 
 
 }

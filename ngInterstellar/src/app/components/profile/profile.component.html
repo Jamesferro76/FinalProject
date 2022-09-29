@@ -456,25 +456,27 @@
 
 <!-- Edit pics -->
 <div class="form-style-8" *ngIf="!locationEdit&&picsEdit&&editProfile">
-  <img [src]="editProfile.profilePic" />
+  <img [src]="editProfile.profilePic" width="450" height="500"/>
   <Label for="sex" *ngIf="editProfile.profilePic==''" class="red-letters">Profile Pic:</Label>
   <Label for="sex" *ngIf="editProfile.profilePic!=''">Profile Pic:</Label>
   <input
   type="text"
   name="profilePic"
   [(ngModel)]="editProfile.profilePic"
-  /><br />
+  />
+  <button type="button" *ngIf="editProfile.profilePic!=''" (click)="picsEditSave()">Save Profile Pic</button>
+  <hr>
   <div *ngFor="let pic of editProfile.images; index as i" (click)="deletePic(i)">
-    <img [src]="pic.imageUrl" />
+    <img [src]="pic.imageUrl" width="250" height="300"/><br/>
   </div>
   Image URL:<input
     type="text"
     name="imageUrl"
     [(ngModel)]="newImage.imageUrl"
   />
-  <button type="button" (click)="addImageToProfile()">Add another image?</button>
-  <button type="button" *ngIf="editProfile.profilePic!=''" (click)="picsEditSave()">Save</button>
-  <button type="button" *ngIf="!initialCreate" (click)="picsEdit=false">Cancel</button>
+  <button type="button" *ngIf="amountOfImages<5" (click)="addImageToProfile()">Add another image?</button>
+
+  <button type="button" *ngIf="!initialCreate" (click)="picsEdit=false">Close</button>
 </div>
 
 
