@@ -1,5 +1,7 @@
 <div class="background">
+
   <div *ngIf="selected &&displayAllInfo && !basicEdit && !sexualityEdit && !locationEdit && !picsEdit">
+
 
 
 
@@ -7,7 +9,7 @@
 
      <body>
       <div class="header__wrapper">
-        <header></header>
+        <header style="background: url({{selected.banner}}) no-repeat 50% 20% / cover"></header>
         <div class="cols__container">
           <div class="left__col">
             <div class="img__container">
@@ -57,7 +59,7 @@
                 <li><a (click)="photoLinkToggle()">photos</a></li>
                 <li><a (click)="mixerLinkToggle()">mixers</a></li>
                 <li><a (click)="interestLinkToggle()">interests</a></li>
-                <li><a href="">hobbies</a></li>
+
               </ul>
 
             </nav>
@@ -205,6 +207,8 @@
       </div>
     </div>
   </div> -->
+
+
   </div>
 </div>
 
@@ -522,3 +526,14 @@
 <button (click)="editButtonsToggle()">Edit </button>
 <button (click)="displayProfilePage()">Back</button>
 </div>
+
+
+
+<!-- <style>
+
+  .header__wrapper header {
+    width: 100%;
+    background: url({{selected.profilePic}}) no-repeat 50% 20% / cover;
+    min-height: calc(100px + 15vw);
+  }
+</style> -->

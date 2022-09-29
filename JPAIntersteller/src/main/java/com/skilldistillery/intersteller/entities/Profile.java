@@ -55,6 +55,8 @@ public class Profile {
 
 	  @Column(name="profile_pic")
 	  private String profilePic;
+	  
+	  private String banner;
 
 	  private Boolean active;
 
@@ -207,6 +209,17 @@ public class Profile {
 
 		public User getUser() {
 			return user;
+		}
+
+		
+
+		public String getBanner() {
+			return banner;
+		}
+
+
+		public void setBanner(String banner) {
+			this.banner = banner;
 		}
 
 

@@ -29,6 +29,7 @@ export class Profile {
   favoriter: Profile[];
   categories: Category[];
   profileAnswers: any[];
+  banner: string = '';
 
   constructor(
     id: number = 0,
@@ -55,7 +56,8 @@ export class Profile {
     favorited: Profile[] = [],
     favoriter: Profile[] = [],
     categories: Category[] = [],
-    profileAnswers: any[] = []
+    profileAnswers: any[] = [],
+     banner: string = ''
   ) {
     this.id = id;
     this.birthday = birthday;
@@ -82,5 +84,6 @@ export class Profile {
     this.favoriter = favoriter;
     this.categories = categories;
     this.profileAnswers = profileAnswers;
+    this.banner = banner;
   }
 }
