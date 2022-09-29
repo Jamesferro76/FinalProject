@@ -195,6 +195,7 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   block(){
+    this.closePopup();
     console.log("Inside block id:"+ this.id);
     console.log(this.reason);
     if(this.reason==''){
@@ -213,5 +214,14 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         console.error(prob);
       },
     });
+  }
+
+  displayStyle = "none";
+
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
   }
 }
