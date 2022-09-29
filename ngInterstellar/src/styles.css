@@ -2,6 +2,13 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 body{
-padding-bottom: 30px;
+padding-bottom: 150px;
+/* background: linear-gradient(to top, #f15baf, #cc4a9c, #a83b88, #862b73, #661c5e, #542764, #412e65, #2f3363, #274b71, #346078, #51737d, #728585) no-repeat; */
+/* background-image: linear-gradient(to right top, #f15baf, #c750a4, #9e4695, #773b83, #53306e, #4a2c6a, #402867, #362463, #432673, #522682, #622490, #74209e); */
+/* background-image: linear-gradient(to bottom, #eb178e, #e21296, #d7119e, #cb16a6, #bd1cad, #a522a4, #8f2599, #79268e, #5a226f, #3e1b50, #251332, #100416); */
+/* background-image: linear-gradient(to right, #8b3ce1, #9d3ae1, #ae37e1, #bf35e0, #ce32df, #9f63f8, #687eff, #2391ff, #00b0ff, #00c8f6, #00dbd5, #4fe9b1); */
+/* background-image: radial-gradient(circle, #e85d42, #e25141, #dd443f, #d6373f, #d0273e, #be1944, #ab0d47, #960649, #6f1247, #49163d, #28122b, #0e0414); */
+/* background-image: radial-gradient(circle, #e85d42, #e25141, #dd443f, #d6373f, #d0273e, #be1944, #ab0d47, #960649, #6f1247, #49163d, #28122b, #0e0414); */
+
 }
 
