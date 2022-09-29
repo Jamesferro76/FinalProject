@@ -168,3 +168,23 @@ a:hover {
 .round {
   border-radius: 50%;
 }
+
+
+main{
+  /* The image used */
+  /* background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/834/435/small/beautiful-space-background.jpg"); */
+background-color: #F9E0D9;
+
+  /* Full height */
+  height: max-content;
+
+  /* Center and scale the image nicely */
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.center-things{
+	margin: auto;
+}

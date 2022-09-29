@@ -1,3 +1,4 @@
+<main>
 <button (click)="openPopupSearch()">Filter</button>
 
 <!-- Shows Profiles Based on Search Criteria -->
@@ -6,7 +7,8 @@
   <div *ngIf="selected">
     <div class="container">
       <div class="row row-cols-1 row-cols-md-3 g-{{1}}">
-        <div class ="box-item">
+        <div class="center-things">
+        <div class ="box-item ">
           <div class ="flip-box">
             <div class ="flip-box-front text-left" style="background-image:url({{selected.profilePic}});">
 
@@ -27,6 +29,7 @@
           </div>
       </div>
       </div>
+    </div>
     </div>
     </div>
 
@@ -114,3 +117,4 @@
     </div>
   </div>
 </div>
+</main>
