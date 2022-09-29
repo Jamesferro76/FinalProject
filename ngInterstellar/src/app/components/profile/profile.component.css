@@ -110,7 +110,13 @@ body{
 .flip-box-header{
   font-size: 30px;
 }
-
+.flip-box-header-back{
+  /* font-size: 30px; */
+  height: 42px;
+  /* width: 300px; */
+  overflow-y: auto;
+  white-space: nowrap;
+}
 .flip-box p{
   font-size: 20px;
   line-height: 1.5rem;
