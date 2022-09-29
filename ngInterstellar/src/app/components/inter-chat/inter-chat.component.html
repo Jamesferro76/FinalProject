@@ -105,21 +105,5 @@
   </body>
 
 
-<div>
-  <div>
-    <div>
-      <div class="container" #scrollBottom id="dataDiv" >
-        <div class="imessage" *ngFor="let message of chatHistory" >
-          <div *ngIf="loggedInUser.username != message.sender.username">
-            <p class="from-them">{{message.content}}</p>
-          </div>
-          <div *ngIf="loggedInUser.username == message.sender.username">
-            <p class="from-me">{{message.content}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-</div>
 
