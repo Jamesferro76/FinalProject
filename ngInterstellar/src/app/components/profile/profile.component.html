@@ -504,7 +504,7 @@
               <span class="text-start" (click)="selectPicBackward(selected.images)">Last pic </span>
               <span class="float-end" (click)="selectPicForward(selected.images)">Next pic</span><br/>
               Categories: <span *ngFor="let cat of selected.categories">{{cat.name}} </span>
-              <p>{{selected.description}}</p>
+              <p class ="flip-box-header-back">{{selected.description}}</p>
             </div>
           </div>
         </div>

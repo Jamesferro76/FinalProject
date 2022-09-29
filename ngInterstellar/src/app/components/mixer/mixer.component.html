@@ -37,18 +37,57 @@
       </div>
     </div>
     <form>
+      <label for="name" *ngIf="newMixer.name==''" class="red-letters">Name:</label>
+      <label for="name" *ngIf="newMixer.name!=''">Name:</label>
       <input type="text" name="name" placeholder="Name"[(ngModel)]="newMixer.name"><br>
+
+      <label for="name" *ngIf="newMixer.description==''" class="red-letters">Description:</label>
+      <label for="name" *ngIf="newMixer.description!=''">Description:</label>
       <input type="text" name="description" placeholder="description"[(ngModel)]="newMixer.description"><br>
+
+      <label for="name" *ngIf="newMixer.imageUrl==''" class="red-letters">Image Url:</label>
+      <label for="name" *ngIf="newMixer.imageUrl!=''">Image Url:</label>
       <input type="text" name="imageUrl" placeholder="imageUrl"[(ngModel)]="newMixer.imageUrl"><br>
+
+      <label for="name" *ngIf="newMixer.eventDate==''" class="red-letters">Event Date:</label>
+      <label for="name" *ngIf="newMixer.eventDate!=''">Event Date:</label>
       <input type="date" name="eventDate" placeholder="eventDate"[(ngModel)]="newMixer.eventDate"><br>
+
+      <label for="name" *ngIf="newMixer.eventStart==''" class="red-letters">Event Start:</label>
+      <label for="name" *ngIf="newMixer.eventStart!=''">Event Start:</label>
       <input type="time" name="eventStart" placeholder="eventStart"[(ngModel)]="newMixer.eventStart"><br>
+
+      <label for="name" *ngIf="newMixer.eventEnd==''" class="red-letters">Event End:</label>
+      <label for="name" *ngIf="newMixer.eventEnd!=''">Event End:</label>
       <input type="time" name="eventEnd" placeholder="eventEnd"[(ngModel)]="newMixer.eventEnd"><br>
+
+      <label for="name" *ngIf="newMixer.address.street==''" class="red-letters">Street:</label>
+      <label for="name" *ngIf="newMixer.address.street!=''">Street:</label>
       <input type="text" name="street" placeholder="Street"[(ngModel)]="newMixer.address.street"><br>
+
+      <label for="name" *ngIf="newMixer.address.city==''" class="red-letters">City:</label>
+      <label for="name" *ngIf="newMixer.address.city!=''">City:</label>
       <input type="text" name="city" placeholder="City"[(ngModel)]="newMixer.address.city"><br>
-      <input type="text" name="state" placeholder="State"[(ngModel)]="newMixer.address.state"><br>
+
+      <label for="name" *ngIf="newMixer.address.state==''" class="red-letters">State:</label>
+      <label for="name" *ngIf="newMixer.address.state!=''">State:</label>
+      <select name="state" [(ngModel)]="newMixer.address.state">
+        <option *ngFor="let state of stateAbr" value="{{state}}">{{state}}</option>
+      </select>
+      <br/>
+
+      <label for="name" *ngIf="newMixer.address.zip==''" class="red-letters">Zip:</label>
+      <label for="name" *ngIf="newMixer.address.zip!=''">Zip:</label>
       <input type="text" name="zip" placeholder="Zip Code"[(ngModel)]="newMixer.address.zip"><br>
+
+      <label for="name" *ngIf="newMixer.address.country==''" class="red-letters">Country:</label>
+      <label for="name" *ngIf="newMixer.address.country!=''">Country:</label>
       <input type="text" name="country" placeholder="Country"[(ngModel)]="newMixer.address.country"><br>
-      <button (click)="addMixer()">Add Mixer</button>
+      <button
+      *ngIf="newMixer.name!=''&&newMixer.description!=''&&newMixer.imageUrl!=''&&newMixer.eventDate!=''
+      &&newMixer.eventStart!=''&&newMixer.eventEnd!=''&&newMixer.address.street!=''&&newMixer.address.city!=''
+      &&newMixer.address.state!=''&&newMixer.address.zip!=''&&newMixer.address.country!=''"
+      (click)="addMixer()">Add Mixer</button>
       <button (click)="toggleAdd()">Back</button>
       </form>
   </div>
