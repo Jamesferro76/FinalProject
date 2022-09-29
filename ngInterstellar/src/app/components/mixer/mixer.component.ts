@@ -42,6 +42,8 @@ export class MixerComponent implements OnInit {
 
   selectedState = '';
 
+  selectedCity = '';
+
   stateAbr = [
     'AK',
     'AL',
@@ -276,8 +278,9 @@ export class MixerComponent implements OnInit {
     this.displayMixers = [];
     this.mixers.forEach((each) => {
       if (
-        each.address.state === this.selectedState ||
-        this.selectedState === ''
+        (each.address.state === this.selectedState ||
+          this.selectedState === '') &&
+        (each.address.city === this.selectedCity || this.selectedCity === '')
       ) {
         if (!this.displayMixers.includes(each)) {
           this.displayMixers.push(each);

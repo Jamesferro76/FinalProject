@@ -21,6 +21,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { ActivePipe } from './pipes/active.pipe';
+import { DuplicatesPipe } from './pipes/duplicates.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ActivePipe } from './pipes/active.pipe';
     ViewProfileComponent,
     ContactPageComponent,
     ActivePipe,
+    DuplicatesPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthService, MixerService, ProfileService, UserService],

@@ -1,7 +1,10 @@
 <body>
   <!-- filter criteria -->
   State:<select name="state" [(ngModel)]="selectedState">
-    <option *ngFor="let state of stateAbr" [ngValue]="state" value="{{state}}">{{state}}</option>
+    <option *ngFor="let mixer of mixers" [ngValue]="mixer.address.state" value="{{mixer.address.state}}">{{mixer.address.state}}</option>
+  </select><br>
+  City:<select name="state" [(ngModel)]="selectedCity">
+    <option *ngFor="let mixer of mixers" [ngValue]="mixer.address.city" value="{{mixer.address.city}}">{{mixer.address.city}}</option>
   </select><br>
   <button (click)="getMixerList()">Search</button>
 
