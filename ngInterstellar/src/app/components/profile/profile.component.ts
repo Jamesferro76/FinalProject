@@ -57,6 +57,7 @@ export class ProfileComponent implements OnInit {
   locationEdit: boolean = false;
   picsEdit: boolean = false;
   initialCreate: boolean=false;
+  amountOfImages: number=0;
 
   defaultImageUrl: string="https://s3.envato.com/files/158241052/1.jpg";
 
@@ -244,13 +245,14 @@ export class ProfileComponent implements OnInit {
   }
 
   addImageToProfile() {
-    if (this.editProfile) {
+    if (this.editProfile&&this.editProfile.images.length<5) {
       this.imageService.create(this.newImage).subscribe({
         next: (result) => {
           if (this.editProfile) {
             this.editProfile.images.push(result);
             this.newImage = new Image();
             this.addImage = false;
+            this.amountOfImages=this.editProfile.images.length;
             this.updateProfile(this.editProfile);
           }
         },
@@ -433,6 +435,9 @@ export class ProfileComponent implements OnInit {
     this.sexualityEdit=false;
     this.locationEdit=false;
     this.basicEdit=false;
+    if(this.editProfile){
+      this.amountOfImages=this.editProfile.images.length
+    }
   }
   picToDelete:Image|null=null;
   deletePic(i: number){

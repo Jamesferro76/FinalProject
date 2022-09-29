@@ -1,27 +1,107 @@
-<p>view-profile works!</p>
 
 <div *ngIf="selected" >
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-{{1}}">
-      <div class ="box-item">
-        <div class ="flip-box">
-          <div class ="flip-box-front text-left" style="background-image:url({{selected.profilePic}});">
-            <div class="inner color-white">
-              <h3 class ="flip-box-header"> {{selected.firstName}} {{selected.age}}</h3>
-              <span>{{selected.sex}} {{selected.address.state}}</span><br/>
-              Preferences: <span *ngFor="let pref of selected.preferences">{{pref.name}} </span><br/>
-            </div>
+  <body>
+    <div class="header__wrapper">
+      <header></header>
+      <div class="cols__container">
+        <div class="left__col">
+          <div class="img__container">
+            <img [src]="selected.profilePic"/>
+            <span></span>
           </div>
-          <div class="flip-box-back" style="background-image:url({{selected.images[counterForPic].imageUrl}});">
-            <div class="inner color-white background-purple">
-              <span class="text-start" (click)="selectPicBackward(selected.images)">Last pic </span>
-              <span class="float-end" (click)="selectPicForward(selected.images)">Next pic</span><br/>
-              Categories: <span *ngFor="let cat of selected.categories">{{cat.name}} </span>
-              <p>{{selected.description}}</p>
-            </div>
+          <h2>{{selected.firstName }} {{selected.lastName}}</h2>
+          <p>{{ selected.age }} years old</p>
+          <p>{{selected.address.city}}, {{ selected.address.state }}</p>
+          <p> {{selected.address.zip}} {{selected.address.country}}</p>
+
+
+          <ul class="about">
+            <li><span>Sex</span>{{ selected.sex }}</li>
+            <li><span>Preferences</span><div *ngFor="let pref of selected.preferences">{{ pref.name }}</div></li>
+          </ul>
+
+
+          <div class="content">
+            <p>
+              {{ selected.description }}
+            </p>
+
+
+            <ul>
+              <a href="">
+                <img src="https://cdn-icons-png.flaticon.com/128/1377/1377213.png" alt="" width="40" height="40">
+              </a>
+              <a href="">
+                <img src="https://cdn-icons-png.flaticon.com/128/1051/1051275.png"width="40" height="40">
+              </a>
+              <a href="">
+                <img src="https://cdn-icons-png.flaticon.com/128/3670/3670166.png"width="40" height="40">
+              </a>
+              <a href="">
+                <img src="https://cdn-icons-png.flaticon.com/128/4138/4138124.png"width="40" height="40">
+              </a>
+            </ul>
           </div>
         </div>
+        <div class="right__col">
+          <nav>
+            <ul>
+              <li><a (click)="photoLinkToggle()">photos</a></li>
+              <li><a (click)="mixerLinkToggle()">mixers</a></li>
+              <li><a (click)="interestLinkToggle()">interests</a></li>
+              <li><a href="">hobbies</a></li>
+            </ul>
+
+          </nav>
+
+          <div *ngIf="showPhotos" class="photos">
+           <div *ngFor="let pic of selected.images">
+            <img [src]="pic.imageUrl" class="pfp" />
+
+          </div>
+          </div>
+
+          <div *ngIf="showMixers" class="mixers">
+            <div>
+
+              <h4>Mixers Hosting:</h4>
+                <div *ngFor="let mixer of selected?.mixers">
+                  <ul>
+
+                    <li> {{ mixer.name }} </li>
+                  </ul>
+                </div>
+            </div>
+
+            <div>
+
+              <h4>Mixers Attending:</h4>
+              <div *ngFor="let mixer of selected?.mixersAttending">
+                <ul>
+
+                  <li>{{ mixer.name }}</li>
+                </ul>
+
+              </div>
+            </div>
+            </div>
+
+            <div *ngIf="showInterests" class="interests">
+              <div>
+
+                <h5>Categories:</h5>
+                <div *ngFor="let cat of selected?.categories">
+                  <ul>
+
+                    <p>{{ cat.name }}</p>
+                  </ul>
+                </div>
+              </div>
+              </div>
+
+
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
+  </body>
 </div>

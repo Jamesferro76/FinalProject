@@ -11,7 +11,7 @@
 					</div>
 					<div class="card-body contacts_body">
 						<ul class="contacts"  id="usersList">
-              <li class="list-group-item" *ngFor="let match of matches" (click)="id=match.id;display()">
+              <li class="list-group-item" *ngFor="let match of matches" (click)="selectedProfile = match;id=match.id;display()">
                 <strong>{{match.firstName}}</strong>
               </li>
 						</ul>
@@ -29,27 +29,46 @@
         <div class="chat-content" >
           <div class="card" >
         <div class="card-header">
-          <h2 (click)="toProfilePage(selected.id)">Your chat with {{selected.username}}</h2>
+          <h2 (click)="toProfilePage(selected.id)">Chat with {{selectedProfile.firstName}}</h2>
         </div>
+<div  class="content" #scrollBottom id="dataDiv">
+  <div class="container-fluid" >
+    <div class="imessage" *ngFor="let message of chatHistory" >
+      <div  class="alignLeft">
+        <div *ngIf="loggedInUser.username != message.sender.username">
+          <p class="from-them">{{message.content}}</p>
+        </div>
+      </div>
 
-        <ul class="list-group list-group-flush" #scrollBottom id="dataDiv">
+      <div class="alignRight">
+        <div *ngIf="loggedInUser.username == message.sender.username">
+          <p class="from-me">{{message.content}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="anchor"></div>
+</div>
+
+
+
+
+
+        <!-- <ul class="list-group list-group-flush" #scrollBottom id="dataDiv">
           <li class="list-group-item" *ngFor="let message of chatHistory">
             <div *ngIf="loggedInUser.username == message.sender.username" class="alignRight">
             <strong class="myText">You:</strong> <br>
-            <span>{{message.content}}</span>
+            <span class="from-me">{{message.content}}</span>
             </div>
             <div *ngIf="loggedInUser.username != message.sender.username">
-              <strong class="yourText">{{message.sender.username}}:</strong> <br>
-              <span>{{message.content}}</span>
+              <strong class="yourText">{{selectedProfile.firstName}}:</strong> <br>
+              <span class="from-them">{{message.content}}</span>
               </div>
           </li>
-          <!-- <li class="list-group-item" *ngFor="let message of loggedInUser.messagesSent">
-            <div *ngIf="message.recipient.username == selected.username">
-              <strong>{{message.sender.username}}:</strong>
-              <span>{{message.content}}</span>
-            </div>
-          </li> -->
-        </ul>
+        </ul> -->
+
+
+
 
       </div>
       <div id="anchor"></div>
@@ -83,6 +102,24 @@
 
 
 </main>
-
   </body>
+
+
+<div>
+  <div>
+    <div>
+      <div class="container" #scrollBottom id="dataDiv" >
+        <div class="imessage" *ngFor="let message of chatHistory" >
+          <div *ngIf="loggedInUser.username != message.sender.username">
+            <p class="from-them">{{message.content}}</p>
+          </div>
+          <div *ngIf="loggedInUser.username == message.sender.username">
+            <p class="from-me">{{message.content}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 

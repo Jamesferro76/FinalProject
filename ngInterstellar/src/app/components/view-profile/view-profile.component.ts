@@ -24,6 +24,10 @@ export class ViewProfileComponent implements OnInit {
 
   selected: Profile|null=null;
 
+  showMixers: boolean = false;
+  showInterests: boolean= false;
+  showPhotos: boolean= true;
+
   constructor(private profileService: ProfileService,
     private imageService: ImageService,
     private addressService: AddressService,
@@ -96,6 +100,25 @@ export class ViewProfileComponent implements OnInit {
     if(this.counterForPic<0){
     this.counterForPic=images.length-1;
     }
+  }
+
+
+  photoLinkToggle(){
+    this.showPhotos = true;
+    this.showMixers = false;
+    this.showInterests = false;
+  }
+
+  mixerLinkToggle(){
+    this.showPhotos = false;
+    this.showMixers = true;
+    this.showInterests = false;
+  }
+
+  interestLinkToggle(){
+    this.showPhotos = false;
+    this.showMixers = false;
+    this.showInterests = true;
   }
 
 }
