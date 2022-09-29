@@ -234,6 +234,7 @@ export class MixerComponent implements OnInit {
     this.showHost = true;
   }
   getMixerList() {
+    this.closePopupSearch();
     console.log(this.selectedState);
     this.displayMixers = [];
     this.mixers.forEach((each) => {
@@ -261,4 +262,14 @@ export class MixerComponent implements OnInit {
     this.displaySearch = !this.displaySearch;
     this.displayAll = !this.displayAll;
   }
+
+displayStyleSearch = "none";
+
+openPopupSearch() {
+  this.displayStyleSearch = "block";
+}
+closePopupSearch() {
+  this.displayStyleSearch = "none";
+}
+
 }

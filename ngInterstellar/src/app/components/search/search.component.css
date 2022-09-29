@@ -191,7 +191,7 @@ background-color: #F9E0D9;
 
 .modal-content{
   background-color: #E6DBD0;
-  /* opacity: 85%; */
+  opacity: 85%;
 }
 
 strong{
@@ -202,3 +202,36 @@ strong:hover{
   color: #03cafc;
 }
 
+.center-buttons{
+  height:100px;
+  margin:0 auto;
+  width:100%;
+  margin-left:50px;
+}
+
+.centered
+{
+    margin: 0 auto;
+    width:300px;
+    height:200px;
+    text-align: center;
+}
+
+.offcenter-left
+{
+    background-color:blue;
+    width:285px;
+    height:inherit;
+    float:left;
+    text-align: left;
+
+}
+.offcenter-right
+{
+    background-color:blue;
+    width:285px;
+    height:inherit;
+    float:right;
+    text-align: right;
+
+}

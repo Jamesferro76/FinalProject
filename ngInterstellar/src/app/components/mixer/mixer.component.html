@@ -1,18 +1,7 @@
 <body>
 <!-- Toggle Buttons -->
 <button *ngIf="initialCreate &&!selected" (click)="toggleAdd()">Add Mixer</button>
-<button *ngIf="displaySearch&&!selected" (click)="toggleSearch()">Search Mixers</button>
-
-  <!-- filter criteria -->
-  <div *ngIf="!selected && !displaySearch">
-  State:<select name="state" [(ngModel)]="selectedState">
-    <option *ngFor="let state of stateAbr2" [ngValue]="state" value="{{state}}">{{state}}</option>
-  </select><br>
-  City:<select name="city" [(ngModel)]="selectedCity">
-    <option *ngFor="let city of cityList" [ngValue]="city" value="{{city}}">{{city}}</option>
-  </select><br>
-  <button (click)="getMixerList(); displayAll=!displayAll; displaySearch=!displaySearch">Search</button><br>
-</div>
+<button *ngIf="displaySearch&&!selected" (click)="openPopupSearch()">Search Mixers</button>
 
 <!-- Shows how to add a form -->
 <div class="form-style-8" *ngIf="!selected && !initialCreate" >
@@ -60,6 +49,7 @@
       <input type="text" name="zip" placeholder="Zip Code"[(ngModel)]="newMixer.address.zip"><br>
       <input type="text" name="country" placeholder="Country"[(ngModel)]="newMixer.address.country"><br>
       <button (click)="addMixer()">Add Mixer</button>
+      <button (click)="toggleAdd()">Back</button>
       </form>
   </div>
 
@@ -196,3 +186,37 @@
       </span>
   </div>
 </body>
+
+<!-- Modal -->
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyleSearch}">
+
+
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Filter</h4>
+      </div>
+      <div class="modal-body">
+        State:<select name="state" [(ngModel)]="selectedState">
+          <option *ngFor="let state of stateAbr2" [ngValue]="state" value="{{state}}">{{state}}</option>
+        </select><br>
+        City:<select name="city" [(ngModel)]="selectedCity">
+          <option *ngFor="let city of cityList" [ngValue]="city" value="{{city}}">{{city}}</option>
+        </select><br>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class=""(click)="closePopupSearch()">
+          Close
+        </button>
+        <button (click)="getMixerList()">Search</button>
+      </div>
+    </div>
+  </div>
+</div>

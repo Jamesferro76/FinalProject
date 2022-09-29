@@ -6,7 +6,7 @@
 <div *ngIf="loggedIn()&&!outOfMatches && displayProfiles.length!=0" >
   <h2>Start swiping</h2>
   <div *ngIf="selected">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row row-cols-1 row-cols-md-3 g-{{1}}">
         <div class="center-things">
         <div class ="box-item ">
@@ -31,20 +31,24 @@
       </div>
       </div>
     </div>
-    </div>
-    </div>
 
-    <a (click)="likedAProfile()">
+  <!-- <div class="centered"> -->
+    <a class="offcentered-left" (click)="nextAProfile()">
+      <span class="material-symbols-outlined">
+        close
+        </span>
+    </a>
+    <a class="offcentered-right" (click)="likedAProfile()">
       <span class="material-symbols-outlined">
         favorite
         </span>
     </a>
-    <a (click)="nextAProfile()">
-    <span class="material-symbols-outlined">
-      arrow_forward_ios
-      </span>
-    </a>
   </div>
+  <!-- </div> -->
+<!-- </div> -->
+
+</div>
+</div>
 
 
   <div *ngIf="outOfMatches">
