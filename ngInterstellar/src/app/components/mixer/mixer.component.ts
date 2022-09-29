@@ -272,6 +272,7 @@ export class MixerComponent implements OnInit {
     this.showHost = true;
   }
   getMixerList() {
+    console.log(this.selectedState);
     this.displayMixers = [];
     this.mixers.forEach((each) => {
       if (
@@ -283,5 +284,6 @@ export class MixerComponent implements OnInit {
         }
       }
     });
+    this.selectedState = '';
   }
 }

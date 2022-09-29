@@ -3,13 +3,16 @@
   State:<select name="state" [(ngModel)]="selectedState">
     <option *ngFor="let state of stateAbr" [ngValue]="state" value="{{state}}">{{state}}</option>
   </select><br>
+  <button (click)="getMixerList()">Search</button>
 
 <!-- Shows all mixers -->
 <div *ngIf="!selected" >
   <h1>{{title}}</h1>
   <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-3 g-{{getNumberOfMixers()}}">
-      <div *ngFor="let mixer of mixers">
+
+      <!-- <div *ngFor="let mixer of mixers"> -->
+      <div *ngFor="let mixer of displayMixers">
       <div class ="box-item">
         <div class ="flip-box" (click)="displayMixer(mixer); selected = mixer">
           <div class ="flip-box-front text-center" style="background-image:url({{mixer.imageUrl}});">
