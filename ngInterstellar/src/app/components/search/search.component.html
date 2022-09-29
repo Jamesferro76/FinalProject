@@ -1,20 +1,4 @@
-<!-- Filter criteria -->
-State:<select name="state" [(ngModel)]="selectedState">
-    <option *ngFor="let state of stateAbr" [ngValue]="state" value="{{state}}">{{state}}</option>
-  </select><br>
-Sex:<select name="type" [(ngModel)]="selectedType">
-    <option *ngFor="let type of types" [ngValue]="type"value="{{type}}">{{type}}</option>
-  </select><br>
-Category:<select name="cat" [(ngModel)]="selectedCat">
-    <option *ngFor="let cat of categories" [ngValue]="cat" value="{{cat}}">{{cat}}</option>
-  </select><br>
-Minimum Age:<select name="ageMin" [(ngModel)]="ageMin">
-  <option *ngFor="let age of ages" [ngValue]="age" value="{{age}}">{{age}}</option>
-</select><br>
-Maximum Age:<select name="ageMax" [(ngModel)]="ageMax">
-  <option *ngFor="let age of ages" [ngValue]="age" value="{{age}}">{{age}}</option>
-  </select><br>
-<button (click)="displayList()">Search</button>
+<button (click)="openPopupSearch()">Filter</button>
 
 <!-- Shows Profiles Based on Search Criteria -->
 <div *ngIf="loggedIn()&&!outOfMatches && displayProfiles.length!=0" >
@@ -37,7 +21,7 @@ Maximum Age:<select name="ageMax" [(ngModel)]="ageMax">
                 <span class="text-start" (click)="selectPicBackward(selected.images)">Last pic </span>
                 <span class="float-end" (click)="selectPicForward(selected.images)">Next pic</span><br/>
                 Categories: <span *ngFor="let cat of selected.categories">{{cat.name}} </span>
-                <p>{{selected.description}}</p>
+                <p class ="flip-box-header-back">{{selected.description}}</p>
               </div>
             </div>
           </div>
@@ -65,7 +49,7 @@ Maximum Age:<select name="ageMax" [(ngModel)]="ageMax">
 <h1 *ngIf="counter !=1 && displayProfiles.length===0 ">Sorry, no profiles match your Search Criteria</h1>
 
 
-
+<!-- Modals -->
 <div
   class="modal"
   tabindex="-1"
@@ -88,6 +72,44 @@ Maximum Age:<select name="ageMax" [(ngModel)]="ageMax">
           <button type="button" class="" (click)="toChat()">
             Send a Chat
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Search -->
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyleSearch}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Filter</h4>
+      </div>
+      <div class="modal-body">
+        State:<select name="state" [(ngModel)]="selectedState">
+          <option *ngFor="let state of stateAbr" [ngValue]="state" value="{{state}}">{{state}}</option>
+        </select><br>
+      Sex:<select name="type" [(ngModel)]="selectedType">
+          <option *ngFor="let type of types" [ngValue]="type"value="{{type}}">{{type}}</option>
+        </select><br>
+      Category:<select name="cat" [(ngModel)]="selectedCat">
+          <option *ngFor="let cat of categories" [ngValue]="cat" value="{{cat}}">{{cat}}</option>
+        </select><br>
+      Minimum Age:<select name="ageMin" [(ngModel)]="ageMin">
+        <option *ngFor="let age of ages" [ngValue]="age" value="{{age}}">{{age}}</option>
+      </select><br>
+      Maximum Age:<select name="ageMax" [(ngModel)]="ageMax">
+        <option *ngFor="let age of ages" [ngValue]="age" value="{{age}}">{{age}}</option>
+        </select><br>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class=""(click)="closePopupSearch()">
+          Close
+        </button>
+        <button (click)="displayList()">Search</button>
       </div>
     </div>
   </div>

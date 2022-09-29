@@ -182,6 +182,7 @@ export class SearchComponent implements OnInit {
   }
 
   displayList() {
+    this.closePopupSearch();
     if (this.counter % 2 != 0) {
       this.displayProfiles = [];
       this.profiles.forEach((each) => {
@@ -402,7 +403,7 @@ export class SearchComponent implements OnInit {
     return this.loginProfile;
   }
 
-
+// Modals
   displayStyle = "none";
 
   openPopup() {
@@ -410,6 +411,15 @@ export class SearchComponent implements OnInit {
   }
   closePopup() {
     this.displayStyle = "none";
+  }
+
+  displayStyleSearch = "none";
+
+  openPopupSearch() {
+    this.displayStyleSearch = "block";
+  }
+  closePopupSearch() {
+    this.displayStyleSearch = "none";
   }
 
   toProfilePage(){

@@ -5,7 +5,7 @@ body{
 
 .color-white{
   color:white;
-	font-size: 40px;
+	/* font-size: 40px; */
 	text-shadow: -1px 1px 2px #000,
 				  1px 1px 2px #000,
 				  1px -1px 0 #000,
@@ -62,7 +62,7 @@ body{
   transform-style: preserve-3d;
 }
 
-.flip-box .inner{
+/* .flip-box .inner{
   position:absolute;
   left:0;
   width:100%;
@@ -72,13 +72,48 @@ body{
   z-index: 2;
   transform: translateY(-50%)translateZ(60px) scale(.94);
   top: 50%;
+} */
+
+.flip-box .inner{
+  position:absolute;
+  left:0;
+  width:100%;
+  padding: 10px;
+  outline: 1px solid transparent;
+  perspective: inherit;
+  z-index: 2;
+  transform: translateY(80%)translateZ(60px) scale(.94);
+  top: 50%;
+}
+.background-purple{
+  background-color: #8419C5;
+  opacity: 0.7
+}
+.top-right{
+  position:absolute;
+  left:0;
+  width:100%;
+  padding: 10px;
+  outline: 1px solid transparent;
+  perspective: inherit;
+  z-index: 2;
+  transform: translateX(80)translateY(-80%)translateZ(60px) scale(.94);
+  top: 50%;
+}
+.top-left{
+  position:absolute;
+  left:0;
+  width:100%;
+  padding: 10px;
+  outline: 1px solid transparent;
+  perspective: inherit;
+  z-index: 2;
+  transform: translateX(-80)translateY(-400%)translateZ(60px) scale(.94);
+  top: 50%;
 }
 
-.flip-box-header-back{
+.flip-box-header{
   font-size: 30px;
-  height: 135px;
-  width: 300px;
-  overflow-y: hidden;
 }
 
 .flip-box p{
@@ -102,6 +137,14 @@ body{
   padding: 15px 20px;
   text-transform: uppercase;
 
+}
+
+.flip-box-header-back{
+  /* font-size: 30px; */
+  height: 42px;
+  /* width: 300px; */
+  overflow-y: auto;
+  white-space: nowrap;
 }
 /* Back Buttons */
 
