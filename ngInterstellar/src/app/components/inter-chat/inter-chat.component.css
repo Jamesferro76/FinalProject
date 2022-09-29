@@ -17,12 +17,16 @@
 margin-top: auto;
 overflow-y: scroll;
 }
-.list-group{
 
+
+.list-group{
+margin: auto;
+overflow-x: hidden;
   overflow-y: auto;
 overflow-anchor: none;
-
 }
+
+
 
 
 
@@ -37,6 +41,8 @@ height: 1px;
 
 .card{
   height: 100%;
+  margin:auto;
+  overflow-x: hidden;
 }
 .card-header{
   padding-bottom: 1rem;
@@ -49,14 +55,18 @@ body{
 
 
 .alignRight{
+  margin-left: auto;
 text-align: right;}
 
+
 .alignLeft{
+  margin-right: auto;
   text-align: left;
 }
 
 .card-body{
   height:15rem;
+  width:400px;
   overflow-y: auto;
 }
 
@@ -70,20 +80,25 @@ text-align: right;}
 
 .imessage {
   background-color: #fff;
+  /* float:right; */
   display: flex;
   flex-direction: column;
   font-family: "SanFrancisco";
   font-size: .95rem;
-  margin:  auto ;
-  max-width:fit-content;
+  /* margin:  auto ; */
+
   text-anchor: right;
-  padding: 0.5rem 1.5rem;
+  padding: 0.3rem;
 }
+
+/* #datDiv{
+  width:300px;
+} */
 
 .imessage p {
   border-radius: 1.15rem;
   line-height: 1.25;
-  max-width: 95%;
+  max-width: 85%;
   padding: 0.5rem .6rem;
   position: relative;
   word-wrap: break-word;
@@ -119,10 +134,12 @@ p.from-me::after {
 }
 
 p[class^="from-me"] {
-  margin-left: 29rem;
   text-align: center;
-  width: 10rem 5rem;
+  width: fit-content;
+  margin-left: 28rem;
 }
+
+
 
 p.from-me ~ p.from-me {
   margin: 0.25rem 0 0;
@@ -160,6 +177,7 @@ p.from-them::after {
 p[class^="from-them"] {
   margin-right: 29rem;
   width: fit-content;
+
 }
 
 p[class^="from-"].emoji::before {

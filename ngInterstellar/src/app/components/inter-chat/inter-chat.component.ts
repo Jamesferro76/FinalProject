@@ -78,10 +78,10 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     } catch (err) {}
   }
 
-  chatref=setInterval(() => {
-   this.display();
-   console.log();
- }, 1000);
+//   chatref=setInterval(() => {
+//    this.display();
+//    console.log();
+//  }, 1000);
 
   ngOnInit(): void {
     this.chatService.openWebSocket();
@@ -96,7 +96,7 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   ngOnDestroy(): void {
     if(true){
-      clearInterval(this.chatref);
+      // clearInterval(this.chatref);
     }
     this.chatService.closeWebSocket();
   }

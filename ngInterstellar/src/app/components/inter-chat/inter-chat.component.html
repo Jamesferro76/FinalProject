@@ -24,7 +24,7 @@
 
 
         <main class="chat" *ngIf="selected">
-          <div class="container-fluid h-100" >
+          <div class="container-fluid w-100" >
       <form>
         <div class="chat-content" >
           <div class="card" >
@@ -33,20 +33,27 @@
         </div>
 <div  class="content" #scrollBottom id="dataDiv">
   <div class="container-fluid" >
-    <div class="imessage" *ngFor="let message of chatHistory" >
-      <div  class="alignLeft">
+    <ul class="list-group list-group-flush" #scrollBottom id="dataDiv">
+      <div >
+
+
+      <li class="imessage"  *ngFor="let message of chatHistory">
+        <div  class="alignLeft">
         <div *ngIf="loggedInUser.username != message.sender.username">
           <p class="from-them">{{message.content}}</p>
         </div>
       </div>
 
       <div class="alignRight">
-        <div *ngIf="loggedInUser.username == message.sender.username">
+        <div class="test" *ngIf="loggedInUser.username == message.sender.username">
           <p class="from-me">{{message.content}}</p>
         </div>
       </div>
+    </li>
+      </div>
+  </ul>
     </div>
-  </div>
+
   <div id="anchor"></div>
 </div>
 
