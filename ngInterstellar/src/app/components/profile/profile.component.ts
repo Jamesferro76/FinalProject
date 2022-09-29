@@ -102,6 +102,9 @@ export class ProfileComponent implements OnInit {
         }catch{}
             this.editProfile= this.selected;
             this.displayProfilePage();
+            if(!this.selected&&!this.editProfile&&!this.basicEdit){
+              this.createProfile();
+            }
 
           },
           error: (err) => {

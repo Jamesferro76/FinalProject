@@ -214,11 +214,11 @@
 
 <!-- End -->
 <!-- You don't have a profile. -->
-<div *ngIf="!selected&&!editProfile&&!basicEdit">
+<!-- <div *ngIf="!selected&&!editProfile&&!basicEdit">
   <h1>It seems you don't have a profile</h1>
   <h4>Let's get one set up in 4 simple steps</h4>
   <button type="button" (click)="createProfile()">Let's get started</button>
-</div>
+</div> -->
 
 <!-- create basic -->
 <!-- <div *ngIf="basicEdit&&!editProfile">
@@ -299,7 +299,7 @@
 
 <!-- edit basic -->
 <div class="form-style-8" *ngIf="basicEdit&&editProfile">
-  <h2>Update Basic Info</h2>
+  <h2>Update Basic Info:</h2>
   <form>
     <label for="firstName" *ngIf="editProfile.firstName==''" class="red-letters">First Name:</label>
     <label for="firstName" *ngIf="editProfile.firstName!=''">First Name:</label>
@@ -371,10 +371,10 @@
 
 <!-- Edit sexuality -->
 <div class="form-style-8" *ngIf="!basicEdit&&sexualityEdit&&editProfile">
-  <h2>Update Your preferences</h2>
+  <h2>Update Your Preferences:</h2>
   <form>
-    <Label for="sex" *ngIf="editProfile.sex==''" class="red=letters">Sex:</Label>
-    <Label for="sex" *ngIf="editProfile.sex!=''">Sex:</Label>
+    <h4 for="sex" *ngIf="editProfile.sex==''" class="red-letters">Sex:</h4>
+    <h4 for="sex" *ngIf="editProfile.sex!=''">Sex:</h4>
     <select name="sex" [(ngModel)]="editProfile.sex">
       <option value="Male">Male</option>
       <option value="Female">Female</option>
@@ -393,6 +393,7 @@
         [(ngModel)]="editProfile.preferences[i]"
       />
     </div>
+    <hr>
     <h4>Categories</h4>
     <div *ngFor="let cat of categories; index as i">
       {{ cat.name }}:<input
@@ -412,6 +413,7 @@
 
 <!-- Edit Location -->
 <div class="form-style-8" *ngIf="!sexualityEdit&&locationEdit&&editProfile">
+  <h2>Update Your Location:</h2>
   <h2>Address Info</h2>
   <form action="createProfile">
 
@@ -461,6 +463,7 @@
 
 <!-- Edit pics -->
 <div class="form-style-8" *ngIf="!locationEdit&&picsEdit&&editProfile">
+  <h2>Update Your Images:</h2>
   <img [src]="editProfile.profilePic" width="450" height="500"/>
   <Label for="sex" *ngIf="editProfile.profilePic==''" class="red-letters">Profile Pic:</Label>
   <Label for="sex" *ngIf="editProfile.profilePic!=''">Profile Pic:</Label>
@@ -504,7 +507,7 @@
               <span class="text-start" (click)="selectPicBackward(selected.images)">Last pic </span>
               <span class="float-end" (click)="selectPicForward(selected.images)">Next pic</span><br/>
               Categories: <span *ngFor="let cat of selected.categories">{{cat.name}} </span>
-              <p class ="flip-box-header-back">{{selected.description}}</p>
+              <p>{{selected.description}}</p>
             </div>
           </div>
         </div>
