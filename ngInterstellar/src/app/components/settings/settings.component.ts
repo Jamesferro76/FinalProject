@@ -119,4 +119,19 @@ export class SettingsComponent implements OnInit {
       },
     });
   }
+  adminProfileUpdate(user: User) {
+    console.log(user);
+    console.log(user.username);
+    console.log(user.password);
+    console.log(user.active);
+
+    this.userService.update(user).subscribe({
+      next: (updatedUser) => {},
+      error: (err) => {
+        console.error(
+          'HomeComponent.UpdateProfile(): error Updating Profile: '
+        );
+      },
+    });
+  }
 }
