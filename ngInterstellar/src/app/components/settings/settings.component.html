@@ -1,27 +1,127 @@
+<!-- <button (click)="editedUser = loginUser">Update?</button> -->
+<div class="cards" *ngIf="!editedUser">
+  <div class="card mb-sm-3 mb-md-0 contacts_card">
+    <div class="card-header">
+      <h4>Membership status</h4>
+    </div>
+    <div class="card-body">
+      <strong>You have a Intersteller standard account.</strong>
+      <p>
+        Upgrade to Intersteller Premium to boost your profile and see who has
+        liked you!
+      </p>
+    </div>
+  </div>
+</div>
 
-<button (click)="editedUser = loginUser">Update?</button>
+<div class="cards" *ngIf="!editedUser">
+  <div class="card mb-sm-3 mb-md-0">
+    <div class="card-header">
+      <h4>Premium perks</h4>
+    </div>
+    <div class="card-body">
+      <strong>Intersteller+</strong>
+      <ul>
+        <li>Unlimited Likes</li>
+        <li>Unlimited Rewinds</li>
+        <li>Passport™ To Any Location</li>
+        <li>Hide Advertisements</li>
+      </ul>
+<strong>Intersteller Gold</strong>
+      <ul>
+        <li>See Who Likes You</li>
+        <li>New Top Picks every day</li>
+        <li>5 Super Likes a week</li>
+        <li>1 Free Boost a month</li>
+        <li>And everything you love from Intersteller Plus®!</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="cards" *ngIf="!editedUser">
+  <div class="card mb-sm-3 mb-md-0" id="account-card">
+    <div class="card-header">
+      <h4>Account</h4>
+    </div>
+    <div class="card-body">
+      <strong>Login email</strong>
+      <ul>
+        <p>{{ loginUser.email }}</p>
+      </ul>
+
+      <strong>Password.</strong>
+      <ul>
+        <a (click)="editedUser = loginUser">Change Password</a>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="cards" *ngIf="!editedUser && loginUser.role === 'ADMIN'" >
+  <div class="card mb-sm-3 mb-md-0" id="admin-card">
+    <div class="card-header">
+      <h4>Admin Functions</h4>
+    </div>
+    <div class="card-body">
+      <strong>Update users</strong>
+      <ul>
+        <input type="button" (click)="displayUpdateUsers()" value="update">
+      </ul>
+
+    </div>
+  </div>
+</div>
 
 <div class="form-style-8" *ngIf="editedUser">
   <h2>Update Login Credentials</h2>
   <div class="updateLogin">
     <form class="css-form form-control">
-        <h3>Username</h3>
-        <input type="text" name="username" [(ngModel)]="editedUser.username">
-        <h3>Password</h3>
-        <input type="password" name="password" placeholder="password"  [(ngModel)]="editedUser.password">
-      </form>
-      <button type="submit" (click)="updateLogin(editedUser)">Update Login</button>
-    </div>
+      <h3>Username</h3>
+      <input type="text" name="username" [(ngModel)]="editedUser.username" />
+      <h3>Password</h3>
+      <input
+        type="password"
+        name="password"
+        placeholder="password"
+        [(ngModel)]="editedUser.password"
+      />
+    </form>
+    <input type="submit" (click)="updateLogin(editedUser)" value="update" />
   </div>
+  <input type="button" (click)="displayUpdateLogin()" value="cancel" />
+</div>
 
+<!-- <div *ngIf="editedUser">
 
-  <!-- ////////////////////////// -->
+  <div class="background" >
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <form>
+    <h3>Update Login</h3>
 
+    <label for="username">Username</label>
+    <input type="text" id="username" [(ngModel)]="editedUser.username">
 
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" id="password" [(ngModel)]="editedUser.password">
 
-    <!-- ////////////////// -->
+    <button type="submit" (click)="updateLogin(editedUser)">Update</button>
 
-    <!-- <div class="form-style-8">
+  </form>
+</div> -->
+
+<!-- ////////////////////////// -->
+
+<!-- ////////////////// -->
+
+<!-- <div class="form-style-8">
       <h2>Login to your account</h2>
       <form>
         <input type="text" name="field1" placeholder="Username" />
@@ -32,75 +132,118 @@
     </div>
  -->
 
+<!-- Admin Functions -->
+<div *ngIf="!editedUser && loginUser.role === 'ADMIN' && admin">
+  <div class="container-fluid">
+    <div class="space">
+      <h1>User Results</h1>
 
-    <!-- Admin Functions -->
-    <div *ngIf="loginUser.role==='ADMIN'">
-      <div class="container-fluid">
-        <div class="space">
-        <h1>User Results</h1>
-
-
-        <table class="table table-striped table-hover">
-            <thead class="table-light">
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Password</th>
-                <th>Status</th>
-                <th>Change User Status</th>
-
-              </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor=" let user of users">
-                  <td>{{user.id}}</td>
-                  <td>{{user.username}}</td>
-                  <td>{{user.password}}</td>
-                  <td *ngIf="user.active">Active</td>
-                  <td *ngIf="!user.active">Inactive</td>
-                  <td *ngIf="user.active">
-                  <form><input type="hidden" name="active" value="{{user.active}}"><button type="submit" class="btn btn-dark btn-sm" (click)="user.active=false;adminUpdate(user)">Disable this User</button></form>
-                </td>
-                <td *ngIf="!user.active">
-                  <form><input type="hidden" name="active" value="{{user.active}}"><button type="submit"class="btn btn-success btn-sm" (click)="user.active=true;adminUpdate(user)">Enable this User</button></form>
-                </td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-        </div>
-        <div class="container-fluid">
-          <div class="space">
-          <h1>Profile Results</h1>
-
-
-          <table class="table table-striped table-hover">
-              <thead class="table-light">
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Password</th>
-                  <th>Status</th>
-                  <th>Change User Status</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor=" let user of users">
-                    <td>{{user.id}}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.password}}</td>
-                    <td *ngIf="user.active">Active</td>
-                    <td *ngIf="!user.active">Inactive</td>
-                    <td *ngIf="user.active">
-                    <form><input type="hidden" name="active" value="{{user.active}}"><button type="submit" class="btn btn-dark btn-sm" (click)="user.active=false;adminUpdate(user)">Disable this User</button></form>
-                  </td>
-                  <td *ngIf="!user.active">
-                    <form><input type="hidden" name="active" value="{{user.active}}"><button type="submit"class="btn btn-success btn-sm" (click)="user.active=true;adminUpdate(user)">Enable this User</button></form>
-                  </td>
-                  </tr>
-              </tbody>
-            </table>
-          </div>
-          </div>
+      <table class="table table-striped table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Status</th>
+            <th>Change User Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.password }}</td>
+            <td *ngIf="user.active">Active</td>
+            <td *ngIf="!user.active">Inactive</td>
+            <td *ngIf="user.active">
+              <form>
+                <input
+                  type="hidden"
+                  name="active"
+                  value="{{ user.active }}"
+                /><button
+                  type="submit"
+                  class="btn btn-dark btn-sm"
+                  (click)="user.active = false; adminUpdate(user)"
+                >
+                  Disable this User
+                </button>
+              </form>
+            </td>
+            <td *ngIf="!user.active">
+              <form>
+                <input
+                  type="hidden"
+                  name="active"
+                  value="{{ user.active }}"
+                /><button
+                  type="submit"
+                  class="btn btn-success btn-sm"
+                  (click)="user.active = true; adminUpdate(user)"
+                >
+                  Enable this User
+                </button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+  <!-- <div class="container-fluid">
+    <div class="space">
+      <h1>Profile Results</h1>
+
+      <table class="table table-striped table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Status</th>
+            <th>Change User Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.password }}</td>
+            <td *ngIf="user.active">Active</td>
+            <td *ngIf="!user.active">Inactive</td>
+            <td *ngIf="user.active">
+              <form>
+                <input
+                  type="hidden"
+                  name="active"
+                  value="{{ user.active }}"
+                /><button
+                  type="submit"
+                  class="btn btn-dark btn-sm"
+                  (click)="user.active = false; adminUpdate(user)"
+                >
+                  Disable this User
+                </button>
+              </form>
+            </td>
+            <td *ngIf="!user.active">
+              <form>
+                <input
+                  type="hidden"
+                  name="active"
+                  value="{{ user.active }}"
+                /><button
+                  type="submit"
+                  class="btn btn-success btn-sm"
+                  (click)="user.active = true; adminUpdate(user)"
+                >
+                  Enable this User
+                </button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> -->
+</div>
