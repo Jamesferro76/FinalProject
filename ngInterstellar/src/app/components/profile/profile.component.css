@@ -133,6 +133,9 @@ body{
   text-transform: uppercase;
 
 }
+.center-things{
+	margin: auto;
+}
 /* Back Buttons */
 
 a {
