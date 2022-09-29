@@ -1,4 +1,9 @@
 <body>
+  <!-- filter criteria -->
+  State:<select name="state" [(ngModel)]="selectedState">
+    <option *ngFor="let state of stateAbr" [ngValue]="state" value="{{state}}">{{state}}</option>
+  </select><br>
+
 <!-- Shows all mixers -->
 <div *ngIf="!selected" >
   <h1>{{title}}</h1>

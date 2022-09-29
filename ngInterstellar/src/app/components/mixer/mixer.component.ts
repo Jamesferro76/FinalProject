@@ -27,6 +27,8 @@ export class MixerComponent implements OnInit {
 
   mixers: Mixer[] = [];
 
+  displayMixers: Mixer[] = [];
+
   editProfile: Profile | null = null;
 
   loggedInUser: User | null = null;
@@ -37,6 +39,68 @@ export class MixerComponent implements OnInit {
   showDetails: boolean = true;
 
   showHost: boolean = false;
+
+  selectedState = '';
+
+  stateAbr = [
+    'AK',
+    'AL',
+    'AR',
+    'AS',
+    'AZ',
+    'CA',
+    'CO',
+    'CT',
+    'DC',
+    'DE',
+    'FL',
+    'GA',
+    'GU',
+    'HI',
+    'IA',
+    'ID',
+    'IL',
+    'IN',
+    'KS',
+    'KY',
+    'LA',
+    'MA',
+    'MD',
+    'ME',
+    'MI',
+    'MN',
+    'MO',
+    'MP',
+    'MS',
+    'MT',
+    'NC',
+    'ND',
+    'NE',
+    'NH',
+    'NJ',
+    'NM',
+    'NV',
+    'NY',
+    'OH',
+    'OK',
+    'OR',
+    'PA',
+    'PR',
+    'RI',
+    'SC',
+    'SD',
+    'TN',
+    'TX',
+    'UM',
+    'UT',
+    'VA',
+    'VI',
+    'VT',
+    'WA',
+    'WI',
+    'WV',
+    'WY',
+  ];
 
   constructor(
     private mixerService: MixerService,
@@ -188,12 +252,14 @@ export class MixerComponent implements OnInit {
     this.mixerService.index().subscribe({
       next: (mixers) => {
         this.mixers = mixers;
+        this.getMixerList();
       },
       error: (problem) => {
         console.error('MixerHttpComponent.reload(): error loading mixer:');
         console.error(problem);
       },
     });
+    console.log(this.displayMixers);
   }
 
   detailsLinkToggle() {
@@ -204,5 +270,18 @@ export class MixerComponent implements OnInit {
   hostLinkToggle() {
     this.showDetails = false;
     this.showHost = true;
+  }
+  getMixerList() {
+    this.displayMixers = [];
+    this.mixers.forEach((each) => {
+      if (
+        each.address.state === this.selectedState ||
+        this.selectedState === ''
+      ) {
+        if (!this.displayMixers.includes(each)) {
+          this.displayMixers.push(each);
+        }
+      }
+    });
   }
 }
