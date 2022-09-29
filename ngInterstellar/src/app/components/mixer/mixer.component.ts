@@ -1,3 +1,4 @@
+import { DuplicatesPipe } from './../../pipes/duplicates.pipe';
 import { ProfileComponent } from './../profile/profile.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -44,65 +45,14 @@ export class MixerComponent implements OnInit {
 
   selectedCity = '';
 
-  stateAbr = [
-    'AK',
-    'AL',
-    'AR',
-    'AS',
-    'AZ',
-    'CA',
-    'CO',
-    'CT',
-    'DC',
-    'DE',
-    'FL',
-    'GA',
-    'GU',
-    'HI',
-    'IA',
-    'ID',
-    'IL',
-    'IN',
-    'KS',
-    'KY',
-    'LA',
-    'MA',
-    'MD',
-    'ME',
-    'MI',
-    'MN',
-    'MO',
-    'MP',
-    'MS',
-    'MT',
-    'NC',
-    'ND',
-    'NE',
-    'NH',
-    'NJ',
-    'NM',
-    'NV',
-    'NY',
-    'OH',
-    'OK',
-    'OR',
-    'PA',
-    'PR',
-    'RI',
-    'SC',
-    'SD',
-    'TN',
-    'TX',
-    'UM',
-    'UT',
-    'VA',
-    'VI',
-    'VT',
-    'WA',
-    'WI',
-    'WV',
-    'WY',
-  ];
+  stateAbr2: string[] = [];
+  cityList: string[] = [];
+
+  initialCreate: boolean = true;
+
+  displayAll: boolean = true;
+
+  displaySearch: boolean = true;
 
   constructor(
     private mixerService: MixerService,
@@ -110,7 +60,8 @@ export class MixerComponent implements OnInit {
     private authService: AuthService,
     private addressService: AddressService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private duplicates: DuplicatesPipe
   ) {}
 
   ngOnInit(): void {
@@ -170,6 +121,7 @@ export class MixerComponent implements OnInit {
         console.error(prob);
       },
     });
+    this.toggleAdd();
   }
 
   setEditMixer() {
@@ -254,6 +206,14 @@ export class MixerComponent implements OnInit {
     this.mixerService.index().subscribe({
       next: (mixers) => {
         this.mixers = mixers;
+        mixers.forEach((each) => {
+          if (!this.stateAbr2.includes(each.address.state)) {
+            this.stateAbr2.push(each.address.state);
+          }
+          if (!this.cityList.includes(each.address.city)) {
+            this.cityList.push(each.address.city);
+          }
+        });
         this.getMixerList();
       },
       error: (problem) => {
@@ -288,5 +248,17 @@ export class MixerComponent implements OnInit {
       }
     });
     this.selectedState = '';
+    this.selectedCity = '';
+  }
+
+  toggleAdd() {
+    this.initialCreate = !this.initialCreate;
+    this.displayAll = !this.displayAll;
+    this.displaySearch = !this.displaySearch;
+  }
+
+  toggleSearch() {
+    this.displaySearch = !this.displaySearch;
+    this.displayAll = !this.displayAll;
   }
 }
