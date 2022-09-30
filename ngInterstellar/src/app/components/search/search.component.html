@@ -20,7 +20,7 @@
               </div>
             </div>
             <div class="flip-box-back" style="background-image:url({{selected.images[counterForPic].imageUrl}});">
-              <div class="inner color-white background-purple">
+              <div class="inner color-white">
                 <span class="text-start" (click)="selectPicBackward(selected.images)">Last pic </span>
                 <span class="float-end" (click)="selectPicForward(selected.images)">Next pic</span><br/>
                 Categories: <span *ngFor="let cat of selected.categories">{{cat.name}} </span>
