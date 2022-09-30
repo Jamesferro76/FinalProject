@@ -126,7 +126,7 @@ export class SearchComponent implements OnInit {
 
   loginUser: User = new User();
 
-  starName: string= "StarName";
+  starName: string = 'StarName';
 
   constructor(
     private userServ: UserService,
@@ -188,12 +188,11 @@ export class SearchComponent implements OnInit {
       this.profiles.forEach((each) => {
         if (each.categories.length === 0) {
           if (
-            each.sex === this.selectedType ||
-            (this.selectedType === '' &&
-              (each.address.state === this.selectedState ||
-                this.selectedState === '') &&
-              each.age > this.ageMin &&
-              each.age < this.ageMax)
+            (each.sex === this.selectedType || this.selectedType === '') &&
+            (each.address.state === this.selectedState ||
+              this.selectedState === '') &&
+            each.age > this.ageMin &&
+            each.age < this.ageMax
           ) {
             if (!this.displayProfiles.includes(each)) {
               this.displayProfiles.push(each);
@@ -202,13 +201,12 @@ export class SearchComponent implements OnInit {
         }
         each.categories.forEach((cat) => {
           if (
-            each.sex === this.selectedType ||
-            (this.selectedType === '' &&
-              (cat.name === this.selectedCat || this.selectedCat === '') &&
-              (each.address.state === this.selectedState ||
-                this.selectedState === '') &&
-              each.age > this.ageMin &&
-              each.age < this.ageMax)
+            (each.sex === this.selectedType || this.selectedType === '') &&
+            (cat.name === this.selectedCat || this.selectedCat === '') &&
+            (each.address.state === this.selectedState ||
+              this.selectedState === '') &&
+            each.age > this.ageMin &&
+            each.age < this.ageMax
           ) {
             if (!this.displayProfiles.includes(each)) {
               this.displayProfiles.push(each);
@@ -297,7 +295,7 @@ export class SearchComponent implements OnInit {
 
   likedAProfile() {
     console.log('Inside LikeAProfile');
-    this.counterForPic=0;
+    this.counterForPic = 0;
     if (this.loginProfile && this.selected) {
       this.lastSelected = this.selected;
       if (!this.loginProfile.favorited) {
@@ -320,7 +318,7 @@ export class SearchComponent implements OnInit {
   }
 
   nextAProfile() {
-    this.counterForPic=0;
+    this.counterForPic = 0;
     this.displayProfiles.splice(this.profileIndex, 1);
     if (this.displayProfiles.length < 1) {
       this.findAllProfiles();
@@ -357,8 +355,8 @@ export class SearchComponent implements OnInit {
       next: (result) => {
         //Make a message pop up that you have a match
         console.log(result);
-        if(this.lastSelected){
-          this.starName=this.lastSelected.firstName
+        if (this.lastSelected) {
+          this.starName = this.lastSelected.firstName;
         }
         this.openPopup();
       },
@@ -404,34 +402,32 @@ export class SearchComponent implements OnInit {
     return this.loginProfile;
   }
 
-// Modals
-  displayStyle = "none";
+  // Modals
+  displayStyle = 'none';
 
   openPopup() {
-    this.displayStyle = "block";
+    this.displayStyle = 'block';
   }
   closePopup() {
-    this.displayStyle = "none";
+    this.displayStyle = 'none';
   }
 
-  displayStyleSearch = "none";
+  displayStyleSearch = 'none';
 
   openPopupSearch() {
-    this.displayStyleSearch = "block";
+    this.displayStyleSearch = 'block';
   }
   closePopupSearch() {
-    this.displayStyleSearch = "none";
+    this.displayStyleSearch = 'none';
   }
 
-  toProfilePage(){
-    if(this.lastSelected){
-      this.router.navigateByUrl('profile/'+this.lastSelected.id);
+  toProfilePage() {
+    if (this.lastSelected) {
+      this.router.navigateByUrl('profile/' + this.lastSelected.id);
     }
   }
 
-  toChat(){
-
+  toChat() {
     this.router.navigateByUrl('ichat');
   }
-
 }
