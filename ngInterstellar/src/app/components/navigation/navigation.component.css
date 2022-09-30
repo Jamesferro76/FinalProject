@@ -8,5 +8,18 @@
 }
 
 .navbar{
+  background-image: linear-gradient(to right, #050006, #201023, #37163c, #511a56, #6e1b70, #822b81, #973a92, #ad49a4, #bc67b2, #cb83bf, #d89fce, #e5bbdc);}
 
+.logo{
+  clear: both;
+}
+
+span{
+  color: #fdf5f5;
+}
+
+.inter{
+  font-family: copperplate;
+  padding-left: 30px;
+  color: #fdf5f5;
 }
