@@ -318,11 +318,6 @@ export class SearchComponent implements OnInit {
   }
 
   nextAProfile() {
-<<<<<<< HEAD
-    this.counterForPic = 0;
-=======
-
->>>>>>> 409d46e53922273ba8b97f4835308140c524f2d4
     this.displayProfiles.splice(this.profileIndex, 1);
     if (this.displayProfiles.length < 1) {
       this.findAllProfiles();
