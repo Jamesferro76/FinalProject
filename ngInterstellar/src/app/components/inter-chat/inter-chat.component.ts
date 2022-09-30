@@ -72,31 +72,26 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   scrollToBottom(): void {
-    try {
-      this.scrollBottom.nativeElement.scrollTop =
+  try {
+        this.scrollBottom.nativeElement.scrollTop =
         this.scrollBottom.nativeElement.scrollHeight;
-    } catch (err) {}
+      } catch (err) {}
   }
 
-//   chatref=setInterval(() => {
-//    this.display();
-//    console.log();
-//  }, 1000);
+  chatref=setInterval(() => {
+   this.display();
+   console.log();
+ }, 1000);
 
   ngOnInit(): void {
     this.chatService.openWebSocket();
-
     this.reload();
-
-
     this.scrollToBottom();
-
-
   }
 
   ngOnDestroy(): void {
     if(true){
-      // clearInterval(this.chatref);
+      clearInterval(this.chatref);
     }
     this.chatService.closeWebSocket();
   }

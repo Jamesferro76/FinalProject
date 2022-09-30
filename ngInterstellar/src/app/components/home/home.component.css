@@ -238,6 +238,17 @@ a:hover {
   border-radius: 50%;
 }
 
+h1 {
+  font-size: 60px;
+  font-family: copperplate;
+  color: #303030;
+  font-weight: 600;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  text-align: center !important;
+}
+
+
 
 
 
@@ -251,7 +262,7 @@ body{
 	align-items: center;
 	min-height: 100vh;
 	font-family: 'Jost', sans-serif;
-	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+	/* background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e); */
 }
 .main{
 	width: 350px;
