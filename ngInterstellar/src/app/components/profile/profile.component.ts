@@ -13,6 +13,7 @@ import { AddressService } from 'src/app/services/address.service';
 import { Address } from 'src/app/models/address';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/category.service';
+import { Mixer } from 'src/app/models/mixer';
 
 @Component({
   selector: 'app-profile',
@@ -444,6 +445,7 @@ export class ProfileComponent implements OnInit {
   }
   picToDelete:Image|null=null;
   deletePic(i: number){
+    this.amountOfImages=this.amountOfImages-1;
     console.log(i);
 
     if(this.editProfile){
@@ -518,6 +520,10 @@ export class ProfileComponent implements OnInit {
     this.showPhotos = false;
     this.showMixers = false;
     this.showInterests = true;
+  }
+
+  toMixerInfo(mixer: Mixer){
+    // this.router.navigateByUrl('mixer/'+mixer.id);
   }
 
 

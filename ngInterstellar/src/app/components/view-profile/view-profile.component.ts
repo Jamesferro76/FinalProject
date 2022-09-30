@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Image } from 'src/app/models/image';
+import { Mixer } from 'src/app/models/mixer';
 import { Profile } from 'src/app/models/profile';
 import { User } from 'src/app/models/user';
 import { AddressService } from 'src/app/services/address.service';
@@ -119,6 +120,10 @@ export class ViewProfileComponent implements OnInit {
     this.showPhotos = false;
     this.showMixers = false;
     this.showInterests = true;
+  }
+
+  toMixerInfo(mixer: Mixer){
+    // this.router.navigateByUrl('mixer/'+mixer.id);
   }
 
 }

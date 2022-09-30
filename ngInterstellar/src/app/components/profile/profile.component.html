@@ -79,7 +79,7 @@
                   <div *ngFor="let mixer of selected?.mixers">
                     <ul>
 
-                      <li> {{ mixer.name }} </li>
+                      <li (click)="toMixerInfo(mixer)"> {{ mixer.name }} </li>
                     </ul>
                   </div>
               </div>
@@ -90,7 +90,7 @@
                 <div *ngFor="let mixer of selected?.mixersAttending">
                   <ul>
 
-                    <li>{{ mixer.name }}</li>
+                    <li (click)="toMixerInfo(mixer)">{{ mixer.name }}</li>
                   </ul>
 
                 </div>
