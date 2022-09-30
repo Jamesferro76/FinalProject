@@ -1,7 +1,17 @@
 <body>
 <!-- Toggle Buttons -->
-<button *ngIf="initialCreate &&!selected" (click)="toggleAdd()">Add Mixer</button>
-<button *ngIf="displaySearch&&!selected" (click)="openPopupSearch()">Search Mixers</button>
+<!-- <button *ngIf="initialCreate &&!selected" (click)="toggleAdd()">Add Mixer</button>
+<button *ngIf="displaySearch&&!selected" (click)="openPopupSearch()">Search Mixers</button> -->
+<a  *ngIf="initialCreate &&!selected" (click)="toggleAdd()" class="btn">
+	<i class="fa"><span class="material-symbols-outlined">
+    add
+    </span></i>
+</a>
+<a *ngIf="displaySearch&&!selected" (click)="openPopupSearch()"class="btn">
+	<i class="fa"style="margin-right: auto;"><span class="material-symbols-outlined">
+    search
+    </span></i>
+</a>
 
 <!-- Shows how to add a form -->
 <div class="form-style-8" *ngIf="!selected && !initialCreate" >
@@ -83,13 +93,26 @@
       <label for="name" *ngIf="newMixer.address.country==''" class="red-letters">Country:</label>
       <label for="name" *ngIf="newMixer.address.country!=''">Country:</label>
       <input type="text" name="country" placeholder="Country"[(ngModel)]="newMixer.address.country"><br>
-      <button
+      <!-- <button
       *ngIf="newMixer.name!=''&&newMixer.description!=''&&newMixer.imageUrl!=''&&newMixer.eventDate!=''
       &&newMixer.eventStart!=''&&newMixer.eventEnd!=''&&newMixer.address.street!=''&&newMixer.address.city!=''
       &&newMixer.address.state!=''&&newMixer.address.zip!=''&&newMixer.address.country!=''"
-      (click)="addMixer()">Add Mixer</button>
-      <button (click)="toggleAdd()">Back</button>
-      </form>
+      (click)="addMixer()">Add Mixer</button> -->
+
+      <!-- <button (click)="toggleAdd()">Back</button> -->
+      <a (click)="toggleAdd()"class="btn">
+        <i class="fa"><span class="material-symbols-outlined">
+          arrow_back
+        </span></i>
+      </a>
+      <a *ngIf="newMixer.name!=''&&newMixer.description!=''&&newMixer.imageUrl!=''&&newMixer.eventDate!=''
+      &&newMixer.eventStart!=''&&newMixer.eventEnd!=''&&newMixer.address.street!=''&&newMixer.address.city!=''
+      &&newMixer.address.state!=''&&newMixer.address.zip!=''&&newMixer.address.country!=''" (click)="toggleAdd()"class="btn">
+        <i class="fa"><span class="material-symbols-outlined">
+          add
+        </span></i>
+      </a>
+    </form>
   </div>
 
 <!-- Shows all mixers -->
@@ -170,8 +193,18 @@
 <label>State: </label> <input type="text" name="state" [(ngModel)]="editMixer.address.state">
 <label>Zip: </label> <input type="text" name="zip" [(ngModel)]="editMixer.address.zip">
 <label>Country: </label> <input type="text" name="country" [(ngModel)]="editMixer.address.country"><br>
-<button (click)="editMixer = null">Cancel</button>
-<button (click)="updateMixer(editMixer)">Save</button>
+<!-- <button (click)="editMixer = null">Cancel</button> -->
+<a (click)="editMixer = null" class="btn">
+  <i class="fa"><span class="material-symbols-outlined">
+    close
+  </span></i>
+</a>
+<!-- <button (click)="updateMixer(editMixer)">Save</button> -->
+<a (click)="updateMixer(editMixer)"class="btn">
+  <i class="fa"><span class="material-symbols-outlined">
+    edit
+  </span></i>
+</a>
 </form>
 
 
@@ -193,12 +226,27 @@
           </p>
           Rate this Mixer!
           <ul>
+            <li>
             <a href="http://54.176.46.29:8080/PerfectDate/#/home" target="_blank">
               <img class ="rateDate" src="http://54.176.46.29:8080/PerfectDate/assets/images/HomeButton.png" alt="" width="40" height="40">
             </a>
-            <button (click)="setEditMixer()">Edit</button>
-            <button (click)="joinMixer(selected)">Join Mixer!</button>
-
+          </li>
+            <!-- <button (click)="setEditMixer()">Edit</button> -->
+            <li>
+            <a (click)="setEditMixer()" class="btn">
+              <i class="fa"><span class="material-symbols-outlined">
+                edit
+              </span></i>
+            </a>
+          </li>
+          <li>
+            <!-- <button (click)="joinMixer(selected)">Join Mixer!</button> -->
+            <a (click)="joinMixer(selected)" class="btn">
+              <i class="fa"><span class="material-symbols-outlined">
+                add
+              </span></i>
+            </a>
+          </li>
           </ul>
         </div>
       </div>
@@ -220,9 +268,14 @@
         </div>
       </div>
     </div>
-    <span (click)="displayTable()" class="material-symbols-outlined">
+    <!-- <span (click)="displayTable()" class="material-symbols-outlined">
       arrow_back
-      </span>
+      </span> -->
+      <a (click)="displayTable()" class="btn">
+        <i class="fa"><span class="material-symbols-outlined">
+          arrow_back
+        </span></i>
+      </a>
   </div>
 </body>
 
