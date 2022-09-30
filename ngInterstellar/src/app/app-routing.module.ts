@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/:id', component: ViewProfileComponent },
   { path: 'mixer', component: MixerComponent },
+  { path: 'mixer/:id', component: MixerComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'ichat', component: InterChatComponent },
   { path: 'search', component: SearchComponent },
