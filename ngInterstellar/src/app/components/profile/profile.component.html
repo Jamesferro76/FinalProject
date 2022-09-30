@@ -9,9 +9,14 @@
 
      <body>
       <div class="header__wrapper">
-        <header style="background: url({{selected.banner}}) no-repeat 50% 20% / cover"></header>
-        <div class="cols__container">
-          <div class="left__col">
+        <div *ngIf="selected.banner">
+          <header style="background: url({{selected.banner}}) no-repeat 50% 20% / cover"></header>
+        </div>
+        <div *ngIf="!selected.banner">
+          <header style="background: url(https://wallpaperaccess.com/full/214901.jpg) no-repeat 50% 20% / cover"></header>
+        </div>
+          <div class="cols__container">
+            <div class="left__col">
             <div class="img__container">
               <img [src]="selected.profilePic"/>
               <span></span>
@@ -52,6 +57,8 @@
                 </a>
               </ul>
             </div>
+            <button (click)="editButtonsToggle()">Edit </button>
+            <button (click)="displayProfilePage()">Back</button>
           </div>
           <div class="right__col">
             <nav>
@@ -270,19 +277,19 @@
   <form>
     <label for="firstName" *ngIf="newProfile.firstName==''" class="red-letters">First Name:</label>
     <label for="firstName" *ngIf="newProfile.firstName!=''">First Name:</label>
-    <input type="firstName" name="field1" placeholder="first name" [(ngModel)]="newProfile.firstName"/>
+    <input type="text" name="field1" placeholder="first name" [(ngModel)]="newProfile.firstName"/>
     <br>
     <label for="lastName" *ngIf="newProfile.lastName==''" class="red-letters">Last Name:</label>
     <label for="lastName" *ngIf="newProfile.lastName!=''">Last Name:</label>
-    <input type="lastName" name="field2" placeholder="last name"  [(ngModel)]="newProfile.lastName"/>
+    <input type="text" name="field2" placeholder="last name"  [(ngModel)]="newProfile.lastName"/>
     <br>
     <label for="description" *ngIf="newProfile.description==''" class="red-letters">Description:</label>
     <label for="description" *ngIf="newProfile.description!=''">Description:</label>
-    <input type="description" name="field3" placeholder="description" [(ngModel)]="newProfile.description"/>
+    <textarea cols="30" rows="3" name="field3" placeholder="description" [(ngModel)]="newProfile.description"></textarea>
     <br>
     <label for="lastName" *ngIf="newProfile.age<18" class="red-letters">Age:</label>
     <label for="lastName" *ngIf="newProfile.age>=18">Age:</label>
-    <input type="age" name="field4" placeholder="age" [(ngModel)]="newProfile.age"/>
+    <input type="number" name="field4" placeholder="age" [(ngModel)]="newProfile.age"/>
     <br>
     <label for="lastName" *ngIf="newProfile.birthday==''" class="red-letters">Birthday:</label>
     <label for="lastName" *ngIf="newProfile.birthday!=''">Birthday:</label>
@@ -526,10 +533,10 @@
 </div>
 
 <!-- Buttons For See All Profile info -->
-<div *ngIf="selected&&!initialCreate&&displayAllInfo&&!basicEdit && !sexualityEdit && !locationEdit && !picsEdit">
+<!-- <div *ngIf="selected&&!initialCreate&&displayAllInfo&&!basicEdit && !sexualityEdit && !locationEdit && !picsEdit">
 <button (click)="editButtonsToggle()">Edit </button>
 <button (click)="displayProfilePage()">Back</button>
-</div>
+</div> -->
 
 
 

@@ -1,6 +1,6 @@
 .chat{
   margin-top: 20px;
-  margin-left: 2rem;
+  margin-left: 5rem;
   margin-right: 2rem;;
 }
 
@@ -20,7 +20,6 @@ overflow-y: scroll;
 
 
 .list-group{
-  width:600px;
 margin: auto;
 overflow-x: hidden;
   overflow-y: auto;
@@ -37,11 +36,16 @@ height: 1px;
 }
 
 .chat-send{
- margin-left: 25rem;
+ margin-left: 35rem;
+margin-top: -6rem;
 }
+
 
 .card{
   height: 100%;
+  width:100%;
+  position: relative;
+
   margin:auto;
   overflow-x: hidden;
 }
@@ -81,13 +85,14 @@ text-align: right;}
 
 .imessage {
   background-color: #fff;
+  position: relative;
   /* float:right; */
   display: flex;
   flex-direction: column;
   font-family: "SanFrancisco";
   font-size: .95rem;
   /* margin:  auto ; */
-
+  width:100%;
   text-anchor: right;
   padding: 0.3rem;
 }
@@ -99,10 +104,9 @@ text-align: right;}
 .imessage p {
   border-radius: 1.15rem;
   line-height: 1.25;
-  max-width: 85%;
   padding: 0.5rem .6rem;
   position: relative;
-  word-wrap: break-word;
+  word-wrap: normal;
 }
 
 .imessage p::before,
@@ -137,6 +141,7 @@ p.from-me::after {
 p[class^="from-me"] {
   text-align: center;
   width: fit-content;
+  position: relative;
   margin-left: 28rem;
 }
 
