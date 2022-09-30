@@ -1,7 +1,13 @@
 /* Flip card CSS  */
 body{
   font-family: 'Mntserrat', Sans-serif;
+  background: white !important;
+
 }
+
+
+
+
 
 .color-white{
   color:white;
@@ -416,6 +422,9 @@ a {
   background: url("https://wallpaperaccess.com/full/214901.jpg") no-repeat 50% 20% / cover;
   min-height: calc(100px + 15vw);
 } */
+.header__wrapper{
+  margin-bottom: -4.5rem !important;
+}
 
 .header__wrapper header {
   width: 100%;
