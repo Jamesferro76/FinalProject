@@ -201,10 +201,11 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       next: (result) => {
         this.reason="";
         this.selected=null;
+        this.id=0;
         console.log(this.selected);
 
         this.getMatches();
-        // this.display();
+        this.display();
 
         // this.newMessage.content = '';
       },
