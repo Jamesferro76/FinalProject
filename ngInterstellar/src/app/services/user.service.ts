@@ -17,7 +17,7 @@ export class UserService {
 
   register(user: User): Observable<User> {
     // Create POST request to register a new account
-    return this.http.post<User>(this.baseUrl + 'register', user).pipe(
+    return this.http.post<User>(this.url + 'register', user).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -86,7 +86,7 @@ export class UserService {
   }
 
   destroy(id: number) {
-    return this.http.delete<void>(this.baseUrl + '/' + id).pipe(
+    return this.http.delete<void>(this.url + '/' + id).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(
