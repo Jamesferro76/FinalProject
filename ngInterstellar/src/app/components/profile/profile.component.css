@@ -612,5 +612,13 @@ a {
   .header__wrapper .cols__container .right__col nav button {
     margin-top: 0;
   }
+
+  .centered
+{
+    margin: 0 auto;
+    width:300px;
+    height:200px;
+    text-align: center;
+}
 }
 
