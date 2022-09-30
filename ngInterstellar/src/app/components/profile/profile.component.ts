@@ -523,7 +523,7 @@ export class ProfileComponent implements OnInit {
   }
 
   toMixerInfo(mixer: Mixer){
-    // this.router.navigateByUrl('mixer/'+mixer.id);
+    this.router.navigateByUrl('mixer/'+mixer.id);
   }
 
 

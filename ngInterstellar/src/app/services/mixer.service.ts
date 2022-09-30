@@ -17,7 +17,7 @@ export class MixerService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   show(mixerId: any): Observable<Mixer> {
-    return this.http.get<Mixer>(this.url + '/' + mixerId).pipe(
+    return this.http.get<Mixer>(this.url + '/' + mixerId, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error('MixerService.show(): error retrieving mixer');
         return throwError(
