@@ -297,7 +297,7 @@ export class SearchComponent implements OnInit {
 
   likedAProfile() {
     console.log('Inside LikeAProfile');
-
+    this.counterForPic=0;
     if (this.loginProfile && this.selected) {
       this.lastSelected = this.selected;
       if (!this.loginProfile.favorited) {
@@ -320,6 +320,7 @@ export class SearchComponent implements OnInit {
   }
 
   nextAProfile() {
+    this.counterForPic=0;
     this.displayProfiles.splice(this.profileIndex, 1);
     if (this.displayProfiles.length < 1) {
       this.findAllProfiles();
