@@ -102,6 +102,7 @@
 .form-style-8{
 	font-family: 'Open Sans Condensed', arial, sans;
 	width: 500px;
+  height:300px;
 	padding: 30px;
 	background: #FFFFFF;
 	margin: 50px auto;
@@ -375,6 +376,13 @@ body {
     margin-left: 40rem;
     margin-top: -29rem;
   }
+
+  .updateLogin{
+    height: 100%;
+  }
+
+
+
 
 
 
