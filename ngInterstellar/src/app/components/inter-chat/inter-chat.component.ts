@@ -205,8 +205,12 @@ export class InterChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.starServ.update(this.id, this.reason).subscribe({
       next: (result) => {
         this.reason="";
+        this.selected=null;
+        console.log(this.selected);
+
         this.getMatches();
-        this.display();
+        // this.display();
+
         // this.newMessage.content = '';
       },
       error: (prob) => {
