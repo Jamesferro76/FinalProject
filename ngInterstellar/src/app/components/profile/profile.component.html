@@ -57,8 +57,18 @@
                 </a>
               </ul>
             </div>
-            <button (click)="editButtonsToggle()">Edit </button>
-            <button (click)="displayProfilePage()">Back</button>
+            <a (click)="editButtonsToggle()"class="btn">
+              <i class="fa"><span class="material-symbols-outlined">
+                edit
+              </span></i>
+            </a>
+            <a (click)="displayProfilePage()"class="btn">
+            <i class="fa"><span class="material-symbols-outlined">
+              arrow_back
+            </span></i>
+            </a>
+            <!-- <button (click)="editButtonsToggle()">Edit </button>
+            <button (click)="displayProfilePage()">Back</button> -->
           </div>
           <div class="right__col">
             <nav>
@@ -525,13 +535,18 @@
 </div>
 
 <!-- Buttons -->
-<div *ngIf="selected&&!initialCreate&&!displayAllInfo" class="centered">
+<!-- <div *ngIf="selected&&!initialCreate&&!displayAllInfo" class="centered">
   <hr>
-  <button (click)="displayAllInfoPage()">See all profile info</button>
+  <button (click)="displayAllInfoPage()">See all profile info</button> -->
   <!-- <button (click)="editButtonsToggle()">Edit profile</button>
   <button (click)="displayProfilePage()">See Profile</button> -->
+  <div *ngIf="selected&&!initialCreate&&!displayAllInfo" class="centered">
+  <a (click)="displayAllInfoPage()" class="btn">
+    <i class="fa"><span class="material-symbols-outlined">
+      search
+    </span></i>
+  </a>
 </div>
-
 <!-- Buttons For See All Profile info -->
 <!-- <div *ngIf="selected&&!initialCreate&&displayAllInfo&&!basicEdit && !sexualityEdit && !locationEdit && !picsEdit">
 <button (click)="editButtonsToggle()">Edit </button>

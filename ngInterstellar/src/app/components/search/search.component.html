@@ -1,7 +1,13 @@
 <main>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-(click)="openPopupSearch()">Filter</button>
+  <!-- Filter Criteria -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+(click)="openPopupSearch()">Filter</button> -->
 
+<a (click)="openPopupSearch()" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+	<i class="fa"><span class="material-symbols-outlined">
+    search
+    </span></i>
+</a>
 <!-- Shows Profiles Based on Search Criteria -->
 <div *ngIf="loggedIn()&&!outOfMatches && displayProfiles.length!=0" >
   <h2>Start swiping</h2>
