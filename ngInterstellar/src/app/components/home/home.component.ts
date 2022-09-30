@@ -43,28 +43,28 @@ export class HomeComponent implements OnInit {
   constructor(private userServ: UserService, private starService: StarService, private profileService: ProfileService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.auth.getLoggedInUser().subscribe({
-      next: (user) => {
-        console.log(user);
+    // this.auth.getLoggedInUser().subscribe({
+    //   next: (user) => {
+    //     console.log(user);
 
-        this.loggedInUser = user;
-        this.profileService.findByUserId(this.loggedInUser.id).subscribe({
-          next: (profile) => {
-            this.loginProfile = profile;
-          },
-          error: (err) => {
-            console.error('Error retrieving Profile');
-            console.error(err);
-            this.router.navigateByUrl('profile');
-          },
-        });
-      },
-      error: (err) => {
-        console.error('Error retrieving User');
-        console.error(err);
+    //     this.loggedInUser = user;
+    //     this.profileService.findByUserId(this.loggedInUser.id).subscribe({
+    //       next: (profile) => {
+    //         this.loginProfile = profile;
+    //       },
+    //       error: (err) => {
+    //         console.error('Error retrieving Profile');
+    //         console.error(err);
+    //         this.router.navigateByUrl('profile');
+    //       },
+    //     });
+    //   },
+    //   error: (err) => {
+    //     console.error('Error retrieving User');
+    //     console.error(err);
 
-      },
-    });
+    //   },
+    // });
   }
 
 

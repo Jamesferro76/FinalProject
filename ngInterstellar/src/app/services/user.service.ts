@@ -12,12 +12,13 @@ import { DatePipe } from '@angular/common';
 export class UserService {
   private baseUrl = 'http://localhost:8090/';
   private url = environment.baseUrl + 'api/users';
+  private url1 = environment.baseUrl;
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   register(user: User): Observable<User> {
     // Create POST request to register a new account
-    return this.http.post<User>(this.url + 'register', user).pipe(
+    return this.http.post<User>(this.url1 + 'register', user).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
